@@ -1,0 +1,171 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/fade</item>
+    </style>
+
+    <style name="FullscreenFadeTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowAnimationStyle">@style/fade</item>
+    </style>
+    <style name="normal" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/fade</item>
+    </style>
+
+    <style name="AppTheme.NoDisplay">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@style/fade</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowNoDisplay">false</item>
+    </style>
+
+    <style name="style_common_list_title_white">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:lineSpacingExtra">3dip</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="style_common_list_desc_white">
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">12dip</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">#aaffffff</item>
+    </style>
+
+    <style name="style_common_list_title_dark">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:lineSpacingExtra">3dip</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
+
+    <style name="style_common_list_desc_dark">
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">9dip</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">#999999</item>
+    </style>
+
+    <style name="common_text_color333_size16">
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/common_list_title_color</item>
+    </style>
+
+    <style name="common_text_color333_size12">
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/common_list_title_color</item>
+    </style>
+
+    <style name="common_text_color9c_size12">
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/common_list_desc_color</item>
+    </style>
+
+    <style name="common_text_color9c_size14">
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/common_list_desc_color</item>
+    </style>
+
+    <style name="common_divider_line">
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/common_divide_color</item>
+    </style>
+
+    <style name="fade" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/in_from_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/out_to_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/in_from_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/out_to_right</item>
+    </style>
+
+    <!--播放器进度条的styles-->
+    <style name="SeekBarAppTheme">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:focusable">true</item>
+        <item name="android:progressDrawable">@drawable/player_progressbar</item>
+        <item name="android:thumb">@drawable/ic_thumb_normal2</item>
+        <item name="android:thumbOffset">@dimen/thumb_offset</item>
+        <item name="android:minHeight">1dip</item>
+        <item name="android:maxHeight">1dip</item>
+    </style>
+    <!-- 播放器进度条end-->
+
+    <style name="VerticalProgressBar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/vertical_progress_bar</item>
+        <item name="android:minHeight">5dip</item>
+        <item name="android:maxHeight">5dip</item>
+    </style>
+    <style name="bottom_in_dialog_theme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
+    </style>
+
+    <style name="common_title_color333_size15">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:lineSpacingExtra">3dip</item>
+        <item name="android:textColor">@color/common_list_title_color</item>
+    </style>
+
+    <style name="bottom_in_dialog_style" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+
+    <style name="common_button_dialog">
+        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="common_button_dialog.positive">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+
+    <style name="common_button_dialog.positive.red">
+        <item name="android:background">@drawable/shape_btn_confirm</item>
+    </style>
+
+    <style name="common_button_dialog.negative">
+        <item name="android:textColor">@color/common_list_title_color</item>
+    </style>
+
+    <style name="common_button_dialog.negative.white">
+        <item name="android:background">@drawable/shape_btn_cancel</item>
+    </style>
+
+    <style name="theme_dialog_btn_positive" parent="common_button_dialog.positive.red"/>
+    <style name="theme_dialog_btn_negative" parent="common_button_dialog.negative.white"/>
+
+</resources>

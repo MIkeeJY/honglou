@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relative_video_tittle_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        style="@style/common_text_color333_size12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="12dp"
+        android:paddingTop="13dp"
+        android:text="@string/detail_relate"
+        android:textColor="@color/common_list_title_color" />
+
+    <CheckBox
+        android:id="@+id/auto_play_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:button="@null"
+        android:checked="true"
+        android:drawablePadding="6dp"
+        android:drawableRight="@drawable/video_detail_checkbox_selector"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:paddingTop="13dp"
+        android:text="@string/detail_auto_play"
+        android:textColor="@color/common_list_desc_color"
+        android:textSize="12dp" />
+<!--    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/auto_play_checkbox"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/bannner_bg"
+        />-->
+</RelativeLayout>

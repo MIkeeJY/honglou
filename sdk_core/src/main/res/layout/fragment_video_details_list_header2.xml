@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/ll_header2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="13dp">
+
+        <RelativeLayout
+            android:id="@+id/title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp">
+
+            <Button
+                android:id="@+id/titleBtn"
+                android:layout_width="28dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shape_red_stroke_bg"
+                android:text="@string/detail_list_header_title"
+                android:textColor="#ffffff"
+                android:textSize="11dp" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="9dp"
+                android:layout_toRightOf="@+id/titleBtn"
+                android:gravity="center"
+                android:textColor="#333333"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/auto_play_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:button="@null"
+                android:checked="true"
+                android:drawablePadding="6dp"
+                android:drawableRight="@drawable/video_detail_checkbox_selector"
+                android:paddingLeft="13dp"
+                android:text="@string/detail_auto_play"
+                android:textColor="@color/common_list_desc_color"
+                android:textSize="12dp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/placeHolderTv"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:layout_below="@+id/title_layout"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="7dp"
+            android:textColor="#999999"
+            android:textSize="12dp"
+            android:visibility="gone" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerList"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_below="@id/placeHolderTv"
+            android:layout_marginTop="13dp" />
+
+        <View
+            style="@style/common_divider_line"
+            android:layout_width="match_parent"
+            android:layout_below="@id/recyclerList"
+            android:layout_marginTop="13dp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

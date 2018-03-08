@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fafafa"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="6dp"
+    android:paddingTop="12dp">
+
+    <TextView
+        android:id="@+id/tv_comment_sub1"
+        style="@style/common_text_color333_size16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:singleLine="false"
+        android:text="username:xxx"
+        android:textColor="@color/common_list_title_color"
+        android:textSize="14dp" />
+
+</RelativeLayout>

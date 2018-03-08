@@ -1,0 +1,29 @@
+<resources>
+
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <!-- body content -->
+
+    <dimen name="title_bar_height">43dp</dimen>
+    <dimen name="text_size_15dp">15dp</dimen>
+    <dimen name="search_edit_height">30dp</dimen>
+    <dimen name="home_hot_word_item_space">8dp</dimen>
+    <dimen name="home_topic_header_item_space">6dp</dimen>
+    <!--PagerSlidingTab中的tab相关数据-->
+    <dimen name="pager_sliding_tab_left_padding">8dp</dimen>
+    <!--此值为pager_sliding_tab_corner_width与pager_sliding_tab_corner_margin_left的和-->
+    <dimen name="pager_sliding_tab_right_padding">14dp</dimen>
+    <dimen name="pager_sliding_tab_corner_width">20dp</dimen>
+    <dimen name="pager_sliding_tab_corner_margin_left">-6dp</dimen>
+    <dimen name="pager_sliding_tab_corner_height">10dp</dimen>
+    <!--pager_sliding_tab_txt_margin和pager_sliding_tab_corner_margin_top绝对值相等-->
+    <dimen name="pager_sliding_tab_txt_margin">2dp</dimen>
+    <dimen name="pager_sliding_tab_corner_margin_top">-2dp</dimen>
+    <!--end PagerSlidingTab中的tab相关数据-->
+    <dimen name="hot_word_selected_item_height">25dp</dimen>
+
+    <dimen name="thumb_offset">8dp</dimen>
+
+
+</resources>

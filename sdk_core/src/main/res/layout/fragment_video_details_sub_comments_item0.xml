@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/image_view"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="top"
+        android:layout_marginLeft="13dp"
+        app:placeholderImage="@drawable/default_portrait"
+        app:placeholderImageScaleType="fitXY"
+        app:roundedCornerRadius="16dp" />
+
+   <!-- <LinearLayout
+        android:id="@+id/pv_zan_container_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="13dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.uibase.praise.view.PraiseViewContainer
+            android:id="@+id/pv_zan_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="3dp">
+
+            <com.uibase.praise.view.PraiseView
+                android:id="@+id/pv_zan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:drawableSelector="@drawable/zan_selector" />
+
+        </com.uibase.praise.view.PraiseViewContainer>
+
+        <TextView
+            android:id="@+id/tv_zan"
+            style="@style/common_text_color9c_size12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="0" />
+    </LinearLayout>-->
+
+<!--
+    <TextView
+        android:id="@+id/reply"
+        style="@style/common_text_color9c_size12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_toLeftOf="@+id/pv_zan_container_layout"
+        android:text="@string/comment_reply"
+        android:textColor="#416598" />
+-->
+
+    <View
+        android:id="@+id/zan_click_area"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:id="@+id/tv_username"
+        style="@style/common_text_color9c_size12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="13dp"
+        android:layout_toRightOf="@+id/image_view"
+        android:text="username"
+        android:textColor="#416598"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/tv_tag"
+        style="@style/common_text_color9c_size12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_username"
+        android:layout_below="@+id/tv_username"
+        android:layout_marginRight="13dp"
+        android:layout_toRightOf="@+id/image_view"
+        android:text="07-14"
+        android:textSize="10dp" />
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_message"-->
+    <!--style="@style/style_common_list_title_dark"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignLeft="@+id/tv_username"-->
+    <!--android:layout_below="@+id/tv_tag"-->
+    <!--android:layout_marginRight="13dp"-->
+    <!--android:layout_marginTop="2dp"-->
+    <!--android:layout_toRightOf="@+id/image_view"-->
+    <!--android:maxLines="4"-->
+    <!--android:singleLine="false"-->
+    <!--android:textColor="@color/common_list_title_color"-->
+    <!--android:textSize="16sp"-->
+    <!--android:text="message"/>-->
+
+    <com.lightsky.video.widget.FolderTextView
+        android:id="@+id/tv_message"
+        style="@style/style_common_list_title_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_username"
+        android:layout_below="@+id/tv_tag"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/image_view"
+        android:singleLine="false"
+        android:text="message"
+        android:textColor="@color/common_list_title_color"
+        android:textSize="16dp"
+        app:foldLine="4"
+        app:tailTextColor="@color/detail_watch_later_color" />
+
+</RelativeLayout>

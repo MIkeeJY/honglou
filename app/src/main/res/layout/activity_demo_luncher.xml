@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".kuaishipin.DemoLuncherActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <RelativeLayout
+                android:id="@+id/checkgrout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp">
+
+                <CheckBox
+                    android:id="@+id/debug_model"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Debug Model"/>
+
+                <CheckBox
+                    android:id="@+id/usenbplayer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/debug_model"
+                    android:layout_marginTop="5dp"
+                    android:text="Use Sdk Player"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/checkgrout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/checkgrout1">
+
+                <CheckBox
+                    android:id="@+id/useshare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Use Share"/>
+
+                <CheckBox
+                    android:id="@+id/uselog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/useshare"
+                    android:layout_marginTop="5dp"
+                    android:text="Use Log"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/checkgrout2"
+                >
+
+                <CheckBox
+                    android:id="@+id/useadview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Use Ad View"/>
+
+                <CheckBox
+                    android:id="@+id/playctrl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/useadview"
+                    android:layout_marginTop="5dp"
+                    android:text="play listener"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkgrout2">
+
+                <Button
+                    android:id="@+id/bnt_init"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:text="Init"
+                    android:textAllCaps="false"
+                    />
+
+                <Button
+                    android:id="@+id/bnt_default_init"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:text="default Init"
+                    android:textAllCaps="false"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RadioGroup
+            android:id="@+id/actorfrag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rdb_useactivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="use activity"/>
+
+            <RadioButton
+                android:id="@+id/rdb_usefragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="static fragment"
+                />
+
+            <RadioButton
+                android:id="@+id/rdb_usefragment_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="dynamic frament"
+                />
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/functions1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/alltabs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="AllTabs"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/mutitab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MutiTabs"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/singletab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OneTab"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search"
+                android:textAllCaps="false"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

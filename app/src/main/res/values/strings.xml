@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">美女搞笑娱乐视频</string>
+
+    <string name="main_page">推荐</string>
+    <string name="video">发现</string>
+    <string name="following">关注</string>
+    <string name="mine">我的</string>
+
+
+</resources>

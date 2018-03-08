@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="default_circle_indicator_centered">true</bool>
+    <color name="default_circle_indicator_fill_color">#20ceb7</color>
+    <integer name="default_circle_indicator_orientation">0</integer>
+    <dimen name="default_circle_indicator_radius">3dp</dimen>
+    <dimen name="default_circle_indicator_spacing">15dp</dimen>
+    <bool name="default_circle_indicator_snap">false</bool>
+    <color name="default_circle_indicator_stroke_color">#E7E7E7</color>
+    <color name="default_indicator_fill_edge_strokeColor">#FFFFFFFF</color>
+    <color name="default_indicator_default_edge_strokeColor">#32FFFFFF</color>
+    <dimen name="default_circle_indicator_stroke_width">1dp</dimen>
+    <dimen name="default_indicator_fill_edge_strokeWidth">1dp</dimen>
+    <dimen name="default_indicator_default_edge_strokeWidth">1dp</dimen>
+</resources>

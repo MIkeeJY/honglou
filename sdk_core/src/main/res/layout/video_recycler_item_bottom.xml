@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_item_footer"
+    android:layout_width="match_parent"
+    android:layout_height="36dp"
+    android:paddingLeft="5dp"
+    android:layout_marginRight="-2dp">
+
+    <RelativeLayout
+        android:id="@+id/user_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:paddingRight="10dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/user_avatar"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            app:placeholderImageScaleType="fitXY"
+            app:roundAsCircle="true"
+            app:roundedCornerRadius="14dp"
+            app:roundingBorderColor="@color/white"
+            app:roundingBorderWidth="1dp" />
+
+        <TextView
+            android:id="@+id/user_name"
+            style="@style/style_common_list_desc_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/user_avatar"
+            android:textColor="@color/common_list_title_color"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/user_guanzhun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="17dp"
+            android:layout_toRightOf="@+id/user_name"
+            android:src="@drawable/home_guanzhu"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <!--   <TextView
+           android:id="@+id/text_watcher"
+           style="@style/style_common_list_desc_dark"
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           android:layout_alignParentEnd="true"
+           android:layout_alignParentRight="true"
+           android:layout_marginTop="10dp"
+           android:drawableLeft="@drawable/home_watch"
+           android:paddingLeft="10dp"
+           android:textColor="@color/common_list_desc_color"
+           android:textSize="11dp" />
+   -->
+
+    <LinearLayout
+        android:id="@+id/video_media_later"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/detail_watch_later_bg_transparent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp">
+
+        <ImageView
+            android:id="@+id/video_watch_later_icon"
+            android:layout_width="11dp"
+            android:layout_height="11dp"
+            android:layout_marginRight="2dp"
+            android:src="@drawable/detail_watch_later_add" />
+
+        <TextView
+            android:id="@+id/video_media_later_tv"
+            style="@style/style_common_list_desc_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detail_watch_later_label"
+            android:textColor="@color/detail_watch_later_color"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/video_media_later_click_area"
+        android:layout_width="66dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/transparent" />
+
+</RelativeLayout>

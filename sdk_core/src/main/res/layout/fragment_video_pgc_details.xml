@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/adapter_video_layout"
+        layout="@layout/video_controller_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/praise_animator"
+        android:layout_width="270dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:visibility="invisible" />
+
+
+    <!-- 底部评论页-->
+    <LinearLayout
+        android:id="@+id/comment_detail_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View
+            style="@style/common_divider_line"
+            android:layout_width="match_parent" />
+
+    </LinearLayout>
+
+    <!--列表页-->
+    <FrameLayout
+        android:id="@+id/list_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/comment_detail_layout"
+        android:layout_below="@+id/adapter_video_layout"
+        android:background="@color/white"
+        android:visibility="invisible" />
+
+    <!--<include-->
+    <!--android:visibility="gone"-->
+    <!--android:id="@+id/list_layout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_below="@+id/adapter_video_layout"-->
+    <!--layout="@layout/fragment_video_pgc_details_layout" />-->
+
+    <!--评论详情页-->
+    <LinearLayout
+        android:id="@+id/comment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/adapter_video_layout"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+
+        <FrameLayout
+            android:id="@+id/comment_list_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/float_seekbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/adapter_video_layout"
+        android:layout_marginTop="-16dp"
+        android:tag="float_seekbar_container_tag"
+        android:visibility="invisible" />
+
+    <FrameLayout
+        android:id="@+id/web_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/adapter_video_layout"
+        android:layout_marginTop="36dp"
+        android:visibility="gone" />
+
+</RelativeLayout>

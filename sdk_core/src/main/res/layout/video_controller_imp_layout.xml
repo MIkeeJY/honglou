@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lightsky.video.widget.video.VideoCtrlLayer xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/adapter_player_control"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:tag="player_control_view_tag">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/adapter_video_iv_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:placeholderImage="@drawable/common_default_icon"
+        app:placeholderImageScaleType="fitXY" />
+
+    <include layout="@layout/video_idle_layout" />
+
+    <include layout="@layout/video_end_layout" />
+    <include layout="@layout/premovie_ad_item">
+
+    </include>
+</com.lightsky.video.widget.video.VideoCtrlLayer>
+

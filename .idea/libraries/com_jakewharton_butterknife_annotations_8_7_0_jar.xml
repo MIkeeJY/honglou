@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="com.jakewharton:butterknife-annotations:8.7.0@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/2.4/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.7.0/2637055420a2da406e3ea9920c2ff4aafd38c970/butterknife-annotations-8.7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/2.4/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.7.0/5521d9cd7bab3af76199f406e5a0f3289fb110ba/butterknife-annotations-8.7.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="131dp"
+    android:layout_height="30dp">
+
+    <ImageView
+        android:layout_width="131dp"
+        android:layout_height="30dp"
+        android:src="@drawable/loading_0"/>
+
+    <ImageView
+        android:id="@+id/loading_mask1"
+        android:layout_width="40dp"
+        android:layout_height="27dp"
+        android:src="#66ffffff"
+        android:layout_marginLeft="-60dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/loading_mask2"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="-40dp"
+        android:src="#66ffffff"
+        android:scaleType="fitXY"
+        android:visibility="gone"/>
+
+</RelativeLayout>

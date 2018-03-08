@@ -1,0 +1,47 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="abc_action_bar_default_height">48dip</dimen>
+
+    <dimen name="top_bar_height">50dp</dimen>
+
+    <!-- tabbar高度 -->
+    <dimen name="activity_main_tab_height">50dp</dimen>
+
+    <!-- popmenu -->
+    <dimen name="popmenu_width">220.0dip</dimen>
+    <dimen name="popmenu_yoff">1dip</dimen>
+
+    <!-- 用户资料界面 -->
+    <dimen name="user_info_head_height">181dp</dimen>
+
+    <!-- 通知中心 -->
+    <dimen name="notice_center_left_swipe_offset">80dp</dimen>
+    <dimen name="notice_center_delete_btn_width">70dp</dimen>
+    <dimen name="notice_center_delete_btn_height">50dp</dimen>
+    <!-- 私信界面 -->
+    <dimen name="chat_more_menu_margin_right">-50dp</dimen>
+    <dimen name="chat_more_menu_height">47dp</dimen>
+
+    <!-- 系统软键盘高度 -->
+    <dimen name="keyboard_height">230dip</dimen>
+    <dimen name="whisper_comment_input_emoji_size">22dp</dimen>
+
+    <dimen name="page_margin">15dp</dimen>
+    <dimen name="serch_item_height">160dp</dimen>
+    <dimen name="serch_item_height_litle">78dp</dimen>
+
+
+    <dimen name="slidingmenu_offset">80dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
+
+    <dimen name="common_size">17dp</dimen>
+
+
+    <dimen name="item_decoration_title_height">40dp</dimen>
+    <dimen name="item_decoration_title_start_margin">16dp</dimen>
+    <dimen name="item_decoration_title_fontsize">14dp</dimen>
+
+</resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:paddingLeft="13dp"
+    android:paddingRight="13dp">
+
+    <RelativeLayout
+        android:id="@+id/user_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/text_focus">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/user_avatar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            app:placeholderImage="@drawable/default_portrait"
+            app:placeholderImageScaleType="fitXY"
+            app:roundAsCircle="true"
+            app:roundedCornerRadius="16dp"
+            app:roundingBorderColor="@color/white"
+            app:roundingBorderWidth="0dp" />
+
+        <ImageView
+            android:id="@+id/imageV"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="29dp"
+            android:src="@drawable/user_v"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/user_name"
+            style="@style/style_common_list_title_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/user_avatar"
+            android:gravity="center_vertical"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/user_desc"
+            style="@style/style_common_list_desc_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_name"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="1dp"
+            android:layout_toRightOf="@+id/user_avatar"
+            android:gravity="center_vertical"
+            android:textColor="@color/common_list_desc_color"
+            android:textSize="11dp" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/text_focus"
+        android:layout_width="54dp"
+        android:layout_height="23dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/shape_red_stroke_bg"
+        android:gravity="center"
+        android:text="关注"
+        android:textColor="#ffffff"
+        android:textSize="12dp" />
+
+</RelativeLayout>

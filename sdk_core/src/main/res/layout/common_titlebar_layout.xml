@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lightsky.video.widget.CommonTitleBar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/common_title_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/themeColorRed"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/common_titlebar_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/title_bar_height"
+        >
+
+        <LinearLayout
+            android:id="@+id/title_bar_right_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/title_bar_right_text_2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="13dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_15dp"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/title_bar_right_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="13dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_15dp"
+                android:visibility="gone"
+                />
+
+            <ImageView
+                android:id="@+id/title_bar_right_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="13dp"
+                android:singleLine="true"
+                android:visibility="gone"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/title_bar_left_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true" >
+
+            <ImageView
+                android:id="@+id/title_bar_left_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="5dp"
+                android:src="@drawable/ic_back"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/title_bar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="11dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="3dp"
+                android:paddingTop="1dp"
+                android:singleLine="true"
+                android:text="@string/back"
+                android:textColor="@android:color/white"
+                android:textSize="17dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/title_bar_middle_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/title_bar_right_layout"
+            android:layout_toRightOf="@+id/title_bar_left_layout"
+            android:orientation="horizontal"/>
+
+    </RelativeLayout>
+</com.lightsky.video.widget.CommonTitleBar>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.lightsky.video.thirdpart.widget.FlowCenterLayout
+        android:id="@+id/dislike_layout_dislikechoices"
+        android:padding="13dp"
+        app:itemgap = "8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.lightsky.video.thirdpart.widget.FlowCenterLayout>
+
+    <View
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#15000000"
+        />
+
+    <com.uibase.ui.ripple.RippleView
+        android:id="@+id/dislike_dialog_cancel_view"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/common_list_bg_color"
+        app:mrl_rippleColor="@color/common_list_clip_color"
+        app:mrl_rippleInAdapter="false"
+        app:mrl_rippleOverlay="true">
+
+        <TextView
+            android:id="@+id/dislike_dialog_notinterrest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/more_item_no_interest"
+            android:textColor="@color/common_list_title_color"
+            android:textSize="16dp"/>
+    </com.uibase.ui.ripple.RippleView>
+</LinearLayout>

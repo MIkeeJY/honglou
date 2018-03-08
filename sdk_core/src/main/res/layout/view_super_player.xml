@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000">
+
+    <com.qihoo.videocloud.view.QHVCTextureView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />[
+
+   <!-- <FrameLayout
+        android:id="@+id/video_danmu_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+
+
+    <include
+        android:id="@+id/app_video_box"
+        layout="@layout/view_super_player_control"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.uibase.ui.ripple.RippleView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:mrl_rippleColor="@color/common_list_clip_color"
+        app:mrl_rippleDuration="200"
+        app:mrl_rippleFromCenter="true"
+        app:mrl_rippleHover="false">
+
+        <ImageView
+            android:id="@+id/app_video_finish_alpha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4.5dp"
+            android:alpha="0.5"
+            android:src="@drawable/ic_back"
+            android:visibility="invisible" />
+    </com.uibase.ui.ripple.RippleView>
+
+    <TextView
+        android:id="@+id/tips_info"
+        android:layout_width="match_parent"
+        android:layout_height="27dp"
+        android:background="#b3019853"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="12dp"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/video_record"
+        layout="@layout/view_super_player_top_record"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</RelativeLayout>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingRight" format="dimension" />
+        <attr name="pstsTabPaddingLeft" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+    </declare-styleable>
+
+    <!-- 沉浸式状态栏 需要调整的view-->
+    <attr name="immer_enable" format="boolean" />
+
+
+    <declare-styleable name="VideoSuggestList">
+        <attr name="TopPullRefresh" format="boolean" />
+        <attr name="BottomLoadMore" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CommentEdit">
+        <attr name="showCommentList" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="WHRatio">
+        <attr name="ratio" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="CombineText">
+        <attr name="name" format="string" />
+        <attr name="num" format="string" />
+        <attr name="num_big" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CenterText">
+        <attr name="text" format="string" />
+        <attr name="single_max_text_num" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="AutoCountEditTextLayout">
+        <attr name="max_input_length" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="FolderTextView">
+        <attr name="foldText" format="string" />
+        <attr name="unFoldText" format="string" />
+        <attr name="foldLine" format="integer" />
+        <attr name="tailTextColor" format="color" />
+        <attr name="canFoldAgain" format="boolean" />
+    </declare-styleable>
+
+    <attr name="color_no_finger_inner_circle" format="color" />
+    <attr name="color_no_finger_outer_circle" format="color" />
+    <attr name="color_finger_on" format="color" />
+    <attr name="color_finger_up" format="color" />
+    <attr name="color_finger_up_error" format="color" />
+    <attr name="count" format="integer" />
+    <attr name="tryTimes" format="integer" />
+
+    <declare-styleable name="GestureLockViewGroup">
+        <attr name="color_no_finger_inner_circle" />
+        <attr name="color_no_finger_outer_circle" />
+        <attr name="color_finger_on" />
+        <attr name="color_finger_up" />
+        <attr name="color_finger_up_error" />
+        <attr name="count" />
+        <attr name="tryTimes" />
+    </declare-styleable>
+
+    <declare-styleable name="FlowCenterLayout">
+        <attr name="itemgap" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="PraiseViewStyle">
+        <attr name="drawableSelector" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="pageIndicator">
+        <attr name="indicator_centered" format="boolean" />
+        <attr name="indicator_fillColor" format="color" />
+        <attr name="indicator_radius" format="dimension" />
+        <attr name="indicator_snap" format="boolean" />
+        <attr name="indicator_strokeColor" format="color" />
+        <attr name="indicator_strokeWidth" format="dimension" />
+        <attr name="indicator_fill_edge_strokeWidth" format="dimension" />
+        <attr name="indicator_default_edge_strokeWidth" format="dimension" />
+        <attr name="indicator_fill_edge_strokeColor" format="color" />
+        <attr name="indicator_default_edge_strokeColor" format="color" />
+        <attr name="indicator_spacing" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="RippleView">
+        <attr name="mrl_rippleColor" format="color" localization="suggested" />
+        <attr name="mrl_rippleDimension" format="dimension" localization="suggested" />
+        <attr name="mrl_rippleOverlay" format="boolean" localization="suggested" />
+        <attr name="mrl_rippleAlpha" format="float" localization="suggested" />
+        <attr name="mrl_rippleDuration" format="integer" localization="suggested" />
+        <attr name="mrl_rippleFadeDuration" format="integer" localization="suggested" />
+        <attr name="mrl_rippleHover" format="boolean" localization="suggested" />
+        <attr name="mrl_rippleBackground" format="color" localization="suggested" />
+        <attr name="mrl_rippleDelayClick" format="boolean" localization="suggested" />
+        <attr name="mrl_ripplePersistent" format="boolean" localization="suggested" />
+        <attr name="mrl_rippleInAdapter" format="boolean" localization="suggested" />
+        <attr name="mrl_rippleRoundedCorners" format="dimension" localization="suggested" />
+        <attr name="mrl_ripplePadding" format="dimension" localization="suggested"/>
+        <attr name="mrl_ripplePaddingTop" format="dimension" localization="suggested"/>
+        <attr name="mrl_ripplePaddingLeft" format="dimension" localization="suggested"/>
+        <attr name="mrl_ripplePaddingRight" format="dimension" localization="suggested"/>
+        <attr name="mrl_ripplePaddingBottom" format="dimension" localization="suggested"/>
+        <attr name="mrl_rippleFromCenter" format="boolean" localization="suggested"/>
+    </declare-styleable>
+
+</resources>

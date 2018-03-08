@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lightsky.video.subject.SubjectListHeader xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/subject_detail_header_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/subject_detail_back"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/title_bar_height"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="11dp"
+            android:paddingRight="20dp"
+            android:src="@drawable/subject_detail_back"
+            android:visibility="visible"/>
+
+        <ImageView
+            android:id="@+id/subject_detail_share"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/title_bar_height"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:src="@drawable/subject_detail_title_share"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/subject_title"
+            style="@style/style_common_list_title_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subject_detail_back"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/subject_update_desc"
+            style="@style/style_common_list_desc_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subject_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/subject_detail_update_at_bg"
+            android:gravity="center"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:textColor="@color/white"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subject_update_desc"
+            android:layout_marginTop="12dp">
+
+            <include
+                android:id="@+id/subject_update_at_left"
+                layout="@layout/common_item_divider"
+                android:layout_width="50dp"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/subject_update_at"/>
+
+            <include
+                android:id="@+id/subject_update_at_right"
+                layout="@layout/common_item_divider"
+                android:layout_width="50dp"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/subject_update_at"/>
+
+            <TextView
+                android:id="@+id/subject_update_at"
+                style="@style/style_common_list_desc_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:paddingLeft="13dp"
+                android:paddingRight="13dp"
+                android:textSize="12dp"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/subject_desc"
+        style="@style/style_common_list_title_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/subject_detail_header_top"
+        android:layout_marginTop="18dp"
+        android:maxLines="20"
+        android:paddingBottom="16dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:singleLine="false"
+        android:textSize="14dp"/>
+</com.lightsky.video.subject.SubjectListHeader>

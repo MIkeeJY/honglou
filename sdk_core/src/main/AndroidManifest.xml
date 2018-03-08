@@ -1,0 +1,150 @@
+<manifest package="com.lightsky.video"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES"/>
+
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+
+    <!-- 分享权限 -->
+    <uses-permission android:name="android.permission.SET_DEBUG_APP"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <!-- 分享权限 end -->
+
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+
+    <!-- 添加手机账号权限 -->
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <!-- 添加手机账号权限 end -->
+    <!-- JobScheduler权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
+    <application>
+
+        <activity
+            android:name="com.lightsky.video.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:exported="true"
+            android:label="QuickVideo"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoDisplay"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="com.lightsky.video"
+                    android:scheme="lightsky"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.lightsky.video.MAIN"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.lightsky.video.videodetails.ui.activity.VideoDetailsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/normal"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity
+            android:name="com.lightsky.video.mediapublisher.MediaPublisherActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"
+            android:theme="@style/normal"/>
+        <activity
+            android:name="com.lightsky.video.topic.TopicActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/normal"/>
+
+
+        <activity
+            android:name="com.lightsky.video.search.SearchActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/normal"/>
+
+
+        <activity
+            android:name="com.lightsky.video.webview.WebViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait"/>
+
+
+        <activity
+            android:name="com.lightsky.video.subject.SubjectActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/normal"/>
+
+        <!--<provider-->
+            <!--android:name="android.support.v4.content.FileProvider"-->
+            <!--android:authorities="${applicationId}.FileProvider"-->
+            <!--android:exported="false"-->
+            <!--android:grantUriPermissions="true">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+                <!--android:resource="@xml/provider_paths"/>-->
+        <!--</provider>-->
+
+        <!-- 登录、分享相关 -->
+
+        <!-- alipay -->
+
+        <activity
+            android:name="com.lightsky.video.share.activity.PosterShareActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lightsky.video.share.activity.PlayerViewShareActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:launchMode="singleTop"/>
+
+        <activity
+            android:name="com.ak.android.bridge.AKActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
+
+
+        <!-- https://android-developers.googleblog.com/2017/03/update-your-app-to-take-advantage-of.html -->
+        <!--<meta-data-->
+            <!--tools:replace="android:resource"-->
+            <!--android:name="android.max_aspect"-->
+            <!--android:value="2.1"/>-->
+    </application>
+</manifest>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.uibase.ui.ripple.RippleView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:mrl_rippleColor="@color/common_list_clip_color"
+    app:mrl_rippleInAdapter="true"
+    app:mrl_rippleOverlay="true">
+
+    <RelativeLayout
+        android:id="@+id/ll_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="13dp"
+        >
+
+        <FrameLayout
+            android:layout_width="125dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:id="@+id/vedio_image_layout"
+            android:layout_height="70dp">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/vedio_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                fresco:placeholderImage="@drawable/shape_round_gray_rectangle"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:id="@+id/vedio_image_errorimg"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/tv_video_duration"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/duration_shape_round_gray_rectangle"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:layout_gravity="bottom|right"
+                android:maxLines="1"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:text="4:35"
+                android:textColor="@android:color/white"
+                android:textSize="11dp"/>
+        </FrameLayout>
+
+        <com.uibase.ui.HighlightedTextView
+            android:id="@+id/devio_title"
+            style="@style/style_common_list_title_dark"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/vedio_image_layout"
+            android:maxLines="2"
+            android:singleLine="false"
+            android:text="郭德纲小岳岳节目里为难延参法师，结果师徒被调侃够呛"
+            android:textColor="@color/common_list_title_color"
+            android:textSize="@dimen/text_size_15dp"/>
+
+        <RelativeLayout
+            android:id="@+id/video_item_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/devio_title"
+            android:layout_below="@+id/devio_title"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/video_time"
+                style="@style/style_common_list_desc_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/common_list_desc_color"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/video_media_publisher"
+                style="@style/style_common_list_desc_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/video_time"
+                android:textColor="@color/common_list_desc_color"
+                android:textSize="11sp"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</com.uibase.ui.ripple.RippleView>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/search_title_bar"
+        layout="@layout/search_title_bar_layout" />
+
+    <include
+        android:visibility="gone"
+        android:id="@+id/search_history_layout"
+        layout="@layout/search_history_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_title_bar" />
+
+    <include
+        android:id="@+id/search_remind_layout"
+        layout="@layout/search_remind_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_title_bar"
+        android:visibility="gone" />
+
+    <include
+        layout="@layout/common_interested_search"
+        android:id="@+id/search_interested"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_title_bar"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/common_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search_title_bar"
+         />
+</RelativeLayout>

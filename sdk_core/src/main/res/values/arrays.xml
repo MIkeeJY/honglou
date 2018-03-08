@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="tab_corner">
+        <item>0</item>
+        <item>@drawable/tab_corner_new_cn</item>
+        <item>@drawable/tab_corner_fire</item>
+        <item>@drawable/tab_corner_hot_cn</item>
+        <item>@drawable/tab_corner_light</item>
+        <item>@drawable/tab_corner_explode</item>
+
+        <item>@drawable/tab_corner_praise</item>
+        <item>@drawable/tab_corner_six</item>
+        <item>@drawable/tab_corner_v</item>
+        <item>@drawable/tab_corner_one</item>
+        <item>@drawable/tab_corner_hot_en</item>
+
+        <item>@drawable/tab_corner_top</item>
+        <item>@drawable/tab_corner_new_en</item>
+        <item>@drawable/tab_corner_see</item>
+        <item>@drawable/tab_corner_selection</item>
+        <item>@drawable/tab_corner_recommend</item>
+
+        <item>@drawable/tab_corner_popularity</item>
+        <item>@drawable/tab_corner_eye</item>
+        <item>@drawable/tab_corner_push</item>
+    </integer-array>
+</resources>

@@ -1,0 +1,118 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_dialog_bg">
+
+        <TextView
+            android:id="@+id/common_dialog_title"
+            style="@style/common_title_color333_size15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="18dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="18dp"
+            android:textSize="18dp" />
+
+        <LinearLayout
+            android:id="@+id/custom_dialog_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/common_dialog_title"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
+        <ScrollView
+            android:id="@+id/common_dialog_content_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/custom_dialog_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/common_dialog_content"
+                    style="@style/common_title_color333_size15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="false"
+                    android:textColor="#8d8d8d"
+                    android:textSize="15dp" />
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_width="276dp"
+                    android:layout_height="275dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:id="@+id/custom_dialog_view_below_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+        </ScrollView>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="1px"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/common_dialog_content_scroll"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="258dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/common_dialog_btn_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/common_dialog_content_scroll"
+            android:paddingBottom="21dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="21dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/common_dialog_negative_btn"
+                style="@style/theme_dialog_btn_negative"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:singleLine="true" />
+
+            <View
+                android:id="@+id/common_dialog_center_space"
+                android:layout_width="28dp"
+                android:layout_height="1dp" />
+
+            <Button
+                android:id="@+id/common_dialog_positive_btn"
+                style="@style/theme_dialog_btn_positive"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:singleLine="true" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/full_custom_dialog_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+</RelativeLayout>

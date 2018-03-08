@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="20dp">
+
+    <include
+        layout="@layout/fragment_video_details_sub_comments_item0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include
+        android:id="@+id/sub1"
+        layout="@layout/fragment_video_details_sub_comments_item1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="53dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="10dp" />
+
+    <!--    <View
+            android:id="@+id/divider_line_1"
+            android:layout_marginLeft="105dp"
+            android:layout_marginRight="13dp"
+            style="@style/common_divider_line"
+            android:layout_width="match_parent"/>-->
+
+    <include
+        android:id="@+id/sub2"
+        layout="@layout/fragment_video_details_sub_comments_item2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="53dp"
+        android:layout_marginRight="13dp" />
+
+    <!--<View-->
+    <!--style="@style/common_divider_line"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_marginLeft="53dp"-->
+    <!--android:layout_marginTop="13dp" />-->
+
+</LinearLayout>

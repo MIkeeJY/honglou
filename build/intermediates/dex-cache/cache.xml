@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/hackest/AndroidStudioProjects/svn/hongyan/CygPtr/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="85c65e704b2ceeb6999eb2bec8b2579d3b34cbbf">
+        <dex dex="/Users/hackest/AndroidStudioProjects/svn/hongyan/app/build/intermediates/transforms/dex/debug/folders/1000/4/classes_ee6e78082820096098b56c3239ab83d469fcb563/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hackest/AndroidStudioProjects/svn/hongyan/sdk_core/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="4bc0b17bbc72ed6f6dc2a67089255c9178beefbb">
+        <dex dex="/Users/hackest/AndroidStudioProjects/svn/hongyan/app/build/intermediates/transforms/dex/debug/folders/1000/4/classes_d77eee77494f2755250a5c6a44530f23d00aa251/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hackest/AndroidStudioProjects/svn/hongyan/app/libs/Baidu_Mtj_3.8.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="2c785622b90e15653d7f9ce296a131dd4382b87d">
+        <dex dex="/Users/hackest/AndroidStudioProjects/svn/hongyan/app/build/intermediates/transforms/dex/debug/folders/1000/2/Baidu_Mtj_3.8.1.1_ea08e3e1c3582f3d91d8206ee63d6f7e8d306006/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hackest/AndroidStudioProjects/svn/hongyan/app/libs/QuickVideo.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="a15c007bb7c6bda5a64c9556ddff944a57514051">
+        <dex dex="/Users/hackest/AndroidStudioProjects/svn/hongyan/app/build/intermediates/transforms/dex/debug/folders/1000/2/QuickVideo_d8378cfd4bac07d9ae6192ed085a43e493a3f2b2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hackest/AndroidStudioProjects/svn/hongyan/GreenDao/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="466a3417cadced7e4bec173135de17a36bb76ad8">
+        <dex dex="/Users/hackest/AndroidStudioProjects/svn/hongyan/app/build/intermediates/transforms/dex/debug/folders/1000/4/classes_e73e1110d51c89739bfd305354e525c1e20197cb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hackest/AndroidStudioProjects/svn/hongyan/CygWidget/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="2c7af9551fc5a81940d8a437432b3ffea788d04a">
+        <dex dex="/Users/hackest/AndroidStudioProjects/svn/hongyan/app/build/intermediates/transforms/dex/debug/folders/1000/4/classes_693d487d5fba1e7e363498986e0ed84eb577e435/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hackest/AndroidStudioProjects/svn/hongyan/CygHttp/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="85831f1efbc5a108460db856c15753f18b96f460">
+        <dex dex="/Users/hackest/AndroidStudioProjects/svn/hongyan/app/build/intermediates/transforms/dex/debug/folders/1000/4/classes_f40af84d344dcf795d59c0ed4e6f0f0c393dccf9/classes.dex" />
+    </item>
+
+</items>

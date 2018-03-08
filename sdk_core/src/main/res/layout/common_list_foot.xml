@@ -1,0 +1,72 @@
+﻿<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/footer_end"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="12dp"
+        android:textColor="#999999"
+        />
+
+    <TextView
+        android:id="@+id/RefreshProgress"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:text="@string/downloading"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="12dp"
+        android:textColor="#999999" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/no_more_content"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:gravity="center"-->
+        <!--android:text="@string/footer_end_1"-->
+        <!--android:paddingBottom="10dp"-->
+        <!--android:textSize="12dp"-->
+        <!--android:textColor="#999999" />-->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/footer_refresh_retry"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center|center_vertical"
+            android:layout_marginBottom="10dp"
+            android:paddingBottom="5dip"
+            android:paddingRight="10dip"
+            android:paddingTop="5dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/retry_messge_1"
+                android:textColor="#999999"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/retry_messge_2"
+                android:textColor="#ff0000"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

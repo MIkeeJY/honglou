@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d0000000">
+
+    <ImageView
+        android:id="@+id/close_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/fenxiang_haibao_guanbi" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <RelativeLayout
+            android:id="@+id/share_layout"
+            android:layout_width="330dp"
+            android:layout_height="190dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/playerview_share_bg">
+
+            <ImageView
+                android:id="@+id/share_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true" />
+
+            <com.qihoo.videocloud.view.QHVCTextureView
+                android:id="@+id/share_video"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/share_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/share_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/palyerview_share_image_desc"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:id="@+id/share_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/share_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/share_weixin_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/video_player_fenxiang_weixin" />
+
+            <ImageView
+                android:id="@+id/share_pengyouquan_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/video_player_fenxiang_pyquan" />
+
+            <ImageView
+                android:id="@+id/share_weibo_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/video_player_fenxiang_weibo"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/share_qq_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/video_player_fenxiang_qq" />
+
+            <ImageView
+                android:id="@+id/share_qq_zone_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/video_player_fenxiang_qqkj" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

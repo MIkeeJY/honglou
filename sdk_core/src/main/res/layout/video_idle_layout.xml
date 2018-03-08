@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lightsky.video.widget.video.VideoIdleLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/video_idle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:tag="player_control_idle_view_tag">
+
+    <com.uibase.ui.ripple.RippleView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:mrl_rippleColor="@color/common_list_clip_color"
+        app:mrl_rippleDuration="200"
+        app:mrl_rippleFromCenter="true"
+        app:mrl_rippleHover="false">
+
+        <ImageView
+            android:id="@+id/btn_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:visibility="gone" />
+    </com.uibase.ui.ripple.RippleView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/vedio_item_title_mark" />
+
+    <ImageView
+        android:id="@+id/img_ic_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/bofang_zanting_010"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/img_ic_loding"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDrawable="@drawable/loading_animator"
+        android:tag="player_control_loading_view_tag" />
+
+    <!--<TextView-->
+    <!--android:id="@+id/video_loading_desc"-->
+    <!--style="@style/style_common_list_desc_white"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/video_loading_desc_text"-->
+    <!--android:layout_below="@id/img_ic_loding"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginTop="4dp"-->
+    <!--android:visibility="gone"-->
+    <!--/>-->
+
+    <TextView
+        android:id="@+id/video_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:paddingTop="10dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/video_desc_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/video_title"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal"
+        android:paddingLeft="13dp">
+
+
+        <FrameLayout
+            android:id="@+id/video_tag_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/shape_tag_bg"
+            android:paddingBottom="1dp"
+            android:paddingLeft="2.5dp"
+            android:paddingRight="2.5dp"
+            android:paddingTop="0.5dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/video_tag"
+                style="@style/style_common_list_desc_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/video_desc"
+            style="@style/style_common_list_desc_white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="11dp"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/video_duration"
+        android:layout_width="48dp"
+        android:layout_height="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="6dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/video_list_round_gray_rectangle"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@android:color/white"
+        android:textSize="12dp"
+        android:visibility="gone" />
+
+
+    <LinearLayout
+        android:id="@+id/error_tip_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/error_tip_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/text_loading_timeout"
+            android:textColor="@android:color/white"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/error_btn_continue"
+            android:layout_width="90dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/player_continue_btn"
+            android:gravity="center"
+            android:text="@string/btn_text_retry"
+            android:textColor="@android:color/white"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+</com.lightsky.video.widget.video.VideoIdleLayout>

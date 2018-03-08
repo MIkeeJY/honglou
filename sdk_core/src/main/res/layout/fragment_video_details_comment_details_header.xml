@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/fragment_video_details_sub_comments_item0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="53dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_tag_back"
+            style="@style/common_text_color9c_size12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="4dp"
+            android:drawableRight="@drawable/arrow_up"
+            android:text="收起全部回复"
+            android:textColor="@color/detail_watch_later_color" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/header_tv_reply"
+            style="@style/common_text_color9c_size12"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:text="回复楼主"
+            android:textColor="@color/detail_watch_later_color" />
+    </RelativeLayout>
+
+
+</LinearLayout>

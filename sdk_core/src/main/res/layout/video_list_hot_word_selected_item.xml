@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/hot_word_recycler_item_name"
+    style="@style/style_common_list_title_dark"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/hot_word_selected_item_height"
+    android:background="@drawable/detail_share_button_bg"
+    android:drawablePadding="6dp"
+    android:drawableRight="@drawable/desktop_dialog_close"
+    android:gravity="center_vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:text="你好"
+    android:textSize="12dp"/>
+
+

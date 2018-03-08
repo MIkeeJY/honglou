@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/video_list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <com.uibase.ui.ripple.RippleView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rippleView"
+        android:layout_width="match_parent"
+        android:layout_height="132dp"
+        app:mrl_rippleColor="@color/common_list_clip_color"
+        app:mrl_rippleInAdapter="true"
+        app:mrl_rippleOverlay="true">
+
+        <RelativeLayout
+            android:id="@+id/video_list_item_subject_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/subject_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                app:placeholderImage="@drawable/common_default_icon"
+                app:placeholderImageScaleType="fitXY"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#66000000"
+                android:scaleType="fitXY"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="13dp"
+                android:paddingRight="13dp"
+                >
+
+                <TextView
+                    android:id="@+id/subject_title"
+                    style="@style/style_common_list_title_white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:singleLine="false"
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/subject_desc"
+                    style="@style/style_common_list_title_white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center"
+                    android:textSize="12dp"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/video_list_subject_item"/>
+        </RelativeLayout>
+    </com.uibase.ui.ripple.RippleView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp"/>
+</LinearLayout>

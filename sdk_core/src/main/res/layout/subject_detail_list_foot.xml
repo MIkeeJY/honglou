@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp">
+
+        <TextView
+            android:id="@+id/subject_foot_title"
+            style="@style/style_common_list_desc_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subject_detail_back"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/subject_detail_foot_title"
+            android:textSize="12dp"/>
+
+        <include
+            android:id="@+id/subject_divider_left"
+            layout="@layout/common_item_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="6dp"
+            android:layout_toLeftOf="@+id/subject_foot_title"/>
+
+        <include
+            android:id="@+id/subject_divider_right"
+            layout="@layout/common_item_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@+id/subject_foot_title"/>
+
+    </RelativeLayout>
+
+    <include
+        layout="@layout/detail_share_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="24dp"/>
+
+</LinearLayout>

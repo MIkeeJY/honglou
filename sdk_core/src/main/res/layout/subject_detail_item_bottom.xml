@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_item_footer"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/foot_top"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginLeft="13dp">
+
+        <RelativeLayout
+            android:id="@+id/user_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/user_avatar"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                app:placeholderImageScaleType="fitXY"
+                app:roundAsCircle="true"
+                app:roundedCornerRadius="14dp"
+                app:roundingBorderColor="@color/white"
+                app:roundingBorderWidth="1dp"/>
+
+            <TextView
+                android:id="@+id/user_name"
+                style="@style/style_common_list_desc_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/user_avatar"
+                android:textColor="@color/common_list_title_color"
+                android:textSize="14sp"/>
+
+            <ImageView
+                android:id="@+id/user_guanzhun"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/user_name"
+                android:src="@drawable/home_guanzhu"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/subject_detail_item_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="11dp"
+            android:paddingRight="13dp"
+            android:src="@drawable/home_pinglun"
+            />
+
+        <com.lightsky.video.videodetails.ui.widget.ObserveNumView
+            android:id="@+id/ic_collection_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/subject_detail_item_comment"
+            android:paddingLeft="11dp"
+            android:paddingRight="11dp"
+            android:visibility="gone"
+            >
+
+            <com.uibase.praise.view.PraiseScaleView
+                android:id="@+id/ic_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/ic_text"
+                app:drawableSelector="@drawable/subject_favor_selector"/>
+
+            <TextView
+                android:id="@+id/ic_num"
+                style="@style/style_common_list_desc_white"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/ic_icon"
+                android:textColor="#666666"
+                android:textSize="10dp"/>
+        </com.lightsky.video.videodetails.ui.widget.ObserveNumView>
+
+        <ImageView
+            android:id="@+id/subject_detail_item_share"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/ic_collection_container"
+            android:paddingLeft="13dp"
+            android:paddingRight="11dp"
+            android:src="@drawable/home_fenxiang"/>
+    </RelativeLayout>
+
+    <include
+        layout="@layout/common_item_divider"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+</LinearLayout>

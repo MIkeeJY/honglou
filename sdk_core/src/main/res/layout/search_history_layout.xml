@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lightsky.video.search.history.SearchHistoryLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/search_history_listview"
+        layout="@layout/common_list_view" />
+</com.lightsky.video.search.history.SearchHistoryLayout>

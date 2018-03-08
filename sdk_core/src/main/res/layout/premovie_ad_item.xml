@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lightsky.video.income.view.premovie.PreMovieIncomeView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/premovie_item"
+    android:visibility="gone"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/premovie_adview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:placeholderImageScaleType="fitXY"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="top"
+        android:background="@drawable/vedio_item_title_mark"
+        android:id="@+id/premovie_title_layout"
+        android:layout_height="90dp">
+
+        <TextView
+            android:layout_marginTop="11dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:singleLine="false"
+            android:ellipsize="end"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="115dp"
+            android:maxLines="2"
+            android:id="@+id/premovie_title_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <com.uibase.ui.ripple.RippleView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:mrl_rippleHover="false"
+        app:mrl_rippleColor="@color/common_list_clip_color"
+        app:mrl_rippleFromCenter="true"
+        app:mrl_rippleDuration="200">
+        <ImageView
+            android:id="@+id/premovie_finish_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back" />
+    </com.uibase.ui.ripple.RippleView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        android:layout_gravity="right|top"
+        android:layout_marginTop="13dp"
+        android:layout_marginRight="13dp"
+        android:id="@+id/premovie_ad_skip_layout"
+        android:background="@drawable/premovie_ad_tip_bg"
+        android:divider="@drawable/splash_ad_view_divider_layer"
+        android:gravity="center_vertical"
+        android:layout_height="20dp">
+
+        <TextView
+            android:id="@+id/premovie_ad_timer"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:paddingLeft="9dp"
+            android:paddingRight="9dp"
+            android:visibility="gone"
+            android:text="3"
+            android:textSize="12sp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/premovie_ad_close"
+            android:paddingRight="9dp"
+            android:paddingLeft="9dp"
+            android:text="关闭广告"
+            android:visibility="gone"
+            android:textSize="12sp"
+            android:textColor="#B2FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/premovie_ad_replay"
+        android:layout_width="wrap_content"
+        android:layout_gravity="left|bottom"
+        android:layout_marginBottom="13dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:text="重播视频"
+        android:drawablePadding="6dp"
+        android:drawableLeft="@drawable/premovie_ad_replay"
+        android:background="@drawable/premovie_ad_replay_bg"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/premovie_ad_detail"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:paddingRight="17dp"
+        android:paddingLeft="17dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:drawablePadding="6dp"
+        android:drawableRight="@drawable/premovie_ad_detail"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:text="查看详情"
+        android:background="@drawable/premovie_ad_detail_bg"
+        android:layout_marginBottom="13dp"
+        android:layout_height="wrap_content" />
+</com.lightsky.video.income.view.premovie.PreMovieIncomeView>

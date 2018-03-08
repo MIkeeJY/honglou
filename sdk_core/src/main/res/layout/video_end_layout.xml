@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lightsky.video.widget.video.VideoEndLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/video_end"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c0000000"
+    android:tag="player_control_end_view_tag"
+    android:visibility="gone">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@drawable/play_view_top_mark">
+
+        <com.uibase.ui.ripple.RippleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:mrl_rippleHover="false"
+            app:mrl_rippleColor="@color/common_list_clip_color"
+            app:mrl_rippleFromCenter="true"
+            app:mrl_rippleDuration="200">
+        <ImageView
+            android:id="@+id/btn_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back" />
+        </com.uibase.ui.ripple.RippleView>
+
+        <com.uibase.ui.ripple.RippleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:mrl_rippleHover="false"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            app:mrl_rippleColor="@color/common_list_clip_color"
+            app:mrl_rippleFromCenter="true"
+            app:mrl_rippleDuration="200">
+
+        <ImageView
+            android:id="@+id/btn_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_menu" />
+        </com.uibase.ui.ripple.RippleView>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/share_weixin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawableTop="@drawable/bofangjieshu_weixin"
+        android:gravity="center"
+        android:text="发给好友"
+        android:textColor="#b0ffffff"
+        android:textSize="10dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/video_center_replay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableTop="@drawable/bofang_chongbo"
+                android:gravity="center"
+                android:text="@string/btn_replay"
+                android:textColor="#b0ffffff"
+                android:textSize="10dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/share_weixin_circle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableTop="@drawable/bofangjieshu_pengyouquan"
+                android:gravity="center"
+                android:text="发朋友圈"
+                android:textColor="#b0ffffff"
+                android:textSize="10dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/video_error_tip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/text_error_offline"
+        android:textColor="@android:color/white"
+        android:textSize="14dp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/next_play_info_container"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true">
+
+        <com.lightsky.video.widget.StrokeProgressbar
+            android:id="@+id/middle_progress_bar"
+            android:layout_width="72dp"
+            android:layout_height="42dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/next_video_thumb"
+            android:layout_width="68dp"
+            android:layout_height="38dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:scaleType="fitXY"
+            app:placeholderImage="@drawable/common_default_icon"
+            app:placeholderImageScaleType="fitXY" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/next_video_thumb">
+
+            <TextView
+                android:id="@+id/text_next_play"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/text_next_play_auto_play_on"
+                android:textColor="#b0ffffff"
+                android:textSize="12dp" />
+
+            <View
+                android:id="@+id/close_auto_mask"
+                android:layout_marginRight="-13dp"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true" />
+
+            <ImageView
+                android:id="@+id/close_auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/upload_video_delete" />
+
+            <TextView
+                android:id="@+id/text_next_play_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_next_play"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textSize="14dp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</com.lightsky.video.widget.video.VideoEndLayout>

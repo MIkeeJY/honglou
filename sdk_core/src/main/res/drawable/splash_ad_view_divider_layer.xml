@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle">
+    <item android:top="8dp" android:bottom="8dp"
+        android:drawable="@drawable/splash_ad_view_divider">
+    </item>
+</layer-list>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/sub_comment_bg"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingTop="15dp">
+
+    <include
+        layout="@layout/fragment_video_details_sub_comments_item0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:background="#fafafa"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp" />
+
+</LinearLayout>

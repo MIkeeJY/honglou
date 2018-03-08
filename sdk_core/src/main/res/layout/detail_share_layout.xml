@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lightsky.video.videodetails.ui.widget.ShareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/detail_share_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingLeft="13dp"
+    android:paddingRight="13dp">
+
+    <com.uibase.ui.ripple.RippleView
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:background="@drawable/detail_share_button_bg"
+        android:gravity="center"
+        app:mrl_rippleColor="@color/common_list_clip_color"
+        app:mrl_rippleDuration="200"
+        app:mrl_rippleFromCenter="true"
+        app:mrl_rippleHover="false">
+
+        <LinearLayout
+            android:id="@+id/detail_share_wx"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/video_player_fenxiang_weixin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="@string/share_weixin"
+                android:textColor="#333333"
+                android:textSize="11dp" />
+        </LinearLayout>
+    </com.uibase.ui.ripple.RippleView>
+
+    <com.uibase.ui.ripple.RippleView
+
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/detail_share_button_bg"
+        android:gravity="center"
+        app:mrl_rippleColor="@color/common_list_clip_color"
+        app:mrl_rippleDuration="200"
+        app:mrl_rippleFromCenter="true"
+        app:mrl_rippleHover="false">
+
+        <LinearLayout
+            android:id="@+id/detail_share_wxpyq"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/video_player_fenxiang_pyquan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="@string/share_weixin_circle"
+                android:textColor="#333333"
+                android:textSize="11dp" />
+        </LinearLayout>
+    </com.uibase.ui.ripple.RippleView>
+
+
+    <com.uibase.ui.ripple.RippleView
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/detail_share_button_bg"
+        android:gravity="center"
+        app:mrl_rippleColor="@color/common_list_clip_color"
+        app:mrl_rippleDuration="200"
+        app:mrl_rippleFromCenter="true"
+        app:mrl_rippleHover="false">
+
+        <LinearLayout
+            android:id="@+id/detail_share_qq"
+            android:layout_width="wrap_content"
+
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/video_player_fenxiang_qq" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="@string/share_qq"
+                android:textColor="#333333"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+    </com.uibase.ui.ripple.RippleView>
+
+    <com.uibase.ui.ripple.RippleView
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/detail_share_button_bg"
+        android:gravity="center"
+        android:visibility="gone"
+        app:mrl_rippleColor="@color/common_list_clip_color"
+        app:mrl_rippleDuration="200"
+        app:mrl_rippleFromCenter="true"
+        app:mrl_rippleHover="false">
+
+        <LinearLayout
+            android:id="@+id/detail_share_sina"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/video_player_fenxiang_weibo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/share_sina"
+                android:textColor="#333333"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+    </com.uibase.ui.ripple.RippleView>
+
+    <com.uibase.ui.ripple.RippleView
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/detail_share_button_bg"
+        android:gravity="center"
+        app:mrl_rippleColor="@color/common_list_clip_color"
+        app:mrl_rippleDuration="200"
+        app:mrl_rippleFromCenter="true"
+        app:mrl_rippleHover="false">
+
+        <LinearLayout
+            android:id="@+id/detail_share_zone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/video_player_fenxiang_qqkj" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/share_qzone"
+                android:textColor="#333333"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+    </com.uibase.ui.ripple.RippleView>
+
+</com.lightsky.video.videodetails.ui.widget.ShareLayout>

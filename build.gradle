@@ -1,0 +1,35 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.2'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:8.7.0'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url "http://20.20.27.101:8081/nexus/content/groups/public/"
+            credentials {
+                username 'edwin'
+                password 'iyouquedwin'
+            }
+        }
+        maven {
+            url 'https://maven.google.com'
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

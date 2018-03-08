@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/video_list_last_refresh_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:id="@+id/video_list_last_refresh_title"
+        style="@style/style_common_list_title_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@+id/user_avatar"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/video_list_last_refresh"
+        android:textColor="@color/detail_watch_later_color"
+        android:textSize="14dp"/>
+
+    <View
+        android:id="@+id/video_list_last_refresh_left"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/video_list_last_refresh_title"
+        android:background="@color/common_divide_color"/>
+
+    <View
+        android:id="@+id/video_list_last_refresh_right"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/video_list_last_refresh_title"
+        android:background="@color/common_divide_color"/>
+</RelativeLayout>

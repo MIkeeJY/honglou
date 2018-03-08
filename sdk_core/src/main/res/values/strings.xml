@@ -1,0 +1,186 @@
+<resources>
+
+    <string name="downloading">正在加载&#8230;</string>
+    <string name="retry_messge_1">加载失败！</string>
+    <string name="retry_messge_2">点此刷新</string>
+    <string name="common_no_content">视频列表为空~</string>
+    <string name="common_no_comment">还没有评论，抢沙发看你手速哦</string>
+    <string name="operate_fail">操作失败!</string>
+
+    <string name="video_list_item_play_count_format">%1$s次观看</string>
+    <string name="video_list_no_update">暂无更新</string>
+
+    <!--详情页相关-->
+    <string name="focus">关注</string>
+    <string name="focused">已关注</string>
+
+    <string name="read_more">查看全部%1$d条评论</string>
+
+    <string name="share">分享</string>
+
+    <string name="cancel">取消</string>
+    <string name="finish">完成</string>
+    <!--搜索相关-->
+    <string name="search">搜索</string>
+    <string name="search_input_keyword">请输入你想搜索的关键词</string>
+    <string name="search_edit_hint">搜索感兴趣的内容</string>
+    <string name="search_history_delete_all">清空搜索记录</string>
+    <string name="search_no_content">什么也没搜到</string>
+    <string name="back">返回</string>
+    <string name="copy">复制</string>
+    <string name="close">关闭</string>
+
+    <string name="format_num">%1$s</string>
+
+    <string name="ok">确定</string>
+    <string name="bind_error_dialog_title">还没绑定手机号</string>
+    <string name="bind_error_dialog_content_normal">绑定手机号失败</string>
+    <string name="bind_error_dialog_content_redpkg">绑定手机号才能提现哦！</string>
+    <string name="bind_error_dialog_content_comment">绑定手机号才能发表评论哦！</string>
+    <string name="bind_error_dialog_content_barrage">绑定手机号才能发射弹幕哦！</string>
+    <string name="bind_error_dialog_content_upload">绑定手机号才能上传哦！</string>
+    <string name="bind_error_dialog_ok">用手机号登录</string>
+    <string name="vedio_update_tip">发现%1$d条精彩视频</string>
+    <string name="vedio_update_tip_fail">网络连接错误，请稍候再试</string>
+
+    <!---->
+    <!--<string name="network_failed">网络不可用, 请检查网络</string>-->
+    <string name="network_failed">网络异常，请检查网络状况后重试</string>
+    <string name="btn_replay">重播</string>
+    <string name="btn_pre">上一个</string>
+    <string name="text_share_video">分享视频</string>
+    <string name="text_share_subject">分享专题</string>
+    <string name="text_next_play_auto_play_off">精彩推荐：</string>
+    <string name="text_next_play_auto_play_on">接下来播放：</string>
+    <string name="text_error_offline">不好意思，视频走丢了呜呜呜~</string>
+    <string name="text_error_offline_tips">视频已下线</string>
+    <string name="text_loading_timeout">视频加载失败~</string>
+    <string name="share_weixin">微信好友</string>
+    <string name="share_weixin_circle">朋友圈</string>
+    <string name="share_sina">微博</string>
+    <string name="share_qq">QQ好友</string>
+    <string name="share_qzone">QQ空间</string>
+    <string name="share_copy_success">复制成功</string>
+    <string name="share_topic_default_desc">边看视频边赚钱只在快视频！</string>
+    <string name="topic_subtitle_default">据说积极分享可以走好运哦~</string>
+    <string name="share_fail">分享失败</string>
+    <string name="share_cancel">分享取消</string>
+
+    <!--动态开启日志-->
+    <string name="add_watch_later_success">已加入稍后观看</string>
+    <string name="detail_watch_later_label">稍后观看</string>
+    <string name="detail_dislike_toast">已减少此类推荐</string>
+    <string name="hot_word_select">已更新为您感兴趣的内容</string>
+    <string name="detail_no_pre">没有上一条了</string>
+    <string name="detail_no_next">没有下一条了</string>
+    <string name="detail_relate">相关视频</string>
+    <string name="detail_auto_play">自动播放</string>
+
+    <string name="footer_end_1">没有更多了</string>
+    <string name="footer_end_2">到底了</string>
+    <string name="video_list_item_title">%1$s的作品</string>
+    <string name="media_publisher_video_count">视频 %s</string>
+    <string name="media_publisher_fans_count">粉丝 %s</string>
+
+    <!--<string name="video_loading_desc_text">当前网速不给力...</string>-->
+    <string name="subject_detail_foot_title">觉得不错吧！分享给伙伴们看看~</string>
+    <string name="comment_no_nickname">快视频用户</string>
+    <string name="video_list_last_refresh">%1$s看到这里，点击刷新</string>
+    <string name="focus_tab_recommend_video_title">您可能错过的视频</string>
+    <string name="focus_tab_recommend_media_title">添加关注，体验更多精彩视频</string>
+    <string name="hot_word_title">没有喜欢的视频？添加兴趣：</string>
+
+    <!-- 卸载挽留-->
+
+    <!--上传视频列表-->
+    <!--<string name="status_uploading">正在上传...%1$s</string>-->
+
+    <!--账号设置-->
+
+    <!-- 更多关注页 -->
+
+    <string name="more_item_watch_later">稍后观看</string>
+    <string name="more_item_focus_author">关注作者</string>
+    <string name="more_item_unfocus_author">取消关注</string>
+    <string name="more_item_no_interest">不感兴趣</string>
+    <string name="more_item_feedback">举报与反馈</string>
+
+    <string name="share_item_haibao">快海报</string>
+    <string name="share_item_copy">复制链接</string>
+    <string name="share_item_copy_success">视频链接已复制</string>
+    <string name="share_item_gengduo">更多分享</string>
+
+    <string name="poster_save">保存</string>
+    <string name="poster_save_success">已保存到本地相册</string>
+    <string name="poster_save_fail">保存失败</string>
+    <string name="poster_qr_desc">长按图片识别二维码观看视频</string>
+    <string name="poster_video_duration">%1$s分%2$s秒</string>
+
+    <string name="palyerview_share_image_desc">截图技术不错，分享给大家吧~</string>
+    <string name="palyerview_share_video_desc_landscape">视频已保存至手机相册,可通过微信分享给好友</string>
+    <string name="palyerview_share_video_desc_portrait">视频已保存至手机相册\n可通过微信分享给好友</string>
+
+    <!-- 红包 -->
+
+    <string name="common_retry">重试</string>
+
+    <!-- 分享-->
+    <string name="hot_word_switch">换一组</string>
+
+    <string name="detail_list_header_playing">正在播放</string>
+    <string name="detail_list_header_playing_desc">正在播放该视频，请选择其他视频</string>
+    <string name="detail_list_header_title">主题</string>
+
+    <!-- 个人主页-->
+
+    <!-- 视频编辑-->
+
+    <!--众媒作者页-->
+    <string name="media_publish_user_del">该账号涉及违规，已被删除</string>
+    <string name="video_list_topic_header_video_count">%1$d个视频</string>
+    <!--广告-->
+    <string name="ad_downloadimedately">立即下载</string>
+    <string name="ad_downloading">下载中</string>
+    <string name="ad_pause">继续下载</string>
+    <string name="ad_downloadfail">失败，重试</string>
+    <string name="ad_install">安装应用</string>
+    <string name="ad_cancel">下载取消</string>
+    <string name="ad_openapp">打开应用</string>
+    <string name="ad_viewdetail">查看详情</string>
+    <!---不喜欢-->
+    <string name="recommend_duplicate">重复推荐</string>
+    <string name="recommend_low_content">低俗内容</string>
+    <string name="recommend_dislike">讨厌此类</string>
+
+
+    <string name="small_problem">播放失败，稍后重试</string>
+    <string name="small_problem2">网络异常，请检查网络状况后重试</string>
+    <string name="player_not_wifi">土豪，您要在流量环境下播放视频吗~</string>
+    <string name="player_loading_timeout">视频加载失败~</string>
+
+    <string name="btn_text_retry">重试</string>
+    <string name="btn_text_continue">播放视频</string>
+    <string name="text_shgk">稍后观看</string>
+    <string name="text_shgk_added">√稍后观看</string>
+
+    <string name="net_check_text_1">未连上WiFi，播放将使用%1$s流量</string>
+    <string name="net_check_text_2">未连上WiFi，继续播放将使用%1$s流量</string>
+    <string name="net_check_text_3">本次播放将使用%1$s流量</string>
+    <string name="net_check_text_4">继续播放将使用%1$s流量</string>
+    <string name="net_check_text_5">已连上WiFi，请放心看视频</string>
+    <string name="change_play_rate">快播</string>
+    <string name="change_play_rate_normal">X1</string>
+    <string name="change_play_rate_double">X2</string>
+    <string name="change_play_rate_fourfold">X4</string>
+    <string name="change_play_rate_disable">暂停状态，不支持倍速播放</string>
+
+    <string name="player_shot_dir">ksp_pic</string>
+    <string name="player_record_dir">ksp_video</string>
+    <string name="player_record_error">录屏失败\n请在设置中开启存储权限后重试</string>
+    <string name="player_shot_error">截屏失败\n请在设置中开启存储权限后重试</string>
+    <string name="player_recording">录制中</string>
+    <string name="player_record_disable">暂停状态，不支持录制</string>
+
+
+
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lightsky.video.base.ui.HomeLoadingLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/loading_view_1"
+            layout="@layout/common_loading_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/loading_view_2"
+            layout="@layout/common_loading_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/loading_view_3"
+            layout="@layout/common_loading_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</com.lightsky.video.base.ui.HomeLoadingLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+
+    <item
+        android:drawable="@drawable/bofang_zanting_01"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/bofang_zanting_02"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/bofang_zanting_03"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/bofang_zanting_04"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/bofang_zanting_05"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/bofang_zanting_06"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/bofang_zanting_07"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/bofang_zanting_08"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/bofang_zanting_09"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/bofang_zanting_010"
+        android:duration="10" />
+
+</animation-list>

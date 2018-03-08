@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/video_list_focus_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:paddingTop="6dp">
+
+        <Button
+            android:id="@+id/text_focus"
+            android:layout_width="54dp"
+            android:layout_height="23dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/shape_red_stroke_bg"
+            android:gravity="center"
+            android:text="关注"
+            android:textColor="#ffffff"
+            android:textSize="12dp"
+            />
+
+        <RelativeLayout
+            android:id="@+id/user_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/text_focus">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/user_avatar"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_centerVertical="true"
+                app:placeholderImage="@drawable/default_portrait"
+                app:placeholderImageScaleType="fitXY"
+                app:roundAsCircle="true"
+                app:roundedCornerRadius="15dp"
+                app:roundingBorderColor="@color/white"
+                app:roundingBorderWidth="0dp"/>
+
+            <ImageView
+                android:id="@+id/imageV"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/user_v"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/user_name"
+                style="@style/style_common_list_title_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/user_avatar"
+                android:gravity="center_vertical"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:id="@+id/user_desc"
+                style="@style/style_common_list_desc_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_name"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@+id/user_avatar"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_list_desc_color"
+                android:textSize="11dp"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/video_layout"
+            android:layout_width="match_parent"
+            android:layout_height="94dp"
+            android:layout_below="@+id/user_layout"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="6dp">
+0
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/video_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    app:placeholderImage="@drawable/common_default_icon"
+                    app:placeholderImageScaleType="fitXY"
+                    />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:id="@+id/video_left_errorimg"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="4dp"
+                android:layout_height="match_parent">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/video_right"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    app:placeholderImage="@drawable/common_default_icon"
+                    app:placeholderImageScaleType="fitXY"
+                    />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:id="@+id/video_right_errorimg"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/common_divide_color"/>
+</LinearLayout>

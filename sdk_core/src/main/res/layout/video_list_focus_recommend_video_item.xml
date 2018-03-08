@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recommend_video_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/common_list_bg_color"
+    android:orientation="vertical"
+    android:paddingLeft="13dp"
+    android:paddingRight="13dp">
+
+    <TextView
+        android:id="@+id/recommend_video_title"
+        style="@style/style_common_list_title_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:text="@string/focus_tab_recommend_video_title"
+        android:textStyle="bold"
+        android:textSize="14dp"/>
+
+    <LinearLayout
+        android:id="@+id/video_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/video_left_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/video_left_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    app:placeholderImage="@drawable/common_default_icon"
+                    app:placeholderImageScaleType="fitXY"
+                    />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:id="@+id/video_left_errorimg"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/video_left_title"
+                style="@style/style_common_list_title_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/user_avatar"
+                android:gravity="top"
+                android:maxLines="2"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:singleLine="false"
+                android:textSize="12dp"/>
+
+            <LinearLayout
+                android:id="@+id/video_left_user_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/video_left_user_avatar"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    fresco:placeholderImage="@drawable/common_toobar_icon_avatar_big"
+                    fresco:placeholderImageScaleType="fitXY"
+                    fresco:roundedCornerRadius="9dp"
+                    fresco:roundAsCircle="true"/>
+
+                <ImageView
+                    android:id="@+id/imageV_left"
+                    android:layout_width="9dp"
+                    android:layout_height="9dp"
+                    android:layout_marginLeft="-6dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/user_v"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/video_left_user_name"
+                    style="@style/style_common_list_desc_dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:gravity="center_vertical"
+                    android:textSize="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/video_right_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/video_right_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_centerVertical="true"
+                    app:placeholderImage="@drawable/common_default_icon"
+                    app:placeholderImageScaleType="fitXY"
+                    />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:id="@+id/video_right_errorimg"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/video_right_title"
+                style="@style/style_common_list_title_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/user_avatar"
+                android:gravity="top"
+                android:maxLines="2"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:singleLine="false"
+                android:textSize="12dp"/>
+
+            <LinearLayout
+                android:id="@+id/video_right_user_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/video_right_user_avatar"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    fresco:placeholderImage="@drawable/common_toobar_icon_avatar_big"
+                    fresco:placeholderImageScaleType="fitXY"
+                    fresco:roundAsCircle="true"/>
+
+                <ImageView
+                    android:id="@+id/imageV_right"
+                    android:layout_width="9dp"
+                    android:layout_height="9dp"
+                    android:layout_marginLeft="-6dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/user_v"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/video_right_user_name"
+                    style="@style/style_common_list_desc_dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:gravity="center_vertical"
+                    android:textSize="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

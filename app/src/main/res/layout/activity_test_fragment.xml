@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                tools:context=".kuaishipin.TestFragmentActivity">
+
+    <RelativeLayout
+        android:id="@+id/test_fragment_dynamic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <HorizontalScrollView
+            android:id="@+id/video_type_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+        </HorizontalScrollView>
+
+        <com.hyxsp.video.kuaishipin.NoScrollViewPager
+            android:id="@+id/video_pager_fragments"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/video_type_tab">
+        </com.hyxsp.video.kuaishipin.NoScrollViewPager>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/test_fragment_static"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/toptip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="this is a static video fragement style"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:visibility="gone"/>
+
+        <fragment
+            android:id="@+id/homefragment"
+            android:name="com.lightsky.video.sdk.VideoTabFragement"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toptip">
+        </fragment>
+    </RelativeLayout>
+
+
+</RelativeLayout>

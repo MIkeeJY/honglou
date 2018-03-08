@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion gradle.ext.compileSdkVersion
+    buildToolsVersion gradle.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion gradle.ext.minSdkVersion
+        targetSdkVersion gradle.ext.targetSdkVersion
+        applicationId "com.hyxsp.video"
+        versionCode 1
+        versionName "1.0.0"
+
+        multiDexEnabled true
+
+        ndk {
+            abiFilters /*"armeabi",*/ "armeabi-v7a"/*,"x86","arm64-v8a"*/
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+
+        release {
+            minifyEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':sdk_core')
+    compile "com.android.support:design:$gradle.ext.supportLibraryVersion"
+    compile project(':CygWidget')
+    //ButterKnife
+    compile('com.jakewharton:butterknife:8.7.0') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-compat'
+    }
+    //ssp广告
+    compile('net.iyouqu.android.common:dycm_ssp_sdk:1.1.8') {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+        exclude group: 'com.ak.android', module: 'library'
+
+    }
+
+
+    compile 'com.shuyu:GSYVideoPlayer:4.1.0'
+    compile 'org.greenrobot:eventbus:3.1.1'
+    compile 'com.android.support:multidex:1.0.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+    debugCompile 'com.apkfuns.logutils:library:1.5.1.1'
+    releaseCompile 'com.apkfuns.logutils:logutils-no-op:1.5.1.1'
+
+}

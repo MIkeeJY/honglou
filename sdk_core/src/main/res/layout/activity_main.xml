@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lightsky.video.MainActivity">
+
+    <!--<android.support.v4.widget.DrawerLayout-->
+        <!--android:id="@+id/drawer"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<include layout="@layout/home_content" />-->
+
+        <!--<FrameLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_gravity="start"-->
+            <!--android:clickable="true" >-->
+
+            <!--<fragment-->
+                <!--android:id="@+id/slidebar_fragment"-->
+                <!--android:name="com.hotrizon.video.slidebar.SlideBarFragment"-->
+                <!--android:layout_width="260dp"-->
+                <!--android:layout_height="fill_parent"/>-->
+        <!--</FrameLayout>-->
+
+    <!--</android.support.v4.widget.DrawerLayout>-->
+
+    <!--
+    1.0.65版本样式
+    <include layout="@layout/activity_main_content" />-->
+
+
+
+    <!--<com.lightsky.video.widget.NoScrollViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+    <fragment
+        android:id="@+id/homefragment"
+        android:name="com.lightsky.video.home.HomeFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </fragment>
+
+<!--
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_above="@id/bottom_layout"
+        android:layout_marginBottom="-1px"
+        android:background="@drawable/bottom_shadow" />
+-->
+
+</RelativeLayout>

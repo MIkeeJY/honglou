@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lightsky.video.topic.TopicHeader xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/topic_header_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/common_list_title_color"
+    >
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/topic_header_bg"
+        android:layout_width="match_parent"
+        android:layout_height="116dp"
+        android:background="@color/common_list_title_color"
+        android:scaleType="centerCrop"
+        fresco:placeholderImage="@drawable/personal_bg_big"
+        fresco:placeholderImageScaleType="centerCrop"/>
+
+
+    <ImageView
+        android:id="@+id/topic_header_back"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/title_bar_height"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="5dp"
+        android:paddingRight="20dp"
+        android:src="@drawable/ic_back"
+        android:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/topic_header_share"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/title_bar_height"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="5dp"
+        android:paddingRight="13dp"
+        android:src="@drawable/topic_share"
+        android:visibility="visible"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topic_header_bg"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="12dp"
+        android:paddingLeft="100dp">
+
+        <TextView
+            android:id="@+id/topic_header_name"
+            style="@style/style_common_list_title_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topic_header_bg"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:textColor="@color/common_list_title_color"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/topic_header_desc"
+            style="@style/style_common_list_title_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topic_header_name"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="3dp"
+            android:singleLine="false"
+            android:textColor="@color/common_list_desc_color"
+            android:textSize="11dp"
+            />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/avater_layout"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/topic_header_bg"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="-25dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/topic_header_bg"/>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/topic_header_avatar"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_gravity="center"
+            fresco:placeholderImage="@drawable/topic_default"
+            fresco:placeholderImageScaleType="fitXY"
+            fresco:roundAsCircle="false"
+            fresco:roundedCornerRadius="3dp"
+            fresco:roundingBorderColor="@color/white"/>
+    </FrameLayout>
+
+</com.lightsky.video.topic.TopicHeader>

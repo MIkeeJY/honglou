@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_list_bg_color"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/web_view_title"
+        layout="@layout/common_titlebar_layout" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/web_view_title"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/fragment_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+        <ViewStub
+            android:layout="@layout/common_retry"
+            android:layout_width="match_parent"
+            android:id="@+id/common_retry_layout"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/web_view_title"-->
+        <!--/>-->
+
+</RelativeLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4f60bf</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="tab_text_color_default">#ffeeeeee</color>
+    <color name="tab_text_color_selected">#fffb4f4f</color>
+
+    <color name="tae_sdk_login_qr_colors_highlight">#ffff9900</color>
+
+
+    <color name="common_white">#fdfdfd</color>
+    <color name="common_blue">#46a0e3</color>
+
+
+    <color name="red">#FFC93437</color>
+    <color name="blue">#FF375BF1</color>
+    <color name="yellow">#FFF7D23E</color>
+    <color name="green">#FF34A350</color>
+
+
+</resources>

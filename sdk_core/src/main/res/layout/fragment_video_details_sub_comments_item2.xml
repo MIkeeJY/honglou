@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fafafa"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/tv_comment_sub2"
+            style="@style/common_text_color333_size16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:text="username:xxx"
+            android:textColor="@color/common_list_title_color"
+            android:textSize="14dp" />
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_username_sub2"-->
+        <!--style="@style/common_text_color9c_size12"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="username"-->
+        <!--android:textColor="@color/detail_watch_later_color" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_message_sub2"-->
+        <!--style="@style/common_text_color333_size16"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginRight="13dp"-->
+        <!--android:layout_marginTop="2dp"-->
+        <!--android:maxLines="4"-->
+        <!--android:singleLine="false"-->
+        <!--android:text="message"-->
+        <!--android:textSize="14dp" />-->
+
+        <!--        <View
+                    android:id="@+id/divider_line_2"
+                    style="@style/common_divider_line"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="12dp" />-->
+
+        <TextView
+            android:id="@+id/tv_tag_sub2"
+            style="@style/common_text_color9c_size14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:drawablePadding="4dp"
+            android:drawableRight="@drawable/arrow_down"
+            android:text="查看全部0条回复"
+            android:textColor="#416598" />
+
+    </LinearLayout>
+
+</LinearLayout>

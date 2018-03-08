@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_video_top_box"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/play_view_top_mark">
+
+    <com.uibase.ui.ripple.RippleView
+        android:id="@+id/app_video_top_left_root"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginTop="2dp"
+        app:mrl_rippleColor="@color/common_list_clip_color"
+        app:mrl_rippleDuration="200"
+        app:mrl_rippleFromCenter="true"
+        app:mrl_rippleHover="false">
+
+        <ImageView
+            android:id="@+id/app_video_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back" />
+    </com.uibase.ui.ripple.RippleView>
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/app_video_top_left_root"-->
+    <!--android:layout_marginTop="2dp"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="36dp">-->
+
+
+    <!--</RelativeLayout>-->
+
+    <View
+        android:id="@+id/app_video_finish_proxy"
+        android:layout_width="60dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="2dp" />
+
+
+
+    <TextView
+        android:id="@+id/app_video_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/app_video_top_left_root"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:paddingTop="10dp"
+        android:textColor="@android:color/white"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+</RelativeLayout>

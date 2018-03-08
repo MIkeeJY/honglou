@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/video_list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/video_controller_layout"
+            layout="@layout/video_controller_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <include
+        layout="@layout/video_list_item_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+
+    <FrameLayout
+        android:id="@+id/user_avatar_layout"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="-78dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/quesheng_touxiang" />
+
+        <com.facebook.drawee.view.SimpleDraweeView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/user_avatar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            app:placeholderImageScaleType="fitXY"
+            app:roundAsCircle="true"
+            app:roundedCornerRadius="16dp" />
+
+        <ImageView
+            android:id="@+id/imageV"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="29dp"
+            android:src="@drawable/user_v"
+            android:visibility="gone" />
+    </FrameLayout>
+</LinearLayout>

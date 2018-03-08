@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.share.jack.cygwidget.recyclerview.PtrRecyclerViewUIComponent
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    cube_ptr:ptr_duration_to_close="200"
+    cube_ptr:ptr_duration_to_close_header="700"
+    cube_ptr:ptr_keep_header_when_refresh="true"
+    cube_ptr:ptr_pull_to_fresh="false"
+    cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+    cube_ptr:ptr_resistance="1.8">
+
+    <cn.share.jack.cygwidget.recyclerview.RecyclerViewWithEV
+        android:id="@+id/recyclerview_uicomponent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</cn.share.jack.cygwidget.recyclerview.PtrRecyclerViewUIComponent>

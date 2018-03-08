@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.lightsky.video.widget.PagerSlidingTab
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@android:color/white"
+        app:pstsDividerColor="@android:color/transparent"
+        app:pstsIndicatorColor="@color/themeColorRed"
+        app:pstsShouldExpand="true"
+        app:pstsTabPaddingRight="@dimen/pager_sliding_tab_right_padding"
+        app:pstsTabPaddingLeft="@dimen/pager_sliding_tab_right_padding"
+        android:visibility="invisible"
+        app:pstsUnderlineColor="@android:color/transparent" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabs" />
+
+</RelativeLayout>

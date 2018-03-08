@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.uibase.ui.ripple.RippleView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:mrl_rippleColor="@color/common_list_clip_color"
+    app:mrl_rippleInAdapter="true"
+    app:mrl_rippleOverlay="true">
+
+    <RelativeLayout xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ll_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="13dp"
+        android:paddingTop="8dp">
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/vedio_image"
+            android:layout_width="125dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="8dp"
+            fresco:placeholderImage="@drawable/shape_round_gray_rectangle" />
+
+        <TextView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/vedio_image"
+            android:layout_alignLeft="@+id/vedio_image"
+            android:background="#4d000000"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:text="广告"
+            android:textColor="@android:color/white"
+            android:textSize="11dp" />
+
+
+        <com.uibase.ui.HighlightedTextView
+            android:id="@+id/devio_title"
+            style="@style/style_common_list_title_dark"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/vedio_image"
+            android:maxLines="2"
+            android:singleLine="false"
+            android:text="郭德纲小岳岳节目里为难延参法师，结果师徒被调侃够呛"
+            android:textColor="@color/common_list_title_color"
+            android:textSize="@dimen/text_size_15dp" />
+
+        <TextView
+            android:id="@+id/video_media_publisher"
+            style="@style/style_common_list_desc_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:layout_below="@+id/devio_title"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/vedio_image"
+            android:layout_toLeftOf="@+id/video_ad_oprator"
+            android:layout_marginRight="5dp"
+            android:ellipsize="end"
+            android:text="1.3万次观看"
+            android:textColor="@color/common_list_desc_color"
+            android:textSize="11dp" />
+
+        <TextView
+            android:id="@id/video_ad_oprator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/devio_title"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="查看详情"
+            android:textColor="#4292ff"
+            android:textSize="11dp" />
+
+    </RelativeLayout>
+</com.uibase.ui.ripple.RippleView>

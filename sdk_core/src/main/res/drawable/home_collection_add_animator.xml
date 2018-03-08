@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+
+    <item
+        android:drawable="@drawable/collection_0"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/collection_1"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/collection_2"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/collection_3"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/collection_4"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_5"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_6"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_7"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_8"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_9"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_10"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_11"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_12"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_13"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_14"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_15"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_16"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_17"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_18"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_19"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_20"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_21"
+        android:duration="40" />
+
+    <item
+        android:drawable="@drawable/collection_22"
+        android:duration="40" />
+
+</animation-list>
