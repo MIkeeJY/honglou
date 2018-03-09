@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="@color/transparent">
 
     <com.hyxsp.video.widget.EmptyControlVideo
         android:id="@+id/video_player"
@@ -34,5 +34,12 @@
 
 
     </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/cover_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 
 </RelativeLayout>

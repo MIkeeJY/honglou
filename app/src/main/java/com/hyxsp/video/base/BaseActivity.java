@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.baidu.mobstat.StatService;
+import com.hyxsp.video.utils.StateBarUtils;
 
 import butterknife.ButterKnife;
 import cn.share.jack.cyghttp.callback.BaseImpl;
@@ -31,6 +32,7 @@ public abstract class BaseActivity<PRESENTER extends BasePresenter> extends AppC
         if (null == mPresenter) {
             mPresenter = createPresenter();
         }
+        StateBarUtils.setTranslucentColor(this);//沉浸式状态栏
         setContentView(layoutRes());
         ButterKnife.bind(this);
         initView();

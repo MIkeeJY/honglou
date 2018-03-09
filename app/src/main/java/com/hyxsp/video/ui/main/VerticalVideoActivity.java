@@ -1,6 +1,5 @@
 package com.hyxsp.video.ui.main;
 
-import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -10,19 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.apkfuns.logutils.LogUtils;
+import com.hyxsp.video.App;
 import com.hyxsp.video.R;
 import com.hyxsp.video.base.BaseActivity;
 import com.hyxsp.video.bean.data.LevideoData;
 import com.hyxsp.video.ui.fragment.VerticalVideoItemFragment;
+import com.hyxsp.video.utils.GlideUtils;
 import com.hyxsp.video.view.VerticalViewPager;
 import com.hyxsp.video.widget.EmptyControlVideo;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
+import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 
 /**
@@ -44,6 +47,7 @@ public class VerticalVideoActivity extends BaseActivity {
     EmptyControlVideo videoPlayer;
     ImageView mPlay;
     View mRootView;
+    ImageView mCover;
 
     private VerticalVideoItemFragment mItemFragment = VerticalVideoItemFragment.newInstance();
 
@@ -55,6 +59,13 @@ public class VerticalVideoActivity extends BaseActivity {
 
     boolean isSelected = false;
 
+
+    @OnClick(R.id.iv_back)
+    void back() {
+        onBackPressed();
+    }
+
+
     @Override
     protected int layoutRes() {
         return R.layout.activity_vertical_video;
@@ -62,6 +73,7 @@ public class VerticalVideoActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
         mList = getIntent().getParcelableArrayListExtra("videoUrlList");
         int position = getIntent().getIntExtra("position", -1);
 
@@ -100,6 +112,7 @@ public class VerticalVideoActivity extends BaseActivity {
         mPlay = mRoomContainer.findViewById(R.id.iv_play);
         videoPlayer = mRoomContainer.findViewById(R.id.video_player);
         mRootView = mRoomContainer.findViewById(R.id.view_play);
+        mCover = mRoomContainer.findViewById(R.id.cover_img);
 
 
         mVerticalViewpager.setPageTransformer(false, new ViewPager.PageTransformer() {
@@ -159,14 +172,50 @@ public class VerticalVideoActivity extends BaseActivity {
         isSelected = false;
         isStop = false;
         mPlay.setVisibility(View.GONE);
+        mCover.setVisibility(View.VISIBLE);
 
-        SimpleDraweeView imageView = new SimpleDraweeView(this);
-        imageView.setImageURI(Uri.parse(mList.get(mCurrentItem).getCoverImgUrl()));
-        videoPlayer.setThumbImageView(imageView);
+        GlideUtils.loadImage(App.getInstance(), mList.get(mCurrentItem).getCoverImgUrl(), mCover, null);
+
+//        SimpleDraweeView imageView = new SimpleDraweeView(this);
+//        imageView.setImageURI(Uri.parse(mList.get(mCurrentItem).getCoverImgUrl()));
+//        videoPlayer.setThumbImageView(imageView);
 
         videoPlayer.setUp(mList.get(mCurrentItem).getVideoPlayUrl(), true, "");
         videoPlayer.setLooping(true);
-        videoPlayer.onClick(videoPlayer.getStartButton());
+//        videoPlayer.onClick(videoPlayer.getStartButton());
+        videoPlayer.startPlayLogic();
+
+        videoPlayer.setVideoAllCallBack(new GSYSampleCallBack() {
+
+
+            @Override
+            public void onPrepared(String url, Object... objects) {
+                LogUtils.e(url);
+
+                mCover.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mCover.setVisibility(View.GONE);
+                    }
+                }, 200);
+
+            }
+
+            @Override
+            public void onPlayError(String url, Object... objects) {
+                LogUtils.e(url, objects[0]);
+            }
+
+            @Override
+            public void onAutoComplete(String url, Object... objects) {
+                if (mCover.getVisibility() == View.VISIBLE) {
+                    mCover.setVisibility(View.GONE);
+                }
+
+            }
+
+        });
+
 
         viewGroup.addView(mRoomContainer);
 
@@ -195,8 +244,8 @@ public class VerticalVideoActivity extends BaseActivity {
         public Object instantiateItem(ViewGroup container, final int position) {
             Log.e("***********", "instantiateItem");
             View view = View.inflate(VerticalVideoActivity.this, R.layout.view_video_item, null);
-//            ImageView imageView = view.findViewById(R.id.cover_img);
-//            GlideUtils.loadImage(App.getInstance(), mList.get(position).getCoverImgUrl(), imageView, null);
+            ImageView imageView = view.findViewById(R.id.cover_img);
+            GlideUtils.loadImage(App.getInstance(), mList.get(position).getCoverImgUrl(), imageView, null);
 
             view.setId(position);
 

@@ -6,22 +6,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
-import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
-import com.dycm_adsdk.PlatformSDK;
-import com.dycm_adsdk.callback.AbstractCallback;
-import com.dycm_adsdk.callback.ResultCode;
-import com.dycm_adsdk.utils.DyLogUtils;
-import com.hyxsp.video.App;
 import com.hyxsp.video.R;
-import com.hyxsp.video.model.login.UserDao;
 import com.hyxsp.video.ui.main.MainTabActivity;
-import com.hyxsp.video.utils.WindowUtil;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,56 +37,56 @@ public class SplashActivity extends Activity {
     }
 
     protected void initView() {
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, WindowUtil.getScreenWidth(App.getInstance()) * 4 / 3);
-        ad_view.setLayoutParams(params);
+//        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, WindowUtil.getScreenWidth(App.getInstance()) * 4 / 3);
+//        ad_view.setLayoutParams(params);
 
-//        thread = new MyThread();
-//        handler.postDelayed(thread, 1000);
+        thread = new MyThread();
+        handler.postDelayed(thread, 1);
 
-        PlatformSDK.adapp().dycmSplashAd(SplashActivity.this, "10-1", ad_view, new AbstractCallback() {
-            @Override
-            public void onResult(boolean adswitch, String jsonResult) {
-                LogUtils.e(adswitch);
-                LogUtils.json(jsonResult);
-                if (adswitch) {
-                    try {
-                        JSONObject jsonObject = new JSONObject(jsonResult);
-                        if (jsonObject.has("state_code")) {
-                            switch (ResultCode.parser(jsonObject.getInt("state_code"))) {
-                                case AD_REQ_SUCCESS://广告请求成功
-                                    DyLogUtils.dd("AD_REQ_SUCCESS" + jsonResult);
-                                    break;
-                                case AD_REQ_FAILED://广告请求失败
-                                    DyLogUtils.dd("AD_REQ_FAILED" + jsonResult);
-                                    Intent intent2 = new Intent(SplashActivity.this, MainTabActivity.class);
-                                    startActivity(intent2);
-                                    finish();
-                                    break;
-                                case AD_DISMISSED_CODE://开屏页面关闭
-                                    Intent intent = new Intent(SplashActivity.this, MainTabActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                    break;
-                                case AD_ONCLICKED_CODE://开屏页面点击
-                                    DyLogUtils.dd("AD_ONCLICKED_CODE" + jsonResult);
-                                    break;
-                                case AD_ONTICK_CODE://剩余显示时间
-                                    DyLogUtils.dd("AD_ONTICK_CODE" + jsonResult);
-                                    break;
-                            }
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    //执行广告开关关闭逻辑
-                    Intent intent = new Intent(SplashActivity.this, MainTabActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-
-            }
-        });
+//        PlatformSDK.adapp().dycmSplashAd(SplashActivity.this, "10-1", ad_view, new AbstractCallback() {
+//            @Override
+//            public void onResult(boolean adswitch, String jsonResult) {
+//                LogUtils.e(adswitch);
+//                LogUtils.json(jsonResult);
+//                if (adswitch) {
+//                    try {
+//                        JSONObject jsonObject = new JSONObject(jsonResult);
+//                        if (jsonObject.has("state_code")) {
+//                            switch (ResultCode.parser(jsonObject.getInt("state_code"))) {
+//                                case AD_REQ_SUCCESS://广告请求成功
+//                                    DyLogUtils.dd("AD_REQ_SUCCESS" + jsonResult);
+//                                    break;
+//                                case AD_REQ_FAILED://广告请求失败
+//                                    DyLogUtils.dd("AD_REQ_FAILED" + jsonResult);
+//                                    Intent intent2 = new Intent(SplashActivity.this, MainTabActivity.class);
+//                                    startActivity(intent2);
+//                                    finish();
+//                                    break;
+//                                case AD_DISMISSED_CODE://开屏页面关闭
+//                                    Intent intent = new Intent(SplashActivity.this, MainTabActivity.class);
+//                                    startActivity(intent);
+//                                    finish();
+//                                    break;
+//                                case AD_ONCLICKED_CODE://开屏页面点击
+//                                    DyLogUtils.dd("AD_ONCLICKED_CODE" + jsonResult);
+//                                    break;
+//                                case AD_ONTICK_CODE://剩余显示时间
+//                                    DyLogUtils.dd("AD_ONTICK_CODE" + jsonResult);
+//                                    break;
+//                            }
+//                        }
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                } else {
+//                    //执行广告开关关闭逻辑
+//                    Intent intent = new Intent(SplashActivity.this, MainTabActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
+//
+//            }
+//        });
 
     }
 
@@ -107,22 +95,24 @@ public class SplashActivity extends Activity {
 
         @Override
         public void run() {
-            if (UserDao.getInstance().isHaveUser()) {
-                startActivity(new Intent(SplashActivity.this, MainTabActivity.class));
-                finish();
-            } else {
-                startActivity(new Intent(SplashActivity.this, MainTabActivity.class));
-                finish();
-            }
+//            if (UserDao.getInstance().isHaveUser()) {
+//                startActivity(new Intent(SplashActivity.this, MainTabActivity.class));
+//                finish();
+//            } else {
+//                startActivity(new Intent(SplashActivity.this, MainTabActivity.class));
+//                finish();
+//            }
+            startActivity(new Intent(SplashActivity.this, MainTabActivity.class));
+            finish();
         }
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        handler.removeCallbacks(thread);
-//
-//    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        handler.removeCallbacks(thread);
+
+    }
 
 
     @Override

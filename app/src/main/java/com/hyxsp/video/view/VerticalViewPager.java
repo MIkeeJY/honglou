@@ -1,27 +1,4 @@
-package com.hyxsp.video.view;/*
- * Copyright (C) 2011 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/*
- * Modified by Martin Sonc
- * http://gplus.to/sonc 
- * @LambergaR
- * 
- * 3/2013
- */
-
+package com.hyxsp.video.view;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -75,6 +52,7 @@ import java.util.Comparator;
  * Just a copy of the original ViewPager modified to support vertical Scrolling
  */
 public class VerticalViewPager extends ViewGroup {
+
     private static final String TAG = "ViewPager";
     private static final boolean DEBUG = false;
 
@@ -120,7 +98,7 @@ public class VerticalViewPager extends ViewGroup {
         }
     };
 
-    private final ArrayList<ItemInfo> mItems = new ArrayList<>();
+    private final ArrayList<ItemInfo> mItems = new ArrayList<ItemInfo>();
     private final ItemInfo mTempItem = new ItemInfo();
 
     private final Rect mTempRect = new Rect();
@@ -346,7 +324,7 @@ public class VerticalViewPager extends ViewGroup {
             final boolean wasFirstLayout = mFirstLayout;
             mFirstLayout = true;
             mExpectedAdapterCount = mAdapter.getCount();
-            if (mRestoredCurItem >= 0 && mRestoredAdapterState != null && mRestoredClassLoader != null) {
+            if (mRestoredCurItem >= 0) {
                 mAdapter.restoreState(mRestoredAdapterState, mRestoredClassLoader);
                 setCurrentItemInternal(mRestoredCurItem, false, true);
                 mRestoredCurItem = -1;
@@ -388,9 +366,9 @@ public class VerticalViewPager extends ViewGroup {
         mAdapterChangeListener = listener;
     }
 
-    //    private int getClientWidth() {
-    //        return getMeasuredWidth() - getPaddingLeft() - getPaddingRight();
-    //    }
+//    private int getClientWidth() {
+//        return getMeasuredWidth() - getPaddingLeft() - getPaddingRight();
+//    }
 
     private int getClientHeight() {
         return getMeasuredHeight() - getPaddingTop() - getPaddingBottom();
@@ -503,7 +481,7 @@ public class VerticalViewPager extends ViewGroup {
 
     /**
      * Set a listener that will be invoked whenever the page changes or is incrementally
-     * scrolled. See {@link ViewPager.OnPageChangeListener}.
+     * scrolled. See {@link android.support.v4.view.ViewPager.OnPageChangeListener}.
      *
      * @param listener Listener to set
      */
@@ -512,7 +490,7 @@ public class VerticalViewPager extends ViewGroup {
     }
 
     /**
-     * Set a {@link ViewPager.PageTransformer} that will be called for each attached page whenever
+     * Set a {@link android.support.v4.view.ViewPager.PageTransformer} that will be called for each attached page whenever
      * the scroll position is changed. This allows the application to apply custom property
      * transformations to each page, overriding the default sliding look and feel.
      * <p/>
@@ -1152,7 +1130,7 @@ public class VerticalViewPager extends ViewGroup {
                     + " position=" + position + "}";
         }
 
-        public static final Creator<SavedState> CREATOR
+        public static final Parcelable.Creator<SavedState> CREATOR
                 = ParcelableCompat.newCreator(new ParcelableCompatCreatorCallbacks<SavedState>() {
             @Override
             public SavedState createFromParcel(Parcel in, ClassLoader loader) {
@@ -1758,7 +1736,15 @@ public class VerticalViewPager extends ViewGroup {
                 final float xDiff = Math.abs(x - mInitialMotionX);
                 if (DEBUG) Log.v(TAG, "Moved x to " + x + "," + y + " diff=" + xDiff + "," + yDiff);
 
-                if (dy != 0 && (allowDragDown(dy) || allowDragUp(dy)) && !canScroll(this, true, (int) dy, (int) x, (int) y)) {
+                if (dy != 0 && !isGutterDrag(mLastMotionY, dy) &&
+                        canScroll(this, false, (int) dy, (int) x, (int) y)) {
+                    // Nested view has scrollable area under this point. Let it be handled there.
+                    mLastMotionX = x;
+                    mLastMotionY = y;
+                    mIsUnableToDrag = true;
+                    return false;
+                }
+                if (yDiff > mTouchSlop && yDiff * 0.5f > xDiff) {
                     if (DEBUG) Log.v(TAG, "Starting drag!");
                     mIsBeingDragged = true;
                     requestParentDisallowInterceptTouchEvent(true);
@@ -2380,20 +2366,6 @@ public class VerticalViewPager extends ViewGroup {
         return checkV && ViewCompat.canScrollVertically(v, -dy);
     }
 
-    /**
-     * Return false if:
-     * If the adapter is in the first row
-     * & (If the child is a viewgroup) If the child is in the first row
-     * & If the scroll is trying to go up
-     */
-    protected boolean allowDragDown(float dy) {
-        return mCurItem != 0 && dy > 0;
-    }
-
-    protected boolean allowDragUp(float dy) {
-        return mCurItem != getAdapter().getCount() - 1 && dy < 0;
-    }
-
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         // Let the focused view and/or our descendants get the key first
@@ -2765,7 +2737,7 @@ public class VerticalViewPager extends ViewGroup {
         /**
          * Gravity setting for use on decor views only:
          * Where to position the view page within the overall ViewPager
-         * container; constants are defined in {@link Gravity}.
+         * container; constants are defined in {@link android.view.Gravity}.
          */
         public int gravity;
 
