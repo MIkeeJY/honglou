@@ -9,7 +9,6 @@
 /app/build/
 /local.properties
 /gradle.properties
-/app/app.iml
 /gradlew
 /app/.idea/
 /app/gradle/
