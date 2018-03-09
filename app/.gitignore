@@ -4,7 +4,7 @@
 /build/
 /captures/
 /gradlew.bat
-/holla-android.iml
+*.iml
 /app/.externalNativeBuild
 /app/build/
 /local.properties
