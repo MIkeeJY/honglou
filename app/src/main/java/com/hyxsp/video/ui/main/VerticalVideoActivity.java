@@ -20,12 +20,14 @@ import com.hyxsp.video.view.VerticalViewPager;
 import com.hyxsp.video.widget.EmptyControlVideo;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
+import com.shuyu.gsyvideoplayer.model.VideoOptionModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 
 /**
@@ -36,18 +38,19 @@ public class VerticalVideoActivity extends BaseActivity {
 
     @BindView(R.id.verticalviewpager) VerticalViewPager mVerticalViewpager;
 
-    List<LevideoData> mList = new ArrayList<>();
+    private List<LevideoData> mList = new ArrayList<>();
 
-    int mCurrentItem;
+    private int mCurrentItem;
 
     private FragmentManager mFragmentManager;
 
     private View mRoomContainer;
     private View mFragmentContainer;
-    EmptyControlVideo videoPlayer;
-    ImageView mPlay;
-    View mRootView;
-    ImageView mCover;
+
+    private EmptyControlVideo videoPlayer;
+    private ImageView mPlay;
+    private View mRootView;
+    private ImageView mCover;
 
     private VerticalVideoItemFragment mItemFragment = VerticalVideoItemFragment.newInstance();
 
@@ -57,7 +60,12 @@ public class VerticalVideoActivity extends BaseActivity {
 
     private boolean isStop = false;
 
-    boolean isSelected = false;
+    private boolean isSelected = false;
+
+    /**
+     * 记录当前播放位置
+     */
+    private int mCurrentPos;
 
 
     @OnClick(R.id.iv_back)
@@ -178,12 +186,21 @@ public class VerticalVideoActivity extends BaseActivity {
 
 
         videoPlayer.setUp(mList.get(mCurrentItem).getVideoPlayUrl(), true, "");
-//        videoPlayer.setLooping(true);
-//        videoPlayer.onClick(videoPlayer.getStartButton());
+        videoPlayer.setLooping(true);
+
+        /**
+         * 某些视频在SeekTo的时候，会跳回到拖动前的位置，这是因为视频的关键帧的问题，通俗一点就是FFMPEG不兼容，视频压缩过于厉害，seek只支持关键帧，
+         * 出现这个情况就是原始的视频文件中i 帧比较少，
+         * 可开启以下来解决：
+         */
+        VideoOptionModel videoOptionModel = new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "enable-accurate-seek", 1);
+        List<VideoOptionModel> list = new ArrayList<>();
+        list.add(videoOptionModel);
+        GSYVideoManager.instance().setOptionModelList(list);
+
         videoPlayer.startPlayLogic();
 
         videoPlayer.setVideoAllCallBack(new GSYSampleCallBack() {
-
 
             @Override
             public void onPrepared(String url, Object... objects) {
@@ -205,14 +222,7 @@ public class VerticalVideoActivity extends BaseActivity {
 
             @Override
             public void onAutoComplete(String url, Object... objects) {
-                if (mCover.getVisibility() == View.VISIBLE) {
-                    mCover.setVisibility(View.GONE);
-                }
-
-                GSYVideoManager.clearDefaultCache(VerticalVideoActivity.this, url);
-
-                videoPlayer.setUp(url, false, "");
-                videoPlayer.startPlayLogic();
+                mCover.setVisibility(View.GONE);
 
             }
 
@@ -265,13 +275,16 @@ public class VerticalVideoActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         videoPlayer.onVideoPause();
+        mCurrentPos = videoPlayer.getCurrentPositionWhenPlaying();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         if (!isStop) {
-            videoPlayer.onClick(videoPlayer.getStartButton());
+            videoPlayer.onVideoResume();
+        } else {
+            videoPlayer.seekTo(mCurrentPos);
         }
     }
 
