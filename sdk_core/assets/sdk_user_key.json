@@ -1,27 +1,27 @@
 {
-      "sdk_user":
-      {
-        "appid":"opendemosdk",
-        "seckey":"abc8e4e77f15f0f9a108cc64e2a6136d"
-      },
-      "ad_spaceid":
-      {
-        "vedeolist":"5aFmlrqlDi",
-        "beforplay":"5kFw6rgQO3",
-        "afterplay":"5PPmb2gltO",
-        "detailimg":"k55mlr1wPk",
-        "detaillist":"5ukmQMgl3O"
-      },
-      "enables":
-      {
-        "usesdkplay":true,
-        "useshareui":false,
-        "uselogcat":false,
-        "usefilelog":false,
-        "debugmodel":false,
-        "listplay":true,
-        "showcomment":false
-      }
-
-
+  "sdk_user": {
+    "appid": "opendemosdk",
+    "seckey": "abc8e4e77f15f0f9a108cc64e2a6136d"
+  },
+  "ad_spaceid": {
+    "vedeolist": "5aFmlrqlDi",
+    "beforplay": "5kFw6rgQO3",
+    "afterplay": "5PPmb2gltO",
+    "detailimg": "k55mlr1wPk",
+    "detaillist": "5ukmQMgl3O"
+  },
+  "enables": {
+    "usesdkplay": true,
+    "useshareui": false,
+    "uselogcat": false,
+    "usefilelog": false,
+    "debugmodel": false,
+    "listplay": true,
+    "showcomment": false,
+    "income": true
+  },
+  "playerctrl": {
+    "autopause": 1
+    //1表示activity pause时暂停，2表示stop时暂停
+  }
 }

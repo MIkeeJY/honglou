@@ -1,6 +1,8 @@
 package com.hyxsp.video.ui.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 
@@ -16,6 +18,7 @@ import com.hyxsp.video.ui.main.adapter.MainAdapter;
 import com.hyxsp.video.ui.main.adapter.MainViewHolder;
 import com.hyxsp.video.utils.DensityUtil;
 import com.hyxsp.video.utils.DouyinUtils;
+import com.hyxsp.video.utils.StatusBarCompat;
 import com.jack.mc.cyg.cygptr.PtrFrameLayout;
 import com.jack.mc.cyg.cygptr.header.MaterialHeader;
 import com.jack.mc.cyg.cygptr.recyclerview.RecyclerAdapterWithHF;
@@ -57,6 +60,14 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
     protected int layoutRes() {
         return R.layout.fragment_main_page_douyin;
     }
+
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        StatusBarCompat.translucentStatusBar(getActivity(),true);
+    }
+
 
     @Override
     protected void onViewReallyCreated(View view) {
@@ -172,6 +183,18 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         intent.putParcelableArrayListExtra("videoUrlList", (ArrayList<LevideoData>) mList);
         intent.putExtra("position", position);
         getActivity().startActivity(intent);
-
     }
+
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+
+        if (!hidden) {
+            StatusBarCompat.translucentStatusBar(getActivity(),true);
+        }else {
+            StatusBarCompat.setStatusBarColor(getActivity(), 0xfffb3b3b);
+        }
+    }
+
 }

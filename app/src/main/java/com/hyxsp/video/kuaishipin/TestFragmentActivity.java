@@ -24,39 +24,37 @@ import java.util.List;
 
 public class TestFragmentActivity extends FragmentActivity {
 
-    public static void StartdynamicFragmentActivity(Context cxt, List<CategoryInfoBase> infos) {
-        if (cxt == null) {
+    public static void StartdynamicFragmentActivity(Context cxt,List<CategoryInfoBase> infos){
+        if(cxt == null){
             return;
         }
-        if (infos == null) {
+        if(infos ==null){
             return;
         }
-        Bundle start = new Bundle();
-        int nsize = infos.size();
-        int index = 0;
-        Parcelable[] types = new Parcelable[nsize];
-        for (CategoryInfoBase info : infos) {
-            types[index++] = info;
+        Bundle start=new Bundle();
+        int nsize=infos.size();
+        int index=0;
+        Parcelable [] types=new Parcelable[nsize];
+        for(CategoryInfoBase info : infos){
+            types[index++]=info;
         }
-        start.putParcelableArray("video_types", types);
-        StartFragmentActivy(cxt, start);
+        start.putParcelableArray("video_types",types);
+        StartFragmentActivy(cxt,start);
 
     }
-
-    public static void StartStaticFragmentActivity(Context cxt, List<Integer> tabfilter) {
+    public static void StartStaticFragmentActivity(Context cxt,List<Integer> tabfilter){
         VideoHelper.get().SetVideoTabFilter(tabfilter);
-        StartFragmentActivy(cxt, null);
+        StartFragmentActivy(cxt,null);
     }
+    public static void StartFragmentActivy(Context cxt,Bundle bundle){
 
-    public static void StartFragmentActivy(Context cxt, Bundle bundle) {
-
-        Intent intent = new Intent();
-        String dynamickey = "isdynamic";
-        if (bundle != null) {
+        Intent intent=new Intent();
+        String dynamickey="isdynamic";
+        if(bundle !=null){
             intent.putExtras(bundle);
-            intent.putExtra(dynamickey, true);
-        } else {
-            intent.putExtra(dynamickey, false);
+            intent.putExtra(dynamickey,true);
+        }else{
+            intent.putExtra(dynamickey,false);
         }
         intent.setClass(cxt, TestFragmentActivity.class);
         if (!(cxt instanceof Activity)) {
@@ -75,55 +73,55 @@ public class TestFragmentActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_fragment);
-        mTabsView = (HorizontalScrollView) findViewById(R.id.video_type_tab);
+        mTabsView=(HorizontalScrollView) findViewById(R.id.video_type_tab);
 
-        mPager = (ViewPager) findViewById(R.id.video_pager_fragments);
-        boolean isDynamic = getIntent().getBooleanExtra("isdynamic", false);
-        if (isDynamic) {
+        mPager=(ViewPager) findViewById(R.id.video_pager_fragments);
+        boolean isDynamic=getIntent().getBooleanExtra("isdynamic",false);
+        if(isDynamic){
 
-            Bundle bundle = getIntent().getExtras();
+            Bundle bundle=getIntent().getExtras();
             InitScollView(bundle);
 
         }
         {
-            RelativeLayout dynamiclayout = (RelativeLayout) findViewById(R.id.test_fragment_dynamic);
-            dynamiclayout.setVisibility(isDynamic ? View.VISIBLE : View.GONE);
-            RelativeLayout staticlayout = (RelativeLayout) findViewById(R.id.test_fragment_static);
-            staticlayout.setVisibility(isDynamic ? View.GONE : View.VISIBLE);
+            RelativeLayout dynamiclayout=(RelativeLayout)findViewById(R.id.test_fragment_dynamic);
+            dynamiclayout.setVisibility(isDynamic?View.VISIBLE:View.GONE);
+            RelativeLayout staticlayout=(RelativeLayout)findViewById(R.id.test_fragment_static);
+            staticlayout.setVisibility(isDynamic?View.GONE:View.VISIBLE);
 
         }
+
 
 
     }
-
-    public void InitScollView(Bundle bundle) {
-        if (bundle == null) {
+    public void InitScollView(Bundle bundle){
+        if(bundle == null){
             return;
         }
-        Parcelable[] types = bundle.getParcelableArray("video_types");
-        if (types == null) {
+        Parcelable [] types=bundle.getParcelableArray("video_types");
+        if(types == null){
             return;
         }
-        List<CategoryInfoBase> mTabList = new ArrayList<CategoryInfoBase>();
+        List<CategoryInfoBase> mTabList=new ArrayList<CategoryInfoBase>();
         LinearLayout tabsContainer = new LinearLayout(this);
         tabsContainer.setOrientation(LinearLayout.HORIZONTAL);
         tabsContainer.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
-        int index = 0;
+        int index=0;
 
-        for (Parcelable item : types) {
+        for(Parcelable item : types){
 
             CategoryInfoBase info = (CategoryInfoBase) item;
             mTabList.add(info);
 
-            TextView scoritem = (TextView) getLayoutInflater().inflate(R.layout.videotabsitem, null);
+            TextView scoritem=(TextView) getLayoutInflater().inflate(R.layout.videotabsitem,null);
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            if (index == 0) {
-                params.setMargins(10, 2, 5, 5);
-                mLastSelectView = scoritem;
+            if(index == 0){
+                params.setMargins(10,2,5,5);
+                mLastSelectView=scoritem;
                 mLastSelectView.setBackgroundResource(R.color.colorAccent);
-            } else {
-                params.setMargins(5, 2, 5, 5);
+            }else{
+                params.setMargins(5,2,5,5);
             }
             /*scoritem.setTextSize(TypedValue.COMPLEX_UNIT_SP,15);
             scoritem.setTextColor(0xFFFFFF);*/
@@ -133,15 +131,15 @@ public class TestFragmentActivity extends FragmentActivity {
             scoritem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Integer indexitem = (Integer) view.getTag();
-                    int intdedex = indexitem.intValue();
-                    if (intdedex < 0 || intdedex >= madpter.getCount()) {
+                    Integer indexitem=(Integer) view.getTag();
+                    int intdedex=indexitem.intValue();
+                    if(intdedex<0 || intdedex>=madpter.getCount()){
                         return;
                     }
-                    mPager.setCurrentItem(intdedex, false);
+                    mPager.setCurrentItem(intdedex,false);
                     mLastSelectView.setBackgroundResource(R.color.colorPrimary);
                     view.setBackgroundResource(R.color.colorAccent);
-                    mLastSelectView = (TextView) view;
+                    mLastSelectView=(TextView) view;
                     AutoScroll(view);
 
                 }
@@ -150,19 +148,18 @@ public class TestFragmentActivity extends FragmentActivity {
             index++;
         }
         mTabsView.addView(tabsContainer);
-        madpter = new DynamicFragmentAdpter(getSupportFragmentManager(), mTabList);
+        madpter=new DynamicFragmentAdpter(getSupportFragmentManager(),mTabList);
         mPager.setAdapter(madpter);
         mPager.setOffscreenPageLimit(3);
         mPager.setCurrentItem(0);
 
     }
-
-    public void AutoScroll(View Textview) {
+    public void AutoScroll(View Textview){
         int screenWitdth = getResources().getDisplayMetrics().widthPixels;
 
-        int left = Textview.getLeft();     //获取点击控件与父控件左侧的距离
-        int width = Textview.getMeasuredWidth();   //获得控件本身宽度
-        int toX = left + width / 2 - screenWitdth / 2;
+        int left=Textview.getLeft();     //获取点击控件与父控件左侧的距离
+        int width=Textview.getMeasuredWidth();   //获得控件本身宽度
+        int toX=left+width/2-screenWitdth/2;
         //使条目移动到居中显示
         mTabsView.smoothScrollTo(toX, 0);
 
@@ -176,8 +173,8 @@ public class TestFragmentActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        boolean iscanback = VideoHelper.get().isCanBack(this);
-        if (!iscanback) {
+        boolean iscanback=VideoHelper.get().isCanBack(this);
+        if(!iscanback){
             return;
         }
         super.onBackPressed();

@@ -47,7 +47,7 @@ public abstract class BaseFragment<PRESENTER extends BasePresenter> extends Frag
     }
 
     @Override
-    public final void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -70,14 +70,14 @@ public abstract class BaseFragment<PRESENTER extends BasePresenter> extends Frag
     public void onPause() {
         super.onPause();
         // 页面埋点
-        StatService.onPageStart(getActivity(),getActivity().getClass().getName());
+        StatService.onPageStart(getActivity(), getActivity().getClass().getName());
     }
 
     @Override
     public void onResume() {
         super.onResume();
         // 页面埋点
-        StatService.onPageEnd(getActivity(),getActivity().getClass().getName());
+        StatService.onPageEnd(getActivity(), getActivity().getClass().getName());
     }
 
 

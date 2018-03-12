@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:fitsSystemWindows="false">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="false"
+    tools:context="com.lightsky.video.MainActivity">
 
     <RelativeLayout
         android:id="@+id/tab_layout"
@@ -24,8 +25,8 @@
             app:pstsDividerColor="@color/themeColorRed"
             app:pstsIndicatorColor="@color/white"
             app:pstsShouldExpand="true"
-            app:pstsTabPaddingLeft="@dimen/pager_sliding_tab_left_padding"
             app:pstsTabPaddingRight="@dimen/pager_sliding_tab_right_padding"
+            app:pstsTabPaddingLeft="@dimen/pager_sliding_tab_left_padding"
             app:pstsUnderlineColor="@android:color/transparent"
             />
 
@@ -33,9 +34,7 @@
             android:id="@+id/tab_search"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
             android:background="@color/themeColorRed"
             android:paddingLeft="13dp"
             android:paddingRight="13dp"
@@ -45,7 +44,7 @@
             android:id="@+id/tab_float"
             android:layout_width="20dp"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@id/tab_search"
+            android:layout_toLeftOf="@+id/tab_search"
             android:background="@drawable/tab_float"/>
     </RelativeLayout>
 

@@ -16,10 +16,10 @@ import android.widget.RadioGroup;
 import com.hyxsp.video.R;
 import com.lightsky.utils.ToastUtil;
 import com.lightsky.video.VideoHelper;
-import com.lightsky.video.VideoSetting;
 import com.lightsky.video.datamanager.category.CategoryQueryNotify;
 import com.lightsky.video.sdk.CategoryInfoBase;
 import com.lightsky.video.sdk.VideoOption;
+import com.lightsky.video.sdk.VideoSwitcher;
 import com.lightsky.video.sdk.VideoTypesLoader;
 import com.lightsky.video.sdk.listener.AdViewListener;
 import com.lightsky.video.sdk.listener.VideoPlayListener;
@@ -31,12 +31,11 @@ import java.util.Map;
 
 import static android.view.View.inflate;
 
-;
 
 public class DemoLuncherActivity extends Activity implements View.OnClickListener, CategoryQueryNotify {
 
     private Button bntmuti, bntsingle, bntsearch, bntinit, bntAll, bntdefinit;
-    private CheckBox cbDebug, cbNbPlayer, cbUselog, cbUseShare, cbUseAdview, cbPlayCtrl;
+    private CheckBox cbDebug, cbNbPlayer, cbUselog, cbUseShare, cbUseAdview, cbPlayCtrl, cbEnable;
     private VideoTypesLoader mTabLoader;
     private Map<String, Integer> mTabs = new HashMap<String, Integer>();
     private List<CategoryInfoBase> mTabinfos = new ArrayList<CategoryInfoBase>();
@@ -101,6 +100,7 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
         bntAll = (Button) findViewById(R.id.alltabs);
         bntdefinit = (Button) findViewById(R.id.bnt_default_init);
 
+
         if (bntsingle != null) {
             bntsingle.setOnClickListener(this);
         }
@@ -126,7 +126,7 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
         cbUseShare = (CheckBox) findViewById(R.id.useshare);
         cbUseAdview = (CheckBox) findViewById(R.id.useadview);
         cbPlayCtrl = (CheckBox) findViewById(R.id.playctrl);
-
+        cbEnable = (CheckBox) findViewById(R.id.enablead);
         EnableFunctions(false);
 
     }
@@ -181,6 +181,7 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
         bntdefinit.setEnabled(!enable);
         cbUseAdview.setEnabled(!enable);
         cbPlayCtrl.setEnabled(!enable);
+        cbEnable.setEnabled(!enable);
     }
 
     @Override
@@ -198,7 +199,6 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
         } else if (id == bntinit.getId()) {
             InitSdk();
         } else if (id == bntAll.getId()) {
-//            Fragment fragment= VideoHelper.get().GetVideoFragment(null);
             showVideoWrapper(null, this, getIntent());
         } else if (id == bntdefinit.getId()) {
             _InitSdk(null, null);
@@ -240,7 +240,7 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
     };
 
     private void InitSdk() {
-        VideoSetting setting = new VideoSetting();
+        VideoSwitcher setting = new VideoSwitcher();
         if (cbDebug != null) {
             setting.Debugmodel = cbDebug.isChecked();
 
@@ -255,6 +255,7 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
         setting.UseFileLog = false;
         setting.UseLogCatLog = cbUselog.isChecked();
         setting.UseShareLayout = cbUseShare.isChecked();
+        setting.incomeEable = cbEnable.isChecked();
         VideoOption option = new VideoOption();
         boolean ischeck = cbUseAdview.isChecked();
         if (ischeck) {
@@ -267,7 +268,7 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
 
     }
 
-    private void _InitSdk(VideoSetting setting, VideoOption opt) {
+    private void _InitSdk(VideoSwitcher setting, VideoOption opt) {
         VideoHelper.get().Init(this, setting, opt);
         mTabLoader.loadData();
         EnableFunctions(true);

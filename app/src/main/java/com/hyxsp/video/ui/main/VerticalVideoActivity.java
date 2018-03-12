@@ -176,12 +176,9 @@ public class VerticalVideoActivity extends BaseActivity {
 
         GlideUtils.loadImage(App.getInstance(), mList.get(mCurrentItem).getCoverImgUrl(), mCover, null);
 
-//        SimpleDraweeView imageView = new SimpleDraweeView(this);
-//        imageView.setImageURI(Uri.parse(mList.get(mCurrentItem).getCoverImgUrl()));
-//        videoPlayer.setThumbImageView(imageView);
 
         videoPlayer.setUp(mList.get(mCurrentItem).getVideoPlayUrl(), true, "");
-        videoPlayer.setLooping(true);
+//        videoPlayer.setLooping(true);
 //        videoPlayer.onClick(videoPlayer.getStartButton());
         videoPlayer.startPlayLogic();
 
@@ -211,6 +208,11 @@ public class VerticalVideoActivity extends BaseActivity {
                 if (mCover.getVisibility() == View.VISIBLE) {
                     mCover.setVisibility(View.GONE);
                 }
+
+                GSYVideoManager.clearDefaultCache(VerticalVideoActivity.this, url);
+
+                videoPlayer.setUp(url, false, "");
+                videoPlayer.startPlayLogic();
 
             }
 

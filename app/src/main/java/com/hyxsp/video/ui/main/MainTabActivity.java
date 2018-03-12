@@ -63,7 +63,7 @@ public class MainTabActivity extends BaseActivity {
     protected void initView() {
         inflater = LayoutInflater.from(this);
 
-        mTabHost = findViewById(android.R.id.tabhost);
+        mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
         mTabHost.getTabWidget().setDividerDrawable(null); // 去除分割线
 

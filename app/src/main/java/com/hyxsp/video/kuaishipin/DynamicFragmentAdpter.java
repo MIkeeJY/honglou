@@ -17,20 +17,20 @@ import java.util.List;
 public class DynamicFragmentAdpter extends FragmentPagerAdapter {
     private List<CategoryInfoBase> mCateInfoBase;
 
-    public DynamicFragmentAdpter(FragmentManager fm, List<CategoryInfoBase> tabs) {
+    public DynamicFragmentAdpter(FragmentManager fm,List<CategoryInfoBase> tabs) {
         super(fm);
-        mCateInfoBase = tabs;
+        mCateInfoBase=tabs;
     }
 
     @Override
     public Fragment getItem(int position) {
-        if (mCateInfoBase == null) {
+        if(mCateInfoBase == null){
             return null;
         }
-        if (position < 0 || position >= mCateInfoBase.size()) {
+        if(position <0 || position>=mCateInfoBase.size()){
             return null;
         }
-        CategoryInfoBase item = mCateInfoBase.get(position);
+        CategoryInfoBase item=mCateInfoBase.get(position);
         return VideoHelper.get().GetVideoFragment(item);
     }
 
@@ -38,7 +38,6 @@ public class DynamicFragmentAdpter extends FragmentPagerAdapter {
     public int getCount() {
         return mCateInfoBase.size();
     }
-
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         //如果注释这行，那么不管怎么切换，page都不会被销毁

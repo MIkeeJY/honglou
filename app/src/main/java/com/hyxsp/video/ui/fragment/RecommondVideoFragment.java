@@ -11,10 +11,10 @@ import com.apkfuns.logutils.LogUtils;
 import com.hyxsp.video.R;
 import com.hyxsp.video.base.BaseFragment;
 import com.lightsky.video.VideoHelper;
-import com.lightsky.video.VideoSetting;
 import com.lightsky.video.datamanager.category.CategoryQueryNotify;
 import com.lightsky.video.sdk.CategoryInfoBase;
 import com.lightsky.video.sdk.VideoOption;
+import com.lightsky.video.sdk.VideoSwitcher;
 import com.lightsky.video.sdk.VideoTabFragement;
 import com.lightsky.video.sdk.VideoTypesLoader;
 
@@ -64,7 +64,7 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
 
 
     private void InitSdk() {
-        VideoSetting setting = new VideoSetting();
+        VideoSwitcher setting = new VideoSwitcher();
         setting.Debugmodel = false;
         setting.UseNbPlayer = true;
         setting.UseFileLog = false;
@@ -77,7 +77,7 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
     }
 
 
-    private void InitVideoHelper(VideoSetting setting, VideoOption opt) {
+    private void InitVideoHelper(VideoSwitcher setting, VideoOption opt) {
         VideoHelper.get().Init(getActivity(), setting, opt);
         mTabLoader.loadData();
     }
