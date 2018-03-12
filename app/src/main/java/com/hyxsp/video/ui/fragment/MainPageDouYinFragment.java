@@ -86,6 +86,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         });
 
         ptrRecyclerViewUIComponent.setLayoutManager(gridLayoutManager);
+
         ptrRecyclerViewUIComponent.setAdapter(mAdapter);
 
         initHeader();

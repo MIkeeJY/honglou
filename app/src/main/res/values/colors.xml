@@ -23,5 +23,13 @@
     <color name="yellow">#FFF7D23E</color>
     <color name="green">#FF34A350</color>
 
+    <color name="white_text">#E8E9EC</color>
+
+
+    <color name="black60">#99000000</color>
+    <color name="black70">#B3000000</color>
+    <color name="black25">#40000000</color>
+    <color name="main_color">#E60731</color>
+
 
 </resources>

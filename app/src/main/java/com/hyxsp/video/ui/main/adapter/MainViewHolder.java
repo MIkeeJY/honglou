@@ -4,11 +4,13 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyxsp.video.App;
 import com.hyxsp.video.R;
 import com.hyxsp.video.bean.data.LevideoData;
+import com.hyxsp.video.utils.DensityUtil;
 import com.hyxsp.video.utils.WindowUtil;
 
 import butterknife.BindView;
@@ -23,6 +25,9 @@ import cn.share.jack.cygwidget.recyclerview.adapter.CygBaseRecyclerViewHolder;
 public class MainViewHolder extends CygBaseRecyclerViewHolder<LevideoData> {
 
     @BindView(R.id.nearby_img) SimpleDraweeView mNearbyImg;
+    @BindView(R.id.tv_video_title) TextView mTvTitle;
+    @BindView(R.id.tv_play_count) TextView mTvPlayCount;
+    @BindView(R.id.tv_like_count) TextView mTvLikeCount;
 
     public MainViewHolder(View view) {
         super(view);
@@ -34,11 +39,14 @@ public class MainViewHolder extends CygBaseRecyclerViewHolder<LevideoData> {
     protected void onItemDataUpdated(@Nullable LevideoData data) {
         if (data != null) {
             ViewGroup.LayoutParams params = mNearbyImg.getLayoutParams();
-            params.width = WindowUtil.getScreenWidth(App.getInstance()) / 2;
+            params.width = (WindowUtil.getScreenWidth(App.getInstance()) - DensityUtil.dip2px(App.getInstance(), 2)) / 2;
             params.height = (params.width) * 8 / 5;
             mNearbyImg.setLayoutParams(params);
-
             mNearbyImg.setImageURI(Uri.parse(data.getCoverImgUrl()));
+
+            mTvTitle.setText(data.getTitle());
+            mTvPlayCount.setText(data.getPlayCount() + "播放");
+            mTvLikeCount.setText(data.getLikeCount() + "赞");
 
 
         }
