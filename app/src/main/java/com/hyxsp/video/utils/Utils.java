@@ -70,7 +70,6 @@ public class Utils {
     }
 
 
-
     /**
      * 判断是否有网络
      */
@@ -346,8 +345,8 @@ public class Utils {
     /**
      * 判断配置文件需不需要更新
      *
-     * @param var1  服务器配置文件
-     * @param var2  本地配置文件
+     * @param var1 服务器配置文件
+     * @param var2 本地配置文件
      * @return
      */
 
@@ -359,7 +358,7 @@ public class Utils {
                 for (int i = 0; i < split.length; i++) {    //循环遍历
                     if (Integer.parseInt(split[i]) > Integer.parseInt(split1[i])) {         //如果服务器某一项大于本地，去更新
                         return true;
-                    }else if(Integer.parseInt(split[i]) < Integer.parseInt(split1[i])){     //如果服务器某一项小于本地，不更新
+                    } else if (Integer.parseInt(split[i]) < Integer.parseInt(split1[i])) {     //如果服务器某一项小于本地，不更新
                         return false;
                     }
                     //都不成里进入下次循环
@@ -858,7 +857,6 @@ public class Utils {
     Log.e(TAG,phoneInfo); */
 
 
-
     public static String filterStrBlank(String str) {
         String dest = "";
         if (str != null) {
@@ -869,13 +867,13 @@ public class Utils {
         return dest;
     }
 
-    public static String formatNumber(long val){
-        if(val < 10000){
-            return val+"";
+    public static String formatNumber(long val) {
+        if (val < 10000) {
+            return val + "";
         }
         DecimalFormat df = new DecimalFormat("######0.0");
-        double d = val/10000.0;
-        return df.format(d)+"万";
+        double d = val / 10000.0;
+        return df.format(d) + "万";
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -896,55 +894,55 @@ public class Utils {
         WifiManager wifi = (WifiManager) ctx.getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifi.getConnectionInfo();
         String str = info.getMacAddress();
-        if (str == null){
+        if (str == null) {
             str = "";
         }
         return str;
     }
 
     @SuppressWarnings("deprecation")
-    public static String getOSSDK(){
+    public static String getOSSDK() {
         return android.os.Build.VERSION.SDK;
     }
 
-    public static String getOSRelease(){
+    public static String getOSRelease() {
         return android.os.Build.VERSION.RELEASE;
     }
 
-    public static String getDeviceName(){
+    public static String getDeviceName() {
         return android.os.Build.MODEL;
     }
 
-    public static String getDeviceFactory(){
+    public static String getDeviceFactory() {
         return android.os.Build.BRAND;
     }
 
-    public static int getDeviceWidth(Activity act){
+    public static int getDeviceWidth(Activity act) {
         DisplayMetrics metric = new DisplayMetrics();
         act.getWindowManager().getDefaultDisplay().getMetrics(metric);
         return metric.widthPixels;
     }
 
-    public static int getDeviceHeight(Activity act){
+    public static int getDeviceHeight(Activity act) {
         DisplayMetrics metric = new DisplayMetrics();
         act.getWindowManager().getDefaultDisplay().getMetrics(metric);
         return metric.heightPixels;
     }
 
-    public static int getDeviceDpi(Activity act){
+    public static int getDeviceDpi(Activity act) {
         DisplayMetrics metric = new DisplayMetrics();
         act.getWindowManager().getDefaultDisplay().getMetrics(metric);
         return metric.densityDpi;
     }
 
-    public static float getDeviceDensity(Activity act){
+    public static float getDeviceDensity(Activity act) {
         DisplayMetrics metric = new DisplayMetrics();
         act.getWindowManager().getDefaultDisplay().getMetrics(metric);
         return metric.density;
     }
 
 
-    public static String getDeviceUUID(Context ctx){
+    public static String getDeviceUUID(Context ctx) {
         try {
             return UUID.nameUUIDFromBytes(getDeviceAndroidId(ctx).getBytes("utf8")).toString();
         } catch (Exception e) {
@@ -952,19 +950,19 @@ public class Utils {
         }
     }
 
-    public static String getDeviceAndroidId(Context ctx){
-        try{
+    public static String getDeviceAndroidId(Context ctx) {
+        try {
             return Settings.Secure.getString(ctx.getContentResolver(), Settings.Secure.ANDROID_ID);
-        }catch(Exception e){
+        } catch (Exception e) {
             return "";
         }
     }
 
     @SuppressWarnings("deprecation")
-    public static String getDeviceIMEI(Context ctx){
-        try{
-            return ((TelephonyManager)ctx.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
-        }catch(Exception e){
+    public static String getDeviceIMEI(Context ctx) {
+        try {
+            return ((TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+        } catch (Exception e) {
             return "";
         }
     }

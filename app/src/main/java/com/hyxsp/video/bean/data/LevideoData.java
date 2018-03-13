@@ -23,8 +23,8 @@ public class LevideoData implements Parcelable {
     public String videoDownloadUrl;//视频下载地址
     public int videoWidth;//视频宽度
     public int videoHeight;//视频高度
-    public int playCount;//播放次数
-    public int likeCount;//点赞次数
+    public long playCount;//播放次数
+    public long likeCount;//点赞次数
     public long createTime;//创建时间
 
     //抖音专用
@@ -139,11 +139,11 @@ public class LevideoData implements Parcelable {
         return videoHeight;
     }
 
-    public int getPlayCount() {
+    public long getPlayCount() {
         return playCount;
     }
 
-    public int getLikeCount() {
+    public long getLikeCount() {
         return likeCount;
     }
 
@@ -207,6 +207,7 @@ public class LevideoData implements Parcelable {
         return type;
     }
 
+
     @Override
     public int describeContents() { return 0; }
 
@@ -223,8 +224,8 @@ public class LevideoData implements Parcelable {
         dest.writeString(this.videoDownloadUrl);
         dest.writeInt(this.videoWidth);
         dest.writeInt(this.videoHeight);
-        dest.writeInt(this.playCount);
-        dest.writeInt(this.likeCount);
+        dest.writeLong(this.playCount);
+        dest.writeLong(this.likeCount);
         dest.writeLong(this.createTime);
         dest.writeString(this.musicImgUrl);
         dest.writeString(this.musicName);
@@ -253,8 +254,8 @@ public class LevideoData implements Parcelable {
         this.videoDownloadUrl = in.readString();
         this.videoWidth = in.readInt();
         this.videoHeight = in.readInt();
-        this.playCount = in.readInt();
-        this.likeCount = in.readInt();
+        this.playCount = in.readLong();
+        this.likeCount = in.readLong();
         this.createTime = in.readLong();
         this.musicImgUrl = in.readString();
         this.musicName = in.readString();
@@ -273,13 +274,9 @@ public class LevideoData implements Parcelable {
 
     public static final Creator<LevideoData> CREATOR = new Creator<LevideoData>() {
         @Override
-        public LevideoData createFromParcel(Parcel source) {
-            return new LevideoData(source);
-        }
+        public LevideoData createFromParcel(Parcel source) {return new LevideoData(source);}
 
         @Override
-        public LevideoData[] newArray(int size) {
-            return new LevideoData[size];
-        }
+        public LevideoData[] newArray(int size) {return new LevideoData[size];}
     };
 }

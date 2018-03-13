@@ -155,7 +155,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
 
                 if (isLoadMore) {
                     mList.addAll(listData.getVideoDataList());
-                    adapter.setDataList(mList);
+                    adapter.setDataList(mList,false);
                     mAdapter.notifyDataSetChanged();
                     ptrRecyclerViewUIComponent.loadMoreComplete(true);
 

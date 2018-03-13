@@ -2,22 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:background="@color/white">
 
     <com.facebook.drawee.view.SimpleDraweeView
+        app:placeholderImage="@color/white"
         android:id="@+id/nearby_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="1dp"/>
 
-    <RelativeLayout
+    <com.hyxsp.video.view.ShadowView
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:layout_alignBottom="@id/nearby_img"
-        android:background="@drawable/shape_gradient">
+        android:layout_alignBottom="@id/nearby_img">
 
-
-    </RelativeLayout>
+    </com.hyxsp.video.view.ShadowView>
 
 
     <RelativeLayout

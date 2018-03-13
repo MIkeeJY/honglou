@@ -27,4 +27,18 @@ public class CommonUtils {
         return null;
     }
 
+
+    /**
+     * @return 大于10万的返回以万为单位的数字, 如12.5万
+     */
+    public static String formatCount(long count) {
+        if (count < 0)
+            return "0";
+        if (count < 100000) {
+            return count + "";
+        } else {
+            return String.format("%.1f万", count / 10000.0f);
+        }
+    }
+
 }

@@ -60,6 +60,7 @@ public class PtrRecyclerViewUIComponent extends PtrClassicFrameLayout {
 
     private void init() {
         mRecyclerView = (RecyclerViewWithEV) findViewById(R.id.recyclerview_uicomponent);
+        mRecyclerView.getItemAnimator().setChangeDuration(0);
 
         setPtrHandler(new PtrDefaultHandler() {
             @Override

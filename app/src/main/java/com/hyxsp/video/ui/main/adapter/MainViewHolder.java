@@ -1,17 +1,22 @@
 package com.hyxsp.video.ui.main.adapter;
 
+import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.image.ImageInfo;
 import com.hyxsp.video.App;
 import com.hyxsp.video.R;
 import com.hyxsp.video.bean.data.LevideoData;
+import com.hyxsp.video.utils.CommonUtils;
 import com.hyxsp.video.utils.DensityUtil;
 import com.hyxsp.video.utils.WindowUtil;
 
@@ -45,23 +50,49 @@ public class MainViewHolder extends CygBaseRecyclerViewHolder<LevideoData> {
             params.height = (params.width) * 8 / 5;
             mNearbyImg.setLayoutParams(params);
 
-            Uri uri = Uri.parse(data.getDynamicCover());
+            final Uri uri = Uri.parse(data.getDynamicCover());
 
-            DraweeController controller = Fresco.newDraweeControllerBuilder()
-                    .setUri(uri)
-                    .setAutoPlayAnimations(true)//设置为true将循环播放Gif动画
-                    .setOldController(mNearbyImg.getController())
-                    .build();
+            if (isNotEqualsUriPath(mNearbyImg, data.getDynamicCover())) {
+                DraweeController controller = Fresco.newDraweeControllerBuilder()
+                        .setUri(uri)
+                        .setAutoPlayAnimations(true)//设置为true将循环播放Gif动画
+                        .setOldController(mNearbyImg.getController())
+                        .setControllerListener(new BaseControllerListener<ImageInfo>() {
 
-            mNearbyImg.setController(controller);
+                            @Override
+                            public void onFinalImageSet(String id, ImageInfo imageInfo, Animatable animatable) {
+                                mNearbyImg.setTag(R.id.nearby_img, uri);
+                            }
+
+                        })
+                        .build();
+
+                mNearbyImg.setController(controller);
+            }
+
+
 //            mNearbyImg.setImageURI(Uri.parse(data.getCoverImgUrl()));
 
             mTvTitle.setText(data.getTitle());
-            mTvPlayCount.setText(data.getPlayCount() + "播放");
-            mTvLikeCount.setText(data.getLikeCount() + "赞");
+            mTvPlayCount.setText(CommonUtils.formatCount(data.getPlayCount()) + "播放");
+            mTvLikeCount.setText(CommonUtils.formatCount(data.getLikeCount()) + "赞");
 
 
         }
+    }
+
+    /**
+     * 解决fresco 闪屏
+     *
+     * @param mNearbyImg
+     * @param imgUrl
+     * @return
+     */
+    public boolean isNotEqualsUriPath(SimpleDraweeView mNearbyImg, String imgUrl) {
+        if (TextUtils.isEmpty(imgUrl) || TextUtils.isEmpty(mNearbyImg.getTag(R.id.nearby_img) + "")) {
+            return false;
+        }
+        return !(mNearbyImg.getTag(R.id.nearby_img) + "").equals(imgUrl);
     }
 
 }
