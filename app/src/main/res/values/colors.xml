@@ -30,6 +30,7 @@
     <color name="black70">#B3000000</color>
     <color name="black25">#40000000</color>
     <color name="main_color">#E60731</color>
+    <color name="empty_text">#b6b4b4</color>
 
 
 </resources>

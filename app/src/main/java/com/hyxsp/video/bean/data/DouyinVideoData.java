@@ -57,6 +57,10 @@ public class DouyinVideoData extends LevideoData {
             data.videoDownloadUrl = downloadJson.getJSONArray("url_list").getString(0);
             JSONObject coverJson = videoJson.getJSONObject("origin_cover");
             data.coverImgUrl = coverJson.getJSONArray("url_list").getString(0);
+
+            JSONObject dynamicCoverJson = videoJson.getJSONObject("dynamic_cover");
+            data.dynamicCover = dynamicCoverJson.getJSONArray("url_list").getString(0);
+
             JSONObject sizeJson = videoJson.getJSONObject("cover");
             data.videoWidth = sizeJson.optInt("width");
             data.videoHeight = sizeJson.optInt("height");

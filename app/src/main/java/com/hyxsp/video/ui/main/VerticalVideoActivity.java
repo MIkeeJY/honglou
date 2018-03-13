@@ -97,21 +97,13 @@ public class VerticalVideoActivity extends BaseActivity {
         }
 
 
-        mVerticalViewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
+        mVerticalViewpager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
                 mCurrentItem = position;
             }
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
         });
 
 
@@ -217,7 +209,11 @@ public class VerticalVideoActivity extends BaseActivity {
 
             @Override
             public void onPlayError(String url, Object... objects) {
-                LogUtils.e(url, objects[0]);
+                try {
+                    LogUtils.e(url, objects[0]);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override

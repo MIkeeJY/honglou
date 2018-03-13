@@ -43,7 +43,7 @@ import okhttp3.Request;
 
 public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyclerAdapter.OnItemClickListener<MainViewHolder> {
     @BindView(R.id.am_ptr_framelayout) PtrRecyclerViewUIComponent ptrRecyclerViewUIComponent;
-
+    @BindView(R.id.ar_empty_view) View emptyView;
 
     private MainAdapter adapter;
 
@@ -65,7 +65,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        StatusBarCompat.translucentStatusBar(getActivity(),true);
+        StatusBarCompat.translucentStatusBar(getActivity(), true);
     }
 
 
@@ -86,13 +86,14 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         });
 
         ptrRecyclerViewUIComponent.setLayoutManager(gridLayoutManager);
-
         ptrRecyclerViewUIComponent.setAdapter(mAdapter);
+//        ptrRecyclerViewUIComponent.setEmptyView(emptyView);
 
         initHeader();
 
         ptrRecyclerViewUIComponent.delayRefresh(100);
         ptrRecyclerViewUIComponent.setLoadMoreEnable(true);
+
 
         ptrRecyclerViewUIComponent.setOnPullToRefreshListener(new OnPullToRefreshListener() {
             @Override
@@ -146,6 +147,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         OkHttpClientManager.getAsyn(url, new OkHttpClientManager.StringCallback() {
             @Override
             public void onResponse(String response) {
+                LogUtils.json(response);
                 DouyinVideoListData listData = DouyinVideoListData.fromJSONData(response);
                 max_cursor = listData.getMaxCursor();
 
@@ -159,6 +161,14 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
 
                 } else {
                     mList = listData.getVideoDataList();
+                    if (mList.size() == 0) {
+                        emptyView.setVisibility(View.VISIBLE);
+                        ptrRecyclerViewUIComponent.setLoadMoreEnable(false);
+                    } else {
+                        emptyView.setVisibility(View.GONE);
+                        ptrRecyclerViewUIComponent.setLoadMoreEnable(true);
+                    }
+
                     adapter.setDataList(mList);
                     mAdapter.notifyDataSetChanged();
                     ptrRecyclerViewUIComponent.refreshComplete();
@@ -192,8 +202,8 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         super.onHiddenChanged(hidden);
 
         if (!hidden) {
-            StatusBarCompat.translucentStatusBar(getActivity(),true);
-        }else {
+            StatusBarCompat.translucentStatusBar(getActivity(), true);
+        } else {
             StatusBarCompat.setStatusBarColor(getActivity(), 0xfffb3b3b);
         }
     }

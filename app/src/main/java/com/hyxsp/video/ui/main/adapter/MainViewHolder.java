@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyxsp.video.App;
 import com.hyxsp.video.R;
@@ -42,7 +44,17 @@ public class MainViewHolder extends CygBaseRecyclerViewHolder<LevideoData> {
             params.width = (WindowUtil.getScreenWidth(App.getInstance()) - DensityUtil.dip2px(App.getInstance(), 2)) / 2;
             params.height = (params.width) * 8 / 5;
             mNearbyImg.setLayoutParams(params);
-            mNearbyImg.setImageURI(Uri.parse(data.getCoverImgUrl()));
+
+            Uri uri = Uri.parse(data.getDynamicCover());
+
+            DraweeController controller = Fresco.newDraweeControllerBuilder()
+                    .setUri(uri)
+                    .setAutoPlayAnimations(true)//设置为true将循环播放Gif动画
+                    .setOldController(mNearbyImg.getController())
+                    .build();
+
+            mNearbyImg.setController(controller);
+//            mNearbyImg.setImageURI(Uri.parse(data.getCoverImgUrl()));
 
             mTvTitle.setText(data.getTitle());
             mTvPlayCount.setText(data.getPlayCount() + "播放");
