@@ -22,6 +22,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.hyxsp.video.App;
+import com.hyxsp.video.view.CircleImageView;
 import com.hyxsp.video.view.CircleTransform;
 
 import java.io.File;
@@ -303,9 +304,9 @@ public abstract class GlideUtils {
             }
 
             //单张CircleImageView不允许动画，不然会不显示,
-//            if (imageView instanceof CircleImageView) {
-//                type.dontAnimate();
-//            }
+            if (imageView instanceof CircleImageView) {
+                type.dontAnimate();
+            }
             return type
                     .listener(new GlideListener<String, GlideDrawable, String>(imageLoadListener, url, imageView))
                     .into(imageView);
@@ -323,7 +324,7 @@ public abstract class GlideUtils {
      */
     public static Target<GlideDrawable> loadImageFormVideo(@NonNull String url, @NonNull ImageView imageView) {
         return getDrawableTypeRequest(imageView.getContext(), url)
-                .override(DensityUtil.dip2px(App.getInstance(),150), DensityUtil.dip2px(App.getInstance(),150))
+                .override(DensityUtil.dip2px(App.getInstance(), 150), DensityUtil.dip2px(App.getInstance(), 150))
                 //.placeholder(android.R.drawable.picture_frame)   //占位图
                 .dontAnimate()
                 .into(imageView);

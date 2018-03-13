@@ -162,11 +162,15 @@ public class VerticalVideoActivity extends BaseActivity {
     }
 
     private void loadVideo(ViewGroup viewGroup, int mCurrentItem) {
+        LevideoData data = mList.get(mCurrentItem);
+
         //聊天室的fragment只加载一次，以后复用
         if (!mInit) {
             mFragmentManager.beginTransaction().add(mFragmentContainer.getId(), mItemFragment).commitAllowingStateLoss();
             mInit = true;
         }
+        mItemFragment.setmData(data);
+        mItemFragment.initdata();
 
 
         isSelected = false;

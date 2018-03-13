@@ -43,5 +43,7 @@
     <dimen name="item_decoration_title_height">40dp</dimen>
     <dimen name="item_decoration_title_start_margin">16dp</dimen>
     <dimen name="item_decoration_title_fontsize">14dp</dimen>
+    <dimen name="dimen20">20dp</dimen>
+    <dimen name="dimen10">10dp</dimen>
 
 </resources>

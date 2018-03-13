@@ -8,8 +8,8 @@
     <color name="white">#FFFFFF</color>
     <color name="transparent">#00000000</color>
 
-    <color name="tab_text_color_default">#ffeeeeee</color>
-    <color name="tab_text_color_selected">#fffb4f4f</color>
+    <color name="tab_text_color_default">#5D646E</color>
+    <color name="tab_text_color_selected">#E60731</color>
 
     <color name="tae_sdk_login_qr_colors_highlight">#ffff9900</color>
 

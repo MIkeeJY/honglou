@@ -38,7 +38,6 @@
             android:textSize="11sp"/>
 
         <TextView
-            android:visibility="visible"
             android:id="@+id/tv_like_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -18,6 +18,7 @@ import com.hyxsp.video.R;
 import com.hyxsp.video.bean.data.LevideoData;
 import com.hyxsp.video.utils.CommonUtils;
 import com.hyxsp.video.utils.DensityUtil;
+import com.hyxsp.video.utils.Utils;
 import com.hyxsp.video.utils.WindowUtil;
 
 import butterknife.BindView;
@@ -75,7 +76,7 @@ public class MainViewHolder extends CygBaseRecyclerViewHolder<LevideoData> {
 
             mTvTitle.setText(data.getTitle());
             mTvPlayCount.setText(CommonUtils.formatCount(data.getPlayCount()) + "播放");
-            mTvLikeCount.setText(CommonUtils.formatCount(data.getLikeCount()) + "赞");
+            mTvLikeCount.setText(Utils.formatNumber(data.getLikeCount()) + "赞");
 
 
         }

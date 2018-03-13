@@ -151,6 +151,9 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
         if (mTabs.containsKey("街舞")) {
             mTabs.remove("街舞");
         }
+        if (mTabs.containsKey("正能量")) {
+            mTabs.remove("正能量");
+        }
 
         for (String key : mTabs.keySet()) {
             int value = mTabs.get(key);
