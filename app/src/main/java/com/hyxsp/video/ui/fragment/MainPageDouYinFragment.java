@@ -11,6 +11,7 @@ import com.hyxsp.video.App;
 import com.hyxsp.video.R;
 import com.hyxsp.video.base.BaseFragment;
 import com.hyxsp.video.bean.data.DouyinVideoListData;
+import com.hyxsp.video.bean.data.HotsoonVideoListData;
 import com.hyxsp.video.bean.data.LevideoData;
 import com.hyxsp.video.okhttp.http.OkHttpClientManager;
 import com.hyxsp.video.ui.main.VerticalVideoActivity;
@@ -18,6 +19,7 @@ import com.hyxsp.video.ui.main.adapter.MainAdapter;
 import com.hyxsp.video.ui.main.adapter.MainViewHolder;
 import com.hyxsp.video.utils.DensityUtil;
 import com.hyxsp.video.utils.DouyinUtils;
+import com.hyxsp.video.utils.HotsoonUtils;
 import com.hyxsp.video.utils.StatusBarCompat;
 import com.jack.mc.cyg.cygptr.PtrFrameLayout;
 import com.jack.mc.cyg.cygptr.header.MaterialHeader;
@@ -55,6 +57,8 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
     private long max_cursor = 0;
 
     boolean isLoadMore = false;
+
+    boolean douYinDisable = false;
 
     @Override
     protected int layoutRes() {
@@ -104,7 +108,11 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
                     mList.clear();
                 }
 
-                getDouyinListData();
+                if (douYinDisable) {
+                    HuoshanListData();
+                } else {
+                    getDouyinListData();
+                }
 
 
             }
@@ -114,7 +122,11 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
             @Override
             public void onScrollToBottomLoadMore() {
                 isLoadMore = true;
-                getDouyinListData();
+                if (douYinDisable) {
+                    HuoshanListData();
+                } else {
+                    getDouyinListData();
+                }
             }
         });
 
@@ -151,6 +163,67 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
                 try {
                     DouyinVideoListData listData = DouyinVideoListData.fromJSONData(response);
                     max_cursor = listData.getMaxCursor();
+
+                    if (listData.getVideoDataList() == null || listData.getVideoDataList().size() == 0) {
+                        douYinDisable = true;
+                        max_cursor = 0;
+                        isLoadMore = false;
+                        HuoshanListData();
+                        return;
+                    } else {
+                        douYinDisable = false;
+                    }
+
+                    LogUtils.e(listData.getVideoDataList().size());
+
+                    if (isLoadMore) {
+                        mList.addAll(listData.getVideoDataList());
+                        adapter.setDataList(mList, false);
+                        mAdapter.notifyDataSetChanged();
+                        ptrRecyclerViewUIComponent.loadMoreComplete(true);
+
+                    } else {
+                        mList = listData.getVideoDataList();
+                        if (mList.size() == 0) {
+                            emptyView.setVisibility(View.VISIBLE);
+                            ptrRecyclerViewUIComponent.setLoadMoreEnable(false);
+                        } else {
+                            emptyView.setVisibility(View.GONE);
+                            ptrRecyclerViewUIComponent.setLoadMoreEnable(true);
+                        }
+
+                        adapter.setDataList(mList);
+                        mAdapter.notifyDataSetChanged();
+                        ptrRecyclerViewUIComponent.refreshComplete();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Request request, IOException e) {
+                ptrRecyclerViewUIComponent.loadMoreComplete(true);
+                ptrRecyclerViewUIComponent.refreshComplete();
+            }
+        });
+
+
+    }
+
+
+    public void HuoshanListData() {
+        String url = HotsoonUtils.getEncryptUrl(getActivity(), 0, max_cursor);
+        OkHttpClientManager.getAsyn(url, new OkHttpClientManager.StringCallback() {
+            @Override
+            public void onResponse(String response) {
+                LogUtils.json(response);
+                try {
+                    HotsoonVideoListData listData = HotsoonVideoListData.fromJSONData(response);
+                    max_cursor = listData.getMaxTime();
 
                     LogUtils.e(listData.getVideoDataList().size());
 
