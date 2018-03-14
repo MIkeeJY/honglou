@@ -5,13 +5,14 @@
               android:layout_gravity="center_vertical"
               android:gravity="center"
               android:orientation="vertical"
-              android:paddingTop="2dp" >
+              android:paddingTop="2dp">
 
     <ImageView
         android:id="@+id/iv_tab_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-      />
+        android:src="@drawable/tab_rec_bg"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,6 +20,6 @@
         android:layout_marginTop="4dp"
         android:text="@string/following"
         android:textColor="@drawable/tab_text_bg"
-        android:textSize="12sp" />
+        android:textSize="12sp"/>
 
 </LinearLayout>

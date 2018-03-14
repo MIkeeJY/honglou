@@ -21,4 +21,7 @@
     <!-- common list 点击波纹颜色 -->
     <color name="common_list_clip_color">#cccccc</color>
     <color name="tab_un_select_color">#ffe3e3</color>
+
+    <color name="main_change_color">#E60731</color>
+
 </resources>

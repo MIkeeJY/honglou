@@ -73,7 +73,8 @@ public class MainTabActivity extends BaseActivity {
         mTabManager = new TabManager(this, mTabHost, R.id.realtabcontent);
 
         mTabManager.addTab(mTabHost.newTabSpec(TAB1).setIndicator(createTabIndicatorView(R.layout.tab_main)), MainPageDouYinFragment.class, null);
-        mTabManager.addTab(mTabHost.newTabSpec(TAB2).setIndicator(createTabIndicatorView(R.layout.tab_video)), com.lightsky.video.base.RecommondVideoFragment.class, null);
+        mTabManager.addTab(mTabHost.newTabSpec(TAB2).setIndicator(createTabIndicatorView(R.layout.tab_following)), com.lightsky.video.base.MainPageFragment.class, null);
+        mTabManager.addTab(mTabHost.newTabSpec(TAB3).setIndicator(createTabIndicatorView(R.layout.tab_video)), com.lightsky.video.base.RecommondVideoFragment.class, null);
 //        mTabManager.addTab(mTabHost.newTabSpec(TAB2).setIndicator(createTabIndicatorView(R.layout.tab_following)), RecommondVideoFragment.class, null);
 //        mTabManager.addTab(mTabHost.newTabSpec(TAB3).setIndicator(createTabIndicatorView(R.layout.tab_mine)), MineFragment.class, null);
 

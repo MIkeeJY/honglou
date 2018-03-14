@@ -283,7 +283,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         if (!hidden) {
             StatusBarCompat.translucentStatusBar(getActivity(), true);
         } else {
-            StatusBarCompat.setStatusBarColor(getActivity(), 0xfffb3b3b);
+            StatusBarCompat.setStatusBarColor(getActivity(), 0xffE60731);
         }
     }
 

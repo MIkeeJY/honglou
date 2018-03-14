@@ -175,7 +175,7 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
 
                 if (isLastPage && isDragPage && positionOffsetPixels == 0) {   //当前页是最后一页，并且是拖动状态，并且像素偏移量为0
                     if (canJumpPage) {
-                        ((MainTabActivity) getActivity()).getTabHost().setCurrentTab(1);
+                        ((MainTabActivity) getActivity()).getTabHost().setCurrentTab(2);
                     }
                 }
 

@@ -198,7 +198,7 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
                 if (isFirstPage && isDragPage && positionOffsetPixels == 0) {   //当前页是第一页，并且是拖动状态，并且像素偏移量为0
-                    ((MainTabActivity) getActivity()).getTabHost().setCurrentTab(0);
+                    ((MainTabActivity) getActivity()).getTabHost().setCurrentTab(1);
                 }
 
             }
