@@ -46,7 +46,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/app_video_top_right_root"
         android:layout_toRightOf="@+id/app_video_top_left_root"
         android:ellipsize="end"
         android:gravity="center_vertical"

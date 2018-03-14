@@ -24,7 +24,6 @@ public class VerticalVideoItemFragment extends BaseFragment {
 
     LevideoData mData;
 
-    @BindView(R.id.tv_video_title) TextView mTvVideoTitle;
     @BindView(R.id.iv_user_avatar) CircleImageView mIvUserAvatar;
     @BindView(R.id.tv_username) TextView mTvUsername;
     @BindView(R.id.tv_like_count) TextView mTvLikeCount;
@@ -51,9 +50,6 @@ public class VerticalVideoItemFragment extends BaseFragment {
     public void initdata() {
         if (mIvUserAvatar != null) {
             GlideUtils.loadImage(App.getInstance(), mData.getAuthorImgUrl(), mIvUserAvatar, null);
-        }
-        if (mTvVideoTitle != null) {
-            mTvVideoTitle.setText(mData.getTitle());
         }
 
         if (mTvPlayCount != null) {

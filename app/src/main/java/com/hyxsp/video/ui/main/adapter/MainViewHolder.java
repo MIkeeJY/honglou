@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.apkfuns.logutils.LogUtils;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -53,7 +52,6 @@ public class MainViewHolder extends CygBaseRecyclerViewHolder<LevideoData> {
             mNearbyImg.setLayoutParams(params);
 
             final Uri uri = Uri.parse(data.getDynamicCover());
-            LogUtils.e(data);
 
             if (isNotEqualsUriPath(mNearbyImg, data.getDynamicCover())) {
                 DraweeController controller = Fresco.newDraweeControllerBuilder()

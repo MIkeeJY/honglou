@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
 import com.hyxsp.video.App;
@@ -51,6 +52,7 @@ public class VerticalVideoActivity extends BaseActivity {
     private ImageView mPlay;
     private View mRootView;
     private ImageView mCover;
+    private TextView mTvVideoTitle;
 
     private VerticalVideoItemFragment mItemFragment = VerticalVideoItemFragment.newInstance();
 
@@ -113,6 +115,7 @@ public class VerticalVideoActivity extends BaseActivity {
         videoPlayer = mRoomContainer.findViewById(R.id.video_player);
         mRootView = mRoomContainer.findViewById(R.id.view_play);
         mCover = mRoomContainer.findViewById(R.id.cover_img);
+        mTvVideoTitle = mRoomContainer.findViewById(R.id.tv_video_title);
 
 
         mVerticalViewpager.setPageTransformer(false, new ViewPager.PageTransformer() {
@@ -179,6 +182,7 @@ public class VerticalVideoActivity extends BaseActivity {
         mCover.setVisibility(View.VISIBLE);
 
         GlideUtils.loadImage(App.getInstance(), mList.get(mCurrentItem).getCoverImgUrl(), mCover, null);
+        mTvVideoTitle.setText(data.getTitle());
 
         if (data.getVideoPlayUrl().contains("v11-")) {
             videoPlayer.setUp(mList.get(mCurrentItem).getVideoPlayUrl(), false, "");
