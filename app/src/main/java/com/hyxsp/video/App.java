@@ -6,14 +6,13 @@ import android.support.multidex.MultiDex;
 import com.apkfuns.logutils.LogLevel;
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
-import com.dycm_adsdk.PlatformSDK;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.hyxsp.video.utils.CommonUtils;
 import com.hyxsp.video.utils.SpUtils;
 import com.ss.android.common.applog.GlobalContext;
 import com.ss.android.common.applog.UserInfo;
 
 import cn.share.jack.cyghttp.app.CygApplication;
+import cn.share.jack.cyghttp.app.HttpServletAddress;
 
 /**
  * Created by jack on 2017/6/13
@@ -28,9 +27,7 @@ public class App extends CygApplication {
         SpUtils.init(this);
         Fresco.initialize(this);
 
-        PlatformSDK.app().onAppCreate(this);
-
-//        HttpServletAddress.getInstance().setOfflineAddress("http://client.kuolie.me:56899/api/");
+        HttpServletAddress.getInstance().setOfflineAddress("http://20.20.23.79:8888/v1/app/");
         LogUtils.getLogConfig()
                 .configAllowLog(BuildConfig.DEBUG)
                 .configTagPrefix(this.getPackageName())
@@ -41,12 +38,6 @@ public class App extends CygApplication {
 
         StatService.setDebugOn(BuildConfig.DEBUG);
 
-        PlatformSDK.config().setChannel_code(CommonUtils.getMetaData(getApplicationContext(), "BaiduMobAd_CHANNEL"));
-//        PlatformSDK.config().setAd_userid("UserID");
-//        PlatformSDK.config().setCityCode("CityCode");
-//        PlatformSDK.config().setCityName("CityName");
-//        PlatformSDK.config().setLatitude("Latitude");
-//        PlatformSDK.config().setLongitude("Longitude");
 
         GlobalContext.setContext(getApplicationContext()); //Hook 抖音
 

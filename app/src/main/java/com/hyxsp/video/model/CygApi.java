@@ -12,7 +12,9 @@ import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by jack on 2017/6/13
@@ -30,4 +32,10 @@ public interface CygApi {
      */
     @POST("v2/login/")
     Observable<BaseResponse<LoginResult>> login(@Body RequestBody body);
+
+    /**
+     * 版本更新
+     */
+    @GET("check/")
+    Observable<BaseResponse<LoginResult>> updateVersion(@Query("type") String type);
 }
