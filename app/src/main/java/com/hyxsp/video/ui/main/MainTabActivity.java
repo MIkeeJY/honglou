@@ -30,9 +30,12 @@ import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.baidu.mobstat.StatService;
+import com.hyxsp.video.App;
 import com.hyxsp.video.R;
 import com.hyxsp.video.base.BaseActivity;
 import com.hyxsp.video.ui.fragment.MainPageDouYinFragment;
+import com.hyxsp.video.utils.WindowUtil;
+import com.hyxsp.video.utils.update.SoftCheckUpdateUtil;
 import com.lightsky.video.VideoHelper;
 
 import java.util.HashMap;
@@ -74,7 +77,8 @@ public class MainTabActivity extends BaseActivity {
 //        mTabManager.addTab(mTabHost.newTabSpec(TAB2).setIndicator(createTabIndicatorView(R.layout.tab_following)), RecommondVideoFragment.class, null);
 //        mTabManager.addTab(mTabHost.newTabSpec(TAB3).setIndicator(createTabIndicatorView(R.layout.tab_mine)), MineFragment.class, null);
 
-
+        SoftCheckUpdateUtil checkUpdateUtil = new SoftCheckUpdateUtil();
+        checkUpdateUtil.checkSoftUpdate(MainTabActivity.this, false, WindowUtil.getScreenWidth(App.getInstance()));
     }
 
 

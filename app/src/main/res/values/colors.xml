@@ -32,5 +32,9 @@
     <color name="main_color">#E60731</color>
     <color name="empty_text">#b6b4b4</color>
 
+    <color name="color_df">#dfdfdf</color>
+    <color name="common_blue2">#00a0e9</color>
+    <color name="common_press_bg">#e9e7e9</color>
+
 
 </resources>

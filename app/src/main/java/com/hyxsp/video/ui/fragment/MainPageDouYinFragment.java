@@ -147,7 +147,6 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         OkHttpClientManager.getAsyn(url, new OkHttpClientManager.StringCallback() {
             @Override
             public void onResponse(String response) {
-                LogUtils.json(response);
                 DouyinVideoListData listData = DouyinVideoListData.fromJSONData(response);
                 max_cursor = listData.getMaxCursor();
 

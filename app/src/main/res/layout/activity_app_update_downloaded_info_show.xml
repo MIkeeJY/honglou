@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:custom="http://schemas.android.com/apk/res-auto"
+              android:layout_width="300dp"
+              android:layout_height="match_parent"
+              android:layout_gravity="center_horizontal"
+              android:background="@drawable/shape_12_white_corner_rectangle"
+              android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/app_update_dialog_tittle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="版本更新"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/app_update_dialog_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:ellipsize="none"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp"
+                android:maxLines="100"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:scrollHorizontally="false"
+                android:singleLine="false"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+        </ScrollView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <View
+                android:id="@+id/view_hengxian"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/color_df"/>
+
+            <com.hyxsp.video.view.NumberProgressBar
+                android:id="@+id/progressBarUpdate"
+                style="@style/NumberProgressBar_Default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="15dp"
+                custom:progress_current="0"
+                />
+        </RelativeLayout>
+
+        <CheckBox
+            android:id="@+id/app_update_dialog_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:text="@string/activity_soft_update_no_notify"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:visibility="gone"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/app_update_confirm"
+                android:layout_width="0dip"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_dialog_left"
+                android:text="@string/activity_soft_update_install_ensure"
+                android:textColor="@color/common_blue2"
+                android:textSize="16sp"/>
+
+            <LinearLayout
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#dfdfdf"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/app_update_cancel"
+                android:layout_width="0dip"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_dialog_right"
+                android:text="@string/activity_soft_update_install_cancel"
+                android:textColor="@color/common_blue2"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

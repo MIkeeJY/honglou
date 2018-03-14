@@ -7,5 +7,13 @@
     <string name="following">关注</string>
     <string name="mine">我的</string>
 
+    <!-- 版本升级 -->
+    <string name="activity_soft_update_tittle_loading">升级中。。。</string>
+    <string name="activity_soft_update_tittle_warning">版本更新</string>
+    <string name="activity_soft_update_dialog_confirm_tip">更新</string>
+    <string name="activity_soft_update_install_tips">最新版本已下载，是否安装？</string>
+    <string name="activity_soft_update_no_notify">下次不再提示</string>
+    <string name="activity_soft_update_install_ensure">更新</string>
+    <string name="activity_soft_update_install_cancel">取消</string>
 
 </resources>

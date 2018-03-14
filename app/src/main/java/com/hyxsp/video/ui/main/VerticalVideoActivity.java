@@ -180,8 +180,11 @@ public class VerticalVideoActivity extends BaseActivity {
 
         GlideUtils.loadImage(App.getInstance(), mList.get(mCurrentItem).getCoverImgUrl(), mCover, null);
 
-
-        videoPlayer.setUp(mList.get(mCurrentItem).getVideoPlayUrl(), true, "");
+        if (data.getVideoPlayUrl().contains("v11-")) {
+            videoPlayer.setUp(mList.get(mCurrentItem).getVideoPlayUrl(), false, "");
+        } else {
+            videoPlayer.setUp(mList.get(mCurrentItem).getVideoPlayUrl(), true, "");
+        }
         videoPlayer.setLooping(true);
 
         /**
