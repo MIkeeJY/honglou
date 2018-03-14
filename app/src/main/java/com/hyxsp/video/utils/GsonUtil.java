@@ -120,4 +120,15 @@ public class GsonUtil {
         return jsonStr;
     }
 
+    /**
+     * 将Json字符串转换成对象
+     */
+    public static Object JSONToObject(String json, Class beanClass) {
+        Object res = null;
+        if (gson != null) {
+            res = gson.fromJson(json, beanClass);
+        }
+        return res;
+    }
+
 }

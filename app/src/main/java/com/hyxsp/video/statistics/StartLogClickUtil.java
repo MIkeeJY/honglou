@@ -4,23 +4,17 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import net.lzbook.kit.app.BaseBookApplication;
-import net.lzbook.kit.appender_loghub.appender.AndroidLogClient;
-import net.lzbook.kit.appender_loghub.common.PLItemKey;
-import net.lzbook.kit.appender_loghub.util.FormatUtil;
-import net.lzbook.kit.constants.Constants;
-import net.lzbook.kit.data.bean.ChapterErrorBean;
-import net.lzbook.kit.user.UserManager;
-import net.lzbook.kit.utils.AppLog;
-import net.lzbook.kit.utils.AppUtils;
-import net.lzbook.kit.utils.NetWorkUtils;
-import net.lzbook.kit.utils.OpenUDID;
+import com.apkfuns.logutils.LogUtils;
+import com.hyxsp.video.App;
+import com.hyxsp.video.statistics.appender.AndroidLogClient;
+import com.hyxsp.video.statistics.common.PLItemKey;
+import com.hyxsp.video.statistics.util.Constants;
+import com.hyxsp.video.statistics.util.FormatUtil;
+import com.hyxsp.video.utils.NetworkUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +27,7 @@ import java.util.concurrent.Executors;
  */
 
 public class StartLogClickUtil {
+    public static final String TAG = "StartLogClickUtil";
 
     //页面编码
     public static final String SYSTEM_PAGE = "SYSTEM";//APP通用
@@ -141,7 +136,6 @@ public class StartLogClickUtil {
     public static final String TRANSCODEPOPUP = "TRANSCODEPOPUP";//点击转码阅读
 
 
-
     //书籍目录页
     public static final String CATALOG_CASHEALL = "CASHEALL";//点击全本缓存
     public static final String CATALOG_CATALOGCHAPTER = "CATALOGCHAPTER";//目录中点击某章节
@@ -243,8 +237,6 @@ public class StartLogClickUtil {
     public static final String TOBOOKSTORE = "TOBOOKSTORE";   //完结页点击去书城
 
 
-
-
     private static final ExecutorService logThreadPool = Executors.newSingleThreadExecutor();
     private static List<String> prePageList = new ArrayList<>();
 
@@ -252,9 +244,7 @@ public class StartLogClickUtil {
 
     //上传普通的点击事件
     public static void upLoadEventLog(Context context, String pageCode, String identify) {
-        if (!Constants.dy_ad_new_statistics_switch || context == null) {
-            return;
-        }
+
         final ServerLog log = getCommonLog();
 
 
@@ -271,7 +261,7 @@ public class StartLogClickUtil {
         logThreadPool.execute(new Runnable() {
             @Override
             public void run() {
-                AppLog.e("log", log.GetContent().toString());
+                LogUtils.tag(TAG).e(log.GetContent().toString());
                 AndroidLogClient.putLog(log);
             }
         });
@@ -309,15 +299,10 @@ public class StartLogClickUtil {
         log.PutContent("project", PLItemKey.ZN_APP_EVENT.getProject());
         log.PutContent("logstore", PLItemKey.ZN_APP_EVENT.getLogstore());
 
-        if (UserManager.INSTANCE.isUserLogin()) {
-            log.PutContent("uid", UserManager.INSTANCE.getMUserInfo().getUid());//用户中心唯一标识
-        } else {
-            log.PutContent("uid", "");
-        }
 
         log.PutContent("os", "android");//手机操作系统
         log.PutContent("log_time", System.currentTimeMillis() + "");//日志产生时间（毫秒数）
-        log.PutContent("network", NetWorkUtils.NETTYPE);//网络状况
+        log.PutContent("network", NetworkUtil.getNetworkType(App.getInstance()));//网络状况
         log.PutContent("longitude", Constants.longitude + "");//经度
         log.PutContent("latitude", Constants.latitude + "");//纬度
         log.PutContent("city_info", Constants.adCityInfo);//城市
@@ -337,15 +322,10 @@ public class StartLogClickUtil {
         log.PutContent("code", identify);//点击事件唯一标识
         log.PutContent("page_code", pageCode);
 
-        if (UserManager.INSTANCE.isUserLogin()) {
-            log.PutContent("uid", UserManager.INSTANCE.getMUserInfo().getUid());//用户中心唯一标识
-        } else {
-            log.PutContent("uid", "");
-        }
 
         log.PutContent("os", "android");//手机操作系统
         log.PutContent("log_time", System.currentTimeMillis() + "");//日志产生时间（毫秒数）
-        log.PutContent("network", NetWorkUtils.NETTYPE);//网络状况
+        log.PutContent("network", NetworkUtil.getNetworkType(App.getInstance()));//网络状况
         log.PutContent("longitude", Constants.longitude + "");//经度
         log.PutContent("latitude", Constants.latitude + "");//纬度
         log.PutContent("city_info", Constants.adCityInfo);//城市
@@ -362,7 +342,7 @@ public class StartLogClickUtil {
         logThreadPool.execute(new Runnable() {
             @Override
             public void run() {
-                AppLog.e("log", log.GetContent().toString());
+                LogUtils.tag(TAG).e("log", log.GetContent().toString());
                 AndroidLogClient.putLog(log);
             }
         });
@@ -375,18 +355,16 @@ public class StartLogClickUtil {
             return;
         }
         final ServerLog log = new ServerLog(PLItemKey.ZN_APP_APPSTORE);
-        if (UserManager.INSTANCE.isUserLogin()) {
-            log.PutContent("uid", UserManager.INSTANCE.getMUserInfo().getUid());//用户中心唯一标识
-        } else {
-            log.PutContent("uid", "");
-        }
+
+        log.PutContent("uid", "");
+
         log.PutContent("apps", applist);
         log.PutContent("time", System.currentTimeMillis() + "");
 
         logThreadPool.execute(new Runnable() {
             @Override
             public void run() {
-                AppLog.e("log", log.GetContent().toString());
+                LogUtils.tag(TAG).e("log", log.GetContent().toString());
                 AndroidLogClient.putLog(log);
             }
         });
@@ -401,11 +379,8 @@ public class StartLogClickUtil {
             return;
         }
         ServerLog log = new ServerLog(PLItemKey.ZN_APP_READ_CONTENT);
-        if (UserManager.INSTANCE.isUserLogin()) {
-            log.PutContent("uid", UserManager.INSTANCE.getMUserInfo().getUid());//用户中心唯一标识
-        } else {
-            log.PutContent("uid", "");
-        }
+
+        log.PutContent("uid", "");
         if (params != null) {
             log.PutContent("book_id", params[0]);//书籍唯一字符串
             log.PutContent("chapter_id", params[1]);//阅读章节唯一字符串
@@ -424,7 +399,7 @@ public class StartLogClickUtil {
 
         }
         linkList.add(log);
-        AppLog.e("log", log.GetContent().toString());
+        LogUtils.tag(TAG).e("log", log.GetContent().toString());
         if (linkList != null && linkList.size() > 10) {
             logThreadPool.execute(new Runnable() {
                 @Override
@@ -441,63 +416,6 @@ public class StartLogClickUtil {
     }
 
 
-    public static void upLoadChapterError(ChapterErrorBean bean) {
-        if (!Constants.dy_ad_new_statistics_switch) {
-            return;
-        }
-        final ServerLog log = new ServerLog(PLItemKey.ZN_APP_FEEDBACK);
-        if (UserManager.INSTANCE.isUserLogin()) {
-            log.PutContent("uid", UserManager.INSTANCE.getMUserInfo().getUid());//用户中心唯一标识
-        } else {
-            log.PutContent("uid", "");
-        }
-        if (bean != null) {
-            log.PutContent("bookSourceId", bean.bookSourceId);
-            log.PutContent("bookName", decode(bean.bookName));
-            log.PutContent("author", decode(bean.author));
-            log.PutContent("bookChapterId", bean.bookChapterId);
-            log.PutContent("chapterId", bean.chapterId);
-            log.PutContent("chapterName", decode(bean.chapterName));
-            log.PutContent("serial", String.valueOf(bean.serial));
-            log.PutContent("host", bean.host);
-            log.PutContent("type", String.valueOf(bean.type));
-            log.PutContent("channel_code", bean.channelCode);
-        }
-
-        String channelId = AppUtils.getChannelId();
-        String version = String.valueOf(AppUtils.getVersionName());
-        String version_code = String.valueOf(AppUtils.getVersionCode());
-        String packageName = AppUtils.getPackageName();
-        String os = Constants.APP_SYSTEM_PLATFORM;
-        String udid = OpenUDID.getOpenUDIDInContext(BaseBookApplication.getGlobalContext());
-        String longitude = Constants.longitude + "";
-        String latitude = Constants.latitude + "";
-        String cityCode = Constants.cityCode;
-
-        log.PutContent("packageName", packageName);
-        log.PutContent("version", version);
-        log.PutContent("version_code", version_code);
-        log.PutContent("channelId", channelId);
-        log.PutContent("os", os);
-        log.PutContent("udid", udid);
-        log.PutContent("longitude", longitude);
-        log.PutContent("latitude", latitude);
-        log.PutContent("cityCode", cityCode);
-
-        log.PutContent("os", "android");
-        log.PutContent("network", NetWorkUtils.getNetWorkTypeNew(BaseBookApplication.getGlobalContext()));
-        log.PutContent("city_info", Constants.adCityInfo);
-        log.PutContent("location_detail", Constants.adLocationDetail);
-
-        AppLog.e("log", log.GetContent().toString());
-        logThreadPool.execute(new Runnable() {
-            @Override
-            public void run() {
-                AndroidLogClient.putLog(log);
-            }
-        });
-
-    }
 
     private static String decode(String content) {
         if (content == null || "".equals(content)) {
@@ -515,14 +433,14 @@ public class StartLogClickUtil {
     public synchronized static String getPrePageCode(String pageCode) {
         String pre_page_code = "";
 
-        if (prePageList.size() == 0 || (prePageList.size() > 0 && pageCode !=null && !prePageList.get(prePageList.size() - 1).equals(pageCode))) {
+        if (prePageList.size() == 0 || (prePageList.size() > 0 && pageCode != null && !prePageList.get(prePageList.size() - 1).equals(pageCode))) {
             prePageList.add(pageCode);
             removePre(prePageList);
         }
         if (prePageList != null && prePageList.size() != 0) {
 
             for (int i = 0; i < prePageList.size(); i++) {
-                AppLog.e("loggggg", prePageList.get(i));
+                LogUtils.e(prePageList.get(i));
             }
 
             if (prePageList.size() > 1) {
@@ -537,7 +455,7 @@ public class StartLogClickUtil {
         return pre_page_code;
     }
 
-    public  static void removePre(List<String> prePageList){
+    public static void removePre(List<String> prePageList) {
 
         if (prePageList.size() > 6) {
             for (int i = 0; i < 2; i++)

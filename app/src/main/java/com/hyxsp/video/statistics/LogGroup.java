@@ -1,7 +1,11 @@
 package com.hyxsp.video.statistics;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+
+import com.hyxsp.video.utils.GsonUtil;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,17 +71,29 @@ public class LogGroup {
 
     public String LogGroupToJsonString() {
         JSONObject json_log_group = new JSONObject();
-        json_log_group.put("__source__", mSource);
-        json_log_group.put("__topic__", mTopic);
+        try {
+            json_log_group.put("__source__", mSource);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            json_log_group.put("__topic__", mTopic);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         JSONArray log_arrays = new JSONArray();
 
         for (ServerLog log : mContent) {
             Map<String, Object> map = log.GetContent();
             JSONObject json_log = new JSONObject(map);
-            log_arrays.add(json_log);
+            log_arrays.put(json_log);
         }
-        json_log_group.put("__logs__", log_arrays);
-        String s = json_log_group.toJSONString();
+        try {
+            json_log_group.put("__logs__", log_arrays);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String s = GsonUtil.GsonString(json_log_group);
         return s;
     }
 

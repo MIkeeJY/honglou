@@ -1,9 +1,10 @@
 package com.hyxsp.video.statistics;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONException;
-import com.alibaba.fastjson.JSONObject;
+import com.hyxsp.video.utils.GsonUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -191,8 +192,8 @@ public class LOGClient {
 
     private void CheckError(String error_message, String request_id) throws LogException {
         try {
-            JSONObject obj = JSON.parseObject(error_message);
-            if (obj != null && obj.containsKey("errorCode") && obj.containsKey("errorMessage")) {
+            JSONObject obj = (JSONObject) GsonUtil.JSONToObject(error_message,String.class);
+            if (obj != null && obj.has("errorCode") && obj.has("errorMessage")) {
                 throw new LogException(obj.getString("errorCode"), obj.getString("errorMessage"), request_id);
             }
         } catch (JSONException e) {

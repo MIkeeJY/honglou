@@ -1,12 +1,11 @@
 package com.hyxsp.video.statistics;
 
 
-import net.lzbook.kit.app.BaseBookApplication;
-import net.lzbook.kit.appender_loghub.common.PLItemKey;
-import net.lzbook.kit.user.DeviceID;
-import net.lzbook.kit.utils.AppLog;
-import net.lzbook.kit.utils.AppUtils;
-import net.lzbook.kit.utils.OpenUDID;
+import com.hyxsp.video.App;
+import com.hyxsp.video.statistics.common.PLItemKey;
+import com.hyxsp.video.statistics.util.AppUtils;
+import com.hyxsp.video.statistics.util.DeviceID;
+import com.hyxsp.video.statistics.util.OpenUDID;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,9 +27,9 @@ public class ServerLog {
                 mContent.put("logstore", PLItemKey.ZN_APP_APPSTORE.getLogstore());
             }
             if (!mContent.containsKey("udid")) {
-                mContent.put("udid", OpenUDID.getOpenUDIDInContext(BaseBookApplication.getGlobalContext()));//用户ID（唯一,跟设备有关系）
+                mContent.put("udid", OpenUDID.getOpenUDIDInContext(App.getInstance()));//用户ID（唯一,跟设备有关系）
             }
-            AppLog.e("liebiao", type + "===");
+
         } else if (type.equals(PLItemKey.ZN_APP_EVENT)) {
             if (!mContent.containsKey("project")) {
                 mContent.put("project", PLItemKey.ZN_APP_EVENT.getProject());
@@ -52,24 +51,24 @@ public class ServerLog {
                 mContent.put("app_channel_id", AppUtils.getChannelId());//app渠道号
             }
             if (!mContent.containsKey("phone_identity")) {
-                mContent.put("phone_identity", DeviceID.getOpenUDIDInContext(BaseBookApplication.getGlobalContext()));//手机唯一标识符
+                mContent.put("phone_identity", DeviceID.getOpenUDIDInContext());//手机唯一标识符
             }
             if (!mContent.containsKey("vendor")) {
                 mContent.put("vendor", AppUtils.getPhoneBrand() + "," + AppUtils.getPhoneModel() + "," + AppUtils.getRelease());//设备信息
             }
             if (!mContent.containsKey("operator")) {
-                mContent.put("operator", AppUtils.getProvidersName(BaseBookApplication.getGlobalContext()));//运营商
+                mContent.put("operator", AppUtils.getProvidersName(App.getInstance()));//运营商
             }
             if (!mContent.containsKey("resolution_ratio")) {
-                mContent.put("resolution_ratio", AppUtils.getMetrics(BaseBookApplication.getGlobalContext()));//分辨率
+                mContent.put("resolution_ratio", AppUtils.getMetrics(App.getInstance()));//分辨率
             }
             if (!mContent.containsKey("udid")) {
-                mContent.put("udid", OpenUDID.getOpenUDIDInContext(BaseBookApplication.getGlobalContext()));//用户ID（唯一,跟设备有关系）
+                mContent.put("udid", OpenUDID.getOpenUDIDInContext(App.getInstance()));//用户ID（唯一,跟设备有关系）
             }
 
         } else if (type.equals(PLItemKey.ZN_APP_READ_CONTENT)) {
             if (!mContent.containsKey("udid")) {
-                mContent.put("udid", OpenUDID.getOpenUDIDInContext(BaseBookApplication.getGlobalContext()));//用户ID（唯一,跟设备有关系）
+                mContent.put("udid", OpenUDID.getOpenUDIDInContext(App.getInstance()));//用户ID（唯一,跟设备有关系）
             }
             if (!mContent.containsKey("project")) {
                 mContent.put("project", PLItemKey.ZN_APP_READ_CONTENT.getProject());
@@ -98,16 +97,16 @@ public class ServerLog {
                 mContent.put("logstore", PLItemKey.ZN_APP_FEEDBACK.getLogstore());
             }
             if (!mContent.containsKey("phone_identity")) {
-                mContent.put("phone_identity", DeviceID.getOpenUDIDInContext(BaseBookApplication.getGlobalContext()));//手机唯一标识符
+                mContent.put("phone_identity", DeviceID.getOpenUDIDInContext());//手机唯一标识符
             }
             if (!mContent.containsKey("vendor")) {
                 mContent.put("vendor", AppUtils.getPhoneBrand() + "," + AppUtils.getPhoneModel() + "," + AppUtils.getRelease());//设备信息
             }
             if (!mContent.containsKey("operator")) {
-                mContent.put("operator", AppUtils.getProvidersName(BaseBookApplication.getGlobalContext()));//运营商
+                mContent.put("operator", AppUtils.getProvidersName(App.getInstance()));//运营商
             }
             if (!mContent.containsKey("resolution_ratio")) {
-                mContent.put("resolution_ratio", AppUtils.getMetrics(BaseBookApplication.getGlobalContext()));//分辨率
+                mContent.put("resolution_ratio", AppUtils.getMetrics(App.getInstance()));//分辨率
             }
 
         }

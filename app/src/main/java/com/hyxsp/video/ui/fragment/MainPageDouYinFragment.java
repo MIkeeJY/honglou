@@ -147,30 +147,37 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         OkHttpClientManager.getAsyn(url, new OkHttpClientManager.StringCallback() {
             @Override
             public void onResponse(String response) {
-                DouyinVideoListData listData = DouyinVideoListData.fromJSONData(response);
-                max_cursor = listData.getMaxCursor();
+                LogUtils.json(response);
+                try {
+                    DouyinVideoListData listData = DouyinVideoListData.fromJSONData(response);
+                    max_cursor = listData.getMaxCursor();
 
-                LogUtils.e(listData.getVideoDataList().size());
+                    LogUtils.e(listData.getVideoDataList().size());
 
-                if (isLoadMore) {
-                    mList.addAll(listData.getVideoDataList());
-                    adapter.setDataList(mList,false);
-                    mAdapter.notifyDataSetChanged();
-                    ptrRecyclerViewUIComponent.loadMoreComplete(true);
+                    if (isLoadMore) {
+                        mList.addAll(listData.getVideoDataList());
+                        adapter.setDataList(mList, false);
+                        mAdapter.notifyDataSetChanged();
+                        ptrRecyclerViewUIComponent.loadMoreComplete(true);
 
-                } else {
-                    mList = listData.getVideoDataList();
-                    if (mList.size() == 0) {
-                        emptyView.setVisibility(View.VISIBLE);
-                        ptrRecyclerViewUIComponent.setLoadMoreEnable(false);
                     } else {
-                        emptyView.setVisibility(View.GONE);
-                        ptrRecyclerViewUIComponent.setLoadMoreEnable(true);
+                        mList = listData.getVideoDataList();
+                        if (mList.size() == 0) {
+                            emptyView.setVisibility(View.VISIBLE);
+                            ptrRecyclerViewUIComponent.setLoadMoreEnable(false);
+                        } else {
+                            emptyView.setVisibility(View.GONE);
+                            ptrRecyclerViewUIComponent.setLoadMoreEnable(true);
+                        }
+
+                        adapter.setDataList(mList);
+                        mAdapter.notifyDataSetChanged();
+                        ptrRecyclerViewUIComponent.refreshComplete();
                     }
 
-                    adapter.setDataList(mList);
-                    mAdapter.notifyDataSetChanged();
+                } catch (Exception e) {
                     ptrRecyclerViewUIComponent.refreshComplete();
+                    e.printStackTrace();
                 }
 
 
