@@ -20,12 +20,12 @@
             android:scrollbars="none">
         </HorizontalScrollView>
 
-        <com.hyxsp.video.kuaishipin.NoScrollViewPager
+        <com.hlsp.video.kuaishipin.NoScrollViewPager
             android:id="@+id/video_pager_fragments"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/video_type_tab">
-        </com.hyxsp.video.kuaishipin.NoScrollViewPager>
+        </com.hlsp.video.kuaishipin.NoScrollViewPager>
     </RelativeLayout>
 
     <RelativeLayout

@@ -5,7 +5,7 @@
                 android:layout_height="match_parent"
                 android:background="#000000">
 
-    <com.hyxsp.video.widget.EmptyControlVideo
+    <com.hlsp.video.widget.EmptyControlVideo
         android:id="@+id/video_player"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

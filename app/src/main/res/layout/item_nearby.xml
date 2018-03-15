@@ -12,12 +12,12 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="1dp"/>
 
-    <com.hyxsp.video.view.ShadowView
+    <com.hlsp.video.view.ShadowView
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_alignBottom="@id/nearby_img">
 
-    </com.hyxsp.video.view.ShadowView>
+    </com.hlsp.video.view.ShadowView>
 
 
     <RelativeLayout

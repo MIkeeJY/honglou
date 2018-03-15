@@ -9,12 +9,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
-import com.hyxsp.video.R;
-import com.hyxsp.video.base.BaseFragment;
-import com.hyxsp.video.ui.main.MainTabActivity;
+import com.hlsp.video.App;
+import com.hlsp.video.R;
+import com.hlsp.video.base.BaseFragment;
+import com.hlsp.video.ui.main.MainTabActivity;
+import com.hlsp.video.utils.DensityUtil;
 import com.lightsky.video.VideoHelper;
 import com.lightsky.video.datamanager.category.CategoryQueryNotify;
 import com.lightsky.video.sdk.CategoryInfoBase;
@@ -22,6 +25,7 @@ import com.lightsky.video.sdk.VideoOption;
 import com.lightsky.video.sdk.VideoSwitcher;
 import com.lightsky.video.sdk.VideoTabFragement;
 import com.lightsky.video.sdk.VideoTypesLoader;
+import com.lightsky.video.widget.PagerSlidingTab;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,6 +62,8 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
     private boolean isDragPage = false;
     private boolean canJumpPage = true;
 
+    PagerSlidingTab mPagerSlidingTab;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,6 +85,7 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
         mUnbinder = ButterKnife.bind(this, view);
         isInit = false;
         StatService.onEvent(getActivity(), "recommond", "推荐");
+
 
     }
 
@@ -130,7 +137,8 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
         }
 
         tabfilter.add(mTabs.get("推荐"));
-        tabfilter.add(mTabs.get("社会"));
+        tabfilter.add(mTabs.get("搞笑"));
+        tabfilter.add(mTabs.get("娱乐"));
 
         LogUtils.e(tabfilter);
         VideoHelper.get().SetVideoTabFilter(tabfilter);
@@ -145,6 +153,10 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
+                    mPagerSlidingTab = mVideoFragment.mRoot.findViewById(R.id.tabs);
+                    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+                    layoutParams.setMargins(DensityUtil.dip2px(App.getInstance(),110),0,DensityUtil.dip2px(App.getInstance(),70),0);
+                    mPagerSlidingTab.setLayoutParams(layoutParams);
                     onStatistics();
 
                 }

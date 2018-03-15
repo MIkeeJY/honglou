@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">美女搞笑娱乐视频</string>
+    <string name="app_name">红楼视频</string>
 
     <string name="main_page">小视频</string>
     <string name="video">发现</string>
@@ -8,7 +8,7 @@
     <string name="mine">我的</string>
 
     <string name="app_path_cache">/cache/</string>
-    <string name="app_path">/hongyan</string>
+    <string name="app_path">/honglou</string>
 
     <!-- 版本升级 -->
     <string name="activity_soft_update_tittle_loading">升级中。。。</string>

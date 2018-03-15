@@ -12,10 +12,10 @@ import android.widget.ImageView;
 
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
-import com.hyxsp.video.R;
-import com.hyxsp.video.base.BaseFragment;
-import com.hyxsp.video.bean.EventEntity;
-import com.hyxsp.video.ui.main.MainTabActivity;
+import com.hlsp.video.R;
+import com.hlsp.video.base.BaseFragment;
+import com.hlsp.video.bean.EventEntity;
+import com.hlsp.video.ui.main.MainTabActivity;
 import com.lightsky.video.VideoHelper;
 import com.lightsky.video.datamanager.category.CategoryQueryNotify;
 import com.lightsky.video.sdk.CategoryInfoBase;
@@ -147,7 +147,8 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
         }
 
         mTabs.remove("推荐");
-        mTabs.remove("社会");
+        mTabs.remove("搞笑");
+        mTabs.remove("娱乐");
         if (mTabs.containsKey("街舞")) {
             mTabs.remove("街舞");
         }

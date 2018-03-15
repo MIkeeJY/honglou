@@ -15,7 +15,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/dimen20">
 
-        <com.hyxsp.video.view.CircleImageView
+        <com.hlsp.video.view.CircleImageView
             android:id="@+id/iv_user_avatar"
             android:layout_width="30dp"
             android:layout_height="30dp"

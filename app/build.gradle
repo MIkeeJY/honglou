@@ -8,7 +8,7 @@ android {
     defaultConfig {
         minSdkVersion gradle.ext.minSdkVersion
         targetSdkVersion gradle.ext.targetSdkVersion
-        applicationId "com.hyxsp.video"
+        applicationId "com.hlsp.video"
         versionCode 1
         versionName "1.0.0"
 
