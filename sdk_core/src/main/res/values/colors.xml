@@ -11,6 +11,8 @@
     <color name="white_50">#7fffffff</color>
     <color name="themeColorRed">#fb3b3b</color>
 
+    <!--<color name="showmethod_start_color">#FFFFFF</color>-->
+    <!--<color name="showmethod_end_color">#C8C8C8</color>-->
     <color name="showmethod_start_color">#FFFFFF</color>
     <color name="showmethod_end_color">#C8C8C8</color>
 
@@ -22,6 +24,6 @@
     <color name="common_list_clip_color">#cccccc</color>
     <color name="tab_un_select_color">#ffe3e3</color>
 
-    <color name="main_change_color">#E60731</color>
+    <color name="main_change_color">#ffffff</color>
 
 </resources>

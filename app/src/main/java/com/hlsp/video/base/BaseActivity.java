@@ -32,8 +32,9 @@ public abstract class BaseActivity<PRESENTER extends BasePresenter> extends AppC
         if (null == mPresenter) {
             mPresenter = createPresenter();
         }
-        StatusBarCompat.translucentStatusBar(this,true);
+
         setContentView(layoutRes());
+        StatusBarCompat.translucentStatusBar(this, true);
         ButterKnife.bind(this);
         initView();
     }

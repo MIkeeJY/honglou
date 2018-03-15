@@ -8,7 +8,6 @@ import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseFragment;
 import com.hlsp.video.bean.data.LevideoData;
-import com.hlsp.video.utils.CommonUtils;
 import com.hlsp.video.utils.GlideUtils;
 import com.hlsp.video.utils.Utils;
 import com.hlsp.video.view.CircleImageView;
@@ -57,7 +56,8 @@ public class VerticalVideoItemFragment extends BaseFragment {
         }
 
         if (mTvPlayCount != null) {
-            mTvPlayCount.setText(CommonUtils.formatCount(mData.getPlayCount()) + "播放");
+            mTvPlayCount.setText(Utils.formatNumber(mData.getPlayCount()) + "播放");
+
         }
 
         if (mTvLikeCount != null) {

@@ -1,5 +1,6 @@
 package com.lightsky.video.base;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -23,6 +24,7 @@ import com.lightsky.video.sdk.VideoOption;
 import com.lightsky.video.sdk.VideoSwitcher;
 import com.lightsky.video.sdk.VideoTabFragement;
 import com.lightsky.video.sdk.VideoTypesLoader;
+import com.lightsky.video.widget.PagerSlidingTab;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,6 +54,8 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
     private boolean isDragPage = false;
 
     List<EventEntity> mEventList = new ArrayList<>();
+
+    PagerSlidingTab mPagerSlidingTab;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -174,6 +178,10 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
+                    mPagerSlidingTab = mVideoFragment.mRoot.findViewById(R.id.tabs);
+                    mPagerSlidingTab.setSelectedTextColor(Color.parseColor("#212832"));
+                    mPagerSlidingTab.setTextColor(Color.parseColor("#5D646E"));
+
                     onStatistics();
 
                 }

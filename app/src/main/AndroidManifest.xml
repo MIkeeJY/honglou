@@ -35,7 +35,7 @@
 
         <activity
             android:name=".ui.SplashActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:theme="@style/ThemeSplash"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -91,7 +91,7 @@
         <!-- 您从百度网站获取的 APP KEY -->
         <meta-data
             android:name="BaiduMobAd_STAT_ID"
-            android:value="d7da1db7d6"/>
+            android:value="d7da1db7d"/>
         <!-- 渠道商编号 -->
         <meta-data
             android:name="BaiduMobAd_CHANNEL"

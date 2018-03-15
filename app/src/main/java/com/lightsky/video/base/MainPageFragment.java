@@ -1,5 +1,6 @@
 package com.lightsky.video.base;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -155,8 +156,12 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
                 public void run() {
                     mPagerSlidingTab = mVideoFragment.mRoot.findViewById(R.id.tabs);
                     RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-                    layoutParams.setMargins(DensityUtil.dip2px(App.getInstance(),110),0,DensityUtil.dip2px(App.getInstance(),70),0);
+                    layoutParams.setMargins(DensityUtil.dip2px(App.getInstance(), 90), 0, DensityUtil.dip2px(App.getInstance(), 50), 0);
                     mPagerSlidingTab.setLayoutParams(layoutParams);
+
+                    mPagerSlidingTab.setSelectedTextColor(Color.parseColor("#212832"));
+                    mPagerSlidingTab.setTextColor(Color.parseColor("#5D646E"));
+
                     onStatistics();
 
                 }

@@ -21,6 +21,7 @@ import com.hlsp.video.utils.DensityUtil;
 import com.hlsp.video.utils.DouyinUtils;
 import com.hlsp.video.utils.HotsoonUtils;
 import com.hlsp.video.utils.StatusBarCompat;
+import com.hlsp.video.utils.statusbar.StatusBarFontHelper;
 import com.jack.mc.cyg.cygptr.PtrFrameLayout;
 import com.jack.mc.cyg.cygptr.header.MaterialHeader;
 import com.jack.mc.cyg.cygptr.recyclerview.RecyclerAdapterWithHF;
@@ -79,7 +80,6 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         adapter = new MainAdapter(getActivity(), this);
         mAdapter = new RecyclerAdapterWithHF(adapter);
 
-//        mPresenter = new SyPresenter(this, getContext());
 
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -283,7 +283,8 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         if (!hidden) {
             StatusBarCompat.translucentStatusBar(getActivity(), true);
         } else {
-            StatusBarCompat.setStatusBarColor(getActivity(), 0xffE60731);
+            StatusBarCompat.setStatusBarColor(getActivity(), 0xfffffff);
+            StatusBarFontHelper.setStatusBarMode(getActivity(), true);
         }
     }
 
