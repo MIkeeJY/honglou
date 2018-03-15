@@ -52,13 +52,16 @@ public class VerticalVideoItemFragment extends BaseFragment {
             GlideUtils.loadImage(App.getInstance(), mData.getAuthorImgUrl(), mIvUserAvatar, null);
         }
 
+        if (mTvUsername != null) {
+            mTvUsername.setText(mData.getAuthorName());
+        }
+
         if (mTvPlayCount != null) {
             mTvPlayCount.setText(CommonUtils.formatCount(mData.getPlayCount()) + "播放");
         }
 
         if (mTvLikeCount != null) {
             mTvLikeCount.setText(Utils.formatNumber(mData.getLikeCount()) + "赞");
-
         }
 
     }

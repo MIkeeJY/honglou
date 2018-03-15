@@ -161,9 +161,9 @@ public class MainTabActivity extends BaseActivity {
             /*
               打点相关
              */
-            if (pos == 0) {
+            if (pos == 1) {
                 StatService.onEvent(mActivity, "recommon_tab", "底部推荐");
-            } else if (pos == 1) {
+            } else if (pos == 2) {
                 StatService.onEvent(mActivity, "discover", "发现");
             }
 

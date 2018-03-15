@@ -201,6 +201,8 @@ public class VerticalVideoActivity extends BaseActivity {
         list.add(videoOptionModel);
         GSYVideoManager.instance().setOptionModelList(list);
 
+
+
         videoPlayer.startPlayLogic();
 
         videoPlayer.setVideoAllCallBack(new GSYSampleCallBack() {

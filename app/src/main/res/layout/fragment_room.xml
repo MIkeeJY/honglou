@@ -38,12 +38,12 @@
 
 
         <TextView
-            android:id="@+id/tv_like_count"
+            android:id="@+id/tv_play_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:layout_toLeftOf="@+id/tv_play_count"
+            android:layout_toLeftOf="@+id/tv_like_count"
             android:drawableLeft="@drawable/video_icon_screen_like"
             android:drawablePadding="5dp"
             android:textColor="@color/white_text"
@@ -51,7 +51,7 @@
 
 
         <TextView
-            android:id="@+id/tv_play_count"
+            android:id="@+id/tv_like_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
