@@ -76,16 +76,26 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
     }
 
     private void generateEvent() {
-        EventEntity entity1 = new EventEntity("funny", "搞笑");
-        EventEntity entity2 = new EventEntity("funny", "搞笑");
-        EventEntity entity3 = new EventEntity("music", "音乐");
-        EventEntity entity4 = new EventEntity("film", "影视");
-        EventEntity entity5 = new EventEntity("life", "生活");
-        EventEntity entity6 = new EventEntity("military", "军事");
-        EventEntity entity7 = new EventEntity("entertainment", "娱乐");
-        EventEntity entity8 = new EventEntity("technology", "科技");
-        EventEntity entity9 = new EventEntity("game", "游戏");
-        EventEntity entity10 = new EventEntity("sports", "体育");
+//        EventEntity entity1 = new EventEntity("funny", "搞笑");
+//        EventEntity entity2 = new EventEntity("funny", "搞笑");
+//        EventEntity entity3 = new EventEntity("music", "音乐");
+//        EventEntity entity4 = new EventEntity("film", "影视");
+//        EventEntity entity5 = new EventEntity("life", "生活");
+//        EventEntity entity6 = new EventEntity("military", "军事");
+//        EventEntity entity7 = new EventEntity("entertainment", "娱乐");
+//        EventEntity entity8 = new EventEntity("technology", "科技");
+//        EventEntity entity9 = new EventEntity("game", "游戏");
+//        EventEntity entity10 = new EventEntity("sports", "体育");
+
+        EventEntity entity1 = new EventEntity("music", "音乐");
+        EventEntity entity2 = new EventEntity("social", "社会");
+        EventEntity entity3 = new EventEntity("film", "影视");
+        EventEntity entity4 = new EventEntity("life", "生活");
+        EventEntity entity5 = new EventEntity("technology", "科技");
+        EventEntity entity6 = new EventEntity("game", "游戏");
+        EventEntity entity7 = new EventEntity("sports", "体育");
+        EventEntity entity8 = new EventEntity("military", "军事");
+        EventEntity entity9 = new EventEntity("car", "汽车");
 
         mEventList.add(entity1);
         mEventList.add(entity2);
@@ -96,7 +106,6 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
         mEventList.add(entity7);
         mEventList.add(entity8);
         mEventList.add(entity9);
-        mEventList.add(entity10);
 
     }
 
@@ -198,12 +207,7 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
      * 打点相关造的方法
      */
     private void onStatistics() {
-        mVideoFragment.mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-
-            }
+        mVideoFragment.mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
@@ -214,10 +218,6 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
                 }
             }
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
         });
 
         mSearch = mVideoFragment.mRoot.findViewById(R.id.tab_search);

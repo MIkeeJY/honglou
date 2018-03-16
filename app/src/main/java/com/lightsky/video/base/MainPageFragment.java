@@ -123,15 +123,14 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
      */
     @Override
     public void onCategoryQueryFinish(boolean bSuccess, List<CategoryInfoBase> infos) {
+        if (isInit) {
+            return;
+        }
         mTabs.clear();
         mTabinfos.clear();
         for (CategoryInfoBase item : infos) {
             mTabs.put(item.name, item.mId);
             mTabinfos.add(item);
-        }
-
-        if (isInit) {
-            return;
         }
 
         tabfilter.add(mTabs.get("推荐"));
@@ -186,31 +185,24 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
      * 打点相关造的方法
      */
     private void onStatistics() {
-        mVideoFragment.mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
+        mVideoFragment.mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
-                if (position == 0) {
-                    StatService.onEvent(getActivity(), "recommond", "推荐");
-                } else {
-                    StatService.onEvent(getActivity(), "social", "社会");
+                try {
+                    if (position == 0) {
+                        StatService.onEvent(getActivity(), "recommond", "推荐");
+                    } else if (position == 1) {
+                        StatService.onEvent(getActivity(), "social", "搞笑");
+                    } else {
+                        StatService.onEvent(getActivity(), "entertainment", "娱乐");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
-
             }
 
-            /**
-             * 在手指操作屏幕的时候发生变化
-             * @param state   有三个值：0（END）,1(PRESS) , 2(UP) 。
-             */
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
         });
 
         mSearch = mVideoFragment.mRoot.findViewById(R.id.tab_search);
