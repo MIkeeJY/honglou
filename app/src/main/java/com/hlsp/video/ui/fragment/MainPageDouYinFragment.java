@@ -21,6 +21,7 @@ import com.hlsp.video.utils.DensityUtil;
 import com.hlsp.video.utils.DouyinUtils;
 import com.hlsp.video.utils.HotsoonUtils;
 import com.hlsp.video.utils.StatusBarCompat;
+import com.hlsp.video.utils.ToastUtil;
 import com.hlsp.video.utils.statusbar.StatusBarFontHelper;
 import com.jack.mc.cyg.cygptr.PtrFrameLayout;
 import com.jack.mc.cyg.cygptr.header.MaterialHeader;
@@ -208,6 +209,8 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
             public void onFailure(Request request, IOException e) {
                 ptrRecyclerViewUIComponent.loadMoreComplete(true);
                 ptrRecyclerViewUIComponent.refreshComplete();
+                ToastUtil.showToast("网络连接失败");
+
             }
         });
 
@@ -260,6 +263,8 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
             public void onFailure(Request request, IOException e) {
                 ptrRecyclerViewUIComponent.loadMoreComplete(true);
                 ptrRecyclerViewUIComponent.refreshComplete();
+                ToastUtil.showToast("网络连接失败");
+
             }
         });
 

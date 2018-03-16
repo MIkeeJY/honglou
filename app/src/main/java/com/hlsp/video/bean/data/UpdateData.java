@@ -1,29 +1,44 @@
 package com.hlsp.video.bean.data;
 
 public class UpdateData {
-    private boolean force_update;
-    private String version_name;
-    private String version_code;
-    private String download_uri;
-    private String description;
+    private String currentVersion;
+    private String update_version;
+    private String update_content;
+    private String download_link;
+    private String is_update;
+    private String is_force_update;
 
-    public boolean isForce_update() {
-        return force_update;
+
+    public String getCurrentVersion() {
+        return currentVersion;
     }
 
-    public String getVersion_name() {
-        return version_name;
+    public String getUpdate_version() {
+        return update_version;
     }
 
-    public String getVersion_code() {
-        return version_code;
+    public String getUpdate_content() {
+        return update_content;
     }
 
-    public String getDownload_uri() {
-        return download_uri;
+    public String getDownload_link() {
+        return download_link;
     }
 
-    public String getDescription() {
-        return description;
+    public String getIs_update() {
+        return is_update;
+    }
+
+    public String getIs_force_update() {
+        return is_force_update;
+    }
+
+
+    public boolean isForceUpdate() {
+        if ("0".equals(is_force_update)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +23,15 @@ import com.apkfuns.logutils.LogUtils;
 import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.WeakHandler;
+import com.hlsp.video.bean.UpdateResponse;
 import com.hlsp.video.bean.data.UpdateData;
 import com.hlsp.video.model.ConstantsValue;
 import com.hlsp.video.model.HttpBaseUrl;
 import com.hlsp.video.okhttp.http.OkHttpClientManager;
 import com.hlsp.video.utils.CommonUtils;
+import com.hlsp.video.utils.GsonUtil;
 import com.hlsp.video.utils.SpUtils;
+import com.hlsp.video.utils.ToastUtil;
 import com.hlsp.video.view.NumberProgressBar;
 
 import java.io.IOException;
@@ -223,14 +227,64 @@ public class SoftCheckUpdateUtil {
 
         OkHttpClientManager.getAsyn(urlStr, new OkHttpClientManager.StringCallback() {
             @Override
-            public void onResponse(String response) {
-                LogUtils.json(response);
+            public void onResponse(String responseStr) {
+                LogUtils.json(responseStr);
+
+                UpdateResponse response = null;
+                try {
+                    response = GsonUtil.GsonToBean(responseStr,UpdateResponse.class);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (null != response && null != response.getData()) {//处理更新逻辑 需要比较以前下载过的版本
+                    requestCheckSoftUpdate = response.getData();
+
+                    //                    showUpdateDialog(ctx, requestCheckSoftUpdate, requestCheckSoftUpdate.isForce_update());
+
+                    System.out.println("serverVsionCode : " + requestCheckSoftUpdate.getUpdate_version() + " name ");
+                    String serverVersionCode = requestCheckSoftUpdate.getUpdate_version();
+
+                    if (!TextUtils.isEmpty(requestCheckSoftUpdate.getUpdate_version())) {
+                        // 当前手机已装软件版本和服务器版本比较
+                        int compareTo = serverVersionCode.compareTo(CommonUtils.getVersionName(ctx));
+                        LogUtils.e(compareTo);
+
+                        if (compareTo > 0) {
+                            // 更新
+                            boolean checkLocalFil = checkLocalFil(ctx, serverVersionCode);
+                            if (checkLocalFil) {
+                                showUpdateDialog(ctx, requestCheckSoftUpdate, requestCheckSoftUpdate.isForceUpdate());
+                            } else {
+                                // 安装界面
+                                if (!requestCheckSoftUpdate.isForceUpdate()) {
+                                    showInstallDialog(ctx);
+                                } else {
+                                    showUpdateDialog(ctx, requestCheckSoftUpdate, requestCheckSoftUpdate.isForceUpdate());
+                                }
+                            }
+                        } else {
+                            if (isOnclick) {
+                                ToastUtil.showToast("已经是最新版本");
+                            }
+                        }
+                        return;
+                    } else {
+                        if (isOnclick) {
+                            ToastUtil.showToast("升级信息异常");
+                        }
+                        return;
+
+                    }
+                }
 
 
             }
 
             @Override
             public void onFailure(Request request, IOException e) {
+
+                ToastUtil.showToast("网络连接失败");
             }
         });
 
@@ -313,7 +367,7 @@ public class SoftCheckUpdateUtil {
             public void run() {
                 if (forceUpdate) {
                     updatTittle.setText(R.string.activity_soft_update_tittle_warning);
-                    updatMessage.setText(requestCheckSoftUpdate.getDescription());
+                    updatMessage.setText(requestCheckSoftUpdate.getUpdate_content());
                     softUpdateProcessBar.setVisibility(View.INVISIBLE);
                     confirmBtn.setText(R.string.activity_soft_update_dialog_confirm_tip);
                     confirmBtn.setBackgroundResource(R.drawable.selector_dialog_left_update);
@@ -324,7 +378,7 @@ public class SoftCheckUpdateUtil {
 
                 } else {
                     updatTittle.setText(R.string.activity_soft_update_tittle_warning);
-                    updatMessage.setText(requestCheckSoftUpdate.getDescription());
+                    updatMessage.setText(requestCheckSoftUpdate.getUpdate_content());
                     softUpdateProcessBar.setVisibility(View.INVISIBLE);
                     confirmBtn.setText(R.string.activity_soft_update_dialog_confirm_tip);
                     cancelBtn.setText(R.string.cancel);
@@ -360,7 +414,7 @@ public class SoftCheckUpdateUtil {
 
                 new Thread() {
                     public void run() {
-                        loader = new MtDownloader(requestCheckSoftUpdate.getDownload_uri(), 3, FileUtil.setMkdir(ctx), handler, ctx, alertAppUpdateDialog);
+                        loader = new MtDownloader(requestCheckSoftUpdate.getDownload_link(), 3, FileUtil.setMkdir(ctx), handler, ctx, alertAppUpdateDialog);
                         // 动态添加进度条codeUI
                         loader.stopping = false;
                         loader.doDownload();
@@ -389,7 +443,7 @@ public class SoftCheckUpdateUtil {
             public void run() {
                 alertAppUpdateDialog.show();
                 confirmBtn.setText("安装");
-                updatMessage.setText(requestCheckSoftUpdate.getDescription());
+                updatMessage.setText(requestCheckSoftUpdate.getUpdate_content());
                 checkBox.setVisibility(View.GONE);
                 confirmBtn.setOnClickListener(new View.OnClickListener() {
                     @Override

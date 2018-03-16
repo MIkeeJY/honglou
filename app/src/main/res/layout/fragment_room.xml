@@ -30,6 +30,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dimen10"
             android:layout_toRightOf="@id/iv_user_avatar"
+            android:ellipsize="end"
+            android:maxEms="18"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textSize="14sp"

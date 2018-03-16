@@ -8,9 +8,9 @@
 
 
     <RelativeLayout
-        android:background="#EE1458"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/title_bar_height"
+        android:background="#EE1458"
         >
 
         <ImageView
@@ -19,8 +19,8 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:paddingLeft="16dp"
-            android:src="@drawable/icon_back_black"
+            android:paddingLeft="5dp"
+            android:src="@drawable/ic_back"
             android:visibility="visible"/>
 
         <TextView
@@ -75,7 +75,8 @@
                 android:singleLine="true"
                 android:textColor="@color/common_list_title_color"
                 android:textColorHint="#ADB4BE"
-                android:textSize="12dp"/>
+                android:textCursorDrawable="@drawable/edit_cursor_color"
+                android:textSize="14dp"/>
         </RelativeLayout>
     </RelativeLayout>
 </com.lightsky.video.search.SearchTitleBar>
