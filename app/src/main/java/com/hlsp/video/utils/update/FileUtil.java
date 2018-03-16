@@ -36,10 +36,10 @@ public class FileUtil {
 
         String filePath;
         if (checkSDCard()) {
-            filePath = Environment.getExternalStorageDirectory() + "/MiaoHi/temp" + File.separator + "Miaohi.apk";
+            filePath = Environment.getExternalStorageDirectory() + "/Honglou/temp" + File.separator + "Honglou.apk";
         } else {
             filePath = context.getCacheDir().getAbsolutePath() + File.separator
-                    + "temp" + File.separator + "Miaohi.apk";
+                    + "temp" + File.separator + "Honglou.apk";
         }
 
         File file = new File(filePath);
