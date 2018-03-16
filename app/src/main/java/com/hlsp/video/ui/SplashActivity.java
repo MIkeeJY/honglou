@@ -8,9 +8,6 @@ import android.support.annotation.Nullable;
 
 import com.baidu.mobstat.StatService;
 import com.hlsp.video.ui.main.MainTabActivity;
-import com.hlsp.video.utils.StatusBarCompat;
-
-import butterknife.ButterKnife;
 
 
 /**
@@ -28,9 +25,7 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarCompat.translucentStatusBar(this,true);
 //        setContentView(R.layout.activity_splash);
-        ButterKnife.bind(this);
         initView();
 
     }

@@ -31,20 +31,20 @@
 
         <ImageView
             android:id="@+id/tab_search"
-            android:layout_width="wrap_content"
+            android:layout_width="45dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:background="@color/main_change_color"
             android:paddingLeft="13dp"
             android:paddingRight="13dp"
-            android:src="@drawable/home_sousuo"/>
+            android:src="@drawable/search_icon_search"/>
 
         <ImageView
             android:id="@+id/tab_float"
             android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@+id/tab_search"
-            android:background="@color/main_change_color"/>
+            android:background="@drawable/shadow"/>
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager

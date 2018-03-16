@@ -9,11 +9,12 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="HLAppTheme" parent="HYAppTheme"/>
 
     <style name="ThemeSplash" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:background">@drawable/welcome_bg</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowFullscreen">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

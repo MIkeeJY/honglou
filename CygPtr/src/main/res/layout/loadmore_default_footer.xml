@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginRight="15dp"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/progress_bg"
         android:visibility="gone"/>
 
     <TextView

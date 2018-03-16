@@ -47,8 +47,8 @@
             android:drawablePadding="5dp"
             android:textColor="@color/white_text"
             android:textSize="11sp"
-            app:drawableLeftHeight="15dp"
-            app:drawableLeftWidth="15dp"/>
+            app:drawableLeftHeight="14dp"
+            app:drawableLeftWidth="14dp"/>
 
 
         <com.hlsp.video.view.TextImageView
@@ -62,8 +62,8 @@
             android:drawablePadding="5dp"
             android:textColor="@color/white_text"
             android:textSize="11sp"
-            app:drawableLeftHeight="15dp"
-            app:drawableLeftWidth="15dp"/>
+            app:drawableLeftHeight="14.5dp"
+            app:drawableLeftWidth="14.5dp"/>
 
     </RelativeLayout>
 

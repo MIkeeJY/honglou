@@ -12,6 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+
+    <com.hlsp.video.view.ShadowView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_alignBottom="@+id/fragment_container"/>
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"

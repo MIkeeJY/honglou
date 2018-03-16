@@ -16,7 +16,6 @@ import com.baidu.mobstat.StatService;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseFragment;
 import com.hlsp.video.bean.EventEntity;
-import com.hlsp.video.ui.main.MainTabActivity;
 import com.lightsky.video.VideoHelper;
 import com.lightsky.video.datamanager.category.CategoryQueryNotify;
 import com.lightsky.video.sdk.CategoryInfoBase;
@@ -49,9 +48,6 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
     private VideoTabFragement mVideoFragment;
     private Handler mHandler = new Handler();
     ImageView mSearch;
-
-    private boolean isFirstPage = true;
-    private boolean isDragPage = false;
 
     List<EventEntity> mEventList = new ArrayList<>();
 
@@ -206,9 +202,6 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                if (isFirstPage && isDragPage && positionOffsetPixels == 0) {   //当前页是第一页，并且是拖动状态，并且像素偏移量为0
-                    ((MainTabActivity) getActivity()).getTabHost().setCurrentTab(1);
-                }
 
             }
 
@@ -219,12 +212,11 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                isFirstPage = position == 0;
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                isDragPage = state == 1;
+
             }
         });
 

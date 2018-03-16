@@ -16,7 +16,6 @@ import com.facebook.imagepipeline.image.ImageInfo;
 import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.bean.data.LevideoData;
-import com.hlsp.video.utils.CommonUtils;
 import com.hlsp.video.utils.DensityUtil;
 import com.hlsp.video.utils.Utils;
 import com.hlsp.video.utils.WindowUtil;
@@ -75,7 +74,7 @@ public class MainViewHolder extends CygBaseRecyclerViewHolder<LevideoData> {
 //            mNearbyImg.setImageURI(Uri.parse(data.getCoverImgUrl()));
 
             mTvTitle.setText(data.getTitle());
-            mTvPlayCount.setText(CommonUtils.formatCount(data.getPlayCount()) + "播放");
+            mTvPlayCount.setText(Utils.formatNumber(data.getPlayCount()) + "播放");
             mTvLikeCount.setText(Utils.formatNumber(data.getLikeCount()) + "赞");
 
 

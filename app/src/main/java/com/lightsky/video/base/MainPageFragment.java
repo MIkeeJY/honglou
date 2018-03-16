@@ -17,7 +17,6 @@ import com.baidu.mobstat.StatService;
 import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseFragment;
-import com.hlsp.video.ui.main.MainTabActivity;
 import com.hlsp.video.utils.DensityUtil;
 import com.lightsky.video.VideoHelper;
 import com.lightsky.video.datamanager.category.CategoryQueryNotify;
@@ -59,11 +58,9 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
 
     ImageView mSearch;
 
-    private boolean isLastPage = false;
-    private boolean isDragPage = false;
-    private boolean canJumpPage = true;
 
     PagerSlidingTab mPagerSlidingTab;
+    ImageView mShadow;
 
 
     @Override
@@ -162,6 +159,9 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
                     mPagerSlidingTab.setSelectedTextColor(Color.parseColor("#212832"));
                     mPagerSlidingTab.setTextColor(Color.parseColor("#5D646E"));
 
+                    mShadow = mVideoFragment.mRoot.findViewById(R.id.tab_float);
+                    mShadow.setVisibility(View.GONE);
+
                     onStatistics();
 
                 }
@@ -190,12 +190,6 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                if (isLastPage && isDragPage && positionOffsetPixels == 0) {   //当前页是最后一页，并且是拖动状态，并且像素偏移量为0
-                    if (canJumpPage) {
-                        ((MainTabActivity) getActivity()).getTabHost().setCurrentTab(2);
-                    }
-                }
-
             }
 
             @Override
@@ -206,7 +200,6 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
                     StatService.onEvent(getActivity(), "social", "社会");
                 }
 
-                isLastPage = position == tabfilter.size() - 1;
 
             }
 
@@ -216,8 +209,6 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
              */
             @Override
             public void onPageScrollStateChanged(int state) {
-
-                isDragPage = state == 1;
 
             }
         });

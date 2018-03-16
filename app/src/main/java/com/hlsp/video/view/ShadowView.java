@@ -33,7 +33,7 @@ public class ShadowView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (mDrawable == null) {
-            int colors[] = {0x66000000, 0x40000000, 0x00000000};//分别为开始颜色，中间颜色，结束颜色
+            int colors[] = {0x80000000, 0x40000000, 0x00000000};//分别为开始颜色，中间颜色，结束颜色
             mDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, colors);
         }
         mDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());

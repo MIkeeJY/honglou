@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.lightsky.video.search.SearchTitleBar xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/search_title_bar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/themeColorRed"
-    android:orientation="vertical">
+<com.lightsky.video.search.SearchTitleBar android:id="@+id/search_title_bar"
+                                          xmlns:android="http://schemas.android.com/apk/res/android"
+                                          android:layout_width="match_parent"
+                                          android:layout_height="wrap_content"
+                                          android:background="@color/white"
+                                          android:orientation="vertical">
 
 
     <RelativeLayout
+        android:background="#EE1458"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/title_bar_height"
         >
@@ -18,14 +19,14 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:paddingLeft="5dp"
-            android:src="@drawable/ic_back"
+            android:paddingLeft="16dp"
+            android:src="@drawable/icon_back_black"
             android:visibility="visible"/>
 
         <TextView
             android:id="@+id/search"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:ellipsize="end"
@@ -43,9 +44,9 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
-            android:layout_toRightOf="@id/title_bar_left_back"
             android:layout_toLeftOf="@id/search"
-            android:background="@drawable/search_title_bar_edit_bg">
+            android:layout_toRightOf="@id/title_bar_left_back"
+            android:background="@drawable/shape_corner_search">
 
             <ImageView
                 android:id="@+id/search_clear"
@@ -70,9 +71,10 @@
                 android:ellipsize="end"
                 android:hint="@string/search_edit_hint"
                 android:imeOptions="actionSearch"
+                android:paddingLeft="10dp"
                 android:singleLine="true"
                 android:textColor="@color/common_list_title_color"
-                android:textColorHint="#b2b2b2"
+                android:textColorHint="#ADB4BE"
                 android:textSize="12dp"/>
         </RelativeLayout>
     </RelativeLayout>

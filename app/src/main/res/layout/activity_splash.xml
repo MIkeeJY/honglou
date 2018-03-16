@@ -2,21 +2,22 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/welcome_bg"/>
+    <!--<ImageView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:src="@drawable/welcome_bg"/>-->
 
 
-    <FrameLayout
-        android:id="@+id/rootview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    <!--<FrameLayout-->
+    <!--android:id="@+id/rootview"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"/>-->
 
 </RelativeLayout>
 
