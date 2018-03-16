@@ -8,7 +8,7 @@ package com.hlsp.video.model;
 public class HttpBaseUrl {
 
     //    public static final String BASE_URL = "http://20.20.23.79:8088/v1/app/"; //测试服
-    public static String BASE_URL = "http://20.20.23.79:8088/v1/app/"; //测试服
+    public volatile static String BASE_URL = "http://47.106.59.227:8090/"; //测试服
 
     //线上
 //        public static String BASE_URL = "/";

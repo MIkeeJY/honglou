@@ -207,18 +207,18 @@ public class SoftCheckUpdateUtil {
      * @param
      */
     private void requestSoftCheckUpdate() {
-        HashMap<String,String> paramsMap = new HashMap<>();
+        HashMap<String, String> paramsMap = new HashMap<>();
 
         paramsMap.put("packageName", CommonUtils.getProcessName());
         paramsMap.put("versionName", CommonUtils.getVersionName(App.getInstance()));
-        paramsMap.put("channelId",CommonUtils.getMetaData(App.getInstance(),"BaiduMobAd_CHANNEL"));
+        paramsMap.put("channelId", CommonUtils.getMetaData(App.getInstance(), "BaiduMobAd_CHANNEL"));
 
         StringBuilder paramsSb = new StringBuilder();
 
         for (String key : paramsMap.keySet()) {
             paramsSb.append(key + "=" + paramsMap.get(key) + "&");
         }
-        String urlStr = HttpBaseUrl.BASE_URL +"check/"+ "?" + paramsSb.toString();
+        String urlStr = HttpBaseUrl.BASE_URL + "v1/app/check" + "?" + paramsSb.toString();
         if (urlStr.endsWith("&")) {
             urlStr = urlStr.substring(0, urlStr.length() - 1);
         }
@@ -232,7 +232,7 @@ public class SoftCheckUpdateUtil {
 
                 UpdateResponse response = null;
                 try {
-                    response = GsonUtil.GsonToBean(responseStr,UpdateResponse.class);
+                    response = GsonUtil.GsonToBean(responseStr, UpdateResponse.class);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

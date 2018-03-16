@@ -5,9 +5,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
+import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
+import com.hlsp.video.bean.CdnResponse;
+import com.hlsp.video.model.ConstantsValue;
+import com.hlsp.video.model.HttpBaseUrl;
+import com.hlsp.video.okhttp.http.OkHttpClientManager;
 import com.hlsp.video.ui.main.MainTabActivity;
+import com.hlsp.video.utils.FileUtils;
+import com.hlsp.video.utils.GsonUtil;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 
 /**
@@ -19,7 +31,10 @@ public class SplashActivity extends Activity {
     Handler handler = new Handler();
     MyThread thread;
 
-//    @BindView(R.id.rootview) ViewGroup ad_view;
+
+    String cdnUrl1 = "https://public.dingyueads.com/dyxsp/com.hlsp.video.json";
+    String cdnUrl2 = "https://public.qingoo.cn/dyxsp/com.hlsp.video.json";
+    String cdnUrl3 = "https://public.lsread.cn/dyxsp/com.hlsp.video.json";
 
 
     @Override
@@ -96,8 +111,36 @@ public class SplashActivity extends Activity {
 //                startActivity(new Intent(SplashActivity.this, MainTabActivity.class));
 //                finish();
 //            }
+            String path = ConstantsValue.BASE_PATH + "/temp/";
+
+            OkHttpClientManager.downloadAsyn(cdnUrl1, path, new OkHttpClientManager.StringCallback() {
+                @Override
+                public void onFailure(Request request, IOException e) {
+                    LogUtils.e(e.getMessage());
+
+                }
+
+                @Override
+                public void onResponse(String path) {
+                    LogUtils.e(path);
+                    String cndStr = FileUtils.readFile(path);
+
+                    if (!TextUtils.isEmpty(cndStr)) {
+                        CdnResponse response = GsonUtil.GsonToBean(cndStr, CdnResponse.class);
+                        LogUtils.e(response);
+                        if (!HttpBaseUrl.BASE_URL.equals(response.getBase_url())) {
+                            HttpBaseUrl.BASE_URL = response.getBase_url();
+                        }
+
+                    }
+
+
+                }
+            });
+
             startActivity(new Intent(SplashActivity.this, MainTabActivity.class));
             finish();
+
         }
     }
 

@@ -268,7 +268,11 @@ public class OkHttpClientManager {
                 try {
                     is = response.body().byteStream();
                     File file = new File(destFileDir, getFileName(url));
-                    fos = new FileOutputStream(file);
+                    if (!file.exists()){
+                        file.getParentFile().mkdirs();
+                        file.createNewFile();
+                    }
+                fos = new FileOutputStream(file);
                     while ((len = is.read(buf)) != -1) {
                         fos.write(buf, 0, len);
                     }
