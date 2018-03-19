@@ -10,14 +10,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
-import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseFragment;
-import com.hlsp.video.utils.DensityUtil;
+import com.hlsp.video.bean.EventEntity;
 import com.lightsky.video.VideoHelper;
 import com.lightsky.video.datamanager.category.CategoryQueryNotify;
 import com.lightsky.video.sdk.CategoryInfoBase;
@@ -36,31 +34,27 @@ import butterknife.ButterKnife;
 
 
 /**
- * 推荐Fragment
+ * 发现fragment
  * Created by hackest on 2018-02-01.
  */
 
-public class MainPageFragment extends BaseFragment implements CategoryQueryNotify {
+public class FollowingVideoFragment extends BaseFragment implements CategoryQueryNotify {
 
     private VideoTypesLoader mTabLoader;
     private Map<String, Integer> mTabs = new HashMap<>();
     private List<CategoryInfoBase> mTabinfos = new ArrayList<>();
 
-    private List<Integer> tabfilter = new ArrayList<>();
+    List<Integer> tabfilter = new ArrayList<>();
 
     private VideoTabFragement mVideoFragment;
     private Handler mHandler = new Handler();
-
-    /**
-     * CategoryQueryNotify 接口切换fragment会回调2次所以加一个值判断
-     */
-    private boolean isInit;
-
     ImageView mSearch;
 
+    List<EventEntity> mEventList = new ArrayList<>();
 
     PagerSlidingTab mPagerSlidingTab;
-    ImageView mShadow;
+
+    private boolean isInit;
 
 
     @Override
@@ -74,16 +68,49 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
 
     @Override
     protected int layoutRes() {
-        return R.layout.fragment_main_page;
+        return R.layout.fragment_recommond_video;
     }
 
 
     @Override
     protected void onViewReallyCreated(View view) {
         mUnbinder = ButterKnife.bind(this, view);
+        StatService.onEvent(getActivity(), "music", "音乐");
         isInit = false;
-        StatService.onEvent(getActivity(), "recommond", "推荐");
 
+    }
+
+    private void generateEvent() {
+//        EventEntity entity1 = new EventEntity("funny", "搞笑");
+//        EventEntity entity2 = new EventEntity("funny", "搞笑");
+//        EventEntity entity3 = new EventEntity("music", "音乐");
+//        EventEntity entity4 = new EventEntity("film", "影视");
+//        EventEntity entity5 = new EventEntity("life", "生活");
+//        EventEntity entity6 = new EventEntity("military", "军事");
+//        EventEntity entity7 = new EventEntity("entertainment", "娱乐");
+//        EventEntity entity8 = new EventEntity("technology", "科技");
+//        EventEntity entity9 = new EventEntity("game", "游戏");
+//        EventEntity entity10 = new EventEntity("sports", "体育");
+
+        EventEntity entity1 = new EventEntity("music", "音乐");
+        EventEntity entity2 = new EventEntity("social", "社会");
+        EventEntity entity3 = new EventEntity("film", "影视");
+        EventEntity entity4 = new EventEntity("life", "生活");
+        EventEntity entity5 = new EventEntity("technology", "科技");
+        EventEntity entity6 = new EventEntity("game", "游戏");
+        EventEntity entity7 = new EventEntity("sports", "体育");
+        EventEntity entity8 = new EventEntity("military", "军事");
+        EventEntity entity9 = new EventEntity("car", "汽车");
+
+        mEventList.add(entity1);
+        mEventList.add(entity2);
+        mEventList.add(entity3);
+        mEventList.add(entity4);
+        mEventList.add(entity5);
+        mEventList.add(entity6);
+        mEventList.add(entity7);
+        mEventList.add(entity8);
+        mEventList.add(entity9);
 
     }
 
@@ -123,9 +150,11 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
      */
     @Override
     public void onCategoryQueryFinish(boolean bSuccess, List<CategoryInfoBase> infos) {
+        LogUtils.e(infos);
         if (isInit) {
             return;
         }
+
         mTabs.clear();
         mTabinfos.clear();
         for (CategoryInfoBase item : infos) {
@@ -133,33 +162,37 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
             mTabinfos.add(item);
         }
 
-        tabfilter.add(mTabs.get("推荐"));
-        tabfilter.add(mTabs.get("搞笑"));
-        tabfilter.add(mTabs.get("娱乐"));
+        mTabs.remove("推荐");
+        mTabs.remove("搞笑");
+        mTabs.remove("娱乐");
+        if (mTabs.containsKey("街舞")) {
+            mTabs.remove("街舞");
+        }
+        if (mTabs.containsKey("正能量")) {
+            mTabs.remove("正能量");
+        }
+
+        for (String key : mTabs.keySet()) {
+            int value = mTabs.get(key);
+            tabfilter.add(value);
+        }
+
 
         LogUtils.e(tabfilter);
+
         VideoHelper.get().SetVideoTabFilter(tabfilter);
 
         mVideoFragment = new VideoTabFragement();
         if (isAdded()) {
             showVideoFragment(mVideoFragment);
+            generateEvent();
 
-            /**
-             * 由于打点需求，强行新建个包加载这里,╮(╯_╰)╭
-             */
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     mPagerSlidingTab = mVideoFragment.mRoot.findViewById(R.id.tabs);
-                    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-                    layoutParams.setMargins(DensityUtil.dip2px(App.getInstance(), 90), 0, DensityUtil.dip2px(App.getInstance(), 50), 0);
-                    mPagerSlidingTab.setLayoutParams(layoutParams);
-
                     mPagerSlidingTab.setSelectedTextColor(Color.parseColor("#212832"));
                     mPagerSlidingTab.setTextColor(Color.parseColor("#5D646E"));
-
-                    mShadow = mVideoFragment.mRoot.findViewById(R.id.tab_float);
-                    mShadow.setVisibility(View.GONE);
 
                     onStatistics();
 
@@ -169,17 +202,15 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
         }
 
         isInit = true;
-
     }
 
 
     private void showVideoFragment(Fragment fragment) {
         FragmentManager fm = getChildFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.main_page_frame_layout, fragment);
+        ft.replace(R.id.main_video_frame_layout, fragment);
         ft.commit();
     }
-
 
     /**
      * 打点相关造的方法
@@ -190,17 +221,10 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
             @Override
             public void onPageSelected(int position) {
                 try {
-                    if (position == 0) {
-                        StatService.onEvent(getActivity(), "recommond", "推荐");
-                    } else if (position == 1) {
-                        StatService.onEvent(getActivity(), "social", "搞笑");
-                    } else {
-                        StatService.onEvent(getActivity(), "entertainment", "娱乐");
-                    }
+                    StatService.onEvent(getActivity(), mEventList.get(position).getEventId(), mEventList.get(position).getEventName());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
 
         });
@@ -211,17 +235,18 @@ public class MainPageFragment extends BaseFragment implements CategoryQueryNotif
             public void onClick(View v) {
                 StatService.onEvent(getActivity(), "search", "搜索");
                 mVideoFragment.onClick(v);
-
             }
         });
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        isInit = false;
 
         VideoHelper.get().unInit();
+        isInit = false;
     }
+
+
+
 }
