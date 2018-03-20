@@ -7,8 +7,8 @@
                                  app:mrl_rippleInAdapter="true"
                                  app:mrl_rippleOverlay="true">
 
-    <com.lightsky.video.videodetails.ui.widget.RelateView xmlns:fresco="http://schemas.android.com/apk/res-auto"
-                                                          android:id="@+id/ll_item"
+    <com.lightsky.video.videodetails.ui.widget.RelateView android:id="@+id/ll_item"
+                                                          xmlns:fresco="http://schemas.android.com/apk/res-auto"
                                                           android:layout_width="match_parent"
                                                           android:layout_height="wrap_content"
                                                           android:gravity="center_vertical"
@@ -22,7 +22,7 @@
             android:layout_width="125dp"
             android:layout_height="70dp"
             android:layout_marginBottom="8dp"
-            fresco:placeholderImage="@drawable/shape_round_gray_rectangle" />
+            fresco:placeholderImage="@drawable/shape_round_gray_rectangle"/>
 
         <TextView
             android:id="@+id/tv_video_duration"
@@ -40,7 +40,7 @@
             android:paddingTop="2dp"
             android:text="4:35"
             android:textColor="@android:color/white"
-            android:textSize="11dp" />
+            android:textSize="11dp"/>
 
 
         <com.uibase.ui.HighlightedTextView
@@ -55,7 +55,7 @@
             android:singleLine="false"
             android:text="郭德纲小岳岳节目里为难延参法师，结果师徒被调侃够呛"
             android:textColor="@color/common_list_title_color"
-            android:textSize="@dimen/text_size_15dp" />
+            android:textSize="@dimen/text_size_15dp"/>
 
         <TextView
             android:id="@+id/video_media_publisher"
@@ -68,7 +68,7 @@
             android:layout_toRightOf="@+id/vedio_image"
             android:text="1.3万次观看"
             android:textColor="@color/common_list_desc_color"
-            android:textSize="11dp" />
+            android:textSize="11dp"/>
 
         <TextView
             android:id="@+id/video_media_watch_count"
@@ -81,7 +81,7 @@
             android:layout_toRightOf="@+id/video_media_publisher"
             android:text="56评论"
             android:textColor="@color/common_list_desc_color"
-            android:textSize="11dp" />
+            android:textSize="11dp"/>
 
         <ImageView
             android:id="@+id/video_media_later"
@@ -99,7 +99,7 @@
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"/>
 
     </com.lightsky.video.videodetails.ui.widget.RelateView>
 </com.uibase.ui.ripple.RippleView>

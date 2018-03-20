@@ -23,6 +23,7 @@ public class App extends CygApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+//        ServiceManagerWraper.hookPMS(this.getApplicationContext());
 
         SpUtils.init(this);
         Fresco.initialize(this);

@@ -22,7 +22,7 @@
             android:background="@color/main_change_color"
             android:visibility="invisible"
             app:pstsDividerColor="@color/main_change_color"
-            app:pstsIndicatorColor="#E60731"
+            app:pstsIndicatorColor="@color/main_pink_color"
             app:pstsShouldExpand="true"
             app:pstsTabPaddingLeft="@dimen/pager_sliding_tab_left_padding"
             app:pstsTabPaddingRight="@dimen/pager_sliding_tab_right_padding"

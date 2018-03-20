@@ -62,6 +62,7 @@ public class MainRecommendFragment extends BaseFragment implements CategoryQuery
     PagerSlidingTab mPagerSlidingTab;
     ImageView mShadow;
 
+    int currentPos;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,7 +84,6 @@ public class MainRecommendFragment extends BaseFragment implements CategoryQuery
         mUnbinder = ButterKnife.bind(this, view);
         isInit = false;
         StatService.onEvent(getActivity(), "recommond", "推荐");
-
 
     }
 
@@ -225,5 +225,22 @@ public class MainRecommendFragment extends BaseFragment implements CategoryQuery
         VideoHelper.get().unInit();
     }
 
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            currentPos = mVideoFragment.mViewPager.getCurrentItem();
+
+            if (currentPos == 0) {
+                mVideoFragment.mViewPager.setCurrentItem(1);
+            } else {
+                mVideoFragment.mViewPager.setCurrentItem(0);
+            }
+
+        } else {
+            mVideoFragment.mViewPager.setCurrentItem(currentPos, false);
+        }
+    }
 
 }

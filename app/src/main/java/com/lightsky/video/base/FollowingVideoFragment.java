@@ -23,6 +23,7 @@ import com.lightsky.video.sdk.VideoOption;
 import com.lightsky.video.sdk.VideoSwitcher;
 import com.lightsky.video.sdk.VideoTabFragement;
 import com.lightsky.video.sdk.VideoTypesLoader;
+import com.lightsky.video.sdk.listener.PlayerControler;
 import com.lightsky.video.widget.PagerSlidingTab;
 
 import java.util.ArrayList;
@@ -55,6 +56,10 @@ public class FollowingVideoFragment extends BaseFragment implements CategoryQuer
     PagerSlidingTab mPagerSlidingTab;
 
     private boolean isInit;
+
+    private PlayerControler mplayctrl;
+
+    int currentPos;
 
 
     @Override
@@ -247,6 +252,20 @@ public class FollowingVideoFragment extends BaseFragment implements CategoryQuer
         isInit = false;
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            currentPos = mVideoFragment.mViewPager.getCurrentItem();
 
+            if (currentPos == 0) {
+                mVideoFragment.mViewPager.setCurrentItem(1);
+            } else {
+                mVideoFragment.mViewPager.setCurrentItem(0);
+            }
 
+        } else {
+            mVideoFragment.mViewPager.setCurrentItem(currentPos, false);
+        }
+    }
 }
