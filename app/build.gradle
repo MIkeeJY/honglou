@@ -68,4 +68,8 @@ dependencies {
     compile 'com.facebook.fresco:animated-webp:1.7.1'
     compile 'com.facebook.fresco:webpsupport:1.7.1'
 
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+
+
 }

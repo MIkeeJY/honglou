@@ -1,13 +1,16 @@
 package com.hlsp.video;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.multidex.MultiDex;
 
 import com.apkfuns.logutils.LogLevel;
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.hlsp.video.utils.SpUtils;
+import com.squareup.leakcanary.LeakCanary;
 import com.ss.android.common.applog.GlobalContext;
 import com.ss.android.common.applog.UserInfo;
 
@@ -26,7 +29,14 @@ public class App extends CygApplication {
 //        ServiceManagerWraper.hookPMS(this.getApplicationContext());
 
         SpUtils.init(this);
-        Fresco.initialize(this);
+
+        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(getApplicationContext())
+                .setDownsampleEnabled(true)   // 对图片进行自动缩放
+                .setResizeAndRotateEnabledForNetwork(true)    // 对图片进行自动缩放
+                .setBitmapsConfig(Bitmap.Config.RGB_565) //  //图片设置RGB_565，减小内存开销  fresco默认情况下是RGB_8888
+                //other settings
+                .build();
+        Fresco.initialize(this, config);
 
         HttpServletAddress.getInstance().setOfflineAddress("http://20.20.23.79:8888/v1/app/");
         LogUtils.getLogConfig()
@@ -51,6 +61,12 @@ public class App extends CygApplication {
         UserInfo.setAppId(2);
         int result = UserInfo.initUser("a3668f0afac72ca3f6c1697d29e0e1bb1fef4ab0285319b95ac39fa42c38d05f");
 
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
     }
 
 

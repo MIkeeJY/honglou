@@ -12,8 +12,6 @@
     <!--<color name="themeColorRed">#fb3b3b</color>-->
     <color name="themeColorRed">@color/main_pink_color</color>
 
-    <!--<color name="showmethod_start_color">#FFFFFF</color>-->
-    <!--<color name="showmethod_end_color">#C8C8C8</color>-->
     <color name="showmethod_start_color">#FFFFFF</color>
     <color name="showmethod_end_color">#C8C8C8</color>
 
@@ -24,6 +22,7 @@
     <!-- common list 点击波纹颜色 -->
     <color name="common_list_clip_color">#cccccc</color>
     <color name="tab_un_select_color">#ffe3e3</color>
+    <color name="videolist_pull_image_color">@color/main_pink_color</color>
 
     <color name="main_change_color">#ffffff</color>
 

@@ -27,6 +27,8 @@ import com.jack.mc.cyg.cygptr.PtrFrameLayout;
 import com.jack.mc.cyg.cygptr.header.MaterialHeader;
 import com.jack.mc.cyg.cygptr.recyclerview.RecyclerAdapterWithHF;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -271,11 +273,14 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
 
     }
 
-
+    /**
+     * Intent传递大量数据出现TransactionTooLargeException异常的解决方案
+     */
     @Override
     public void onItemClick(int position) {
+        EventBus.getDefault().postSticky(mList);
         Intent intent = new Intent(getActivity(), VerticalVideoActivity.class);
-        intent.putParcelableArrayListExtra("videoUrlList", (ArrayList<LevideoData>) mList);
+//        intent.putParcelableArrayListExtra("videoUrlList", (ArrayList<LevideoData>) mList);
         intent.putExtra("position", position);
         getActivity().startActivity(intent);
     }

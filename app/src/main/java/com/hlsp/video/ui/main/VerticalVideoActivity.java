@@ -1,5 +1,7 @@
 package com.hlsp.video.ui.main;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -22,6 +24,10 @@ import com.hlsp.video.widget.EmptyControlVideo;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
 import com.shuyu.gsyvideoplayer.model.VideoOptionModel;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +75,8 @@ public class VerticalVideoActivity extends BaseActivity {
      */
     private int mCurrentPos;
 
+    int position;
+
 
     @OnClick(R.id.iv_back)
     void back() {
@@ -82,84 +90,90 @@ public class VerticalVideoActivity extends BaseActivity {
     }
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
     protected void initView() {
 
-        mList = getIntent().getParcelableArrayListExtra("videoUrlList");
-        int position = getIntent().getIntExtra("position", -1);
+//        mList = getIntent().getParcelableArrayListExtra("videoUrlList");
+        position = getIntent().getIntExtra("position", -1);
 
         mFragmentManager = getSupportFragmentManager();
 
         mCurrentItem = position;
 
-        final MyPageAdapter myAdapter = new MyPageAdapter(mList);
-        mVerticalViewpager.setAdapter(myAdapter);
-
-        if (position != -1) {
-            mVerticalViewpager.setCurrentItem(position);
-        }
-
-
-        mVerticalViewpager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-
-            @Override
-            public void onPageSelected(int position) {
-                mCurrentItem = position;
-            }
-
-        });
-
-
-        mRoomContainer = LayoutInflater.from(this).inflate(R.layout.view_video_container, null);
-        mFragmentContainer = mRoomContainer.findViewById(R.id.fragment_container);
-        mPlay = mRoomContainer.findViewById(R.id.iv_play);
-        videoPlayer = mRoomContainer.findViewById(R.id.video_player);
-        mRootView = mRoomContainer.findViewById(R.id.view_play);
-        mCover = mRoomContainer.findViewById(R.id.cover_img);
-        mTvVideoTitle = mRoomContainer.findViewById(R.id.tv_video_title);
-
-
-        mVerticalViewpager.setPageTransformer(false, new ViewPager.PageTransformer() {
-            @Override
-            public void transformPage(View page, float position) {
-                ViewGroup viewGroup = (ViewGroup) page;
-//                Log.e(TAG, "page.id == " + page.getId() + ", position == " + position);
-
-                if ((position < 0 && viewGroup.getId() != mCurrentItem)) {
-                    View roomContainer = viewGroup.findViewById(R.id.room_container);
-                    if (roomContainer != null && roomContainer.getParent() != null && roomContainer.getParent() instanceof ViewGroup) {
-                        ((ViewGroup) (roomContainer.getParent())).removeView(roomContainer);
-                    }
-                }
-                // 满足此种条件，表明需要加载直播视频，以及聊天室了
-                if (viewGroup.getId() == mCurrentItem && position == 0 && mCurrentItem != mRoomId) {
-                    if (mRoomContainer.getParent() != null && mRoomContainer.getParent() instanceof ViewGroup) {
-                        ((ViewGroup) (mRoomContainer.getParent())).removeView(mRoomContainer);
-                    }
-                    loadVideo(viewGroup, mCurrentItem);
-                }
-            }
-        });
-
-
-        mRootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isSelected) {
-                    isStop = false;
-                    videoPlayer.onClick(videoPlayer.getStartButton());
-                    mPlay.setVisibility(View.GONE);
-
-                } else {
-                    isStop = true;
-                    videoPlayer.onClick(videoPlayer.getStartButton());
-                    mPlay.setVisibility(View.VISIBLE);
-                    mPlay.setSelected(false);
-
-                }
-
-                isSelected = !isSelected;
-            }
-        });
+//        final MyPageAdapter myAdapter = new MyPageAdapter(mList);
+//        mVerticalViewpager.setAdapter(myAdapter);
+//
+//        if (position != -1) {
+//            mVerticalViewpager.setCurrentItem(position);
+//        }
+//
+//
+//        mVerticalViewpager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                mCurrentItem = position;
+//            }
+//
+//        });
+//
+//
+//        mRoomContainer = LayoutInflater.from(this).inflate(R.layout.view_video_container, null);
+//        mFragmentContainer = mRoomContainer.findViewById(R.id.fragment_container);
+//        mPlay = mRoomContainer.findViewById(R.id.iv_play);
+//        videoPlayer = mRoomContainer.findViewById(R.id.video_player);
+//        mRootView = mRoomContainer.findViewById(R.id.view_play);
+//        mCover = mRoomContainer.findViewById(R.id.cover_img);
+//        mTvVideoTitle = mRoomContainer.findViewById(R.id.tv_video_title);
+//
+//
+//        mVerticalViewpager.setPageTransformer(false, new ViewPager.PageTransformer() {
+//            @Override
+//            public void transformPage(View page, float position) {
+//                ViewGroup viewGroup = (ViewGroup) page;
+////                Log.e(TAG, "page.id == " + page.getId() + ", position == " + position);
+//
+//                if ((position < 0 && viewGroup.getId() != mCurrentItem)) {
+//                    View roomContainer = viewGroup.findViewById(R.id.room_container);
+//                    if (roomContainer != null && roomContainer.getParent() != null && roomContainer.getParent() instanceof ViewGroup) {
+//                        ((ViewGroup) (roomContainer.getParent())).removeView(roomContainer);
+//                    }
+//                }
+//                // 满足此种条件，表明需要加载直播视频，以及聊天室了
+//                if (viewGroup.getId() == mCurrentItem && position == 0 && mCurrentItem != mRoomId) {
+//                    if (mRoomContainer.getParent() != null && mRoomContainer.getParent() instanceof ViewGroup) {
+//                        ((ViewGroup) (mRoomContainer.getParent())).removeView(mRoomContainer);
+//                    }
+//                    loadVideo(viewGroup, mCurrentItem);
+//                }
+//            }
+//        });
+//
+//
+//        mRootView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isSelected) {
+//                    isStop = false;
+//                    videoPlayer.onClick(videoPlayer.getStartButton());
+//                    mPlay.setVisibility(View.GONE);
+//
+//                } else {
+//                    isStop = true;
+//                    videoPlayer.onClick(videoPlayer.getStartButton());
+//                    mPlay.setVisibility(View.VISIBLE);
+//                    mPlay.setSelected(false);
+//
+//                }
+//
+//                isSelected = !isSelected;
+//            }
+//        });
 
 
     }
@@ -200,7 +214,6 @@ public class VerticalVideoActivity extends BaseActivity {
         List<VideoOptionModel> list = new ArrayList<>();
         list.add(videoOptionModel);
         GSYVideoManager.instance().setOptionModelList(list);
-
 
 
         videoPlayer.startPlayLogic();
@@ -304,6 +317,84 @@ public class VerticalVideoActivity extends BaseActivity {
         videoPlayer.release();
         videoPlayer.setVideoAllCallBack(null);
         GSYVideoManager.releaseAllVideos();
+        EventBus.getDefault().unregister(this);
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void getImageData(List<LevideoData> mList) {
+        this.mList = mList;
+        final MyPageAdapter myAdapter = new MyPageAdapter(mList);
+        mVerticalViewpager.setAdapter(myAdapter);
+
+        LogUtils.e(position);
+        if (position != -1) {
+            mVerticalViewpager.setCurrentItem(position);
+        }
+
+
+        mVerticalViewpager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int position) {
+                mCurrentItem = position;
+            }
+
+        });
+
+
+        mRoomContainer = LayoutInflater.from(this).inflate(R.layout.view_video_container, null);
+        mFragmentContainer = mRoomContainer.findViewById(R.id.fragment_container);
+        mPlay = mRoomContainer.findViewById(R.id.iv_play);
+        videoPlayer = mRoomContainer.findViewById(R.id.video_player);
+        mRootView = mRoomContainer.findViewById(R.id.view_play);
+        mCover = mRoomContainer.findViewById(R.id.cover_img);
+        mTvVideoTitle = mRoomContainer.findViewById(R.id.tv_video_title);
+
+
+        mVerticalViewpager.setPageTransformer(false, new ViewPager.PageTransformer() {
+            @Override
+            public void transformPage(View page, float position) {
+                ViewGroup viewGroup = (ViewGroup) page;
+//                Log.e(TAG, "page.id == " + page.getId() + ", position == " + position);
+
+                if ((position < 0 && viewGroup.getId() != mCurrentItem)) {
+                    View roomContainer = viewGroup.findViewById(R.id.room_container);
+                    if (roomContainer != null && roomContainer.getParent() != null && roomContainer.getParent() instanceof ViewGroup) {
+                        ((ViewGroup) (roomContainer.getParent())).removeView(roomContainer);
+                    }
+                }
+                // 满足此种条件，表明需要加载直播视频，以及聊天室了
+                if (viewGroup.getId() == mCurrentItem && position == 0 && mCurrentItem != mRoomId) {
+                    if (mRoomContainer.getParent() != null && mRoomContainer.getParent() instanceof ViewGroup) {
+                        ((ViewGroup) (mRoomContainer.getParent())).removeView(mRoomContainer);
+                    }
+                    loadVideo(viewGroup, mCurrentItem);
+                }
+            }
+        });
+
+
+        mRootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isSelected) {
+                    isStop = false;
+                    videoPlayer.onClick(videoPlayer.getStartButton());
+                    mPlay.setVisibility(View.GONE);
+
+                } else {
+                    isStop = true;
+                    videoPlayer.onClick(videoPlayer.getStartButton());
+                    mPlay.setVisibility(View.VISIBLE);
+                    mPlay.setSelected(false);
+
+                }
+
+                isSelected = !isSelected;
+            }
+        });
+
     }
 
 
