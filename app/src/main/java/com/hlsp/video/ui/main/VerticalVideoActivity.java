@@ -324,8 +324,10 @@ public class VerticalVideoActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void getImageData(List<LevideoData> mList) {
         this.mList = mList;
-        final MyPageAdapter myAdapter = new MyPageAdapter(mList);
+        MyPageAdapter myAdapter = new MyPageAdapter(mList);
         mVerticalViewpager.setAdapter(myAdapter);
+
+        myAdapter.notifyDataSetChanged();
 
         LogUtils.e(position);
         if (position != -1) {
