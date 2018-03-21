@@ -55,7 +55,7 @@ public class FollowingVideoFragment extends BaseFragment implements CategoryQuer
 
     PagerSlidingTab mPagerSlidingTab;
 
-    private boolean isInit;
+    private boolean isInit = false;
 
     private PlayerControler mplayctrl;
 
@@ -81,7 +81,6 @@ public class FollowingVideoFragment extends BaseFragment implements CategoryQuer
     protected void onViewReallyCreated(View view) {
         mUnbinder = ButterKnife.bind(this, view);
         StatService.onEvent(getActivity(), "music", "音乐");
-        isInit = false;
 
     }
 
@@ -155,10 +154,8 @@ public class FollowingVideoFragment extends BaseFragment implements CategoryQuer
      */
     @Override
     public void onCategoryQueryFinish(boolean bSuccess, List<CategoryInfoBase> infos) {
-        LogUtils.e(infos);
-        if (isInit) {
-            return;
-        }
+        LogUtils.e("onCategoryQueryFinish");
+        LogUtils.e(isInit);
 
         mTabs.clear();
         mTabinfos.clear();
@@ -167,21 +164,19 @@ public class FollowingVideoFragment extends BaseFragment implements CategoryQuer
             mTabinfos.add(item);
         }
 
-        mTabs.remove("推荐");
-        mTabs.remove("搞笑");
-        mTabs.remove("娱乐");
-        if (mTabs.containsKey("街舞")) {
-            mTabs.remove("街舞");
-        }
-        if (mTabs.containsKey("正能量")) {
-            mTabs.remove("正能量");
+        if (isInit) {
+            return;
         }
 
-        for (String key : mTabs.keySet()) {
-            int value = mTabs.get(key);
-            tabfilter.add(value);
-        }
-
+        tabfilter.add(mTabs.get("音乐"));
+        tabfilter.add(mTabs.get("社会"));
+        tabfilter.add(mTabs.get("影视"));
+        tabfilter.add(mTabs.get("生活"));
+        tabfilter.add(mTabs.get("科技"));
+        tabfilter.add(mTabs.get("游戏"));
+        tabfilter.add(mTabs.get("体育"));
+        tabfilter.add(mTabs.get("军事"));
+        tabfilter.add(mTabs.get("汽车"));
 
         LogUtils.e(tabfilter);
 
@@ -256,7 +251,7 @@ public class FollowingVideoFragment extends BaseFragment implements CategoryQuer
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {
-            if (mVideoFragment.mViewPager != null) {
+            if (mVideoFragment != null && mVideoFragment.mViewPager != null) {
                 currentPos = mVideoFragment.mViewPager.getCurrentItem();
 
                 if (currentPos == 0) {
@@ -267,7 +262,7 @@ public class FollowingVideoFragment extends BaseFragment implements CategoryQuer
             }
 
         } else {
-            if (mVideoFragment.mViewPager != null) {
+            if (mVideoFragment != null && mVideoFragment.mViewPager != null) {
                 mVideoFragment.mViewPager.setCurrentItem(currentPos, false);
 
             }

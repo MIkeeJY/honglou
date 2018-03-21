@@ -123,6 +123,10 @@ public class LevideoData implements Parcelable {
         return coverImgUrl;
     }
 
+    public String getDynamicCover() {
+        return dynamicCover;
+    }
+
     public String getVideoPlayUrl() {
         return videoPlayUrl;
     }
@@ -199,17 +203,10 @@ public class LevideoData implements Parcelable {
         return filterMusicNameStr;
     }
 
-    public String getDynamicCover() {
-        return dynamicCover;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-
     @Override
-    public int describeContents() { return 0; }
+    public int describeContents() {
+        return 0;
+    }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -274,9 +271,13 @@ public class LevideoData implements Parcelable {
 
     public static final Creator<LevideoData> CREATOR = new Creator<LevideoData>() {
         @Override
-        public LevideoData createFromParcel(Parcel source) {return new LevideoData(source);}
+        public LevideoData createFromParcel(Parcel source) {
+            return new LevideoData(source);
+        }
 
         @Override
-        public LevideoData[] newArray(int size) {return new LevideoData[size];}
+        public LevideoData[] newArray(int size) {
+            return new LevideoData[size];
+        }
     };
 }

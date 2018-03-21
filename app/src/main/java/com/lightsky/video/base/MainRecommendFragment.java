@@ -54,7 +54,7 @@ public class MainRecommendFragment extends BaseFragment implements CategoryQuery
     /**
      * CategoryQueryNotify 接口切换fragment会回调2次所以加一个值判断
      */
-    private boolean isInit;
+    private boolean isInit = false;
 
     ImageView mSearch;
 
@@ -82,8 +82,43 @@ public class MainRecommendFragment extends BaseFragment implements CategoryQuery
     @Override
     protected void onViewReallyCreated(View view) {
         mUnbinder = ButterKnife.bind(this, view);
-        isInit = false;
         StatService.onEvent(getActivity(), "recommond", "推荐");
+
+
+        tabfilter.add(0);
+        tabfilter.add(2);
+        tabfilter.add(1);
+
+        LogUtils.e(tabfilter);
+        VideoHelper.get().SetVideoTabFilter(tabfilter);
+
+        mVideoFragment = new VideoTabFragement();
+        if (isAdded()) {
+            showVideoFragment(mVideoFragment);
+
+            /**
+             * 由于打点需求，强行新建个包加载这里,╮(╯_╰)╭
+             */
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mPagerSlidingTab = mVideoFragment.mRoot.findViewById(R.id.tabs);
+                    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+                    layoutParams.setMargins(DensityUtil.dip2px(App.getInstance(), 90), 0, DensityUtil.dip2px(App.getInstance(), 50), 0);
+                    mPagerSlidingTab.setLayoutParams(layoutParams);
+
+                    mPagerSlidingTab.setSelectedTextColor(Color.parseColor("#212832"));
+                    mPagerSlidingTab.setTextColor(Color.parseColor("#5D646E"));
+
+                    mShadow = mVideoFragment.mRoot.findViewById(R.id.tab_float);
+                    mShadow.setVisibility(View.GONE);
+
+                    onStatistics();
+
+                }
+            });
+
+        }
 
     }
 
@@ -123,52 +158,7 @@ public class MainRecommendFragment extends BaseFragment implements CategoryQuery
      */
     @Override
     public void onCategoryQueryFinish(boolean bSuccess, List<CategoryInfoBase> infos) {
-        if (isInit) {
-            return;
-        }
-        mTabs.clear();
-        mTabinfos.clear();
-        for (CategoryInfoBase item : infos) {
-            mTabs.put(item.name, item.mId);
-            mTabinfos.add(item);
-        }
-
-        tabfilter.add(mTabs.get("推荐"));
-        tabfilter.add(mTabs.get("搞笑"));
-        tabfilter.add(mTabs.get("娱乐"));
-
-        LogUtils.e(tabfilter);
-        VideoHelper.get().SetVideoTabFilter(tabfilter);
-
-        mVideoFragment = new VideoTabFragement();
-        if (isAdded()) {
-            showVideoFragment(mVideoFragment);
-
-            /**
-             * 由于打点需求，强行新建个包加载这里,╮(╯_╰)╭
-             */
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    mPagerSlidingTab = mVideoFragment.mRoot.findViewById(R.id.tabs);
-                    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-                    layoutParams.setMargins(DensityUtil.dip2px(App.getInstance(), 90), 0, DensityUtil.dip2px(App.getInstance(), 50), 0);
-                    mPagerSlidingTab.setLayoutParams(layoutParams);
-
-                    mPagerSlidingTab.setSelectedTextColor(Color.parseColor("#212832"));
-                    mPagerSlidingTab.setTextColor(Color.parseColor("#5D646E"));
-
-                    mShadow = mVideoFragment.mRoot.findViewById(R.id.tab_float);
-                    mShadow.setVisibility(View.GONE);
-
-                    onStatistics();
-
-                }
-            });
-
-        }
-
-        isInit = true;
+        LogUtils.e(isInit);
 
     }
 
@@ -230,7 +220,7 @@ public class MainRecommendFragment extends BaseFragment implements CategoryQuery
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {
-            if (mVideoFragment.mViewPager != null) {
+            if (mVideoFragment != null && mVideoFragment.mViewPager != null) {
                 currentPos = mVideoFragment.mViewPager.getCurrentItem();
 
                 if (currentPos == 0) {
@@ -241,7 +231,7 @@ public class MainRecommendFragment extends BaseFragment implements CategoryQuery
             }
 
         } else {
-            if (mVideoFragment.mViewPager != null) {
+            if (mVideoFragment != null && mVideoFragment.mViewPager != null) {
                 mVideoFragment.mViewPager.setCurrentItem(currentPos, false);
 
             }
