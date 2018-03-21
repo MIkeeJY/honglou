@@ -9,6 +9,7 @@ import android.text.TextUtils;
 
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
+import com.hlsp.video.R;
 import com.hlsp.video.bean.CdnResponse;
 import com.hlsp.video.model.ConstantsValue;
 import com.hlsp.video.model.HttpBaseUrl;
@@ -40,7 +41,7 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_splash);
         initView();
 
     }

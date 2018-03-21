@@ -3,21 +3,35 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/welcome_bg">
 
 
-    <!--<ImageView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:scaleType="centerCrop"-->
-    <!--android:src="@drawable/welcome_bg"/>-->
+    <View
+        android:id="@+id/center_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_centerVertical="true"/>
 
 
-    <!--<FrameLayout-->
-    <!--android:id="@+id/rootview"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"/>-->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/center_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="#5F3A41"
+        android:textSize="16sp"/>
+
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="110dp"
+        android:layout_above="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/welcome_icon"/>
 
 </RelativeLayout>
 

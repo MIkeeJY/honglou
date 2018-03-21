@@ -149,16 +149,9 @@ public class VerticalVideoActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (isSelected) {
-                    isStop = false;
                     videoPlayer.onClick(videoPlayer.getStartButton());
-                    mPlay.setVisibility(View.GONE);
-
                 } else {
-                    isStop = true;
                     videoPlayer.onClick(videoPlayer.getStartButton());
-                    mPlay.setVisibility(View.VISIBLE);
-                    mPlay.setSelected(false);
-
                 }
 
                 isSelected = !isSelected;
@@ -222,6 +215,20 @@ public class VerticalVideoActivity extends BaseActivity {
                     }
                 }, 200);
 
+            }
+
+            @Override
+            public void onClickResume(String url, Object... objects) {
+                isStop = false;
+                mPlay.setVisibility(View.GONE);
+            }
+
+
+            @Override
+            public void onClickStop(String url, Object... objects) {
+                isStop = true;
+                mPlay.setVisibility(View.VISIBLE);
+                mPlay.setSelected(false);
             }
 
             @Override

@@ -23,7 +23,7 @@
             <shape>
                 <corners android:radius="0dip" />
 
-                <solid android:color="#fffb3b3b" />
+                <solid android:color="@color/main_pink_color" />
             </shape>
         </clip>
     </item>
