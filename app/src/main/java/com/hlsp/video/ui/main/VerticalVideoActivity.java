@@ -102,6 +102,7 @@ public class VerticalVideoActivity extends BaseActivity {
             mVerticalViewpager.setCurrentItem(position);
         }
 
+        mVerticalViewpager.setOffscreenPageLimit(3);
 
         mVerticalViewpager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 
