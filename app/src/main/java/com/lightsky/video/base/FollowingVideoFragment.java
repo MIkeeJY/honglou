@@ -256,16 +256,21 @@ public class FollowingVideoFragment extends BaseFragment implements CategoryQuer
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {
-            currentPos = mVideoFragment.mViewPager.getCurrentItem();
+            if (mVideoFragment.mViewPager != null) {
+                currentPos = mVideoFragment.mViewPager.getCurrentItem();
 
-            if (currentPos == 0) {
-                mVideoFragment.mViewPager.setCurrentItem(1);
-            } else {
-                mVideoFragment.mViewPager.setCurrentItem(0);
+                if (currentPos == 0) {
+                    mVideoFragment.mViewPager.setCurrentItem(1);
+                } else {
+                    mVideoFragment.mViewPager.setCurrentItem(0);
+                }
             }
 
         } else {
-            mVideoFragment.mViewPager.setCurrentItem(currentPos, false);
+            if (mVideoFragment.mViewPager != null) {
+                mVideoFragment.mViewPager.setCurrentItem(currentPos, false);
+
+            }
         }
     }
 }
