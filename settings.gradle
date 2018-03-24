@@ -3,7 +3,7 @@ gradle.ext.buildToolsVersion = "25.0.1"
 gradle.ext.minSdkVersion = 16
 gradle.ext.targetSdkVersion = 22
 
-gradle.ext.supportLibraryVersion = '25.4.0'  //以后会更新到新版
+gradle.ext.supportLibraryVersion = '26.1.0'  //以后会更新到新版
 
 
 

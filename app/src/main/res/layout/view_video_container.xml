@@ -2,15 +2,22 @@
 <RelativeLayout
     android:id="@+id/room_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/transparent">
 
-    <com.hlsp.video.widget.EmptyControlVideo
+
+    <chuangyuan.ycj.videolibrary.widget.VideoPlayerView
         android:id="@+id/video_player"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        app:controller_layout_id="@layout/custom_exo_playback_top_view"
+        app:resize_mode="fit"
+        app:surface_type="texture_view"
+        />
 
 
     <com.hlsp.video.view.ShadowView

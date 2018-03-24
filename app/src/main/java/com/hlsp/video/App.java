@@ -10,7 +10,6 @@ import com.baidu.mobstat.StatService;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.hlsp.video.utils.SpUtils;
-import com.squareup.leakcanary.LeakCanary;
 import com.ss.android.common.applog.GlobalContext;
 import com.ss.android.common.applog.UserInfo;
 
@@ -61,12 +60,15 @@ public class App extends CygApplication {
         UserInfo.setAppId(2);
         int result = UserInfo.initUser("a3668f0afac72ca3f6c1697d29e0e1bb1fef4ab0285319b95ac39fa42c38d05f");
 
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-        LeakCanary.install(this);
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            // This process is dedicated to LeakCanary for heap analysis.
+//            // You should not init your app in this process.
+//            return;
+//        }
+//        LeakCanary.install(this);
+
+        //GSYVideoManager.instance().setVideoType(this, GSYVideoType.IJKEXOPLAYER2); //EXO 2 播放内核
+
     }
 
 

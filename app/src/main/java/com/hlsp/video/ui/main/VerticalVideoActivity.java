@@ -1,5 +1,6 @@
 package com.hlsp.video.ui.main;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -12,18 +13,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.apkfuns.logutils.LogUtils;
+import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
 import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseActivity;
 import com.hlsp.video.bean.data.LevideoData;
+import com.hlsp.video.model.data.Data2Source;
 import com.hlsp.video.ui.fragment.VerticalVideoItemFragment;
 import com.hlsp.video.utils.GlideUtils;
 import com.hlsp.video.view.VerticalViewPager;
-import com.hlsp.video.widget.EmptyControlVideo;
-import com.shuyu.gsyvideoplayer.GSYVideoManager;
-import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
-import com.shuyu.gsyvideoplayer.model.VideoOptionModel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -34,7 +33,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import tv.danmaku.ijk.media.player.IjkMediaPlayer;
+import chuangyuan.ycj.videolibrary.listener.LoadModelType;
+import chuangyuan.ycj.videolibrary.listener.VideoInfoListener;
+import chuangyuan.ycj.videolibrary.video.ManualPlayer;
+import chuangyuan.ycj.videolibrary.whole.WholeMediaSource;
+import chuangyuan.ycj.videolibrary.widget.VideoPlayerView;
 
 
 /**
@@ -54,7 +57,10 @@ public class VerticalVideoActivity extends BaseActivity {
     private View mRoomContainer;
     private View mFragmentContainer;
 
-    private EmptyControlVideo videoPlayer;
+    private VideoPlayerView videoPlayer;
+    private ManualPlayer exoPlayerManager;
+    WholeMediaSource wholeMediaSource;
+
     private ImageView mPlay;
     private View mRootView;
     private ImageView mCover;
@@ -105,6 +111,23 @@ public class VerticalVideoActivity extends BaseActivity {
 
         mCurrentItem = position;
 
+        mRoomContainer = LayoutInflater.from(this).inflate(R.layout.view_video_container, null);
+        mFragmentContainer = mRoomContainer.findViewById(R.id.fragment_container);
+        mPlay = mRoomContainer.findViewById(R.id.iv_play);
+        videoPlayer = mRoomContainer.findViewById(R.id.video_player);
+        mRootView = mRoomContainer.findViewById(R.id.view_play);
+        mCover = mRoomContainer.findViewById(R.id.cover_img);
+        mTvVideoTitle = mRoomContainer.findViewById(R.id.tv_video_title);
+
+
+        wholeMediaSource = new WholeMediaSource(this, new Data2Source(getApplication(), new CacheDataSource.EventListener() {
+            @Override
+            public void onCachedBytesRead(long cacheSizeBytes, long cachedBytesRead) {
+
+            }
+        }));
+        exoPlayerManager = new ManualPlayer(this, wholeMediaSource, videoPlayer);
+
     }
 
     private void loadVideo(ViewGroup viewGroup, int mCurrentItem) {
@@ -127,68 +150,44 @@ public class VerticalVideoActivity extends BaseActivity {
         GlideUtils.loadImage(App.getInstance(), mList.get(mCurrentItem).getCoverImgUrl(), mCover, null);
         mTvVideoTitle.setText(data.getTitle());
 
-        if (data.getVideoPlayUrl().contains("v11-")) {
-            videoPlayer.setUp(mList.get(mCurrentItem).getVideoPlayUrl(), false, "");
-        } else {
-            videoPlayer.setUp(mList.get(mCurrentItem).getVideoPlayUrl(), true, "");
-        }
-        videoPlayer.setLooping(true);
 
-        /**
-         * 某些视频在SeekTo的时候，会跳回到拖动前的位置，这是因为视频的关键帧的问题，通俗一点就是FFMPEG不兼容，视频压缩过于厉害，seek只支持关键帧，
-         * 出现这个情况就是原始的视频文件中i 帧比较少，
-         * 可开启以下来解决：
-         */
-        VideoOptionModel videoOptionModel = new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "enable-accurate-seek", 1);
-        List<VideoOptionModel> list = new ArrayList<>();
-        list.add(videoOptionModel);
-        GSYVideoManager.instance().setOptionModelList(list);
+        exoPlayerManager.setLoadModel(LoadModelType.PERCENR);
+        wholeMediaSource.setMediaUri(Uri.parse(data.getVideoPlayUrl()));
+        exoPlayerManager.setLooping(Integer.MAX_VALUE);
+        exoPlayerManager.startPlayer();//开始播放
 
 
-
-        videoPlayer.startPlayLogic();
-
-        videoPlayer.setVideoAllCallBack(new GSYSampleCallBack() {
-
+        exoPlayerManager.setVideoInfoListener(new VideoInfoListener() {
             @Override
-            public void onPrepared(String url, Object... objects) {
-                LogUtils.e(url);
+            public void onPlayStart() {
 
+                //开始播放
                 mCover.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         mCover.setVisibility(View.GONE);
                     }
                 }, 200);
+            }
+
+            @Override
+            public void onLoadingChanged() {
+                //加载变化
+            }
+
+            @Override
+            public void onPlayerError(ExoPlaybackException e) {
+                //加载错误
+            }
+
+            @Override
+            public void onPlayEnd() {
+                //播放结束
 
             }
 
             @Override
-            public void onClickResume(String url, Object... objects) {
-                isStop = false;
-                mPlay.setVisibility(View.GONE);
-            }
-
-
-            @Override
-            public void onClickStop(String url, Object... objects) {
-                isStop = true;
-                mPlay.setVisibility(View.VISIBLE);
-                mPlay.setSelected(false);
-            }
-
-            @Override
-            public void onPlayError(String url, Object... objects) {
-                try {
-                    LogUtils.e(url, objects[0]);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onAutoComplete(String url, Object... objects) {
-                mCover.setVisibility(View.GONE);
+            public void isPlaying(boolean playWhenReady) {
 
             }
 
@@ -240,27 +239,24 @@ public class VerticalVideoActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        videoPlayer.onVideoPause();
-        mCurrentPos = videoPlayer.getCurrentPositionWhenPlaying();
+        exoPlayerManager.onPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (!isStop) {
-            videoPlayer.onVideoResume();
-        } else {
-            videoPlayer.seekTo(mCurrentPos);
+
+        if (exoPlayerManager != null) {
+            exoPlayerManager.onResume();
         }
+
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        videoPlayer.release();
-        videoPlayer.setVideoAllCallBack(null);
-        GSYVideoManager.releaseAllVideos();
+        exoPlayerManager.onDestroy();
         EventBus.getDefault().unregister(this);
     }
 
@@ -286,15 +282,6 @@ public class VerticalVideoActivity extends BaseActivity {
             }
 
         });
-
-
-        mRoomContainer = LayoutInflater.from(this).inflate(R.layout.view_video_container, null);
-        mFragmentContainer = mRoomContainer.findViewById(R.id.fragment_container);
-        mPlay = mRoomContainer.findViewById(R.id.iv_play);
-        videoPlayer = mRoomContainer.findViewById(R.id.video_player);
-        mRootView = mRoomContainer.findViewById(R.id.view_play);
-        mCover = mRoomContainer.findViewById(R.id.cover_img);
-        mTvVideoTitle = mRoomContainer.findViewById(R.id.tv_video_title);
 
 
         mVerticalViewpager.setPageTransformer(false, new ViewPager.PageTransformer() {
@@ -324,9 +311,18 @@ public class VerticalVideoActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (isSelected) {
-                    videoPlayer.onClick(videoPlayer.getStartButton());
+                    exoPlayerManager.setStartOrPause(true);
+
                 } else {
-                    videoPlayer.onClick(videoPlayer.getStartButton());
+                    exoPlayerManager.setStartOrPause(false);
+                }
+
+
+                if (exoPlayerManager.isPlaying()) {
+                    mPlay.setVisibility(View.GONE);
+                } else {
+                    mPlay.setVisibility(View.VISIBLE);
+                    mPlay.setSelected(false);
                 }
 
                 isSelected = !isSelected;
