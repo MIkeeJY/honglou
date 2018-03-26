@@ -15,9 +15,16 @@
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
         app:controller_layout_id="@layout/custom_exo_playback_top_view"
+        app:player_back_image="@color/transparent"
         app:resize_mode="fit"
         app:surface_type="texture_view"
         />
+
+
+    <ImageView
+        android:id="@+id/cover_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
     <com.hlsp.video.view.ShadowView
@@ -48,12 +55,6 @@
 
 
     </RelativeLayout>
-
-
-    <ImageView
-        android:id="@+id/cover_img"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
 
     <TextView

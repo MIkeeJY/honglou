@@ -79,7 +79,7 @@ public class VerticalVideoActivity extends BaseActivity {
     /**
      * 记录当前播放位置
      */
-    private int mCurrentPos;
+    private long mCurrentPos;
 
     int position;
 
@@ -239,7 +239,13 @@ public class VerticalVideoActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        exoPlayerManager.onPause();
+        if (isStop) {
+            mCurrentPos = exoPlayerManager.getCurrentPosition();
+            exoPlayerManager.setStartOrPause(false);
+        } else {
+            exoPlayerManager.setStartOrPause(false);
+        }
+
     }
 
     @Override
@@ -247,9 +253,17 @@ public class VerticalVideoActivity extends BaseActivity {
         super.onResume();
 
         if (exoPlayerManager != null) {
-            exoPlayerManager.onResume();
+            if (isStop) {
+                exoPlayerManager.seekTo(mCurrentPos);
+                exoPlayerManager.setStartOrPause(true);
+                isSelected = false;
+                mPlay.setVisibility(View.GONE);
+                isStop = false;
+            } else {
+                exoPlayerManager.onResume();
+                exoPlayerManager.setStartOrPause(true);
+            }
         }
-
     }
 
 
@@ -312,9 +326,11 @@ public class VerticalVideoActivity extends BaseActivity {
             public void onClick(View v) {
                 if (isSelected) {
                     exoPlayerManager.setStartOrPause(true);
+                    isStop = false;
 
                 } else {
                     exoPlayerManager.setStartOrPause(false);
+                    isStop = true;
                 }
 
 
