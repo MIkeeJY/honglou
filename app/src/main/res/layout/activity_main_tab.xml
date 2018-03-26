@@ -49,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_main_tab_height"
+        android:scaleType="centerCrop"
         android:src="@drawable/bottom_shadow_bg"/>
 
 </RelativeLayout>

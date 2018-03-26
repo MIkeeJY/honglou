@@ -66,7 +66,6 @@ public abstract class BaseLoadFragment extends Fragment {
     }
 
 
-
     @Nullable
     @Override
     public final View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,8 +81,6 @@ public abstract class BaseLoadFragment extends Fragment {
         }
         return rootView;
     }
-
-
 
 
     /**
@@ -103,8 +100,6 @@ public abstract class BaseLoadFragment extends Fragment {
      * 子类必须重写此方法,这个方法只会调用一次,相当于activity的onCreate
      */
     protected abstract void lazyLoad();
-
-
 
 
     /**

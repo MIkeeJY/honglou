@@ -1,58 +1,50 @@
 package com.hlsp.video.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.SparseArray;
 import android.view.View;
+import android.widget.ImageView;
 
-import com.apkfuns.logutils.LogUtils;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseFragment;
-import com.lightsky.video.VideoHelper;
-import com.lightsky.video.datamanager.category.CategoryQueryNotify;
-import com.lightsky.video.sdk.CategoryInfoBase;
-import com.lightsky.video.sdk.VideoOption;
-import com.lightsky.video.sdk.VideoSwitcher;
-import com.lightsky.video.sdk.VideoTabFragement;
-import com.lightsky.video.sdk.VideoTypesLoader;
+import com.hlsp.video.base.BaseLoadFragment;
+import com.hlsp.video.widget.tablayout.SlidingTabLayout;
+import com.lightsky.video.search.SearchActivity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
+ * 新版推荐Fragment
  * Created by hackest on 2018-02-01.
  */
 
-public class RecommondVideoFragment extends BaseFragment implements CategoryQueryNotify {
+public class RecommondVideoFragment extends BaseFragment {
 
-    private VideoTypesLoader mTabLoader;
-    private Map<String, Integer> mTabs = new HashMap<>();
-    private List<CategoryInfoBase> mTabinfos = new ArrayList<>();
+    @BindView(R.id.stl_home) SlidingTabLayout mTabLayout;
+    @BindView(R.id.tab_search) ImageView mTabSearch;
+    @BindView(R.id.vp_home) ViewPager mViewPager;
 
-    List<Integer> tabfilter = new ArrayList<>();
-
-    VideoTabFragement mVideoFragment;
+    private String[] titles = {"推荐", "搞笑", "娱乐"};
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTabLoader = new VideoTypesLoader();
-        mTabLoader.Init(this);
-        InitSdk();
 
     }
 
     @Override
     protected int layoutRes() {
-        return R.layout.fragment_recommond_video;
+        return R.layout.fragment_recommond_video_new;
     }
 
 
@@ -60,84 +52,47 @@ public class RecommondVideoFragment extends BaseFragment implements CategoryQuer
     protected void onViewReallyCreated(View view) {
         mUnbinder = ButterKnife.bind(this, view);
 
+        mViewPager.setAdapter(new ItemPageAdapter(getChildFragmentManager()));
+        mViewPager.setOffscreenPageLimit(3);
+        mTabLayout.setViewPager(mViewPager); //初始化的绑定
+    }
+
+    @OnClick(R.id.tab_search)
+    void onSearchClick() {
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        getActivity().startActivity(intent);
     }
 
 
-    private void InitSdk() {
-        VideoSwitcher setting = new VideoSwitcher();
-        setting.Debugmodel = false;
-        setting.UseNbPlayer = true;
-        setting.UseFileLog = false;
-        setting.UseLogCatLog = false;
-        setting.UseShareLayout = false;
-        VideoOption option = new VideoOption();
 
-        InitVideoHelper(setting, option);
+    class ItemPageAdapter extends FragmentStatePagerAdapter {
+        SparseArray<BaseLoadFragment> mFragments = new SparseArray<>();
 
-    }
-
-
-    private void InitVideoHelper(VideoSwitcher setting, VideoOption opt) {
-        VideoHelper.get().Init(getActivity(), setting, opt);
-        mTabLoader.loadData();
-    }
-
-    /**
-     * 查询频道列表
-     * 娱乐 -> 1
-     * 生活 -> 18
-     * 汽车 -> 23
-     * 音乐 -> 13
-     * 体育 -> 12
-     * 搞笑 -> 2
-     * 科技 -> 7
-     * 军事 -> 19
-     * 影视 -> 8
-     * 社会 -> 3
-     * 推荐 -> 0
-     */
-    @Override
-    public void onCategoryQueryFinish(boolean bSuccess, List<CategoryInfoBase> infos) {
-        mTabs.clear();
-        mTabinfos.clear();
-        for (CategoryInfoBase item : infos) {
-            mTabs.put(item.name, item.mId);
-            mTabinfos.add(item);
+        public ItemPageAdapter(FragmentManager fm) {
+            super(fm);
         }
 
-
-        mTabs.remove("推荐");
-        mTabs.remove("搞笑");
-
-        for (String key : mTabs.keySet()) {
-            int value = mTabs.get(key);
-            tabfilter.add(value);
+        @Override
+        public int getCount() {
+            return titles.length;
         }
 
-
-        LogUtils.e(tabfilter);
-
-        VideoHelper.get().SetVideoTabFilter(tabfilter);
-
-        mVideoFragment = new VideoTabFragement();
-        if (isAdded()) {
-            showVideoFragment(mVideoFragment);
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titles[position];
         }
+
+        @Override
+        public Fragment getItem(int position) {
+            Bundle args = new Bundle();
+            args.putInt("position", position);
+            args.putString("title", titles[position]);
+            mFragments.put(position, RecommondChildFragment.newInstance(args));
+
+            return mFragments.get(position);
+        }
+
     }
 
 
-    private void showVideoFragment(Fragment fragment) {
-        FragmentManager fm = getChildFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.main_video_frame_layout, fragment);
-        ft.commit();
-    }
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        VideoHelper.get().unInit();
-    }
 }

@@ -34,11 +34,11 @@ import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseActivity;
 import com.hlsp.video.ui.fragment.MainPageDouYinFragment;
+import com.hlsp.video.ui.fragment.RecommondVideoFragment;
 import com.hlsp.video.utils.WindowUtil;
 import com.hlsp.video.utils.update.SoftCheckUpdateUtil;
 import com.lightsky.video.VideoHelper;
 import com.lightsky.video.base.FollowingVideoFragment;
-import com.lightsky.video.base.MainRecommendFragment;
 
 import java.util.HashMap;
 
@@ -75,7 +75,7 @@ public class MainTabActivity extends BaseActivity {
         mTabManager = new TabManager(this, mTabHost, R.id.realtabcontent);
 
         mTabManager.addTab(mTabHost.newTabSpec(TAB1).setIndicator(createTabIndicatorView(R.layout.tab_main)), MainPageDouYinFragment.class, null);
-        mTabManager.addTab(mTabHost.newTabSpec(TAB2).setIndicator(createTabIndicatorView(R.layout.tab_following)), MainRecommendFragment.class, null);
+        mTabManager.addTab(mTabHost.newTabSpec(TAB2).setIndicator(createTabIndicatorView(R.layout.tab_following)), RecommondVideoFragment.class, null);
         mTabManager.addTab(mTabHost.newTabSpec(TAB3).setIndicator(createTabIndicatorView(R.layout.tab_video)), FollowingVideoFragment.class, null);
 //        mTabManager.addTab(mTabHost.newTabSpec(TAB2).setIndicator(createTabIndicatorView(R.layout.tab_following)), FollowingVideoFragment.class, null);
 //        mTabManager.addTab(mTabHost.newTabSpec(TAB3).setIndicator(createTabIndicatorView(R.layout.tab_mine)), MineFragment.class, null);

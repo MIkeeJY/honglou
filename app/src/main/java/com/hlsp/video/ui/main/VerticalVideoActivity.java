@@ -147,9 +147,8 @@ public class VerticalVideoActivity extends BaseActivity {
         mPlay.setVisibility(View.GONE);
         mCover.setVisibility(View.VISIBLE);
 
-        GlideUtils.loadImage(App.getInstance(), mList.get(mCurrentItem).getCoverImgUrl(), mCover, null);
+        GlideUtils.loadImage(App.getInstance(), mList.get(mCurrentItem).getCoverImgUrl(), mCover, null, R.color.black, R.color.black);
         mTvVideoTitle.setText(data.getTitle());
-
 
         exoPlayerManager.setLoadModel(LoadModelType.PERCENR);
         wholeMediaSource.setMediaUri(Uri.parse(data.getVideoPlayUrl()));
