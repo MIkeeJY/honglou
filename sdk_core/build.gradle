@@ -35,4 +35,7 @@ dependencies {
     compile "com.android.support:appcompat-v7:$gradle.ext.supportLibraryVersion"
     compile "com.android.support:recyclerview-v7:$gradle.ext.supportLibraryVersion"
 
+    compile 'com.facebook.fresco:fresco:1.7.1'
+    compile 'com.facebook.fresco:animated-webp:1.7.1'
+    compile 'com.facebook.fresco:webpsupport:1.7.1'
 }

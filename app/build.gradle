@@ -55,9 +55,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-compat'
     }
-    compile('com.shuyu:GSYVideoPlayer:4.1.0') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
+//    compile('com.shuyu:GSYVideoPlayer:4.1.0') {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    }
 
     compile 'com.ycjiang:VideoPlayModule:2.1.41'
 
@@ -66,12 +66,8 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
     debugCompile 'com.apkfuns.logutils:library:1.5.1.1'
     releaseCompile 'com.apkfuns.logutils:logutils-no-op:1.5.1.1'
-    compile 'com.facebook.fresco:fresco:1.7.1'
-    compile 'com.facebook.fresco:animated-webp:1.7.1'
-    compile 'com.facebook.fresco:webpsupport:1.7.1'
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
-
 
 }

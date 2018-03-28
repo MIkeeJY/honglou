@@ -9,6 +9,7 @@ import android.text.TextUtils;
 
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
+import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.bean.CdnResponse;
 import com.hlsp.video.model.ConstantsValue;
@@ -17,8 +18,13 @@ import com.hlsp.video.okhttp.http.OkHttpClientManager;
 import com.hlsp.video.ui.main.MainTabActivity;
 import com.hlsp.video.utils.FileUtils;
 import com.hlsp.video.utils.GsonUtil;
+import com.hlsp.video.utils.SpUtils;
+import com.hlsp.video.utils.ToastUtil;
+import com.hlsp.video.utils.Utils;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.Request;
 
@@ -52,6 +58,27 @@ public class SplashActivity extends Activity {
 
         thread = new MyThread();
         handler.postDelayed(thread, 1200);
+
+        /**
+         * 获取外网Ip
+         */
+        if (Utils.isNetworkAvailable(App.getInstance())) {
+            Map<String, String> map = new HashMap<>();
+            OkHttpClientManager.postAsyn("http://pv.sohu.com/cityjson?ie=utf-8", new OkHttpClientManager.StringCallback() {
+                @Override
+                public void onFailure(Request request, IOException e) {
+                    ToastUtil.showToast("网络连接失败");
+                }
+
+                @Override
+                public void onResponse(String response) {
+                    SpUtils.put(ConstantsValue.REAL_IP, response.substring(response.indexOf(":") + 1, response.indexOf(",")).trim());
+
+                }
+            }, map, "");
+
+        }
+
 
 //        PlatformSDK.adapp().dycmSplashAd(SplashActivity.this, "10-1", ad_view, new AbstractCallback() {
 //            @Override

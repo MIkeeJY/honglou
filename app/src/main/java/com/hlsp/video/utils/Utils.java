@@ -30,6 +30,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
@@ -966,4 +967,39 @@ public class Utils {
             return "";
         }
     }
+
+
+    private static Method systemProperties_get = null;
+
+    private static String getAndroidOsSystemProperties(String key) {
+        String ret;
+        try {
+            systemProperties_get = Class.forName("android.os.SystemProperties").getMethod("get", String.class);
+            if ((ret = (String) systemProperties_get.invoke(null, key)) != null)
+                return ret;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return "";
+    }
+
+
+    /**
+     * 获取android 设备序列号
+     *
+     * @return SerialNo
+     */
+    public static String getSerialNo() {
+        String[] propertys = {"ro.boot.serialno", "ro.serialno"};
+        String v = "";
+        for (String key : propertys) {
+            v = getAndroidOsSystemProperties(key);
+            Log.e("", "get " + key + " : " + v);
+        }
+        return v;
+    }
+
+
 }

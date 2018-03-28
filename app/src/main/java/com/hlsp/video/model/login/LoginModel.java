@@ -5,7 +5,7 @@ import com.hlsp.video.base.BaseModel;
 import com.hlsp.video.bean.LoginResult;
 import com.hlsp.video.utils.GsonUtil;
 
-import cn.share.jack.cyghttp.HttpData;
+import cn.share.jack.cyghttp.BaseResponse;
 import cn.share.jack.cyghttp.HttpFunction;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -27,7 +27,7 @@ public class LoginModel extends BaseModel {
      * @param type       (注册方式 1,邮箱，2，微信，3，QQ，4，微博 )
      * @param device_id  （设备id）
      */
-    public void execute(String account, String credential, final int type, String device_id, Observer<HttpData<LoginResult>> observer) {
+    public void execute(String account, String credential, final int type, String device_id, Observer<BaseResponse<LoginResult>> observer) {
         addParams("account", account);
         addParams("credential", credential);
         addParams("type", type + "");

@@ -9,7 +9,10 @@ import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.hlsp.video.model.HttpBaseUrl;
+import com.hlsp.video.utils.CommonUtils;
 import com.hlsp.video.utils.SpUtils;
+import com.hlsp.video.utils.Utils;
 import com.ss.android.common.applog.GlobalContext;
 import com.ss.android.common.applog.UserInfo;
 
@@ -22,12 +25,27 @@ import cn.share.jack.cyghttp.app.HttpServletAddress;
 
 public class App extends CygApplication {
 
+    public static String IMEI;
+    public static String PACKAGE_NAME;
+    public static String VERSION_NAME;
+    public static String CHANNEL_ID;
+    public static String ANDROID_ID;
+    public static String SERIAL_NO;
+
     @Override
     public void onCreate() {
         super.onCreate();
 //        ServiceManagerWraper.hookPMS(this.getApplicationContext());
 
         SpUtils.init(this);
+        //缓存起来防止每次网络请求都去拿
+        PACKAGE_NAME = CommonUtils.getProcessName();
+        VERSION_NAME = Utils.getHasDotVersion(App.getInstance());
+        CHANNEL_ID = CommonUtils.getMetaData(App.getInstance(), "BaiduMobAd_CHANNEL");
+        IMEI = Utils.getDeviceIMEI(App.getInstance());
+        ANDROID_ID = Utils.getDeviceAndroidId(App.getInstance());
+        SERIAL_NO = Utils.getSerialNo();
+
 
         ImagePipelineConfig config = ImagePipelineConfig.newBuilder(getApplicationContext())
                 .setDownsampleEnabled(true)   // 对图片进行自动缩放
@@ -37,7 +55,10 @@ public class App extends CygApplication {
                 .build();
         Fresco.initialize(this, config);
 
-        HttpServletAddress.getInstance().setOfflineAddress("http://20.20.23.79:8888/v1/app/");
+
+        HttpServletAddress.getInstance().setOfflineAddress(HttpBaseUrl.BASE_TEXT_URL);
+//        HttpServletAddress.getInstance().setOnlineAddress(HttpBaseUrl.BASE_URL);
+
         LogUtils.getLogConfig()
                 .configAllowLog(BuildConfig.DEBUG)
                 .configTagPrefix(this.getPackageName())

@@ -15,4 +15,6 @@ public class ConstantsValue {
     public static final String BASE_NAME = "honglou";
     public static final String BASE_PATH = App.getInstance().getCacheDir().getAbsolutePath() + File.separator + BASE_NAME;
 
+    public static final String REAL_IP = "REALIP";
+
 }

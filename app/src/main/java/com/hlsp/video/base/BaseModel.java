@@ -4,17 +4,17 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.apkfuns.logutils.LogUtils;
+import com.hlsp.video.App;
 import com.hlsp.video.BuildConfig;
+import com.hlsp.video.model.ConstantsValue;
 import com.hlsp.video.model.CygApi;
-import com.hlsp.video.model.login.UserDao;
-import com.hlsp.video.utils.Utils;
+import com.hlsp.video.utils.SpUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import cn.share.jack.cyghttp.BaseRetrofit;
-import cn.share.jack.cyghttp.app.CygApplication;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.Request;
@@ -49,11 +49,11 @@ public class BaseModel extends BaseRetrofit {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
-                request = request.newBuilder()
-                        .addHeader("Token", String.valueOf(UserDao.getInstance().getToken()))
-                        .addHeader("Custom-Client-Type", "1")//iOS:0 , android:1
-                        .addHeader("Custom-Client-Version", Utils.getFormatBersion(CygApplication.getInstance()))
-                        .build();
+//                request = request.newBuilder()
+//                        .addHeader("Token", String.valueOf(UserDao.getInstance().getToken()))
+//                        .addHeader("Custom-Client-Type", "1")//iOS:0 , android:1
+//                        .addHeader("Custom-Client-Version", Utils.getFormatBersion(CygApplication.getInstance()))
+//                        .build();
                 return chain.proceed(request);
             }
         };
@@ -73,8 +73,15 @@ public class BaseModel extends BaseRetrofit {
                             return;
                         String s = message.substring(0, 1);
                         //如果收到想响应是json才打印
+//                        if ("{".equals(s) || "[".equals(s)) {
+//                            LogUtils.json(message);
+//                        }
                         if ("{".equals(s) || "[".equals(s)) {
                             LogUtils.json(message);
+                        } else if (message.contains("http://")) {
+                            LogUtils.d(message);
+                        } else if (message.contains("Exception")) {
+                            LogUtils.d(message);
                         }
                     }
                 });
@@ -95,15 +102,21 @@ public class BaseModel extends BaseRetrofit {
      * 设置header的公共参数
      */
 
-    //    protected Map<String, String> getCommonMap() {
-    //        Map<String, String> commonMap = new HashMap<>();
-    //        commonMap.put("Token", String.valueOf(UserDao.getInstance().getToken()));
-    //        commonMap.put("Custom-Client-Type", "1");//iOS:0 , android:1
-    //        commonMap.put("Custom-Client-Version", Utils.getFormatBersion(CygApplication.getInstance()));
-    //
-    //        Log.e("*********", Utils.getFormatBersion(CygApplication.getInstance()));
-    //        return commonMap;
-    //    }
+    protected Map<String, String> getCommonMap() {
+        Map<String, String> commonMap = new HashMap<>();
+        commonMap.put("packageName", App.PACKAGE_NAME);
+        commonMap.put("versionName", App.VERSION_NAME);
+        commonMap.put("channelId", App.CHANNEL_ID);
+        commonMap.put("IMEI", App.IMEI);
+        commonMap.put("AndroidID", App.ANDROID_ID);
+        commonMap.put("SerialNo", App.SERIAL_NO);
+        commonMap.put("os", "android");
+        commonMap.put("ip", SpUtils.getString(ConstantsValue.REAL_IP).replace("\"", ""));
+
+        return commonMap;
+    }
+
+
     protected void addParams(String key, String value) {
         if (TextUtils.isEmpty(key)) {
             Log.e(TAG, "the key is null");

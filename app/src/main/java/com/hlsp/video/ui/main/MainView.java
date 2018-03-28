@@ -9,5 +9,7 @@ import com.hlsp.video.base.BaseRequestContract;
 
 public interface MainView<T> extends BaseRequestContract<T> {
 
-    void getArticleDataFailure(Throwable t);
+    void getChannelFailure(Throwable t);
+
+    void getVideoListFailure(Throwable t);
 }

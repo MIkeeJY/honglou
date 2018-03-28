@@ -1,6 +1,8 @@
 package com.hlsp.video.model;
 
 import com.hlsp.video.bean.LoginResult;
+import com.hlsp.video.bean.data.ChannelListData;
+import com.hlsp.video.bean.data.VideoListData;
 import com.hlsp.video.model.main.MainInfo;
 
 import java.util.List;
@@ -26,6 +28,17 @@ public interface CygApi {
     @POST("MainServlet")
     Observable<BaseResponse<List<MainInfo>>> getArticle(@FieldMap Map<String, String> params);
 
+    /**
+     * 获取频道列表
+     */
+    @POST("v1/search/channelOf360")
+    Observable<BaseResponse<ChannelListData>> getChannel(@Body RequestBody body);
+
+    /**
+     * 获取频道的视频列表
+     */
+    @POST("v1/search/videoListOf360")
+    Observable<BaseResponse<VideoListData>> getVideoList(@Body RequestBody body);
 
     /**
      * 邮箱登录

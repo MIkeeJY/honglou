@@ -9,14 +9,14 @@ import java.io.Serializable;
  */
 public class BaseResponse<T> implements Serializable {
 
-    @SerializedName("status")
+    @SerializedName("code")
     private long status;
 
-    @SerializedName("message")
+    @SerializedName("msg")
     private String message;
 
     @SerializedName("data")
-    private HttpData<T> data;
+    T data;
 
 
     /**
@@ -44,11 +44,7 @@ public class BaseResponse<T> implements Serializable {
         this.message = message;
     }
 
-    public HttpData<T> getData() {
+    public T getData() {
         return data;
-    }
-
-    public void setData(HttpData<T> data) {
-        this.data = data;
     }
 }

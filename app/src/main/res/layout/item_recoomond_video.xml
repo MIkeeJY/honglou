@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/itemView"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+    >
+
+    <chuangyuan.ycj.videolibrary.widget.VideoPlayerView
+        android:id="@+id/exo_play_context_id"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:controller_layout_id="@layout/simple_exo_playback_list_view"
+        app:hide_on_touch="false"
+        app:player_is_hide_preview="false"
+        app:player_layout_id="@layout/simple_exo_view"
+        app:player_list="true"
+        app:player_preview_layout_id="@layout/simple_exo_preview_view"
+        app:resize_mode="fit"
+        app:show_timeout="3000"
+        app:surface_type="texture_view"
+        />
+</RelativeLayout>

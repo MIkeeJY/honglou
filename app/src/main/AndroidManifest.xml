@@ -46,10 +46,6 @@
         </activity>
 
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity
             android:name=".ui.main.MainTabActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait"
