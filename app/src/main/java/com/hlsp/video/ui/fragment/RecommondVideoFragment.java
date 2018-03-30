@@ -149,7 +149,10 @@ public class RecommondVideoFragment extends BaseFragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {
-            VideoPlayerManager.getInstance().onPause(true);
+//            VideoPlayerManager.getInstance().onPause(true);
+            if (VideoPlayerManager.getInstance().getVideoPlayer() != null) {
+                VideoPlayerManager.getInstance().getVideoPlayer().setStartOrPause(false);
+            }
         }
     }
 }

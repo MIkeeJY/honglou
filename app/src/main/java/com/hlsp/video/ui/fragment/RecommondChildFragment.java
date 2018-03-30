@@ -1,6 +1,5 @@
 package com.hlsp.video.ui.fragment;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,7 +23,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import chuangyuan.ycj.videolibrary.video.VideoPlayerManager;
 import cn.share.jack.cyghttp.callback.CygBaseObserver;
 import cn.share.jack.cygwidget.loadmore.OnScrollToBottomLoadMoreListener;
 import cn.share.jack.cygwidget.recyclerview.PtrRecyclerViewUIComponent;
@@ -279,12 +277,12 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
 //        VideoPlayerManager.getInstance().onResume();
 //    }
 
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        VideoPlayerManager.getInstance().onConfigurationChanged(newConfig);//横竖屏切换
-        super.onConfigurationChanged(newConfig);
-    }
+//
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        VideoPlayerManager.getInstance().onConfigurationChanged(newConfig);//横竖屏切换
+//        super.onConfigurationChanged(newConfig);
+//    }
 
 
 
