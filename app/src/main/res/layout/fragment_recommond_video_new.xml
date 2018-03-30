@@ -15,6 +15,7 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             app:tl_indicator_color="@color/main_color"
+            app:tl_indicator_corner_radius="50dp"
             app:tl_indicator_height="4dp"
             app:tl_indicator_width="12dp"
             app:tl_tab_padding="15dp"

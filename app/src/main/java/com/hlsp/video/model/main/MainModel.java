@@ -4,6 +4,7 @@ package com.hlsp.video.model.main;
 import com.hlsp.video.base.BaseModel;
 import com.hlsp.video.bean.data.ChannelListData;
 import com.hlsp.video.bean.data.VideoListData;
+import com.hlsp.video.bean.data.VideoUrlData;
 import com.hlsp.video.utils.GsonUtil;
 
 import cn.share.jack.cyghttp.HttpFunction;
@@ -39,6 +40,16 @@ public class MainModel extends BaseModel {
         RequestBody requestBody = RequestBody.create(JSON, GsonUtil.mapToJson(mParams));
 
         Observable observable = mServletApi.getVideoList(requestBody).map(new HttpFunction());
+        toSubscribe(observable, observer);
+    }
+
+    public void executeVideoUrl(String videoId, String extdata, Observer<VideoUrlData> observer) {
+        addParams(getCommonMap());
+        addParams("videoId", videoId);
+        addParams("extdata", extdata);
+
+        RequestBody requestBody = RequestBody.create(JSON, GsonUtil.mapToJson(mParams));
+        Observable observable = mServletApi.getVideoUrl(requestBody).map(new HttpFunction());
         toSubscribe(observable, observer);
     }
 }

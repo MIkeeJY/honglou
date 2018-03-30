@@ -9,6 +9,9 @@ import com.hlsp.video.bean.VideoListItem;
 import cn.share.jack.cygwidget.recyclerview.adapter.CygBaseRecyclerAdapter;
 import cn.share.jack.cygwidget.utils.CygView;
 
+/**
+ * 推荐列表
+ */
 public class RecommondAdapter extends CygBaseRecyclerAdapter<VideoListItem, RecommondViewHolder> {
 
     public RecommondAdapter(Context context, OnItemClickListener<RecommondViewHolder> listener) {
@@ -17,7 +20,7 @@ public class RecommondAdapter extends CygBaseRecyclerAdapter<VideoListItem, Reco
 
     @Override
     public RecommondViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new RecommondViewHolder(CygView.inflateLayout(getContext(), R.layout.item_recoomond_video, parent, false));
+        return new RecommondViewHolder(CygView.inflateLayout(getContext(), R.layout.item_recommond_video, parent, false));
     }
 
 

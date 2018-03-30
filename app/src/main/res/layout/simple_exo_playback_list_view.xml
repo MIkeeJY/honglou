@@ -3,13 +3,17 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="bottom"
                 android:background="@android:color/transparent"
                 android:orientation="vertical">
 
+    <TextView
+        android:id="@id/exo_controls_title"
+        style="@style/ExoMediaTitle"
+        tools:text="测试阿斯顿"/>
+
     <LinearLayout
-        android:visibility="gone"
         android:id="@id/exo_controller_bottom"
         style="@style/ExoMediaControllerBottom">
 
@@ -35,9 +39,9 @@
             android:id="@id/exo_progress"
             style="@style/ExoMediaTimeBar"
             app:bar_height="2dp"
-            app:buffered_color="@android:color/white"
-            app:played_color="#26e75c"
-            app:unplayed_color="#a5436af9"/>
+            app:buffered_color="@color/white"
+            app:played_color="@color/main_pink_color"
+            app:unplayed_color="@color/white_50"/>
 
         <TextView style="@style/ExoMediaTextSwitch"/>
 
@@ -46,34 +50,19 @@
             style="@style/ExoMediaButton.Fullscreen"/>
     </LinearLayout>
 
-    <ImageView
-        android:id="@id/exo_preview_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:adjustViewBounds="true"
-        android:clickable="true"
-        android:scaleType="fitXY"
-        android:visibility="visible"/>
 
     <ImageButton
         android:id="@id/exo_play"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@null"
-        android:visibility="gone"/>
+        style="@style/ExoMediaButton.Play2"
+        android:layout_width="45.3dp"
+        android:layout_height="45.3dp"
+        android:src="@drawable/icon_play"/>
 
     <ImageButton
         android:id="@id/exo_pause"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@null"
-        android:visibility="gone"/>
-
+        style="@style/ExoMediaButton.Pause2"
+        android:layout_width="45.3dp"
+        android:layout_height="45.3dp"
+        android:src="@drawable/icon_suspend"/>
 
 </RelativeLayout>

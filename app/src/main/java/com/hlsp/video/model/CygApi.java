@@ -3,6 +3,7 @@ package com.hlsp.video.model;
 import com.hlsp.video.bean.LoginResult;
 import com.hlsp.video.bean.data.ChannelListData;
 import com.hlsp.video.bean.data.VideoListData;
+import com.hlsp.video.bean.data.VideoUrlData;
 import com.hlsp.video.model.main.MainInfo;
 
 import java.util.List;
@@ -39,6 +40,13 @@ public interface CygApi {
      */
     @POST("v1/search/videoListOf360")
     Observable<BaseResponse<VideoListData>> getVideoList(@Body RequestBody body);
+
+
+    /**
+     * 解密视频
+     */
+    @POST("v1/search/videoUrlOf360")
+    Observable<BaseResponse<VideoUrlData>> getVideoUrl(@Body RequestBody body);
 
     /**
      * 邮箱登录

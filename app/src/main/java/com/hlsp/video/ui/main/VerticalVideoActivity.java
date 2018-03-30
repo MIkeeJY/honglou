@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.apkfuns.logutils.LogUtils;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
 import com.hlsp.video.App;
@@ -149,6 +150,8 @@ public class VerticalVideoActivity extends BaseActivity {
 
         GlideUtils.loadImage(App.getInstance(), mList.get(mCurrentItem).getCoverImgUrl(), mCover, null, R.color.black, R.color.black);
         mTvVideoTitle.setText(data.getTitle());
+
+        LogUtils.e(data.getVideoPlayUrl());
 
         exoPlayerManager.setLoadModel(LoadModelType.PERCENR);
         wholeMediaSource.setMediaUri(Uri.parse(data.getVideoPlayUrl()));

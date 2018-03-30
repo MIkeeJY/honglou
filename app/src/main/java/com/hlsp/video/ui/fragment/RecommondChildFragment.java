@@ -1,6 +1,8 @@
 package com.hlsp.video.ui.fragment;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -22,6 +24,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import chuangyuan.ycj.videolibrary.video.VideoPlayerManager;
 import cn.share.jack.cyghttp.callback.CygBaseObserver;
 import cn.share.jack.cygwidget.loadmore.OnScrollToBottomLoadMoreListener;
 import cn.share.jack.cygwidget.recyclerview.PtrRecyclerViewUIComponent;
@@ -38,22 +41,24 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
     @BindView(R.id.am_ptr_framelayout) PtrRecyclerViewUIComponent ptrRecyclerViewUIComponent;
     @BindView(R.id.ar_empty_view) View emptyView;
 
-
-    private List<VideoListItem> mList = new ArrayList<>();
+    private List<VideoListItem> mRecommondList = new ArrayList<>();
+    private List<VideoListItem> mFunnyList = new ArrayList<>();
+    private List<VideoListItem> mEntertainmentList = new ArrayList<>();
 
     private RecyclerAdapterWithHF mAdapter;
     private RecommondAdapter adapter;
 
+    private int position;
+    private int id;
+    private String backdata_Recommond = "1";
+    private String backdata_Funny = "1";
+    private String backdata_Entertainment = "1";
 
-    int position;
-    int id;
-    int backdata_Recoomond = 1;
-    int backdata_Funny = 1;
-    int backdata_Entertainment = 1;
+    private String RecommondLoadMore = "down";
+    private String FunnyLoadMore = "down";
+    private String EntertainmentLoadMore = "down";
 
-    String RecoomondLoadMore = "down";
-    String FunnyLoadMore = "down";
-    String EntertainmentLoadMore = "down";
+    Handler mHandler = new Handler();
 
     public static RecommondChildFragment newInstance(Bundle args) {
         RecommondChildFragment fragment = new RecommondChildFragment();
@@ -88,24 +93,30 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
             @Override
             public void onPullToRefresh() {
 
-                if (mList != null && mList.size() > 0) {
-                    mList.clear();
-                }
 
                 switch (position) {
                     case 0:
-                        RecoomondLoadMore = "down";
-                        getVideoList(id,RecoomondLoadMore);
+                        if (mRecommondList != null && mRecommondList.size() > 0) {
+                            mRecommondList.clear();
+                        }
+                        RecommondLoadMore = "down";
+                        getVideoList(id, backdata_Recommond, RecommondLoadMore);
 
                         break;
                     case 1:
+                        if (mFunnyList != null && mFunnyList.size() > 0) {
+                            mFunnyList.clear();
+                        }
                         FunnyLoadMore = "down";
-                        getVideoList(id,FunnyLoadMore);
+                        getVideoList(id, backdata_Funny, FunnyLoadMore);
 
                         break;
                     case 2:
+                        if (mEntertainmentList != null && mEntertainmentList.size() > 0) {
+                            mEntertainmentList.clear();
+                        }
                         EntertainmentLoadMore = "down";
-                        getVideoList(id,EntertainmentLoadMore);
+                        getVideoList(id, backdata_Entertainment, EntertainmentLoadMore);
 
                         break;
 
@@ -121,18 +132,18 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
 
                 switch (position) {
                     case 0:
-                        RecoomondLoadMore = "up";
-                        getVideoList(id,RecoomondLoadMore);
+                        RecommondLoadMore = "up";
+                        getVideoList(id, backdata_Recommond, RecommondLoadMore);
 
                         break;
                     case 1:
                         FunnyLoadMore = "up";
-                        getVideoList(id,FunnyLoadMore);
+                        getVideoList(id, backdata_Funny, FunnyLoadMore);
 
                         break;
                     case 2:
                         EntertainmentLoadMore = "up";
-                        getVideoList(id,EntertainmentLoadMore);
+                        getVideoList(id, backdata_Entertainment, EntertainmentLoadMore);
 
                         break;
 
@@ -166,20 +177,81 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
     }
 
 
-
-    private void getVideoList(int id,String backdata) {
-        MainModel.getInstance().executeVideoList(id + "", backdata + "", "down", new CygBaseObserver<VideoListData>() {
+    private void getVideoList(int id, String backdata, String loadMore) {
+        MainModel.getInstance().executeVideoList(id + "", backdata, loadMore, new CygBaseObserver<VideoListData>() {
             @Override
             protected void onBaseNext(VideoListData data) {
-                mList = data.getList();
+
+
+                switch (position) {
+                    case 0:
+                        backdata_Recommond = data.getBackdata();
+                        if ("up".equals(RecommondLoadMore)) {
+                            mRecommondList.addAll(data.getList());
+                            adapter.setDataList(mRecommondList, false);
+                            mAdapter.notifyDataSetChanged();
+                            ptrRecyclerViewUIComponent.loadMoreComplete(true);
+
+                        } else {
+                            mRecommondList = data.getList();
+                            adapter.setDataList(mRecommondList);
+                            mAdapter.notifyDataSetChanged();
+                            ptrRecyclerViewUIComponent.refreshComplete();
+                        }
+
+
+                        break;
+                    case 1:
+                        backdata_Funny = data.getBackdata();
+                        if ("up".equals(FunnyLoadMore)) {
+                            mFunnyList.addAll(data.getList());
+                            adapter.setDataList(mFunnyList, false);
+                            mAdapter.notifyDataSetChanged();
+                            ptrRecyclerViewUIComponent.loadMoreComplete(true);
+
+                        } else {
+                            mFunnyList = data.getList();
+                            adapter.setDataList(mFunnyList);
+                            mAdapter.notifyDataSetChanged();
+                            ptrRecyclerViewUIComponent.refreshComplete();
+                        }
+
+
+                        break;
+                    case 2:
+                        backdata_Entertainment = data.getBackdata();
+                        if ("up".equals(EntertainmentLoadMore)) {
+                            mEntertainmentList.addAll(data.getList());
+                            adapter.setDataList(mEntertainmentList, false);
+                            mAdapter.notifyDataSetChanged();
+                            ptrRecyclerViewUIComponent.loadMoreComplete(true);
+
+                        } else {
+                            mEntertainmentList = data.getList();
+                            adapter.setDataList(mEntertainmentList);
+                            mAdapter.notifyDataSetChanged();
+                            ptrRecyclerViewUIComponent.refreshComplete();
+                        }
+
+                        break;
+
+
+                }
+
 
             }
 
             @Override
             protected void onBaseError(Throwable t) {
                 super.onBaseError(t);
-                ptrRecyclerViewUIComponent.loadMoreComplete(true);
-                ptrRecyclerViewUIComponent.refreshComplete();
+
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ptrRecyclerViewUIComponent.loadMoreComplete(true);
+                        ptrRecyclerViewUIComponent.refreshComplete();
+                    }
+                });
 
             }
 
@@ -191,4 +263,30 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
     public void onItemClick(int position) {
 
     }
+
+
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        //如果进入详情播放则不暂停视频释放资源//为空内部已经处理
+//        VideoPlayerManager.getInstance().onPause(true);
+//
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        VideoPlayerManager.getInstance().onResume();
+//    }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        VideoPlayerManager.getInstance().onConfigurationChanged(newConfig);//横竖屏切换
+        super.onConfigurationChanged(newConfig);
+    }
+
+
+
+
 }

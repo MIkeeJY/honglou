@@ -29,6 +29,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import chuangyuan.ycj.videolibrary.video.VideoPlayerManager;
 import cn.share.jack.cyghttp.callback.CygBaseObserver;
 
 
@@ -78,7 +79,7 @@ public class RecommondVideoFragment extends BaseFragment {
 
 
     private void getChannelData() {
-        MainModel.getInstance().executeChannelList(new CygBaseObserver<ChannelListData>() {
+        MainModel.getInstance().executeChannelList(new CygBaseObserver<ChannelListData>(context, "加载中,请稍后....") {
             @Override
             protected void onBaseError(Throwable t) {
                 super.onBaseError(t);
@@ -98,6 +99,15 @@ public class RecommondVideoFragment extends BaseFragment {
                 mViewPager.setAdapter(new ItemPageAdapter(getChildFragmentManager()));
                 mViewPager.setOffscreenPageLimit(3);
                 mTabLayout.setViewPager(mViewPager); //初始化的绑定
+
+                mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+
+                    @Override
+                    public void onPageSelected(int position) {
+                        VideoPlayerManager.getInstance().onPause(true);
+                    }
+
+                });
 
             }
 
@@ -135,5 +145,11 @@ public class RecommondVideoFragment extends BaseFragment {
 
     }
 
-
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            VideoPlayerManager.getInstance().onPause(true);
+        }
+    }
 }

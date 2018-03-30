@@ -42,6 +42,8 @@ import com.lightsky.video.base.FollowingVideoFragment;
 
 import java.util.HashMap;
 
+import chuangyuan.ycj.videolibrary.video.VideoPlayerManager;
+
 /**
  * PS:activity_main.xml 跟360快视频SDK冲突 所以改名
  *
@@ -198,6 +200,32 @@ public class MainTabActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (VideoPlayerManager.getInstance().getVideoPlayer() != null) {
+            VideoPlayerManager.getInstance().getVideoPlayer().setStartOrPause(false);
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        VideoPlayerManager.getInstance().onResume();
+
+        if (VideoPlayerManager.getInstance().getVideoPlayer() != null) {
+            VideoPlayerManager.getInstance().getVideoPlayer().setStartOrPause(true);
+        }
+
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        VideoPlayerManager.getInstance().onDestroy();
+    }
 
     private long mExitTime;
 
@@ -208,13 +236,16 @@ public class MainTabActivity extends BaseActivity {
             return;
         }
 
-        if ((System.currentTimeMillis() - mExitTime) > 2000) {
-            Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-            mExitTime = System.currentTimeMillis();
-        } else {
-            finish();
-            android.os.Process.killProcess(android.os.Process.myPid());
+        if (VideoPlayerManager.getInstance().onBackPressed()) {
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                mExitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
         }
+
 
     }
 

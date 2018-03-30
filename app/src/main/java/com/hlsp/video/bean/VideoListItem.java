@@ -29,18 +29,18 @@ public class VideoListItem {
      */
 
     private String video_name;
-    private String video_duration;
+    private int video_duration;
     private String video_coverURL;
     private String video_definition;
     private String video_author_name;
     private String video_label_level1;
     private String video_extData;
-    private long video_pubtime;
+    private String video_pubtime;
     private String video_author_avatarURL;
     private String video_size;
     private String video_show_mode;
     private String video_author_id;
-    private String video_count_play;
+    private long video_count_play;
     private String video_source;
     private String video_id;
     private long video_count_digg;
@@ -52,11 +52,12 @@ public class VideoListItem {
     private long video_count_comment;
     private String video_desc;
 
+
     public String getVideo_name() {
         return video_name;
     }
 
-    public String getVideo_duration() {
+    public int getVideo_duration() {
         return video_duration;
     }
 
@@ -80,7 +81,7 @@ public class VideoListItem {
         return video_extData;
     }
 
-    public long getVideo_pubtime() {
+    public String getVideo_pubtime() {
         return video_pubtime;
     }
 
@@ -100,7 +101,7 @@ public class VideoListItem {
         return video_author_id;
     }
 
-    public String getVideo_count_play() {
+    public long getVideo_count_play() {
         return video_count_play;
     }
 

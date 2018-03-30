@@ -20,6 +20,7 @@ public abstract class BaseFragment<PRESENTER extends BasePresenter> extends Frag
 
     private static final String TAG = "BaseFragment";
 
+    public BaseActivity context;
 
     protected Unbinder mUnbinder;
 
@@ -29,6 +30,12 @@ public abstract class BaseFragment<PRESENTER extends BasePresenter> extends Frag
     }
 
     private View rootView;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        context = (BaseActivity) getActivity();
+    }
 
     @Nullable
     @Override
