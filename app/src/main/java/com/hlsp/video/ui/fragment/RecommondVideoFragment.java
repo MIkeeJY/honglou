@@ -1,6 +1,7 @@
 package com.hlsp.video.ui.fragment;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -154,5 +155,32 @@ public class RecommondVideoFragment extends BaseFragment {
                 VideoPlayerManager.getInstance().getVideoPlayer().setStartOrPause(false);
             }
         }
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        VideoPlayerManager.getInstance().onResume();
+
+        if (VideoPlayerManager.getInstance().getVideoPlayer() != null) {
+            VideoPlayerManager.getInstance().getVideoPlayer().setStartOrPause(true);
+        }
+
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        VideoPlayerManager.getInstance().onDestroy();
+    }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        VideoPlayerManager.getInstance().onConfigurationChanged(newConfig);//横竖屏切换
+        super.onConfigurationChanged(newConfig);
     }
 }
