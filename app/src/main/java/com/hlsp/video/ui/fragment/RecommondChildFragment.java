@@ -91,7 +91,6 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
             @Override
             public void onPullToRefresh() {
 
-
                 switch (position) {
                     case 0:
                         if (mRecommondList != null && mRecommondList.size() > 0) {
@@ -236,6 +235,12 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
 
                 }
 
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ptrRecyclerViewUIComponent.getRecyclerView().smoothScrollBy(0, 1);//偏移1像素解决前连个列表条目冲突
+                    }
+                });
 
             }
 
@@ -276,15 +281,13 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
 //        super.onResume();
 //        VideoPlayerManager.getInstance().onResume();
 //    }
-
+//
 //
 //    @Override
 //    public void onConfigurationChanged(Configuration newConfig) {
 //        VideoPlayerManager.getInstance().onConfigurationChanged(newConfig);//横竖屏切换
 //        super.onConfigurationChanged(newConfig);
 //    }
-
-
 
 
 }

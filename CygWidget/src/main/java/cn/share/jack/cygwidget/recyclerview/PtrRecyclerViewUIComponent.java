@@ -128,4 +128,8 @@ public class PtrRecyclerViewUIComponent extends PtrClassicFrameLayout {
             }
         }, delayMillis);
     }
+
+    public RecyclerViewWithEV getRecyclerView() {
+        return mRecyclerView;
+    }
 }
