@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.apkfuns.logutils.LogUtils;
+import com.baidu.mobstat.StatService;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseFragment;
 import com.hlsp.video.base.BaseLoadFragment;
@@ -105,6 +106,15 @@ public class RecommondVideoFragment extends BaseFragment {
                     @Override
                     public void onPageSelected(int position) {
                         VideoPlayerManager.getInstance().onPause(true);
+
+                        if (position == 0) {
+                            StatService.onEvent(getActivity(), "recommond", "推荐");
+                        } else if (position == 1) {
+                            StatService.onEvent(getActivity(), "social", "搞笑");
+                        } else {
+                            StatService.onEvent(getActivity(), "entertainment", "娱乐");
+                        }
+
                     }
 
                 });
