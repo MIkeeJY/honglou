@@ -55,9 +55,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-compat'
     }
-//    compile('com.shuyu:GSYVideoPlayer:4.1.0') {
-//        exclude group: 'com.android.support', module: 'support-annotations'
-//    }
 
     compile 'com.ycjiang:VideoPlayModule:2.1.41'
 

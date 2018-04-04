@@ -7,10 +7,13 @@ package com.hlsp.video.model;
 
 public class HttpBaseUrl {
 
-    public static final String BASE_TEXT_URL = "http://20.20.23.79:8088/"; //测试服
+    public static final String BASE_TEXT_URL = "http://20.20.23.79:8088/"; //本地测试服
+
+    //线下
+//    public volatile static String BASE_URL = "http://10.10.50.114:9527/"; //线下测试服
 
     //线上
-    public volatile static String BASE_URL = "http://10.10.50.114:9527/"; //正式服
+    public volatile static String BASE_URL = "http://47.106.59.227:8090/"; //正式服
 
 
     //    ========状态码相关====================

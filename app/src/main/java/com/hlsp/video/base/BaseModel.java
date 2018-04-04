@@ -111,7 +111,11 @@ public class BaseModel extends BaseRetrofit {
         commonMap.put("AndroidID", App.ANDROID_ID);
         commonMap.put("SerialNo", App.SERIAL_NO);
         commonMap.put("os", "android");
-        commonMap.put("ip", SpUtils.getString(ConstantsValue.REAL_IP).replace("\"", ""));
+        String ip = SpUtils.getString(ConstantsValue.REAL_IP);
+        if (ip.contains("\"")) {
+            ip.replace("\"", "");
+        }
+        commonMap.put("ip", ip);
 
         return commonMap;
     }

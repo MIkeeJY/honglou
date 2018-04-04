@@ -13,6 +13,7 @@ import com.hlsp.video.model.HttpBaseUrl;
 import com.hlsp.video.utils.CommonUtils;
 import com.hlsp.video.utils.SpUtils;
 import com.hlsp.video.utils.Utils;
+import com.hlsp.video.utils.hookpms.ServiceManagerWraper;
 import com.ss.android.common.applog.GlobalContext;
 import com.ss.android.common.applog.UserInfo;
 
@@ -35,7 +36,7 @@ public class App extends CygApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-//        ServiceManagerWraper.hookPMS(this.getApplicationContext());
+        ServiceManagerWraper.hookPMS(this.getApplicationContext());
 
         SpUtils.init(this);
         //缓存起来防止每次网络请求都去拿
@@ -87,8 +88,6 @@ public class App extends CygApplication {
 //            return;
 //        }
 //        LeakCanary.install(this);
-
-        //GSYVideoManager.instance().setVideoType(this, GSYVideoType.IJKEXOPLAYER2); //EXO 2 播放内核
 
     }
 

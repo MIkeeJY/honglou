@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.share.jack.cyghttp.app.HttpServletAddress;
 import okhttp3.Request;
 
 
@@ -72,7 +73,13 @@ public class SplashActivity extends Activity {
 
                 @Override
                 public void onResponse(String response) {
-                    SpUtils.put(ConstantsValue.REAL_IP, response.substring(response.indexOf(":") + 1, response.indexOf(",")).trim());
+                    try {
+                        String ip = response.substring(response.indexOf(":") + 1, response.indexOf(",")).trim();
+                        SpUtils.put(ConstantsValue.REAL_IP, ip);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        SpUtils.put(ConstantsValue.REAL_IP, "");
+                    }
 
                 }
             }, map, "");
@@ -158,6 +165,7 @@ public class SplashActivity extends Activity {
                         LogUtils.e(response);
                         if (!HttpBaseUrl.BASE_URL.equals(response.getBase_url())) {
                             HttpBaseUrl.BASE_URL = response.getBase_url();
+                            HttpServletAddress.getInstance().setOnlineAddress(HttpBaseUrl.BASE_URL);
                         }
 
                     }

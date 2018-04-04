@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.util.Log;
 
+import com.apkfuns.logutils.LogUtils;
 import com.ss.android.common.applog.UserInfo;
 
 import java.util.HashMap;
@@ -98,7 +99,9 @@ public class DouyinUtils {
         params.put("os_version", Utils.getOSRelease());
         params.put("resolution", Utils.getDeviceWidth(act)+"*"+Utils.getDeviceHeight(act));
         params.put("dpi", Utils.getDeviceDpi(act)+"");
-        params.put("device_id", "40545321430");
+//        params.put("device_id", "34971691517");
+        params.put("device_id", Utils.getDeviceIMEI(act));
+        LogUtils.e( Utils.getDeviceIMEI(act));
 //		params.put("ac", NetworkUtil.getNetworkType(GlobalContext.getContext()).toLowerCase());
         params.put("ac", "wifi");
         params.put("device_platform", "android");
