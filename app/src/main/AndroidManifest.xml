@@ -56,11 +56,6 @@
             android:configChanges="keyboard|orientation|screenSize|screenLayout|navigation"
             android:screenOrientation="portrait"/>
 
-        <activity
-            android:name=".ui.videoplayer.PlayEmptyControlActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"/>
-
 
         <activity
             android:name=".kuaishipin.DemoLuncherActivity"

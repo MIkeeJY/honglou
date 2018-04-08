@@ -57,8 +57,12 @@ public class App extends CygApplication {
         Fresco.initialize(this, config);
 
 
-//        HttpServletAddress.getInstance().setOfflineAddress(HttpBaseUrl.BASE_TEXT_URL);
-        HttpServletAddress.getInstance().setOnlineAddress(HttpBaseUrl.BASE_URL);
+        if (BuildConfig.DEBUG) {
+//            HttpServletAddress.getInstance().setOfflineAddress(HttpBaseUrl.BASE_TEXT_URL);
+            HttpServletAddress.getInstance().setOnlineAddress(HttpBaseUrl.BASE_URL);
+        } else {
+            HttpServletAddress.getInstance().setOnlineAddress(HttpBaseUrl.BASE_URL);
+        }
 
         LogUtils.getLogConfig()
                 .configAllowLog(BuildConfig.DEBUG)

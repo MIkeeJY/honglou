@@ -159,9 +159,9 @@ public class VerticalVideoActivity extends BaseActivity {
         exoPlayerManager.startPlayer();//开始播放
 
 
-        exoPlayerManager.setVideoInfoListener(new VideoInfoListener() {
+        exoPlayerManager.addVideoInfoListener(new VideoInfoListener() {
             @Override
-            public void onPlayStart() {
+            public void onPlayStart(long l) {
 
                 //开始播放
                 mCover.postDelayed(new Runnable() {

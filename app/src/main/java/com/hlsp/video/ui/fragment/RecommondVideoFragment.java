@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
+import com.dueeeke.videoplayer.player.VideoViewManager;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseFragment;
 import com.hlsp.video.base.BaseLoadFragment;
@@ -67,6 +68,7 @@ public class RecommondVideoFragment extends BaseFragment {
     @Override
     protected void onViewReallyCreated(View view) {
         mUnbinder = ButterKnife.bind(this, view);
+        mViewPager.setFocusable(false);
 
         getChannelData();
 
@@ -105,7 +107,7 @@ public class RecommondVideoFragment extends BaseFragment {
 
                     @Override
                     public void onPageSelected(int position) {
-                        VideoPlayerManager.getInstance().onPause(true);
+                        VideoViewManager.instance().releaseVideoPlayer();
 
                         if (position == 0) {
                             StatService.onEvent(getActivity(), "recommond", "推荐");

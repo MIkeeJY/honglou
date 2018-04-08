@@ -48,15 +48,18 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':sdk_core')
-    compile "com.android.support:design:$gradle.ext.supportLibraryVersion"
+    compile project(':library')
     compile project(':CygWidget')
+
+    compile "com.android.support:design:$gradle.ext.supportLibraryVersion"
+
     //ButterKnife
     compile('com.jakewharton:butterknife:8.7.0') {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-compat'
     }
 
-    compile 'com.ycjiang:VideoPlayModule:2.1.41'
+    compile 'com.ycjiang:VideoPlayModule:2.1.50'
 
     compile 'org.greenrobot:eventbus:3.1.1'
     compile 'com.android.support:multidex:1.0.1'

@@ -7,21 +7,10 @@
               android:layout_height="250dp"
               android:orientation="vertical">
 
-    <chuangyuan.ycj.videolibrary.widget.VideoPlayerView
-        android:id="@+id/exo_play_context_id"
+    <com.dueeeke.videoplayer.player.IjkVideoView
+        android:id="@+id/ijk_videoview"
         android:layout_width="match_parent"
-        android:layout_height="202dp"
-        app:controller_layout_id="@layout/simple_exo_playback_list_view"
-        app:hide_on_touch="false"
-        app:player_fullscreen_image_selector="@drawable/ic_fullscreen_selector"
-        app:player_is_hide_preview="false"
-        app:player_layout_id="@layout/simple_exo_view"
-        app:player_list="true"
-        app:player_preview_layout_id="@layout/simple_exo_preview_view"
-        app:resize_mode="fit"
-        app:show_timeout="3000"
-        app:surface_type="texture_view"
-        />
+        android:layout_height="202dp" />
 
 
     <RelativeLayout

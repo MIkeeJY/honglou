@@ -30,7 +30,7 @@ public class StartLogClickUtil {
     public static final String TAG = "StartLogClickUtil";
 
     //页面编码
-    public static final String SYSTEM_PAGE = "SYSTEM";//APP通用
+    public static final String PAGE_PORTRAIT_LIST = "page_portrait_list";//小视频
     public static final String MAIN_PAGE = "MAIN";//主页
     public static final String SEARCH_PAGE = "SEARCH";//搜索页
     public static final String SEARCHRESULT_PAGE = "SEARCHRESULT";//搜索结果页
@@ -69,7 +69,7 @@ public class StartLogClickUtil {
 
 
     //主页
-    public static final String BOOKSHELF = "BOOKSHELF";
+    public static final String SEARCH_PORTAIT_LIST = "search_portait_list"; //搜索-竖屏视频
     public static final String RECOMMEND = "RECOMMEND";
     public static final String TOP = "TOP";
     public static final String CLASS = "CLASS";
@@ -78,163 +78,11 @@ public class StartLogClickUtil {
     public static final String BOOKLIST = "BOOKLIST";
 
 
-    //书架页
-    public static final String MORE = "MORE";//点击书架上方更多
-    public static final String CACHEMANAGE = "CACHEMANAGE";//点击书架上方更多内缓存管理
-    public static final String CACHEEDIT = "CACHEEDIT";//点击缓存管理内缓存编辑(UI优化免费全本小说书城没有此选项)
-    public static final String BOOKSORT = "BOOKSORT";//点击书架上方更多内书籍排序
-    public static final String BOOKCLICK = "BOOKCLICK";//书籍点击
-    public static final String TOBOOKCITY = "TOBOOKCITY";//空白页点击跳转书城
-    public static final String LONGTIMEBOOKSHELFEDIT = "LONGTIMEBOOKSHELFEDIT";//长按编辑书架
-    public static final String VERSIONUPDATE2 = "VERSIONUPDATE";//点击更新
-
-    //书架编辑页
-    public static final String SELECTALL1 = "SELECTALL";//全选
-    public static final String DELETE1 = "DELETE";//删除
-    public static final String CANCLE1 = "CANCLE";//右上角取消
 
 
-    //缓存管理页
-    public static final String BOOKCLICK1 = "BOOKCLICK";//书籍点击
-    public static final String CACHEBUTTON = "CACHEBUTTON";//缓存按钮点击
-    public static final String CACHEEDIT1 = "CACHEEDIT";//右上角编辑按钮点击
 
-    //缓存编辑页
-    public static final String SELECTALL = "SELECTALL";//全选
-    public static final String DELETE = "DELETE";//删除
-    public static final String CANCLE = "CANCLE";//右上角取消
-    public static final String SORT = "SORT";//右上角取消
-
-    //搜索页
-    public static final String BAR = "BAR";//点击搜索框
-    public static final String BARCLEAR = "BARCLEAR";//搜索词清空
-    public static final String TOPIC = "TOPIC";//大家都在搜-点击搜索热词
-    public static final String TOPICCHANGE = "TOPICCHANGE";//大家都在搜-换一换
-    public static final String HISTORY = "HISTORY";//搜索历史-点击某一条搜索历史
-    public static final String HISTORYCLEAR = "HISTORYCLEAR";//搜索历史-历史记录清空
-    public static final String TIPLISTCLICK = "TIPLISTCLICK";//自动补全结果点击
-    public static final String SEARCHBUTTON = "SEARCHBUTTON";//自动补全点击“搜索”按钮
-    public static final String SHELFADD = "SHELFADD";//点击加入书架
-    public static final String CLEAR = "CLEAR";//点击清空，重回搜索页
-    public static final String HOTREADCLICK = "HOTREADCLICK";//热门阅读-书籍点击
-    public static final String HOTREADCHANGE = "HOTREADCHANGE";//点击换一换
-
-
-    public static final String BARLIST = "BARLIST"; //搜索框下拉历史词点击
-
-    //书籍详情页
-    public static final String SOURCECHANGE = "SOURCECHANGE";//点击切源弹出
-    public static final String LATESTCHAPTER = "LATESTCHAPTER";//点击最新章节（目录）
-    public static final String CATALOG = "CATALOG";//点击查看目录
-    public static final String CASHEALL = "CASHEALL";//点击全本缓存
-    public static final String SHELFEDIT = "SHELFEDIT";//点击加入书架
-    public static final String TRANSCODEREAD = "TRANSCODEREAD";//点击转码阅读
-    public static final String ENTER = "ENTER";//进入书籍详情页
-    public static final String SOURCECHANGEPOPUP = "SOURCECHANGEPOPUP";//换源弹窗
-    public static final String INTRODUCTION = "INTRODUCTION";//简介点击展开/收起
-    public static final String RECOMMENDEDBOOK = "RECOMMENDEDBOOK";//点击推荐的书籍
-    public static final String TRANSCODEPOPUP = "TRANSCODEPOPUP";//点击转码阅读
-
-
-    //书籍目录页
-    public static final String CATALOG_CASHEALL = "CASHEALL";//点击全本缓存
-    public static final String CATALOG_CATALOGCHAPTER = "CATALOGCHAPTER";//目录中点击某章节
-    public static final String CATALOG_SHELFEDIT = "SHELFEDIT";//点击加入书架
-    public static final String CATALOG_TRANSCODEREAD = "TRANSCODEREAD";//点击转码阅读
-    public static final String CATALOG_TRANSCODEPOPUP = "TRANSCODEPOPUP";//转码弹窗
-
-
-    //更多设置
-    public static final String PUSHSET = "PUSHSET";//	消息推送开启与关闭
-    public static final String PUSHAUDIO = "PUSHAUDIO";//推送声音
-
-    //个人中心
-    public static final String LOGIN = "LOGIN";//	点击登录
-    public static final String NIGHTMODE = "NIGHTMODE";//点击夜间模式
-    public static final String PERSON_HISTORY = "HISTORY";//	点击浏览足迹
-    public static final String HISTORYLOGIN = "HISTORYLOGIN";//点击浏览足迹内的登录
-    public static final String MORESET = "MORESET";//点击更多设置
-    public static final String HELP = "HELP";//点击帮助与反馈
-    public static final String COMMENT = "COMMENT";//点击去评分
     public static final String VERSION = "VERSION";//点击当前版本
-    public static final String VERSIONUPDATE = "VERSIONUPDATE";//点击版本更新
-    public static final String CACHECLEAR = "CACHECLEAR";//点击清除缓存
-    public static final String PROCTCOL = "PROCTCOL";//点击使用协议
-    public static final String LOGOUT = "LOGOUT";//点击退出登录
-    public static final String WIFI_AUTOCACHE = "WIFI_AUTOCACHE";//点击退出登录
 
-    //阅读页
-    public static final String LABELEDIT = "LABELEDIT";//添加书签
-    public static final String ORIGINALLINK = "ORIGINALLINK";//点击源网页链接
-    public static final String CACHE = "CACHE";//点击阅读页内缓存
-    public static final String MORE1 = "MORE";//点击阅读页内更多
-    public static final String CATALOG1 = "CATALOG";//点击阅读页内目录
-    public static final String BOOKMARK = "BOOKMARK";//点击阅读页目录内书签
-    public static final String NIGHTMODE1 = "NIGHTMODE";//点击阅读页内日/夜间模式
-    public static final String CHAPTERTURN = "CHAPTERTURN";//点击阅读页内上/下章切换
-    public static final String REPAIRDEDIALOGUE = "REPAIRDEDIALOGUE";//弹出修复提示弹窗
-    public static final String DIRECTORYREPAIR = "DIRECTORYREPAIR";//点击阅读页目录内修复书籍
-    public static final String POPUPSHELFADD = "POPUPSHELFADD";//阅读页加入书架弹窗加入
-    public static final String POPUPSHELFADDCANCLE = "POPUPSHELFADDCANCLE";//阅读页加入书架弹窗取消
-    public static final String SET = "SET";//点击阅读页内设置
-
-
-    //'阅读页设置
-    public static final String LIGHTEDIT = "LIGHTEDIT";//点击亮度调整
-    public static final String SYSFOLLOW = "SYSFOLLOW";//点击跟随系统
-    public static final String WORDSIZE = "WORDSIZE";//点击字号增/减
-    public static final String BACKGROUNDCOLOR = "BACKGROUNDCOLOR";//点击阅读背景色
-    public static final String READGAP = "READGAP";//点击阅读间距
-    public static final String PAGETURN = "PAGETURN";//点击翻页模式
-    public static final String HPMODEL = "HPMODEL";//点击横/竖屏模式
-    public static final String AUTOREAD = "AUTOREAD";//点击自动阅读
-    public static final String FULLSCREENPAGEREAD = "FULLSCREENPAGEREAD";//点击全屏翻页阅读
-
-    //阅读页更多
-    public static final String READ_SOURCECHANGE = "SOURCECHANGE";//换源
-    public static final String READ_SOURCECHANGECONFIRM = "SOURCECHANGECONFIRM";//确认换源
-    public static final String BOOKMARKEDIT = "BOOKMARKEDIT";//添加书签
-    public static final String BOOKDETAIL = "BOOKDETAIL";//书籍详情
-
-
-    //搜索结果页
-    public static final String SEARCHRESULT = "SEARCHRESULT";//某本书点击
-
-    //Crash
-    public static final String CRASH = "CRASH";
-
-    //青果推荐页
-    public static final String QG_TJY_MODULEEXPOSE = "MODULEEXPOSE";//模块露出
-    public static final String QG_TJY_BOOKEXPOSE = "BOOKEXPOSE";//各书籍位置露出
-    public static final String QG_TJY_SEARCH = "SEARCH";//点击搜索
-    public static final String QG_TJY_BOOKCLICK = "BOOKCLICK";//点击搜索
-    public static final String QG_TJY_MORE = "MORE";//点击搜索
-
-    //青果榜单页
-    public static final String QG_BDY_MODULEEXPOSE = "MODULEEXPOSE";//模块露出
-    public static final String QG_BDY_BOOKEXPOSE = "BOOKEXPOSE";//各书籍位置露出
-    public static final String QG_BDY_SEARCH = "SEARCH";//点击搜索
-    public static final String QG_BDY_BOOKCLICK = "BOOKCLICK";//点击搜索
-    public static final String QG_BDY_MORE = "MORE";//点击搜索
-
-
-    //青果分类页
-    public static final String QG_FL_FIRSTCLASS = "FIRSTCLASS";//点击一级分类
-    public static final String QG_FL_BOOKCLICK = "BOOKCLICK";//书籍点击
-    public static final String QG_FL_SEARCH = "SEARCH";//点击搜索
-
-    //一级分类页面
-    public static final String FIRST_SEARCH = "SEARCH";//点击搜索
-
-    //下载解包
-    public static final String DOWNLOADPACKE = "DOWNLOADPACKE";
-    public static final String RESOLVEPACKE = "RESOLVEPACKE";
-
-
-    public static final String READFINISH = "READFINISH";//阅读完结页
-    public static final String REPLACE = "REPLACE";   //完结页点击换一换
-    public static final String TOSHELF = "TOSHELF";   //完结页点击去书架
-    public static final String TOBOOKSTORE = "TOBOOKSTORE";   //完结页点击去书城
 
 
     private static final ExecutorService logThreadPool = Executors.newSingleThreadExecutor();
@@ -243,7 +91,7 @@ public class StartLogClickUtil {
     private static List<ServerLog> linkList = new LinkedList<ServerLog>();
 
     //上传普通的点击事件
-    public static void upLoadEventLog(Context context, String pageCode, String identify) {
+    public static void upLoadEventLog(String pageCode, String identify) {
 
         final ServerLog log = getCommonLog();
 

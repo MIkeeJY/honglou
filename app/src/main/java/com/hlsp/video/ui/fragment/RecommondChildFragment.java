@@ -3,8 +3,11 @@ package com.hlsp.video.ui.fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.dueeeke.videoplayer.player.IjkVideoView;
+import com.dueeeke.videoplayer.player.VideoViewManager;
 import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseLoadFragment;
@@ -85,6 +88,22 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
         initHeader();
 //        ptrRecyclerViewUIComponent.delayRefresh(100);
         ptrRecyclerViewUIComponent.setLoadMoreEnable(true);
+
+        ptrRecyclerViewUIComponent.getRecyclerView().addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(View view) {
+
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(View view) {
+                IjkVideoView ijkVideoView = view.findViewById(R.id.ijk_videoview);
+                if (ijkVideoView != null && !ijkVideoView.isFullScreen()) {
+                    int tag = (int) ijkVideoView.getTag();
+                    ijkVideoView.stopPlayback();
+                }
+            }
+        });
 
 
         ptrRecyclerViewUIComponent.setOnPullToRefreshListener(new OnPullToRefreshListener() {
@@ -268,19 +287,22 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
     }
 
 
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        //如果进入详情播放则不暂停视频释放资源//为空内部已经处理
-//        VideoPlayerManager.getInstance().onPause(true);
-//
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        VideoPlayerManager.getInstance().onResume();
-//    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        //如果进入详情播放则不暂停视频释放资源//为空内部已经处理
+        VideoViewManager.instance().getCurrentVideoPlayer().pause();
+
+    }
+
+    //
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (VideoViewManager.instance().getCurrentVideoPlayer() != null) {
+            VideoViewManager.instance().getCurrentVideoPlayer().resume();
+        }
+    }
 //
 //
 //    @Override
