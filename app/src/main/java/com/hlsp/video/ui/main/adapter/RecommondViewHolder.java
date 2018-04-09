@@ -12,6 +12,7 @@ import com.hlsp.video.R;
 import com.hlsp.video.bean.VideoListItem;
 import com.hlsp.video.bean.data.VideoUrlData;
 import com.hlsp.video.model.main.MainModel;
+import com.hlsp.video.utils.CommonUtils;
 import com.hlsp.video.utils.GlideUtils;
 import com.hlsp.video.utils.Utils;
 import com.hlsp.video.view.CircleImageView;
@@ -23,7 +24,7 @@ import cn.share.jack.cygwidget.recyclerview.adapter.CygBaseRecyclerViewHolder;
 
 
 /**
- * Created by jack on 2017/6/14
+ * Created by hackest on 2018-04-09
  */
 
 public class RecommondViewHolder extends CygBaseRecyclerViewHolder<VideoListItem> {
@@ -45,7 +46,6 @@ public class RecommondViewHolder extends CygBaseRecyclerViewHolder<VideoListItem
         controller = new StandardVideoController(view.getContext());
         ijkVideoView.setVideoController(controller);
         mPlayerConfig = new PlayerConfig.Builder()
-                .enableCache()
                 .addToPlayerManager()
                 .build();
     }
@@ -56,6 +56,10 @@ public class RecommondViewHolder extends CygBaseRecyclerViewHolder<VideoListItem
             GlideUtils.loadImage(App.getInstance(), data.getVideo_author_avatarURL(), mIvUserAvatar, null, R.color.black, R.color.black);
 
             GlideUtils.loadImage(App.getInstance(), data.getVideo_coverURL(), controller.getThumb(), null, R.color.white, R.color.white);
+
+            controller.getIjkTitle().setText(data.getVideo_name());
+            controller.getIjkControlSize().setText(CommonUtils.getTime(data.getVideo_duration()));
+
 
             ijkVideoView.setPlayerConfig(mPlayerConfig);
 
@@ -77,70 +81,6 @@ public class RecommondViewHolder extends CygBaseRecyclerViewHolder<VideoListItem
 
             mTvUsername.setText(data.getVideo_author_name());
             mTvPlayCount.setText(Utils.formatNumber(data.getVideo_count_play()) + "次观看");
-
-
-//
-//            //设置列表item播放当前进度一定设置.不然不会保存进度
-//            manualPlayer.setTag(getAdapterPosition());
-//
-//            mExoControlsSize.setText(CommonUtils.getTime(data.getVideo_duration()));
-//
-//            Uri uri = Uri.parse(data.getVideo_coverURL());
-//
-//            DraweeController controller = Fresco.newDraweeControllerBuilder()
-//                    .setUri(uri)
-//                    .setOldController(mExoPreviewImage.getController())
-//                    .build();
-//
-//            mExoPreviewImage.setController(controller);
-//
-//            mExoControlsTitle2.setText(data.getVideo_name());
-//
-//
-//            manualPlayer.setOnPlayClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                    if ("dingyue".equals(data.getVideo_source())) {
-//                        manualPlayer.setPlayUri(data.getVideo_playURL());
-//                        manualPlayer.startPlayer();
-//                        return;
-//                    }
-//
-//                    MainModel.getInstance().executeVideoUrl(data.getVideo_id(), data.getVideo_extData(), new CygBaseObserver<VideoUrlData>() {
-//                        @Override
-//                        protected void onBaseNext(VideoUrlData data) {
-//                            manualPlayer.setPlayUri(data.getVideo_url());
-//                            manualPlayer.startPlayer();
-//                        }
-//                    });
-//                }
-//            });
-//
-//
-//            videoPlayer.getPreviewImage().setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                    if ("dingyue".equals(data.getVideo_source())) {
-//                        manualPlayer.setPlayUri(data.getVideo_playURL());
-//                        manualPlayer.startPlayer();
-//                        return;
-//                    }
-//
-//                    videoPlayer.getPreviewImage().setEnabled(false);
-//
-//                    MainModel.getInstance().executeVideoUrl(data.getVideo_id(), data.getVideo_extData(), new CygBaseObserver<VideoUrlData>() {
-//                        @Override
-//                        protected void onBaseNext(VideoUrlData data) {
-//                            manualPlayer.setPlayUri(data.getVideo_url());
-//                            manualPlayer.startPlayer();
-//                            videoPlayer.getPreviewImage().setEnabled(true);
-//                        }
-//                    });
-//
-//                }
-//            });
 
 
         }

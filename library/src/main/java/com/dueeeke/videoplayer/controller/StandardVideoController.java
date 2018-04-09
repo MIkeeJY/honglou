@@ -34,7 +34,7 @@ import com.dueeeke.videoplayer.widget.MarqueeTextView;
  */
 
 public class StandardVideoController extends GestureVideoController implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
-    protected TextView totalTime, currTime;
+    protected TextView totalTime, currTime, ijkTitle, ijkControlSize;
     protected ImageView fullScreenButton;
     protected LinearLayout bottomContainer, topContainer;
     protected SeekBar videoProgress;
@@ -81,6 +81,8 @@ public class StandardVideoController extends GestureVideoController implements V
 //        moreMenu = controllerView.findViewById(R.id.more_menu);
 //        moreMenu.setOnClickListener(this);
         fullScreenButton = controllerView.findViewById(R.id.fullscreen);
+        ijkTitle = controllerView.findViewById(R.id.ijk_controls_title);
+        ijkControlSize = controllerView.findViewById(R.id.ijk_controls_size);
         fullScreenButton.setOnClickListener(this);
         bottomContainer = controllerView.findViewById(R.id.bottom_container);
         topContainer = controllerView.findViewById(R.id.top_container);
@@ -188,6 +190,8 @@ public class StandardVideoController extends GestureVideoController implements V
                 bottomProgress.setVisibility(GONE);
                 loadingProgress.setVisibility(GONE);
                 startPlayButton.setVisibility(VISIBLE);
+                ijkTitle.setVisibility(VISIBLE);
+                ijkControlSize.setVisibility(VISIBLE);
                 thumb.setVisibility(VISIBLE);
                 break;
             case IjkVideoView.STATE_PLAYING:
@@ -197,16 +201,22 @@ public class StandardVideoController extends GestureVideoController implements V
                 completeContainer.setVisibility(GONE);
                 thumb.setVisibility(GONE);
                 startPlayButton.setVisibility(GONE);
+                ijkTitle.setVisibility(GONE);
+                ijkControlSize.setVisibility(GONE);
                 break;
             case IjkVideoView.STATE_PAUSED:
                 L.e("STATE_PAUSED");
                 playButton.setSelected(false);
                 startPlayButton.setVisibility(GONE);
+                ijkTitle.setVisibility(GONE);
+                ijkControlSize.setVisibility(GONE);
                 break;
             case IjkVideoView.STATE_PREPARING:
                 L.e("STATE_PREPARING");
                 completeContainer.setVisibility(GONE);
                 startPlayButton.setVisibility(GONE);
+                ijkTitle.setVisibility(GONE);
+                ijkControlSize.setVisibility(GONE);
                 loadingProgress.setVisibility(VISIBLE);
                 break;
             case IjkVideoView.STATE_PREPARED:
@@ -214,25 +224,35 @@ public class StandardVideoController extends GestureVideoController implements V
                 if (!isLive) bottomProgress.setVisibility(VISIBLE);
                 loadingProgress.setVisibility(GONE);
                 startPlayButton.setVisibility(GONE);
+                ijkTitle.setVisibility(GONE);
+                ijkControlSize.setVisibility(GONE);
                 break;
             case IjkVideoView.STATE_ERROR:
                 L.e("STATE_ERROR");
                 startPlayButton.setVisibility(GONE);
+                ijkTitle.setVisibility(GONE);
+                ijkControlSize.setVisibility(GONE);
                 break;
             case IjkVideoView.STATE_BUFFERING:
                 L.e("STATE_BUFFERING");
                 startPlayButton.setVisibility(GONE);
+                ijkTitle.setVisibility(GONE);
+                ijkControlSize.setVisibility(GONE);
                 loadingProgress.setVisibility(VISIBLE);
                 break;
             case IjkVideoView.STATE_BUFFERED:
                 loadingProgress.setVisibility(GONE);
                 startPlayButton.setVisibility(GONE);
+                ijkTitle.setVisibility(GONE);
+                ijkControlSize.setVisibility(GONE);
                 L.e("STATE_BUFFERED");
                 break;
             case IjkVideoView.STATE_PLAYBACK_COMPLETED:
                 L.e("STATE_PLAYBACK_COMPLETED");
                 hide();
                 startPlayButton.setVisibility(GONE);
+                ijkTitle.setVisibility(GONE);
+                ijkControlSize.setVisibility(GONE);
                 thumb.setVisibility(VISIBLE);
                 completeContainer.setVisibility(VISIBLE);
                 bottomProgress.setProgress(0);
@@ -416,6 +436,14 @@ public class StandardVideoController extends GestureVideoController implements V
 
     public ImageView getThumb() {
         return thumb;
+    }
+
+    public TextView getIjkTitle() {
+        return ijkTitle;
+    }
+
+    public TextView getIjkControlSize() {
+        return ijkControlSize;
     }
 
     @Override

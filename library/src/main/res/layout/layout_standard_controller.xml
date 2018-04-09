@@ -163,7 +163,6 @@
             android:layout_width="@dimen/player_play_btn_size"
             android:layout_height="@dimen/player_play_btn_size"
             android:layout_gravity="center"
-            android:background="@drawable/shape_play_bg"
             android:padding="@dimen/controller_icon_padding"
             android:src="@drawable/ic_action_replay"/>
 
@@ -201,5 +200,34 @@
         android:indeterminateDrawable="@drawable/progress_loading"
         android:visibility="gone"
         tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/ijk_controls_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@null"
+        android:gravity="left"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        tools:text="长相不油腻,清新可爱还有点小害羞,这样的小哥哥是不是想抱回家呢?"/>
+
+
+    <TextView
+        android:id="@+id/ijk_controls_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="10dp"
+        android:background="@drawable/simple_size_shape"
+        android:gravity="center"
+        android:paddingBottom="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="4dp"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        tools:text="12:12"/>
+
 
 </FrameLayout>

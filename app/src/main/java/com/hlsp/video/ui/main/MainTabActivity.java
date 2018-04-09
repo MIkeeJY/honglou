@@ -20,7 +20,6 @@
 package com.hlsp.video.ui.main;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -31,6 +30,7 @@ import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.baidu.mobstat.StatService;
+import com.dueeeke.videoplayer.player.VideoViewManager;
 import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseActivity;
@@ -42,8 +42,6 @@ import com.lightsky.video.VideoHelper;
 import com.lightsky.video.base.FollowingVideoFragment;
 
 import java.util.HashMap;
-
-import chuangyuan.ycj.videolibrary.video.VideoPlayerManager;
 
 /**
  * PS:activity_main.xml 跟360快视频SDK冲突 所以改名
@@ -201,11 +199,12 @@ public class MainTabActivity extends BaseActivity {
         }
     }
 
+
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
-        if (VideoPlayerManager.getInstance().getVideoPlayer() != null) {
-            VideoPlayerManager.getInstance().getVideoPlayer().setStartOrPause(false);
+        if (VideoViewManager.instance().getCurrentVideoPlayer() != null) {
+            VideoViewManager.instance().getCurrentVideoPlayer().pause();
         }
 
     }
@@ -217,27 +216,18 @@ public class MainTabActivity extends BaseActivity {
             return;
         }
 
-        VideoPlayerManager.getInstance().onResume();
-
-        if (VideoPlayerManager.getInstance().getVideoPlayer() != null) {
-            VideoPlayerManager.getInstance().getVideoPlayer().setStartOrPause(true);
+        if (VideoViewManager.instance().getCurrentVideoPlayer() != null) {
+            VideoViewManager.instance().getCurrentVideoPlayer().resume();
         }
-
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        VideoPlayerManager.getInstance().onDestroy();
+        VideoViewManager.instance().releaseVideoPlayer();
     }
 
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        VideoPlayerManager.getInstance().onConfigurationChanged(newConfig);//横竖屏切换
-        super.onConfigurationChanged(newConfig);
-    }
 
     private long mExitTime;
 
@@ -248,7 +238,7 @@ public class MainTabActivity extends BaseActivity {
             return;
         }
 
-        if (VideoPlayerManager.getInstance().onBackPressed()) {
+        if (VideoViewManager.instance().onBackPressed()) {
             if ((System.currentTimeMillis() - mExitTime) > 2000) {
                 Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
                 mExitTime = System.currentTimeMillis();

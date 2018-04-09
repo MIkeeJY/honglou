@@ -7,10 +7,11 @@
               android:layout_height="250dp"
               android:orientation="vertical">
 
+
     <com.dueeeke.videoplayer.player.IjkVideoView
         android:id="@+id/ijk_videoview"
         android:layout_width="match_parent"
-        android:layout_height="202dp" />
+        android:layout_height="202dp"/>
 
 
     <RelativeLayout

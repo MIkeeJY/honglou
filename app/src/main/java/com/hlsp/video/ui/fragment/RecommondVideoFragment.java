@@ -31,7 +31,6 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import chuangyuan.ycj.videolibrary.video.VideoPlayerManager;
 import cn.share.jack.cyghttp.callback.CygBaseObserver;
 
 
@@ -161,10 +160,7 @@ public class RecommondVideoFragment extends BaseFragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {
-//            VideoPlayerManager.getInstance().onPause(true);
-            if (VideoPlayerManager.getInstance().getVideoPlayer() != null) {
-                VideoPlayerManager.getInstance().getVideoPlayer().setStartOrPause(false);
-            }
+            VideoViewManager.instance().releaseVideoPlayer();
         }
     }
 

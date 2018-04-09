@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.dueeeke.videoplayer.player.IjkVideoView;
-import com.dueeeke.videoplayer.player.VideoViewManager;
 import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseLoadFragment;
@@ -86,7 +85,7 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
         ptrRecyclerViewUIComponent.setLayoutManager(new LinearLayoutManager(getActivity()));
         ptrRecyclerViewUIComponent.setAdapter(mAdapter);
         initHeader();
-//        ptrRecyclerViewUIComponent.delayRefresh(100);
+
         ptrRecyclerViewUIComponent.setLoadMoreEnable(true);
 
         ptrRecyclerViewUIComponent.getRecyclerView().addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
@@ -183,6 +182,8 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
         ptrRecyclerViewUIComponent.setDurationToCloseHeader(300);
         ptrRecyclerViewUIComponent.setHeaderView(header);
         ptrRecyclerViewUIComponent.addPtrUIHandler(header);
+
+        ptrRecyclerViewUIComponent.setResistance(2f);
 
     }
 
@@ -287,29 +288,6 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
     }
 
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        //如果进入详情播放则不暂停视频释放资源//为空内部已经处理
-        VideoViewManager.instance().getCurrentVideoPlayer().pause();
-
-    }
-
-    //
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (VideoViewManager.instance().getCurrentVideoPlayer() != null) {
-            VideoViewManager.instance().getCurrentVideoPlayer().resume();
-        }
-    }
-//
-//
-//    @Override
-//    public void onConfigurationChanged(Configuration newConfig) {
-//        VideoPlayerManager.getInstance().onConfigurationChanged(newConfig);//横竖屏切换
-//        super.onConfigurationChanged(newConfig);
-//    }
 
 
 }

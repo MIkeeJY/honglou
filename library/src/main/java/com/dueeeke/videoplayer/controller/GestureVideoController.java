@@ -121,7 +121,8 @@ public abstract class GestureVideoController extends BaseVideoController {
 
         @Override
         public boolean onDoubleTap(MotionEvent e) {
-            if (!isLocked) doPauseResume();
+            //双击暂停
+//            if (!isLocked) doPauseResume();
             return true;
         }
     }
