@@ -20,6 +20,7 @@
 package com.hlsp.video.ui.main;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -29,14 +30,18 @@ import android.view.View;
 import android.widget.TabHost;
 import android.widget.Toast;
 
+import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
 import com.dueeeke.videoplayer.player.VideoViewManager;
 import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseActivity;
 import com.hlsp.video.ui.fragment.MainPageDouYinFragment;
+import com.hlsp.video.ui.fragment.MineFragment;
 import com.hlsp.video.ui.fragment.RecommondVideoFragment;
+import com.hlsp.video.utils.StatusBarCompat;
 import com.hlsp.video.utils.WindowUtil;
+import com.hlsp.video.utils.statusbar.StatusBarFontHelper;
 import com.hlsp.video.utils.update.SoftCheckUpdateUtil;
 import com.lightsky.video.VideoHelper;
 import com.lightsky.video.base.FollowingVideoFragment;
@@ -78,8 +83,7 @@ public class MainTabActivity extends BaseActivity {
         mTabManager.addTab(mTabHost.newTabSpec(TAB1).setIndicator(createTabIndicatorView(R.layout.tab_main)), MainPageDouYinFragment.class, null);
         mTabManager.addTab(mTabHost.newTabSpec(TAB2).setIndicator(createTabIndicatorView(R.layout.tab_following)), RecommondVideoFragment.class, null);
         mTabManager.addTab(mTabHost.newTabSpec(TAB3).setIndicator(createTabIndicatorView(R.layout.tab_video)), FollowingVideoFragment.class, null);
-//        mTabManager.addTab(mTabHost.newTabSpec(TAB2).setIndicator(createTabIndicatorView(R.layout.tab_following)), FollowingVideoFragment.class, null);
-//        mTabManager.addTab(mTabHost.newTabSpec(TAB3).setIndicator(createTabIndicatorView(R.layout.tab_mine)), MineFragment.class, null);
+        mTabManager.addTab(mTabHost.newTabSpec(TAB4).setIndicator(createTabIndicatorView(R.layout.tab_mine)), MineFragment.class, null);
 
         SoftCheckUpdateUtil checkUpdateUtil = new SoftCheckUpdateUtil();
         checkUpdateUtil.checkSoftUpdate(MainTabActivity.this, false, WindowUtil.getScreenWidth(App.getInstance()));
@@ -238,7 +242,7 @@ public class MainTabActivity extends BaseActivity {
             return;
         }
 
-        if (VideoViewManager.instance().onBackPressed()) {
+        if (!VideoViewManager.instance().onBackPressed()) {
             if ((System.currentTimeMillis() - mExitTime) > 2000) {
                 Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
                 mExitTime = System.currentTimeMillis();
@@ -254,4 +258,17 @@ public class MainTabActivity extends BaseActivity {
     public TabHost getTabHost() {
         return mTabHost;
     }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            LogUtils.e("横屏");
+        } else {
+            StatusBarCompat.setStatusBarColor(this, 0xfffffff);
+            StatusBarFontHelper.setStatusBarMode(this, true);
+        }
+        super.onConfigurationChanged(newConfig);
+    }
+
 }
