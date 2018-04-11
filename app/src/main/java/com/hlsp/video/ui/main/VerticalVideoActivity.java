@@ -140,8 +140,8 @@ public class VerticalVideoActivity extends BaseActivity {
             mFragmentManager.beginTransaction().add(mFragmentContainer.getId(), mItemFragment).commitAllowingStateLoss();
             mInit = true;
         }
-        mItemFragment.setmData(data);
-        mItemFragment.initdata();
+//        mItemFragment.setmData(data);
+//        mItemFragment.initdata();
 
 
         isSelected = false;

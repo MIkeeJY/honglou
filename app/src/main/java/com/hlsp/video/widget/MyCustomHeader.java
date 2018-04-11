@@ -105,6 +105,8 @@ public class MyCustomHeader extends FrameLayout implements PtrUIHandler {
      */
     @Override
     public void onUIRefreshBegin(PtrFrameLayout frame) {
+        mPtrFrameLayout.setEnabled(false);
+
         iv_refresh.setVisibility(GONE);
         tv_pull_title.setVisibility(GONE);
         progressbar_pull.setVisibility(VISIBLE);
@@ -122,6 +124,8 @@ public class MyCustomHeader extends FrameLayout implements PtrUIHandler {
         iv_refresh.setVisibility(GONE);
         progressbar_pull.setVisibility(GONE);
         tv_pull_title.setVisibility(VISIBLE);
+
+        mPtrFrameLayout.setEnabled(true);
 
     }
 
@@ -144,14 +148,12 @@ public class MyCustomHeader extends FrameLayout implements PtrUIHandler {
                     scale = 1.0f;
                 }
                 pullStep0(scale);
-            } else {//调用3
+            } else {
                 float scale = lastPos / (float) mOffsetToRefresh;
                 if (scale > 1.0f) {
                     scale = 1.0f;
                 }
-                if (status == 2) {
-                    pullStep0(scale);
-                }
+                pullStep0(scale);
 
             }
         }

@@ -43,7 +43,7 @@ public class VerticalVideoItemFragment extends BaseFragment {
 
     protected void onViewReallyCreated(View view) {
         mUnbinder = ButterKnife.bind(this, view);
-        initdata();
+//        initdata();
     }
 
     public void initdata() {

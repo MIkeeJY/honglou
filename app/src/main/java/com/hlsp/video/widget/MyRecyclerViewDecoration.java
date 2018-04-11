@@ -1,4 +1,4 @@
-package com.hlsp.video.ui.widget;
+package com.hlsp.video.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
