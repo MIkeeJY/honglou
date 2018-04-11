@@ -16,8 +16,8 @@ import com.hlsp.video.model.main.MainModel;
 import com.hlsp.video.ui.main.adapter.RecommondAdapter;
 import com.hlsp.video.ui.main.adapter.RecommondViewHolder;
 import com.hlsp.video.utils.DensityUtil;
+import com.hlsp.video.widget.MyCustomHeader;
 import com.jack.mc.cyg.cygptr.PtrFrameLayout;
-import com.jack.mc.cyg.cygptr.header.MaterialHeader;
 import com.jack.mc.cyg.cygptr.recyclerview.RecyclerAdapterWithHF;
 
 import java.util.ArrayList;
@@ -172,18 +172,19 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
 
 
     private void initHeader() {
-        MaterialHeader header = new MaterialHeader(getActivity());
-        int[] colors = App.getInstance().getResources().getIntArray(R.array.google_colors);
-        header.setColorSchemeColors(colors);
+        MyCustomHeader header = new MyCustomHeader(getActivity());
         header.setLayoutParams(new PtrFrameLayout.LayoutParams(PtrFrameLayout.LayoutParams.MATCH_PARENT, PtrFrameLayout.LayoutParams.WRAP_CONTENT));
         header.setPadding(0, DensityUtil.dip2px(App.getInstance(), 15), 0, DensityUtil.dip2px(App.getInstance(), 10));
-        header.setPtrFrameLayout(ptrRecyclerViewUIComponent);
 
-        ptrRecyclerViewUIComponent.setDurationToCloseHeader(300);
+        header.setUp(ptrRecyclerViewUIComponent);
+
         ptrRecyclerViewUIComponent.setHeaderView(header);
-        ptrRecyclerViewUIComponent.addPtrUIHandler(header);
 
-        ptrRecyclerViewUIComponent.setResistance(2f);
+        ptrRecyclerViewUIComponent.setDurationToCloseHeader(600);
+        ptrRecyclerViewUIComponent.setLoadingMinTime(1200);
+
+//        ptrRecyclerViewUIComponent.setHeaderView(header);
+        ptrRecyclerViewUIComponent.addPtrUIHandler(header);
 
     }
 

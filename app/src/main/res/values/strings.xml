@@ -18,5 +18,11 @@
     <string name="activity_soft_update_no_notify">下次不再提示</string>
     <string name="activity_soft_update_install_ensure">更新</string>
     <string name="activity_soft_update_install_cancel">取消</string>
+    <string name="my_favorite">我的收藏</string>
+    <string name="feedback">帮助与反馈</string>
+    <string name="push_setting">推送设置</string>
+    <string name="current_version">当前版本</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="foot_mark">浏览足迹</string>
 
 </resources>

@@ -209,7 +209,7 @@ public class FollowingVideoFragment extends BaseFragment implements CategoryQuer
         FragmentManager fm = getChildFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.main_video_frame_layout, fragment);
-        ft.commit();
+        ft.commitAllowingStateLoss();
     }
 
     /**

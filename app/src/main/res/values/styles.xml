@@ -56,4 +56,14 @@
         <item name="progress_unreached_bar_height">0.75dp</item>
     </style>
 
+
+    <style name="mineitem">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:background">@drawable/common_enter_selector</item>
+    </style>
+
+
 </resources>

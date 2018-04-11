@@ -40,5 +40,7 @@
     <color name="home_tab_normal_color">#5D646E</color>
     <color name="home_tab_selected_color">#212832</color>
 
+    <color name="gray_text_color">#9097A1</color>
+
 
 </resources>

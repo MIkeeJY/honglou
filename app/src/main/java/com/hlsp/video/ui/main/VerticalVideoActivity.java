@@ -23,6 +23,7 @@ import com.hlsp.video.bean.data.LevideoData;
 import com.hlsp.video.model.data.Data2Source;
 import com.hlsp.video.ui.fragment.VerticalVideoItemFragment;
 import com.hlsp.video.utils.GlideUtils;
+import com.hlsp.video.utils.ToastUtil;
 import com.hlsp.video.view.VerticalViewPager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -180,6 +181,7 @@ public class VerticalVideoActivity extends BaseActivity {
             @Override
             public void onPlayerError(ExoPlaybackException e) {
                 //加载错误
+                ToastUtil.showToast(e.toString());
             }
 
             @Override
@@ -295,6 +297,7 @@ public class VerticalVideoActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 mCurrentItem = position;
+                exoPlayerManager.setStartOrPause(false);
             }
 
         });

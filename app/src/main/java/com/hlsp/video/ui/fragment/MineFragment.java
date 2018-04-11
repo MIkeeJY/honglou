@@ -1,10 +1,15 @@
 package com.hlsp.video.ui.fragment;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
+import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseFragment;
+import com.hlsp.video.utils.Utils;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -14,6 +19,14 @@ import butterknife.ButterKnife;
 
 public class MineFragment extends BaseFragment {
 
+    @BindView(R.id.ll_footmark) View mFootmark;
+    @BindView(R.id.rv_history) RecyclerView mRvHistory;
+    @BindView(R.id.ll_my_favorite) View mMyFavorite;
+    @BindView(R.id.ll_feedback) View mFeedback;
+    @BindView(R.id.ll_push) View mPush;
+    @BindView(R.id.ll_version) View mVersion;
+    @BindView(R.id.tv_version) TextView mTvVersion;
+    @BindView(R.id.ll_clear_cache) View mClearCache;
 
     @Override
     protected int layoutRes() {
@@ -24,6 +37,7 @@ public class MineFragment extends BaseFragment {
     protected void onViewReallyCreated(View view) {
         mUnbinder = ButterKnife.bind(this, view);
 
+        mTvVersion.setText(Utils.getVersion(App.getInstance()));
 
     }
 

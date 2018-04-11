@@ -84,6 +84,7 @@ public abstract class CygBaseObserver<T> extends BaseObserver<T> {
             return;
         }
         Log.e(TAG, "onBaseError: " + sb.toString());
-        FRToast.showToastSafe(t.getMessage());
+//        FRToast.showToastSafe(t.getMessage());
+        FRToast.showToastSafe(sb.toString());
     }
 }

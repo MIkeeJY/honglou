@@ -68,16 +68,25 @@ public class RecommondViewHolder extends CygBaseRecyclerViewHolder<VideoListItem
             ijkVideoView.setTag(getAdapterPosition());
 
 
-            if ("dingyue".equals(data.getVideo_source())) {
-                ijkVideoView.setUrl(data.getVideo_playURL());
-            } else {
-                MainModel.getInstance().executeVideoUrl(data.getVideo_id(), data.getVideo_extData(), new CygBaseObserver<VideoUrlData>() {
-                    @Override
-                    protected void onBaseNext(VideoUrlData videoUrlData) {
-                        ijkVideoView.setUrl(videoUrlData.getVideo_url());
+            controller.getThumb().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if ("dingyue".equals(data.getVideo_source())) {
+                        ijkVideoView.setUrl(data.getVideo_playURL());
+                        ijkVideoView.start();
+                    } else {
+                        MainModel.getInstance().executeVideoUrl(data.getVideo_id(), data.getVideo_extData(), new CygBaseObserver<VideoUrlData>() {
+                            @Override
+                            protected void onBaseNext(VideoUrlData videoUrlData) {
+                                ijkVideoView.setUrl(videoUrlData.getVideo_url());
+                                ijkVideoView.start();
+                            }
+                        });
                     }
-                });
-            }
+
+                }
+            });
+
 
             mTvUsername.setText(data.getVideo_author_name());
             mTvPlayCount.setText(Utils.formatNumber(data.getVideo_count_play()) + "次观看");

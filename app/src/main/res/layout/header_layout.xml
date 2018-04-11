@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <ImageView
+                android:id="@+id/iv_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:scaleType="matrix"
+                android:src="@drawable/icon_refresh_down"/>
+
+
+            <ProgressBar
+                android:id="@+id/progressbar_pull"
+                android:layout_width="27.5dp"
+                android:layout_height="27.5dp"
+                android:layout_centerInParent="true"
+                android:indeterminateDrawable="@drawable/pull_refresh_progress_bg"
+                android:indeterminateDuration="700"
+                android:maxHeight="27.5dp"
+                android:maxWidth="27.5dp"
+                android:visibility="gone"/>
+
+
+            <TextView
+                android:id="@+id/tv_pull_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="发现10条精彩视频"
+                android:textColor="@color/main_color"
+                android:textSize="14sp"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
