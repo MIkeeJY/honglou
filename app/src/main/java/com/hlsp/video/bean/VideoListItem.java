@@ -1,6 +1,9 @@
 package com.hlsp.video.bean;
 
-public class VideoListItem {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class VideoListItem implements Parcelable {
 
     /**
      * video_name : 精灵梦叶罗丽：思思和王默不对劲，没想到是失去了叶罗丽的记忆
@@ -144,4 +147,74 @@ public class VideoListItem {
     public String getVideo_desc() {
         return video_desc;
     }
+
+    @Override
+    public int describeContents() { return 0; }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.video_name);
+        dest.writeInt(this.video_duration);
+        dest.writeString(this.video_coverURL);
+        dest.writeString(this.video_definition);
+        dest.writeString(this.video_author_name);
+        dest.writeString(this.video_label_level1);
+        dest.writeString(this.video_extData);
+        dest.writeString(this.video_pubtime);
+        dest.writeString(this.video_author_avatarURL);
+        dest.writeString(this.video_size);
+        dest.writeString(this.video_show_mode);
+        dest.writeString(this.video_author_id);
+        dest.writeLong(this.video_count_play);
+        dest.writeString(this.video_source);
+        dest.writeString(this.video_id);
+        dest.writeLong(this.video_count_digg);
+        dest.writeLong(this.video_count_collect);
+        dest.writeLong(this.video_count_share);
+        dest.writeString(this.video_playURL);
+        dest.writeString(this.video_statue);
+        dest.writeString(this.video_label_challenge1);
+        dest.writeLong(this.video_count_comment);
+        dest.writeString(this.video_desc);
+    }
+
+    public VideoListItem() {}
+
+    protected VideoListItem(Parcel in) {
+        this.video_name = in.readString();
+        this.video_duration = in.readInt();
+        this.video_coverURL = in.readString();
+        this.video_definition = in.readString();
+        this.video_author_name = in.readString();
+        this.video_label_level1 = in.readString();
+        this.video_extData = in.readString();
+        this.video_pubtime = in.readString();
+        this.video_author_avatarURL = in.readString();
+        this.video_size = in.readString();
+        this.video_show_mode = in.readString();
+        this.video_author_id = in.readString();
+        this.video_count_play = in.readLong();
+        this.video_source = in.readString();
+        this.video_id = in.readString();
+        this.video_count_digg = in.readLong();
+        this.video_count_collect = in.readLong();
+        this.video_count_share = in.readLong();
+        this.video_playURL = in.readString();
+        this.video_statue = in.readString();
+        this.video_label_challenge1 = in.readString();
+        this.video_count_comment = in.readLong();
+        this.video_desc = in.readString();
+    }
+
+    public static final Parcelable.Creator<VideoListItem> CREATOR = new Parcelable.Creator<VideoListItem>() {
+        @Override
+        public VideoListItem createFromParcel(Parcel source) {
+            return new VideoListItem(source);
+        }
+
+        @Override
+        public VideoListItem[] newArray(int size) {
+            return new VideoListItem[size];
+        }
+    };
 }

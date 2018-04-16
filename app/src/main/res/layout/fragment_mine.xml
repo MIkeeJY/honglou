@@ -3,15 +3,51 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/white"
+              android:background="@color/common_bg_color"
               android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.hlsp.video.view.CircleImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/me_icon_default_head"/>
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="@dimen/dimen10"
+            android:textColor="@color/home_tab_selected_color"
+            android:textSize="16sp"/>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_footmark"
         style="@style/mineitem"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_marginTop="5dp"
         android:gravity="center_vertical">
 
         <ImageView
@@ -35,10 +71,20 @@
             android:src="@drawable/enter_arrow"/>
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_history"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="77dp"/>
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="43dp"
+            android:layout_marginLeft="4dp"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_my_favorite"

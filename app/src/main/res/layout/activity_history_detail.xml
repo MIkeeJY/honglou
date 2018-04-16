@@ -1,0 +1,22 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.dueeeke.videoplayer.player.IjkVideoView
+        android:id="@+id/ijk_videoview"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"/>
+
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="35dp"
+        android:src="@drawable/src_res_icon_titlebar_whiteback"/>
+
+</RelativeLayout>

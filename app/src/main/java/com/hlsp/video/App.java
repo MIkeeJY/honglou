@@ -7,6 +7,7 @@ import android.support.multidex.MultiDex;
 import com.apkfuns.logutils.LogLevel;
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
+import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.hlsp.video.model.HttpBaseUrl;
@@ -102,4 +103,20 @@ public class App extends CygApplication {
         MultiDex.install(this);
     }
 
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        if (level == TRIM_MEMORY_UI_HIDDEN) {
+            Glide.get(this).clearMemory();
+        }
+        Glide.get(this).trimMemory(level);
+    }
+
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        //内存低的时候，清理Glide的缓存
+        Glide.get(this).clearMemory();
+    }
 }

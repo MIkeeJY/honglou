@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
+import com.apkfuns.logutils.LogUtils;
 import com.dueeeke.videoplayer.controller.StandardVideoController;
 import com.dueeeke.videoplayer.player.IjkVideoView;
 import com.dueeeke.videoplayer.player.PlayerConfig;
@@ -11,11 +12,16 @@ import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.bean.VideoListItem;
 import com.hlsp.video.bean.data.VideoUrlData;
+import com.hlsp.video.model.ConstantsValue;
 import com.hlsp.video.model.main.MainModel;
 import com.hlsp.video.utils.CommonUtils;
+import com.hlsp.video.utils.FileUtils;
 import com.hlsp.video.utils.GlideUtils;
 import com.hlsp.video.utils.Utils;
 import com.hlsp.video.view.CircleImageView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -83,6 +89,23 @@ public class RecommondViewHolder extends CygBaseRecyclerViewHolder<VideoListItem
                             }
                         });
                     }
+
+                    List<VideoListItem> videoListItems = FileUtils.readParcelableList(App.getInstance(), ConstantsValue.HISTORY_VIDEO, VideoListItem.class);
+                    if (videoListItems != null && videoListItems.size() > 0) {
+                        if (videoListItems.size() < 10) {
+                            videoListItems.add(data);
+                        } else {
+                            videoListItems.remove(0);
+                            videoListItems.add(data);
+                        }
+
+                    } else {
+                        videoListItems = new ArrayList<>();
+                        videoListItems.add(data);
+                    }
+
+                    LogUtils.e(videoListItems);
+                    FileUtils.writeParcelableList(App.getInstance(), ConstantsValue.HISTORY_VIDEO, videoListItems);
 
                 }
             });
