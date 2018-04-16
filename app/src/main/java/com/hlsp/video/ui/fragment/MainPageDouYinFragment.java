@@ -281,7 +281,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
      */
     @Override
     public void onItemClick(int position) {
-        if (ptrRecyclerViewUIComponent.isLoadingMore()) {
+        if (ptrRecyclerViewUIComponent.isLoadingMore() || ptrRecyclerViewUIComponent.isRefreshing()) {
             return;
         }
 

@@ -9,16 +9,6 @@
     android:background="@color/transparent">
 
 
-    <chuangyuan.ycj.videolibrary.widget.VideoPlayerView
-        android:id="@+id/video_player"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        app:controller_layout_id="@layout/custom_exo_playback_top_view"
-        app:player_back_image="@color/transparent"
-        app:resize_mode="fit"
-        app:surface_type="texture_view"
-        />
 
 
     <ImageView
@@ -57,17 +47,6 @@
     </RelativeLayout>
 
 
-    <TextView
-        android:id="@+id/tv_video_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/fragment_container"
-        android:layout_marginBottom="60dp"
-        android:layout_marginLeft="@dimen/dimen20"
-        android:layout_marginRight="@dimen/dimen20"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        tools:text="全世界最好的费启鸣"/>
 
 
 </RelativeLayout>

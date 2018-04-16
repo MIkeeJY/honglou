@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.dueeeke.videoplayer.player.VideoCacheManager;
 import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseFragment;
@@ -11,6 +12,8 @@ import com.hlsp.video.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import cn.share.jack.cyghttp.util.FRToast;
 
 
 /**
@@ -28,6 +31,7 @@ public class MineFragment extends BaseFragment {
     @BindView(R.id.tv_version) TextView mTvVersion;
     @BindView(R.id.ll_clear_cache) View mClearCache;
 
+
     @Override
     protected int layoutRes() {
         return R.layout.fragment_mine;
@@ -39,6 +43,19 @@ public class MineFragment extends BaseFragment {
 
         mTvVersion.setText(Utils.getVersion(App.getInstance()));
 
+    }
+
+
+    @OnClick(R.id.ll_clear_cache)
+    void clearCache() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (VideoCacheManager.clearAllCache(App.getInstance())) {
+                    FRToast.showToastSafe("清除缓存成功");
+                }
+            }
+        }).start();
     }
 
 

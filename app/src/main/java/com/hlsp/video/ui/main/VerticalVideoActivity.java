@@ -1,29 +1,30 @@
 package com.hlsp.video.ui.main;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.apkfuns.logutils.LogUtils;
-import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
+import com.bumptech.glide.Glide;
+import com.dueeeke.videoplayer.player.IjkVideoView;
+import com.dueeeke.videoplayer.player.PlayerConfig;
 import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseActivity;
 import com.hlsp.video.bean.data.LevideoData;
-import com.hlsp.video.model.data.Data2Source;
-import com.hlsp.video.ui.fragment.VerticalVideoItemFragment;
+import com.hlsp.video.ui.main.adapter.DouYinAdapter;
 import com.hlsp.video.utils.GlideUtils;
-import com.hlsp.video.utils.ToastUtil;
+import com.hlsp.video.utils.Utils;
+import com.hlsp.video.view.CircleImageView;
+import com.hlsp.video.view.TextImageView;
 import com.hlsp.video.view.VerticalViewPager;
+import com.hlsp.video.widget.DouYinController;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -34,11 +35,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import chuangyuan.ycj.videolibrary.listener.LoadModelType;
-import chuangyuan.ycj.videolibrary.listener.VideoInfoListener;
-import chuangyuan.ycj.videolibrary.video.ManualPlayer;
-import chuangyuan.ycj.videolibrary.whole.WholeMediaSource;
-import chuangyuan.ycj.videolibrary.widget.VideoPlayerView;
 
 
 /**
@@ -53,36 +49,22 @@ public class VerticalVideoActivity extends BaseActivity {
 
     private int mCurrentItem;
 
-    private FragmentManager mFragmentManager;
+    private IjkVideoView mIjkVideoView;
+    private DouYinController mDouYinController;
+    private DouYinAdapter mDouYinAdapter;
+    private List<View> mViews = new ArrayList<>();
 
-    private View mRoomContainer;
-    private View mFragmentContainer;
-
-    private VideoPlayerView videoPlayer;
-    private ManualPlayer exoPlayerManager;
-    WholeMediaSource wholeMediaSource;
-
-    private ImageView mPlay;
-    private View mRootView;
-    private ImageView mCover;
     private TextView mTvVideoTitle;
 
-    private VerticalVideoItemFragment mItemFragment = VerticalVideoItemFragment.newInstance();
+    private CircleImageView mIvUserAvatar;
+    private TextView mTvUsername;
+    private TextImageView mTvLikeCount;
+    private TextImageView mTvPlayCount;
 
-    private boolean mInit = false;
+    ImageView imageView;
 
-    private int mRoomId = -1;
-
-    private boolean isStop = false;
-
-    private boolean isSelected = false;
-
-    /**
-     * 记录当前播放位置
-     */
-    private long mCurrentPos;
-
-    int position;
+    private int mPlayingPosition;
+    private int position;
 
 
     @OnClick(R.id.iv_back)
@@ -104,167 +86,50 @@ public class VerticalVideoActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
 //        mList = getIntent().getParcelableArrayListExtra("videoUrlList");
         position = getIntent().getIntExtra("position", -1);
 
-        mFragmentManager = getSupportFragmentManager();
-
         mCurrentItem = position;
 
-        mRoomContainer = LayoutInflater.from(this).inflate(R.layout.view_video_container, null);
-        mFragmentContainer = mRoomContainer.findViewById(R.id.fragment_container);
-        mPlay = mRoomContainer.findViewById(R.id.iv_play);
-        videoPlayer = mRoomContainer.findViewById(R.id.video_player);
-        mRootView = mRoomContainer.findViewById(R.id.view_play);
-        mCover = mRoomContainer.findViewById(R.id.cover_img);
-        mTvVideoTitle = mRoomContainer.findViewById(R.id.tv_video_title);
+        mIjkVideoView = new IjkVideoView(this);
+        PlayerConfig config = new PlayerConfig.Builder().setLooping().build();
+        mIjkVideoView.setPlayerConfig(config);
+        mDouYinController = new DouYinController(this);
+        mIjkVideoView.setVideoController(mDouYinController);
 
-
-        wholeMediaSource = new WholeMediaSource(this, new Data2Source(getApplication(), new CacheDataSource.EventListener() {
-            @Override
-            public void onCachedBytesRead(long cacheSizeBytes, long cachedBytesRead) {
-
-            }
-        }));
-        exoPlayerManager = new ManualPlayer(this, wholeMediaSource, videoPlayer);
 
     }
 
-    private void loadVideo(ViewGroup viewGroup, int mCurrentItem) {
-        LevideoData data = mList.get(mCurrentItem);
+    private void startPlay() {
+        View view = mViews.get(mCurrentItem);
+        FrameLayout frameLayout = view.findViewById(R.id.container);
+        imageView = view.findViewById(R.id.cover_img);
 
-        //聊天室的fragment只加载一次，以后复用
-        if (!mInit) {
-            mFragmentManager.beginTransaction().add(mFragmentContainer.getId(), mItemFragment).commitAllowingStateLoss();
-            mInit = true;
+        mDouYinController.setSelect(false);
+
+        mDouYinController.getThumb().setImageDrawable(imageView.getDrawable());
+
+        ViewGroup parent = (ViewGroup) mIjkVideoView.getParent();
+
+        if (parent != null) {
+            parent.removeAllViews();
         }
-        mItemFragment.setmData(data);
-        mItemFragment.initdata();
 
+        frameLayout.addView(mIjkVideoView);
+        mIjkVideoView.setUrl(mList.get(mCurrentItem).getVideoPlayUrl());
+        mIjkVideoView.setScreenScale(IjkVideoView.SCREEN_SCALE_DEFAULT);
+        mIjkVideoView.start();
 
-        isSelected = false;
-        isStop = false;
-        mPlay.setVisibility(View.GONE);
-        mCover.setVisibility(View.VISIBLE);
-
-        GlideUtils.loadImage(App.getInstance(), mList.get(mCurrentItem).getCoverImgUrl(), mCover, null, R.color.black, R.color.black);
-        mTvVideoTitle.setText(data.getTitle());
-
-        LogUtils.e(data.getVideoPlayUrl());
-
-        exoPlayerManager.setLoadModel(LoadModelType.PERCENR);
-        wholeMediaSource.setMediaUri(Uri.parse(data.getVideoPlayUrl()));
-        exoPlayerManager.setLooping(Integer.MAX_VALUE);
-        exoPlayerManager.startPlayer();//开始播放
-
-
-        exoPlayerManager.addVideoInfoListener(new VideoInfoListener() {
-            @Override
-            public void onPlayStart(long l) {
-
-                //开始播放
-                mCover.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mCover.setVisibility(View.GONE);
-                    }
-                }, 200);
-            }
-
-            @Override
-            public void onLoadingChanged() {
-                //加载变化
-            }
-
-            @Override
-            public void onPlayerError(ExoPlaybackException e) {
-                //加载错误
-                ToastUtil.showToast(e.toString());
-            }
-
-            @Override
-            public void onPlayEnd() {
-                //播放结束
-
-            }
-
-            @Override
-            public void isPlaying(boolean playWhenReady) {
-
-            }
-
-        });
-
-
-        viewGroup.addView(mRoomContainer);
-
-        mRoomId = mCurrentItem;
+        mPlayingPosition = mCurrentItem;
     }
 
-
-    class MyPageAdapter extends PagerAdapter {
-        private List<LevideoData> mList = new ArrayList<>();
-
-        public MyPageAdapter(List<LevideoData> mList) {
-            this.mList = mList;
-        }
-
-        @Override
-        public int getCount() {
-            return mList.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == object;
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, final int position) {
-            View view = View.inflate(VerticalVideoActivity.this, R.layout.view_video_item, null);
-            LevideoData data = mList.get(position);
-
-            ImageView imageView = view.findViewById(R.id.cover_img);
-            GlideUtils.loadImage(App.getInstance(), data.getCoverImgUrl(), imageView, null);
-
-
-//            CircleImageView mIvUserAvatar = (CircleImageView) view.findViewById(R.id.iv_user_avatar);
-//            TextView mTvUsername = (TextView) view.findViewById(R.id.tv_username);
-//            TextImageView mTvLikeCount = (TextImageView) view.findViewById(R.id.tv_like_count);
-//            TextImageView mTvPlayCount = (TextImageView) view.findViewById(R.id.tv_play_count);
-//
-//
-//
-//            GlideUtils.loadImage(App.getInstance(), data.getAuthorImgUrl(), mIvUserAvatar, null);
-//
-//            mTvUsername.setText(data.getAuthorName());
-//
-//            mTvPlayCount.setText(Utils.formatNumber(data.getPlayCount()) + "播放");
-//
-//            mTvLikeCount.setText(Utils.formatNumber(data.getLikeCount()) + "赞");
-
-
-            view.setId(position);
-
-            container.addView(view);
-            return view;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
-        }
-    }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (isStop) {
-            mCurrentPos = exoPlayerManager.getCurrentPosition();
-            exoPlayerManager.setStartOrPause(false);
-        } else {
-            exoPlayerManager.setStartOrPause(false);
+        mIjkVideoView.pause();
+        if (mDouYinController != null) {
+            mDouYinController.getIvPlay().setVisibility(View.GONE);
         }
 
     }
@@ -272,26 +137,19 @@ public class VerticalVideoActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        mIjkVideoView.resume();
 
-        if (exoPlayerManager != null) {
-            if (isStop) {
-                exoPlayerManager.seekTo(mCurrentPos);
-                exoPlayerManager.setStartOrPause(true);
-                isSelected = false;
-                mPlay.setVisibility(View.GONE);
-                isStop = false;
-            } else {
-                exoPlayerManager.onResume();
-                exoPlayerManager.setStartOrPause(true);
-            }
+        if (mDouYinController != null) {
+            mDouYinController.setSelect(false);
         }
+
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        exoPlayerManager.onDestroy();
+        mIjkVideoView.release();
         EventBus.getDefault().unregister(this);
     }
 
@@ -300,70 +158,70 @@ public class VerticalVideoActivity extends BaseActivity {
     public void getImageData(List<LevideoData> mList) {
         this.mList = mList;
 
-        MyPageAdapter myAdapter = new MyPageAdapter(mList);
-        mVerticalViewpager.setAdapter(myAdapter);
+        for (LevideoData item : mList) {
+            View view = LayoutInflater.from(this).inflate(R.layout.view_video_item, null);
+            ImageView mCover = view.findViewById(R.id.cover_img);
+
+            mIvUserAvatar = (CircleImageView) view.findViewById(R.id.iv_user_avatar);
+            mTvUsername = (TextView) view.findViewById(R.id.tv_username);
+            mTvLikeCount = (TextImageView) view.findViewById(R.id.tv_like_count);
+            mTvPlayCount = (TextImageView) view.findViewById(R.id.tv_play_count);
+            mTvVideoTitle = view.findViewById(R.id.tv_video_title);
+
+            Glide.with(App.getInstance()).load(item.getCoverImgUrl()).dontAnimate().into(mCover);
+
+            GlideUtils.loadImage(App.getInstance(), item.getAuthorImgUrl(), mIvUserAvatar, null);
+
+            mTvVideoTitle.setText(item.getTitle());
+
+            mTvUsername.setText(item.getAuthorName());
+
+            mTvPlayCount.setText(Utils.formatNumber(item.getPlayCount()) + "播放");
+
+            mTvLikeCount.setText(Utils.formatNumber(item.getLikeCount()) + "赞");
+
+            mViews.add(view);
+        }
+
+        mDouYinAdapter = new DouYinAdapter(mViews);
+        mVerticalViewpager.setAdapter(mDouYinAdapter);
+
 
         if (position != -1) {
             mVerticalViewpager.setCurrentItem(position);
         }
 
-        mVerticalViewpager.setOffscreenPageLimit(3);
 
         mVerticalViewpager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
                 mCurrentItem = position;
-                exoPlayerManager.setStartOrPause(false);
+                mIjkVideoView.pause();
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (mPlayingPosition == mCurrentItem) return;
+                if (state == VerticalViewPager.SCROLL_STATE_IDLE) {
+                    mIjkVideoView.release();
+                    ViewParent parent = mIjkVideoView.getParent();
+                    if (parent != null && parent instanceof FrameLayout) {
+                        ((FrameLayout) parent).removeView(mIjkVideoView);
+                    }
+                    startPlay();
+                }
+
             }
 
         });
 
 
-        mVerticalViewpager.setPageTransformer(false, new ViewPager.PageTransformer() {
+        mVerticalViewpager.post(new Runnable() {
             @Override
-            public void transformPage(View page, float position) {
-                ViewGroup viewGroup = (ViewGroup) page;
-//                Log.e(TAG, "page.id == " + page.getId() + ", position == " + position);
-
-                if ((position < 0 && viewGroup.getId() != mCurrentItem)) {
-                    View roomContainer = viewGroup.findViewById(R.id.room_container);
-                    if (roomContainer != null && roomContainer.getParent() != null && roomContainer.getParent() instanceof ViewGroup) {
-                        ((ViewGroup) (roomContainer.getParent())).removeView(roomContainer);
-                    }
-                }
-                // 满足此种条件，表明需要加载直播视频，以及聊天室了
-                if (viewGroup.getId() == mCurrentItem && position == 0 && mCurrentItem != mRoomId) {
-                    if (mRoomContainer.getParent() != null && mRoomContainer.getParent() instanceof ViewGroup) {
-                        ((ViewGroup) (mRoomContainer.getParent())).removeView(mRoomContainer);
-                    }
-                    loadVideo(viewGroup, mCurrentItem);
-                }
-            }
-        });
-
-
-        mRootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isSelected) {
-                    exoPlayerManager.setStartOrPause(true);
-                    isStop = false;
-
-                } else {
-                    exoPlayerManager.setStartOrPause(false);
-                    isStop = true;
-                }
-
-
-                if (exoPlayerManager.isPlaying()) {
-                    mPlay.setVisibility(View.GONE);
-                } else {
-                    mPlay.setVisibility(View.VISIBLE);
-                    mPlay.setSelected(false);
-                }
-
-                isSelected = !isSelected;
+            public void run() {
+                startPlay();
             }
         });
 

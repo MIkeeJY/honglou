@@ -59,8 +59,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-compat'
     }
 
-    compile 'com.ycjiang:VideoPlayModule:2.1.50'
-
     compile 'org.greenrobot:eventbus:3.1.1'
     compile 'com.android.support:multidex:1.0.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
