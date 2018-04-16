@@ -5,7 +5,7 @@ package com.dueeeke.videoplayer.listener;
  * Created by Devlin_n on 2017/6/22.
  */
 
-public class MyVideoListener implements VideoListener{
+public class MyVideoListener implements VideoListener {
     @Override
     public void onComplete() {
 

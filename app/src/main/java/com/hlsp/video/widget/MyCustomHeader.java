@@ -183,5 +183,8 @@ public class MyCustomHeader extends FrameLayout implements PtrUIHandler {
     }
 
 
+    public TextView getTvtitle() {
+        return tv_pull_title;
+    }
 }
 

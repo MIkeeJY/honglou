@@ -1,10 +1,9 @@
 package com.dueeeke.videoplayer.player;
 
 import android.media.AudioManager;
+import android.os.Bundle;
 import android.view.Surface;
 import android.view.SurfaceHolder;
-
-import com.dueeeke.videoplayer.listener.MediaEngineInterface;
 
 import java.io.IOException;
 
@@ -13,8 +12,8 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 public class IjkMediaEngine extends BaseMediaEngine {
 
-    public IjkMediaPlayer mMediaPlayer;
-    private MediaEngineInterface mMediaEngineInterface;
+    protected IjkMediaPlayer mMediaPlayer;
+    private boolean isLooping;
 
     @Override
     public void start() {
@@ -23,16 +22,21 @@ public class IjkMediaEngine extends BaseMediaEngine {
 
     @Override
     public void initPlayer() {
-        if (mMediaPlayer == null) {
-            mMediaPlayer = new IjkMediaPlayer();
-            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mMediaPlayer.setOnErrorListener(onErrorListener);
-            mMediaPlayer.setOnCompletionListener(onCompletionListener);
-            mMediaPlayer.setOnInfoListener(onInfoListener);
-            mMediaPlayer.setOnBufferingUpdateListener(onBufferingUpdateListener);
-            mMediaPlayer.setOnPreparedListener(onPreparedListener);
-            mMediaPlayer.setOnVideoSizeChangedListener(onVideoSizeChangedListener);
-        }
+        mMediaPlayer = new IjkMediaPlayer();
+        setOptions();
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer.setOnErrorListener(onErrorListener);
+        mMediaPlayer.setOnCompletionListener(onCompletionListener);
+        mMediaPlayer.setOnInfoListener(onInfoListener);
+        mMediaPlayer.setOnBufferingUpdateListener(onBufferingUpdateListener);
+        mMediaPlayer.setOnPreparedListener(onPreparedListener);
+        mMediaPlayer.setOnVideoSizeChangedListener(onVideoSizeChangedListener);
+        mMediaPlayer.setOnNativeInvokeListener(new IjkMediaPlayer.OnNativeInvokeListener() {
+            @Override
+            public boolean onNativeInvoke(int i, Bundle bundle) {
+                return true;
+            }
+        });
     }
 
     @Override
@@ -59,6 +63,8 @@ public class IjkMediaEngine extends BaseMediaEngine {
     public void reset() {
         mMediaPlayer.reset();
         mMediaPlayer.setOnVideoSizeChangedListener(onVideoSizeChangedListener);
+        mMediaPlayer.setLooping(isLooping);
+        setOptions();
     }
 
     @Override
@@ -104,6 +110,7 @@ public class IjkMediaEngine extends BaseMediaEngine {
 
     @Override
     public void setLooping(boolean isLooping) {
+        this.isLooping = isLooping;
         mMediaPlayer.setLooping(isLooping);
     }
 
@@ -113,6 +120,11 @@ public class IjkMediaEngine extends BaseMediaEngine {
         mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec", value);//开启硬解码
         mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec-auto-rotate", value);
         mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec-handle-resolution-change", value);
+    }
+
+    @Override
+    public void setOptions() {
+
     }
 
     private IMediaPlayer.OnErrorListener onErrorListener = new IMediaPlayer.OnErrorListener() {
@@ -164,8 +176,4 @@ public class IjkMediaEngine extends BaseMediaEngine {
             }
         }
     };
-
-    public void setMediaEngineInterface(MediaEngineInterface mediaEngineInterface) {
-        this.mMediaEngineInterface = mediaEngineInterface;
-    }
 }

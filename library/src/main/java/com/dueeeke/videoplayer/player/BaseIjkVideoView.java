@@ -151,14 +151,19 @@ public abstract class BaseIjkVideoView extends FrameLayout implements MediaPlaye
 
     protected void initPlayer() {
         if (mMediaPlayer == null) {
-            if (mPlayerConfig.useAndroidMediaPlayer) {
-                mMediaPlayer = new AndroidMediaEngine();
-                ((AndroidMediaEngine)mMediaPlayer).setMediaEngineInterface(this);
+            if (mPlayerConfig.mBaseMediaEngine != null) {
+                mMediaPlayer = mPlayerConfig.mBaseMediaEngine;
             } else {
-                mMediaPlayer = new IjkMediaEngine();
-                ((IjkMediaEngine)mMediaPlayer).setMediaEngineInterface(this);
+                if (mPlayerConfig.usingAndroidMediaPlayer) {
+                    mMediaPlayer = new AndroidMediaEngine();
+                } else {
+                    mMediaPlayer = new IjkMediaEngine();
+                }
             }
+            mMediaPlayer.setMediaEngineInterface(this);
             mMediaPlayer.initPlayer();
+            mMediaPlayer.setEnableMediaCodec(mPlayerConfig.enableMediaCodec);
+            mMediaPlayer.setLooping(mPlayerConfig.isLooping);
         }
     }
 
@@ -169,10 +174,9 @@ public abstract class BaseIjkVideoView extends FrameLayout implements MediaPlaye
     /**
      * 开始准备播放（直接播放）
      */
-    protected void startPrepare() {
+    protected void startPrepare(boolean needReset) {
         if (mCurrentUrl == null || mCurrentUrl.trim().equals("")) return;
-        mMediaPlayer.reset();
-        mMediaPlayer.setLooping(mPlayerConfig.isLooping);
+        if (needReset) mMediaPlayer.reset();
         try {
             if (mPlayerConfig.isCache) {
                 HttpProxyCacheServer cacheServer = getCacheServer();
@@ -191,8 +195,7 @@ public abstract class BaseIjkVideoView extends FrameLayout implements MediaPlaye
             mCurrentPlayerState = isFullScreen() ? PLAYER_FULL_SCREEN : PLAYER_NORMAL;
             setPlayerState(mCurrentPlayerState);
         } catch (Exception e) {
-            mCurrentPlayState = STATE_ERROR;
-            setPlayState(mCurrentPlayState);
+            onError();
             e.printStackTrace();
         }
     }
@@ -218,7 +221,7 @@ public abstract class BaseIjkVideoView extends FrameLayout implements MediaPlaye
     protected void startPlay() {
         if (mPlayerConfig.mAutoRotate) orientationEventListener.enable();
         initPlayer();
-        startPrepare();
+        startPrepare(false);
     }
 
     /**

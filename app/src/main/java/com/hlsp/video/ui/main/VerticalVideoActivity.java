@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -140,8 +139,8 @@ public class VerticalVideoActivity extends BaseActivity {
             mFragmentManager.beginTransaction().add(mFragmentContainer.getId(), mItemFragment).commitAllowingStateLoss();
             mInit = true;
         }
-//        mItemFragment.setmData(data);
-//        mItemFragment.initdata();
+        mItemFragment.setmData(data);
+        mItemFragment.initdata();
 
 
         isSelected = false;
@@ -223,10 +222,28 @@ public class VerticalVideoActivity extends BaseActivity {
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
-            Log.e("***********", "instantiateItem");
             View view = View.inflate(VerticalVideoActivity.this, R.layout.view_video_item, null);
+            LevideoData data = mList.get(position);
+
             ImageView imageView = view.findViewById(R.id.cover_img);
-            GlideUtils.loadImage(App.getInstance(), mList.get(position).getCoverImgUrl(), imageView, null);
+            GlideUtils.loadImage(App.getInstance(), data.getCoverImgUrl(), imageView, null);
+
+
+//            CircleImageView mIvUserAvatar = (CircleImageView) view.findViewById(R.id.iv_user_avatar);
+//            TextView mTvUsername = (TextView) view.findViewById(R.id.tv_username);
+//            TextImageView mTvLikeCount = (TextImageView) view.findViewById(R.id.tv_like_count);
+//            TextImageView mTvPlayCount = (TextImageView) view.findViewById(R.id.tv_play_count);
+//
+//
+//
+//            GlideUtils.loadImage(App.getInstance(), data.getAuthorImgUrl(), mIvUserAvatar, null);
+//
+//            mTvUsername.setText(data.getAuthorName());
+//
+//            mTvPlayCount.setText(Utils.formatNumber(data.getPlayCount()) + "播放");
+//
+//            mTvLikeCount.setText(Utils.formatNumber(data.getLikeCount()) + "赞");
+
 
             view.setId(position);
 

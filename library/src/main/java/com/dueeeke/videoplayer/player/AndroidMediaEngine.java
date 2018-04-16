@@ -5,14 +5,12 @@ import android.media.MediaPlayer;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 
-import com.dueeeke.videoplayer.listener.MediaEngineInterface;
-
 import java.io.IOException;
 
 public class AndroidMediaEngine extends BaseMediaEngine {
 
-    public MediaPlayer mMediaPlayer;
-    private MediaEngineInterface mMediaEngineInterface;
+    protected MediaPlayer mMediaPlayer;
+    private boolean isLooping;
 
     @Override
     public void start() {
@@ -21,16 +19,14 @@ public class AndroidMediaEngine extends BaseMediaEngine {
 
     @Override
     public void initPlayer() {
-        if (mMediaPlayer == null) {
-            mMediaPlayer = new MediaPlayer();
-            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mMediaPlayer.setOnErrorListener(onErrorListener);
-            mMediaPlayer.setOnCompletionListener(onCompletionListener);
-            mMediaPlayer.setOnInfoListener(onInfoListener);
-            mMediaPlayer.setOnBufferingUpdateListener(onBufferingUpdateListener);
-            mMediaPlayer.setOnPreparedListener(onPreparedListener);
-            mMediaPlayer.setOnVideoSizeChangedListener(onVideoSizeChangedListener);
-        }
+        mMediaPlayer = new MediaPlayer();
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer.setOnErrorListener(onErrorListener);
+        mMediaPlayer.setOnCompletionListener(onCompletionListener);
+        mMediaPlayer.setOnInfoListener(onInfoListener);
+        mMediaPlayer.setOnBufferingUpdateListener(onBufferingUpdateListener);
+        mMediaPlayer.setOnPreparedListener(onPreparedListener);
+        mMediaPlayer.setOnVideoSizeChangedListener(onVideoSizeChangedListener);
     }
 
     @Override
@@ -57,6 +53,7 @@ public class AndroidMediaEngine extends BaseMediaEngine {
     public void reset() {
         mMediaPlayer.setVolume(1, 1);
         mMediaPlayer.reset();
+        mMediaPlayer.setLooping(isLooping);
     }
 
     @Override
@@ -102,6 +99,7 @@ public class AndroidMediaEngine extends BaseMediaEngine {
 
     @Override
     public void setLooping(boolean isLooping) {
+        this.isLooping = isLooping;
         mMediaPlayer.setLooping(isLooping);
     }
 
@@ -110,9 +108,14 @@ public class AndroidMediaEngine extends BaseMediaEngine {
 
     }
 
+    @Override
+    public void setOptions() {
+
+    }
+
     private MediaPlayer.OnErrorListener onErrorListener = new MediaPlayer.OnErrorListener() {
         @Override
-        public boolean onError(MediaPlayer mp, int framework_err, int impl_err) {
+        public boolean onError(MediaPlayer mp, int what, int extra) {
             if (mMediaEngineInterface != null) mMediaEngineInterface.onError();
             return true;
         }
@@ -132,7 +135,6 @@ public class AndroidMediaEngine extends BaseMediaEngine {
             return true;
         }
     };
-
 
     private MediaPlayer.OnBufferingUpdateListener onBufferingUpdateListener = new MediaPlayer.OnBufferingUpdateListener() {
         @Override
@@ -160,8 +162,4 @@ public class AndroidMediaEngine extends BaseMediaEngine {
             }
         }
     };
-
-    public void setMediaEngineInterface(MediaEngineInterface mediaEngineInterface) {
-        this.mMediaEngineInterface = mediaEngineInterface;
-    }
 }

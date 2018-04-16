@@ -23,8 +23,8 @@ import com.hlsp.video.utils.HotsoonUtils;
 import com.hlsp.video.utils.StatusBarCompat;
 import com.hlsp.video.utils.ToastUtil;
 import com.hlsp.video.utils.statusbar.StatusBarFontHelper;
+import com.hlsp.video.widget.MyCustomHeader;
 import com.jack.mc.cyg.cygptr.PtrFrameLayout;
-import com.jack.mc.cyg.cygptr.header.MaterialHeader;
 import com.jack.mc.cyg.cygptr.recyclerview.RecyclerAdapterWithHF;
 
 import org.greenrobot.eventbus.EventBus;
@@ -137,15 +137,18 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
     }
 
     private void initHeader() {
-        MaterialHeader header = new MaterialHeader(getActivity());
-        int[] colors = App.getInstance().getResources().getIntArray(R.array.google_colors);
-        header.setColorSchemeColors(colors);
+        MyCustomHeader header = new MyCustomHeader(getActivity());
         header.setLayoutParams(new PtrFrameLayout.LayoutParams(PtrFrameLayout.LayoutParams.MATCH_PARENT, PtrFrameLayout.LayoutParams.WRAP_CONTENT));
         header.setPadding(0, DensityUtil.dip2px(App.getInstance(), 15), 0, DensityUtil.dip2px(App.getInstance(), 10));
-        header.setPtrFrameLayout(ptrRecyclerViewUIComponent);
 
-        ptrRecyclerViewUIComponent.setDurationToCloseHeader(300);
+        header.setUp(ptrRecyclerViewUIComponent);
+        header.getTvtitle().setText("发现20条精彩视频");
+
         ptrRecyclerViewUIComponent.setHeaderView(header);
+
+        ptrRecyclerViewUIComponent.setDurationToCloseHeader(600);
+        ptrRecyclerViewUIComponent.setLoadingMinTime(1200);
+
         ptrRecyclerViewUIComponent.addPtrUIHandler(header);
 
     }

@@ -183,7 +183,6 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
         ptrRecyclerViewUIComponent.setDurationToCloseHeader(600);
         ptrRecyclerViewUIComponent.setLoadingMinTime(1200);
 
-//        ptrRecyclerViewUIComponent.setHeaderView(header);
         ptrRecyclerViewUIComponent.addPtrUIHandler(header);
 
     }
