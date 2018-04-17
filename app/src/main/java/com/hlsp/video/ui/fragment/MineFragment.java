@@ -3,7 +3,6 @@ package com.hlsp.video.ui.fragment;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,6 +19,7 @@ import com.hlsp.video.ui.main.adapter.HistoryViewHolder;
 import com.hlsp.video.utils.FileUtils;
 import com.hlsp.video.utils.SpUtils;
 import com.hlsp.video.utils.Utils;
+import com.hlsp.video.view.CustomRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +29,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.share.jack.cyghttp.util.FRToast;
 import cn.share.jack.cygwidget.recyclerview.adapter.CygBaseRecyclerAdapter;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 
 /**
@@ -39,7 +40,7 @@ import cn.share.jack.cygwidget.recyclerview.adapter.CygBaseRecyclerAdapter;
 public class MineFragment extends BaseFragment implements CygBaseRecyclerAdapter.OnItemClickListener<HistoryViewHolder> {
 
     @BindView(R.id.ll_footmark) View mFootmark;
-    @BindView(R.id.rv_history) RecyclerView mRvHistory;
+    @BindView(R.id.rv_history) CustomRecyclerView mRvHistory;
     @BindView(R.id.ll_my_favorite) View mMyFavorite;
     @BindView(R.id.ll_feedback) View mFeedback;
     @BindView(R.id.ll_push) View mPush;
@@ -80,6 +81,10 @@ public class MineFragment extends BaseFragment implements CygBaseRecyclerAdapter
         mAdapter = new HistoryVideoAdapter(getActivity(), this);
 
         mRvHistory.setLayoutManager(new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false));
+        // Horizontal
+        OverScrollDecoratorHelper.setUpOverScroll(mRvHistory, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
+        mRvHistory.setflingScale(0.75);
+
         mRvHistory.setAdapter(mAdapter);
         mAdapter.setDataList(mList);
 

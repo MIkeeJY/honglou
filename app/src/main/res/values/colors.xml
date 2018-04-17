@@ -43,5 +43,7 @@
 
     <color name="gray_text_color">#9097A1</color>
 
+    <color name="count_text_color">#ADB4BE</color>
+
 
 </resources>

@@ -19,8 +19,13 @@
 
 package com.hlsp.video.ui.main;
 
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.apkfuns.logutils.LogUtils;
 import com.dueeeke.videoplayer.controller.StandardVideoController;
 import com.dueeeke.videoplayer.player.IjkVideoView;
 import com.dueeeke.videoplayer.player.PlayerConfig;
@@ -28,25 +33,43 @@ import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseActivity;
 import com.hlsp.video.bean.VideoListItem;
+import com.hlsp.video.bean.data.VideoListData;
 import com.hlsp.video.bean.data.VideoUrlData;
 import com.hlsp.video.model.main.MainModel;
+import com.hlsp.video.ui.main.adapter.HistoryDetailViewHolder;
+import com.hlsp.video.ui.main.adapter.HistoryVideoDetailAdapter;
 import com.hlsp.video.utils.CommonUtils;
 import com.hlsp.video.utils.GlideUtils;
+import com.hlsp.video.utils.StatusBarCompat;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.share.jack.cyghttp.callback.CygBaseObserver;
+import cn.share.jack.cygwidget.recyclerview.adapter.CygBaseRecyclerAdapter;
 
 /**
  * 浏览足迹详情
  */
-public class HistoryDetailActivity extends BaseActivity {
+public class HistoryDetailActivity extends BaseActivity implements CygBaseRecyclerAdapter.OnItemClickListener<HistoryDetailViewHolder> {
 
     @BindView(R.id.ijk_videoview) IjkVideoView ijkVideoView;
+    @BindView(R.id.rv_recommond) RecyclerView recyclerView;
 
     VideoListItem data;
     private StandardVideoController controller;
     private PlayerConfig mPlayerConfig;
+
+
+    private List<VideoListItem> mRecommondList = new ArrayList<>();
+
+    private final int id = 0;
+    private final String backdata = "1";
+    private final String loadMore = "down";
+
+    private HistoryVideoDetailAdapter mAdapter;
 
 
     @Override
@@ -95,6 +118,38 @@ public class HistoryDetailActivity extends BaseActivity {
 
             }
         });
+
+        initRecyclerView();
+    }
+
+
+    private void initRecyclerView() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new HistoryVideoDetailAdapter(this, this);
+        recyclerView.setAdapter(mAdapter);
+
+        getVideoList(id, backdata, loadMore);
+    }
+
+
+    private void getVideoList(int id, String backdata, String loadMore) {
+        MainModel.getInstance().executeVideoList(id + "", backdata, loadMore, new CygBaseObserver<VideoListData>() {
+            @Override
+            protected void onBaseNext(VideoListData data) {
+
+                mRecommondList = data.getList();
+                mAdapter.setDataList(mRecommondList);
+
+            }
+
+            @Override
+            protected void onBaseError(Throwable t) {
+                super.onBaseError(t);
+
+
+            }
+
+        });
     }
 
 
@@ -116,5 +171,31 @@ public class HistoryDetailActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         ijkVideoView.release();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (!ijkVideoView.onBackPressed()) {
+            super.onBackPressed();
+        }
+    }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            LogUtils.e("横屏");
+        } else {
+            StatusBarCompat.translucentStatusBar(this, true);
+        }
+        super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, HistoryDetailActivity.class);
+        intent.putExtra("VideoListItem", mRecommondList.get(position));
+        startActivity(intent);
     }
 }

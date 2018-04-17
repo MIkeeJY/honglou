@@ -9,8 +9,8 @@ android {
         minSdkVersion gradle.ext.minSdkVersion
         targetSdkVersion gradle.ext.targetSdkVersion
         applicationId "com.hlsp.video"
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.2"
 
         multiDexEnabled true
 
@@ -58,6 +58,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-compat'
     }
+
+    compile 'me.everything:overscroll-decor-android:1.0.4'
 
     compile 'org.greenrobot:eventbus:3.1.1'
     compile 'com.android.support:multidex:1.0.1'
