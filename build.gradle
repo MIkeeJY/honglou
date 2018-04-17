@@ -18,13 +18,6 @@ allprojects {
     repositories {
         jcenter()
         maven {
-            url "http://20.20.27.101:8081/nexus/content/groups/public/"
-            credentials {
-                username 'edwin'
-                password 'iyouquedwin'
-            }
-        }
-        maven {
             url 'https://maven.google.com'
         }
     }

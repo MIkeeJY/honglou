@@ -9,6 +9,7 @@ import com.apkfuns.logutils.LogUtils;
 import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.bean.VideoListItem;
+import com.hlsp.video.utils.CommonUtils;
 import com.hlsp.video.utils.DateUtil;
 import com.hlsp.video.utils.GlideUtils;
 import com.hlsp.video.utils.Utils;
@@ -27,6 +28,7 @@ public class HistoryDetailViewHolder extends CygBaseRecyclerViewHolder<VideoList
     @BindView(R.id.tv_detail_title) TextView mTvDetailTitle;
     @BindView(R.id.tv_detail_count) TextView mTvDetailCount;
     @BindView(R.id.tv_detail_time) TextView mTvDetailTime;
+    @BindView(R.id.ijk_controls_size) TextView mTvControlSize;
 
 
     public HistoryDetailViewHolder(View view) {
@@ -44,6 +46,9 @@ public class HistoryDetailViewHolder extends CygBaseRecyclerViewHolder<VideoList
             mTvDetailCount.setText(Utils.formatNumber(data.getVideo_count_play()) + "次观看");
 
             LogUtils.e(DateUtil.formatDate(Long.parseLong(data.getVideo_pubtime()) * 1000));
+
+
+            mTvControlSize.setText(CommonUtils.getTime(data.getVideo_duration()));
 
             try {
                 mTvDetailTime.setText(DateUtil.formatDate(Long.parseLong(data.getVideo_pubtime()) * 1000));
