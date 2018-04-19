@@ -57,6 +57,7 @@ public class StandardVideoController extends GestureVideoController implements V
     private Animation hideAnim = AnimationUtils.loadAnimation(getContext(), R.anim.anim_alpha_out);
     private BatteryReceiver mBatteryReceiver;
 
+    private View viewLayer;
 
     public StandardVideoController(@NonNull Context context) {
         this(context, null);
@@ -83,6 +84,8 @@ public class StandardVideoController extends GestureVideoController implements V
         fullScreenButton = controllerView.findViewById(R.id.fullscreen);
         ijkTitle = controllerView.findViewById(R.id.ijk_controls_title);
         ijkControlSize = controllerView.findViewById(R.id.ijk_controls_size);
+        viewLayer = controllerView.findViewById(R.id.view_layer);
+
         fullScreenButton.setOnClickListener(this);
         bottomContainer = controllerView.findViewById(R.id.bottom_container);
         topContainer = controllerView.findViewById(R.id.top_container);
@@ -203,6 +206,7 @@ public class StandardVideoController extends GestureVideoController implements V
                 startPlayButton.setVisibility(GONE);
                 ijkTitle.setVisibility(GONE);
                 ijkControlSize.setVisibility(GONE);
+                viewLayer.setVisibility(GONE);
                 break;
             case IjkVideoView.STATE_PAUSED:
                 L.e("STATE_PAUSED");
@@ -331,6 +335,7 @@ public class StandardVideoController extends GestureVideoController implements V
             } else {
                 bottomContainer.setVisibility(GONE);
                 playButton.setVisibility(GONE);
+                viewLayer.setVisibility(GONE);
                 bottomContainer.startAnimation(hideAnim);
             }
             if (!isLive && !isLocked) {
@@ -347,6 +352,7 @@ public class StandardVideoController extends GestureVideoController implements V
         bottomContainer.setVisibility(GONE);
         bottomContainer.startAnimation(hideAnim);
         playButton.setVisibility(GONE);
+        viewLayer.setVisibility(GONE);
     }
 
     private void show(int timeout) {
@@ -360,6 +366,7 @@ public class StandardVideoController extends GestureVideoController implements V
                 bottomContainer.setVisibility(VISIBLE);
                 bottomContainer.startAnimation(showAnim);
                 playButton.setVisibility(VISIBLE);
+                viewLayer.setVisibility(VISIBLE);
             }
             if (!isLocked && !isLive) {
                 bottomProgress.setVisibility(GONE);
@@ -379,6 +386,7 @@ public class StandardVideoController extends GestureVideoController implements V
         topContainer.setVisibility(VISIBLE);
         topContainer.startAnimation(showAnim);
         playButton.setVisibility(VISIBLE);
+        viewLayer.setVisibility(VISIBLE);
     }
 
     @Override

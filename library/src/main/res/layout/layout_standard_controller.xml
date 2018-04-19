@@ -5,6 +5,14 @@
              android:layout_height="match_parent"
              android:orientation="vertical">
 
+
+    <FrameLayout
+        android:id="@+id/view_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"
+        android:visibility="gone"/>
+
     <LinearLayout
         android:id="@+id/top_container"
         android:layout_width="match_parent"

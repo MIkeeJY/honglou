@@ -78,6 +78,12 @@ public class MineFragment extends BaseFragment implements CygBaseRecyclerAdapter
         mList = FileUtils.readParcelableList(App.getInstance(), ConstantsValue.HISTORY_VIDEO, VideoListItem.class);
         LogUtils.e(mList);
 
+        if (mList != null && mList.size() > 0) {
+            mRvHistory.setVisibility(View.VISIBLE);
+        } else {
+            mRvHistory.setVisibility(View.GONE);
+        }
+
         mAdapter = new HistoryVideoAdapter(getActivity(), this);
 
         mRvHistory.setLayoutManager(new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false));
@@ -116,6 +122,13 @@ public class MineFragment extends BaseFragment implements CygBaseRecyclerAdapter
         super.onHiddenChanged(hidden);
         if (!hidden) {
             mList = FileUtils.readParcelableList(App.getInstance(), ConstantsValue.HISTORY_VIDEO, VideoListItem.class);
+
+            if (mList != null && mList.size() > 0) {
+                mRvHistory.setVisibility(View.VISIBLE);
+            } else {
+                mRvHistory.setVisibility(View.GONE);
+            }
+
             mAdapter.setDataList(mList);
 
 //            if (mList != null && mList.size() > 0) {

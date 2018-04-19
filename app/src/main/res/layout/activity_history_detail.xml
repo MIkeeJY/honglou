@@ -17,7 +17,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingTop="35dp"
-        android:src="@drawable/src_res_icon_titlebar_whiteback"/>
+        android:src="@drawable/nav_icon_back_white"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_recommond"

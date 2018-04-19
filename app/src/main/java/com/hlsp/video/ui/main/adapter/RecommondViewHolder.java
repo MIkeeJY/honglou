@@ -101,6 +101,12 @@ public class RecommondViewHolder extends CygBaseRecyclerViewHolder<VideoListItem
 
                             videoListItems.add(data);
                         } else {
+                            for (VideoListItem item : videoListItems) {
+                                if (item.getVideo_name().equals(data.getVideo_name())) {
+                                    return;
+                                }
+                            }
+
                             videoListItems.remove(0);
                             videoListItems.add(data);
                         }

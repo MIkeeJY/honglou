@@ -61,7 +61,7 @@ public class VerticalVideoActivity extends BaseActivity {
     private TextImageView mTvLikeCount;
     private TextImageView mTvPlayCount;
 
-    ImageView imageView;
+    ImageView mCover;
 
     private int mPlayingPosition;
     private int position;
@@ -103,11 +103,13 @@ public class VerticalVideoActivity extends BaseActivity {
     private void startPlay() {
         View view = mViews.get(mCurrentItem);
         FrameLayout frameLayout = view.findViewById(R.id.container);
-        imageView = view.findViewById(R.id.cover_img);
+        mCover = view.findViewById(R.id.cover_img);
 
         mDouYinController.setSelect(false);
 
-        mDouYinController.getThumb().setImageDrawable(imageView.getDrawable());
+        if (mCover.getDrawable() != null) {
+            mDouYinController.getThumb().setImageDrawable(mCover.getDrawable());
+        }
 
         ViewGroup parent = (ViewGroup) mIjkVideoView.getParent();
 
@@ -160,7 +162,7 @@ public class VerticalVideoActivity extends BaseActivity {
 
         for (LevideoData item : mList) {
             View view = LayoutInflater.from(this).inflate(R.layout.view_video_item, null);
-            ImageView mCover = view.findViewById(R.id.cover_img);
+            mCover = view.findViewById(R.id.cover_img);
 
             mIvUserAvatar = (CircleImageView) view.findViewById(R.id.iv_user_avatar);
             mTvUsername = (TextView) view.findViewById(R.id.tv_username);
