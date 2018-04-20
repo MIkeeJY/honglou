@@ -1,6 +1,5 @@
 package com.hlsp.video.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,7 +20,6 @@ import com.hlsp.video.bean.ChannelListItem;
 import com.hlsp.video.bean.data.ChannelListData;
 import com.hlsp.video.model.main.MainModel;
 import com.hlsp.video.widget.tablayout.SlidingTabLayout;
-import com.lightsky.video.search.SearchActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,8 +73,8 @@ public class RecommondVideoFragment extends BaseFragment {
 
     @OnClick(R.id.tab_search)
     void onSearchClick() {
-        Intent intent = new Intent(getActivity(), SearchActivity.class);
-        getActivity().startActivity(intent);
+//        Intent intent = new Intent(getActivity(), SearchActivity.class);
+//        getActivity().startActivity(intent);
     }
 
 
