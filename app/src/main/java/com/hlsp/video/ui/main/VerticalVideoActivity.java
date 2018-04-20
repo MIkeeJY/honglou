@@ -107,7 +107,7 @@ public class VerticalVideoActivity extends BaseActivity {
 
         mDouYinController.setSelect(false);
 
-        if (mCover.getDrawable() != null) {
+        if (mCover != null && mCover.getDrawable() != null) {
             mDouYinController.getThumb().setImageDrawable(mCover.getDrawable());
         }
 
