@@ -13,6 +13,7 @@ import com.hlsp.video.base.BaseFragment;
 import com.hlsp.video.bean.data.DouyinVideoListData;
 import com.hlsp.video.bean.data.HotsoonVideoListData;
 import com.hlsp.video.bean.data.LevideoData;
+import com.hlsp.video.model.event.RefreshEvent;
 import com.hlsp.video.okhttp.http.OkHttpClientManager;
 import com.hlsp.video.ui.main.VerticalVideoActivity;
 import com.hlsp.video.ui.main.adapter.MainAdapter;
@@ -28,6 +29,8 @@ import com.jack.mc.cyg.cygptr.PtrFrameLayout;
 import com.jack.mc.cyg.cygptr.recyclerview.RecyclerAdapterWithHF;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -69,6 +72,12 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         return R.layout.fragment_main_page_douyin;
     }
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -285,9 +294,9 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
             return;
         }
 
-        EventBus.getDefault().postSticky(mList);
         Intent intent = new Intent(getActivity(), VerticalVideoActivity.class);
-//        intent.putParcelableArrayListExtra("videoUrlList", (ArrayList<LevideoData>) mList);
+        intent.putParcelableArrayListExtra("videoUrlList", (ArrayList<LevideoData>) mList);
+        intent.putExtra("max_cursor", max_cursor);
         intent.putExtra("position", position);
         getActivity().startActivity(intent);
 
@@ -306,5 +315,22 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         }
     }
 
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void getImageData(RefreshEvent event) {
+        adapter.setDataList(event.getList());
+        mAdapter.notifyDataSetChanged();
+
+        ptrRecyclerViewUIComponent.getRecyclerView().scrollToPosition(event.getPosition());
+        max_cursor = event.getMaxCursor();
+
+    }
 
 }

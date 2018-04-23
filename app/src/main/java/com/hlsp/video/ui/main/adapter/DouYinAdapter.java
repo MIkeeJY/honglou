@@ -19,6 +19,10 @@ public class DouYinAdapter extends PagerAdapter {
     }
 
 
+    public void setmViews(List<View> mViews) {
+        this.mViews = mViews;
+    }
+
     @Override
     public int getCount() {
         return mViews.size();
