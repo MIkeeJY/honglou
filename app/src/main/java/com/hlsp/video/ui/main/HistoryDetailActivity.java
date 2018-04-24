@@ -21,9 +21,11 @@ package com.hlsp.video.ui.main;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
 import com.dueeeke.videoplayer.controller.StandardVideoController;
@@ -39,8 +41,11 @@ import com.hlsp.video.model.main.MainModel;
 import com.hlsp.video.ui.main.adapter.HistoryDetailViewHolder;
 import com.hlsp.video.ui.main.adapter.HistoryVideoDetailAdapter;
 import com.hlsp.video.utils.CommonUtils;
+import com.hlsp.video.utils.DateUtil;
 import com.hlsp.video.utils.GlideUtils;
 import com.hlsp.video.utils.StatusBarCompat;
+import com.hlsp.video.view.CircleImageView;
+import com.jack.mc.cyg.cygptr.recyclerview.RecyclerAdapterWithHF;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +53,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.share.jack.cyghttp.callback.CygBaseObserver;
+import cn.share.jack.cygwidget.loadmore.OnScrollToBottomLoadMoreListener;
+import cn.share.jack.cygwidget.recyclerview.PtrRecyclerViewUIComponent;
 import cn.share.jack.cygwidget.recyclerview.adapter.CygBaseRecyclerAdapter;
 
 /**
@@ -56,7 +63,9 @@ import cn.share.jack.cygwidget.recyclerview.adapter.CygBaseRecyclerAdapter;
 public class HistoryDetailActivity extends BaseActivity implements CygBaseRecyclerAdapter.OnItemClickListener<HistoryDetailViewHolder> {
 
     @BindView(R.id.ijk_videoview) IjkVideoView ijkVideoView;
-    @BindView(R.id.rv_recommond) RecyclerView recyclerView;
+
+    @BindView(R.id.am_ptr_framelayout) PtrRecyclerViewUIComponent ptrRecyclerViewUIComponent;
+    private RecyclerAdapterWithHF mAdapter;
 
     VideoListItem data;
     private StandardVideoController controller;
@@ -69,7 +78,15 @@ public class HistoryDetailActivity extends BaseActivity implements CygBaseRecycl
     private final String backdata = "1";
     private final String loadMore = "down";
 
-    private HistoryVideoDetailAdapter mAdapter;
+    private HistoryVideoDetailAdapter adapter;
+
+    private CircleImageView mIvUserAvatar;
+    private TextView mTvUsername;
+    private TextView mTvVideoTitle;
+    private TextView mTvPubTime;
+
+    boolean isLoadMore = false;
+    Handler mHandler = new Handler();
 
 
     @Override
@@ -124,11 +141,45 @@ public class HistoryDetailActivity extends BaseActivity implements CygBaseRecycl
 
 
     private void initRecyclerView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new HistoryVideoDetailAdapter(this, this);
-        recyclerView.setAdapter(mAdapter);
+        ptrRecyclerViewUIComponent.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new HistoryVideoDetailAdapter(this, this);
+        mAdapter = new RecyclerAdapterWithHF(adapter);
 
-        getVideoList(id, backdata, loadMore);
+        View view = LayoutInflater.from(this).inflate(R.layout.view_history_detail_header, null);
+        mIvUserAvatar = (CircleImageView) view.findViewById(R.id.iv_user_avatar);
+        mTvUsername = (TextView) view.findViewById(R.id.tv_username);
+        mTvVideoTitle = (TextView) view.findViewById(R.id.tv_video_title);
+        mTvPubTime = (TextView) view.findViewById(R.id.tv_pub_time);
+
+        GlideUtils.loadImage(App.getInstance(), data.getVideo_author_avatarURL(), mIvUserAvatar, null);
+
+        mTvUsername.setText(data.getVideo_author_name());
+        mTvVideoTitle.setText(data.getVideo_name());
+
+        try {
+            mTvPubTime.setText(DateUtil.formatDate(Long.parseLong(data.getVideo_pubtime()) * 1000));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        mAdapter.addHeader(view);
+
+        ptrRecyclerViewUIComponent.setAdapter(mAdapter);
+
+        ptrRecyclerViewUIComponent.setCanRefresh(false);
+        ptrRecyclerViewUIComponent.setLoadMoreEnable(true);
+
+
+        ptrRecyclerViewUIComponent.setOnScrollToBottomLoadMoreListener(new OnScrollToBottomLoadMoreListener() {
+            @Override
+            public void onScrollToBottomLoadMore() {
+                isLoadMore = true;
+                getVideoList(id, backdata, loadMore);
+            }
+        });
+
+
+        getVideoList(id, backdata, "up");
     }
 
 
@@ -137,15 +188,30 @@ public class HistoryDetailActivity extends BaseActivity implements CygBaseRecycl
             @Override
             protected void onBaseNext(VideoListData data) {
 
-                mRecommondList = data.getList();
-                mAdapter.setDataList(mRecommondList);
+                if (isLoadMore) {
+                    mRecommondList.addAll(data.getList());
+                    adapter.setDataList(mRecommondList, false);
+                    mAdapter.notifyDataSetChanged();
+                    ptrRecyclerViewUIComponent.loadMoreComplete(true);
+
+                } else {
+                    mRecommondList = data.getList();
+                    adapter.setDataList(mRecommondList);
+                    mAdapter.notifyDataSetChanged();
+                }
+
 
             }
 
             @Override
             protected void onBaseError(Throwable t) {
                 super.onBaseError(t);
-
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ptrRecyclerViewUIComponent.loadMoreComplete(true);
+                    }
+                });
 
             }
 

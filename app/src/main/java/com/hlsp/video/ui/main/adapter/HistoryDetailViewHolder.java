@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.apkfuns.logutils.LogUtils;
 import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.bean.VideoListItem;
@@ -44,9 +43,6 @@ public class HistoryDetailViewHolder extends CygBaseRecyclerViewHolder<VideoList
             mTvDetailTitle.setText(data.getVideo_name());
 
             mTvDetailCount.setText(Utils.formatNumber(data.getVideo_count_play()) + "次观看");
-
-            LogUtils.e(DateUtil.formatDate(Long.parseLong(data.getVideo_pubtime()) * 1000));
-
 
             mTvControlSize.setText(CommonUtils.getTime(data.getVideo_duration()));
 

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen10">
+
+        <com.hlsp.video.view.CircleImageView
+            android:id="@+id/iv_user_avatar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="@dimen/dimen20"
+            app:civ_border_color="#F4F5F7"
+            app:civ_border_width="0.5dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_toRightOf="@id/iv_user_avatar"
+            android:ellipsize="end"
+            android:maxEms="6"
+            android:singleLine="true"
+            android:text="情感的小天地"
+            android:textColor="@color/home_tab_normal_color"
+            android:textSize="12sp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_video_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="20.3dp"
+        android:gravity="left"
+        android:maxLines="2"
+        android:text="心里专家李玫瑾：孩子六岁前性格养成期没处理好，后面就管"
+        android:textColor="@color/home_tab_selected_color"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/tv_pub_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="17.7dp"
+        android:textColor="@color/count_text_color"
+        android:textSize="11sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/common_bg_color"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:text="相关视频"
+        android:textColor="@color/tab_text_color_default"
+        android:textSize="14sp"/>
+
+
+</LinearLayout>

@@ -19,10 +19,13 @@
         android:paddingTop="35dp"
         android:src="@drawable/nav_icon_back_white"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_recommond"
+
+    <include
+        android:id="@+id/am_ptr_framelayout"
+        layout="@layout/ptr_recyclerview_uicomponent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/ijk_videoview"/>
+
 
 </RelativeLayout>

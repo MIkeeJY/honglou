@@ -56,10 +56,15 @@
             android:configChanges="keyboard|orientation|screenSize|screenLayout|navigation"
             android:screenOrientation="portrait"/>
 
-
         <activity
             android:name=".ui.main.HistoryDetailActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity
+            android:name=".ui.main.OtherProfileActivity"
+            android:configChanges="keyboardHidden"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"/>
 
