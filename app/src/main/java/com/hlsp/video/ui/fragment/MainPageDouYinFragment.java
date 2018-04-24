@@ -23,6 +23,7 @@ import com.hlsp.video.utils.DouyinUtils;
 import com.hlsp.video.utils.HotsoonUtils;
 import com.hlsp.video.utils.StatusBarCompat;
 import com.hlsp.video.utils.ToastUtil;
+import com.hlsp.video.utils.WeakDataHolder;
 import com.hlsp.video.utils.statusbar.StatusBarFontHelper;
 import com.hlsp.video.widget.MyCustomHeader;
 import com.jack.mc.cyg.cygptr.PtrFrameLayout;
@@ -295,7 +296,8 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         }
 
         Intent intent = new Intent(getActivity(), VerticalVideoActivity.class);
-        intent.putParcelableArrayListExtra("videoUrlList", (ArrayList<LevideoData>) mList);
+        WeakDataHolder.getInstance().saveData("videoUrlList", mList);
+
         intent.putExtra("max_cursor", max_cursor);
         intent.putExtra("position", position);
         getActivity().startActivity(intent);

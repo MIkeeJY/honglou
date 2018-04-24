@@ -27,6 +27,7 @@ import com.hlsp.video.utils.DouyinUtils;
 import com.hlsp.video.utils.GlideUtils;
 import com.hlsp.video.utils.ToastUtil;
 import com.hlsp.video.utils.Utils;
+import com.hlsp.video.utils.WeakDataHolder;
 import com.hlsp.video.view.CircleImageView;
 import com.hlsp.video.view.TextImageView;
 import com.hlsp.video.view.VerticalViewPager;
@@ -96,7 +97,8 @@ public class VerticalVideoActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        mList = getIntent().getParcelableArrayListExtra("videoUrlList");
+//        mList = getIntent().getParcelableArrayListExtra("videoUrlList");
+        mList = (List<LevideoData>) WeakDataHolder.getInstance().getData("videoUrlList");
 
         position = getIntent().getIntExtra("position", -1);
         max_cursor = getIntent().getIntExtra("max_cursor", -1);
