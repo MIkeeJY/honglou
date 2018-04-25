@@ -4,7 +4,20 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:background="@color/white"
-              android:orientation="vertical">
+              android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingLeft="20dp"
+        android:paddingRight="24dp"
+        android:paddingTop="@dimen/dimen10"
+        android:src="@drawable/me_icon_history_cancel"
+        android:visibility="gone"/>
+
 
     <RelativeLayout
         android:layout_width="match_parent"

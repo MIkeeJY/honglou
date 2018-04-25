@@ -13,6 +13,7 @@ import com.hlsp.video.R;
 import com.hlsp.video.base.BaseFragment;
 import com.hlsp.video.bean.VideoListItem;
 import com.hlsp.video.model.ConstantsValue;
+import com.hlsp.video.ui.main.FootMarkActivity;
 import com.hlsp.video.ui.main.HistoryDetailActivity;
 import com.hlsp.video.ui.main.adapter.HistoryVideoAdapter;
 import com.hlsp.video.ui.main.adapter.HistoryViewHolder;
@@ -107,6 +108,13 @@ public class MineFragment extends BaseFragment implements CygBaseRecyclerAdapter
                 }
             }
         }).start();
+    }
+
+    @OnClick(R.id.ll_footmark)
+    void footMarkClick() {
+        if (mList != null && mList.size() > 0) {
+            startActivity(new Intent(getActivity(), FootMarkActivity.class));
+        }
     }
 
 

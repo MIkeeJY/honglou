@@ -68,6 +68,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"/>
 
+        <activity
+            android:name=".ui.main.FootMarkActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+
 
         <activity
             android:name=".kuaishipin.DemoLuncherActivity"

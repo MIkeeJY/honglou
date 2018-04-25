@@ -55,6 +55,8 @@ public class VideoListItem implements Parcelable {
     private long video_count_comment;
     private String video_desc;
 
+    int seleted;
+
 
     public String getVideo_name() {
         return video_name;
@@ -217,4 +219,14 @@ public class VideoListItem implements Parcelable {
             return new VideoListItem[size];
         }
     };
+
+
+    public int getSeleted() {
+        return seleted;
+    }
+
+
+    public void setSeleted(int seleted) {
+        this.seleted = seleted;
+    }
 }

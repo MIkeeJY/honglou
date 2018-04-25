@@ -62,12 +62,14 @@ public class TitleBarUIComponent extends RelativeLayout {
         tvLeft.setOnClickListener(listener);
     }
 
-    public void initTitle(String text) {
+    public void initTitle(String text, int color) {
         tvTitle.setText(String.valueOf(text));
+        tvTitle.setTextColor(color);
     }
 
-    public void initTitle(int drawableRes) {
+    public void initTitle(int drawableRes, int color) {
         tvTitle.setBackgroundResource(drawableRes);
+        tvTitle.setTextColor(color);
     }
 
     public void initRight(String text, OnClickListener listener) {
@@ -94,4 +96,15 @@ public class TitleBarUIComponent extends RelativeLayout {
         tvRight.setCompoundDrawablesWithIntrinsicBounds(0, 0, drawableRes, 0);
     }
 
+    public TextView getTvLeft() {
+        return tvLeft;
+    }
+
+    public TextView getTvTitle() {
+        return tvTitle;
+    }
+
+    public TextView getTvRight() {
+        return tvRight;
+    }
 }
