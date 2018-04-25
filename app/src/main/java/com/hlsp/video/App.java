@@ -59,8 +59,7 @@ public class App extends CygApplication {
 
 
         if (BuildConfig.DEBUG) {
-//            HttpServletAddress.getInstance().setOfflineAddress(HttpBaseUrl.BASE_TEXT_URL);
-            HttpServletAddress.getInstance().setOnlineAddress(HttpBaseUrl.BASE_URL);
+            HttpServletAddress.getInstance().setOfflineAddress(HttpBaseUrl.BASE_TEXT_URL);
         } else {
             HttpServletAddress.getInstance().setOnlineAddress(HttpBaseUrl.BASE_URL);
         }
