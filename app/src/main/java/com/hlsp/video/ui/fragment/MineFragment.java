@@ -1,6 +1,8 @@
 package com.hlsp.video.ui.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.view.View;
@@ -13,6 +15,8 @@ import com.hlsp.video.R;
 import com.hlsp.video.base.BaseFragment;
 import com.hlsp.video.bean.VideoListItem;
 import com.hlsp.video.model.ConstantsValue;
+import com.hlsp.video.model.event.ClearListEvent;
+import com.hlsp.video.model.event.RefreshHistoryEvent;
 import com.hlsp.video.ui.main.FootMarkActivity;
 import com.hlsp.video.ui.main.HistoryDetailActivity;
 import com.hlsp.video.ui.main.adapter.HistoryVideoAdapter;
@@ -21,6 +25,10 @@ import com.hlsp.video.utils.FileUtils;
 import com.hlsp.video.utils.SpUtils;
 import com.hlsp.video.utils.Utils;
 import com.hlsp.video.view.CustomRecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +67,12 @@ public class MineFragment extends BaseFragment implements CygBaseRecyclerAdapter
     @Override
     protected int layoutRes() {
         return R.layout.fragment_mine;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -143,5 +157,30 @@ public class MineFragment extends BaseFragment implements CygBaseRecyclerAdapter
 //                mRvHistory.scrollToPosition(mAdapter.getItemCount() - 1);
 //            }
         }
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getHistory(RefreshHistoryEvent event) {
+        mAdapter.setDataList(event.getList());
+
+        if (mList != null && mList.size() > 0) {
+            mRvHistory.setVisibility(View.VISIBLE);
+        } else {
+            mRvHistory.setVisibility(View.GONE);
+        }
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void ClearHistory(ClearListEvent event) {
+        mRvHistory.setVisibility(View.GONE);
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

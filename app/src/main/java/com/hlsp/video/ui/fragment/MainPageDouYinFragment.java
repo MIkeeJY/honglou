@@ -325,7 +325,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
     }
 
 
-    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void getImageData(RefreshEvent event) {
         adapter.setDataList(event.getList());
         mAdapter.notifyDataSetChanged();

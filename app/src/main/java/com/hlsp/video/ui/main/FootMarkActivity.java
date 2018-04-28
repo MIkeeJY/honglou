@@ -1,5 +1,6 @@
 package com.hlsp.video.ui.main;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,11 +12,16 @@ import com.hlsp.video.R;
 import com.hlsp.video.base.BaseActivity;
 import com.hlsp.video.bean.VideoListItem;
 import com.hlsp.video.model.ConstantsValue;
+import com.hlsp.video.model.event.ClearListEvent;
+import com.hlsp.video.model.event.RefreshHistoryEvent;
 import com.hlsp.video.ui.main.adapter.EditHistoryVideoAdapter;
 import com.hlsp.video.ui.main.adapter.EditHistoryViewHolder;
 import com.hlsp.video.utils.FileUtils;
 import com.hlsp.video.utils.StatusBarCompat;
 import com.hlsp.video.utils.statusbar.StatusBarFontHelper;
+import com.hlsp.video.widget.CommonDialog;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +51,7 @@ public class FootMarkActivity extends BaseActivity implements CygBaseRecyclerAda
     private List<VideoListItem> mList = new ArrayList<>();
 
     LinearLayoutManager mLayoutManager;
+    CommonDialog commonDialog;
 
     @Override
     protected int layoutRes() {
@@ -108,8 +115,37 @@ public class FootMarkActivity extends BaseActivity implements CygBaseRecyclerAda
 
     @OnClick(R.id.tv_clear)
     void clearClick() {
-        mList.clear();
-        mAdapter.setDataList(mList);
+        commonDialog = new CommonDialog(this);
+        commonDialog.setCancelable(false);
+        commonDialog.setLeftButtonMsg("取消");
+        commonDialog.setRightButtonMsg("确认");
+        commonDialog.setContentMsg("确定要清空所有浏览足迹吗？");
+
+        commonDialog.setOnLeftButtonOnClickListener(new CommonDialog.LeftButtonOnClickListener() {
+            @Override
+            public void onLeftButtonOnClick() {
+                if (!isFinishing()) {
+                    commonDialog.dismiss();
+                }
+
+            }
+        });
+        commonDialog.setOnRightButtonOnClickListener(new CommonDialog.RightButtonOnClickListener() {
+            @Override
+            public void onRightButtonOnClick() {
+                mList.clear();
+                FileUtils.writeParcelableList(App.getInstance(), ConstantsValue.HISTORY_VIDEO, mList);
+                EventBus.getDefault().post(new ClearListEvent());
+
+                if (!isFinishing()) {
+                    commonDialog.dismiss();
+                }
+                finish();
+            }
+        });
+        commonDialog.show();
+
+
     }
 
     @OnClick(R.id.tv_finish)
@@ -126,6 +162,9 @@ public class FootMarkActivity extends BaseActivity implements CygBaseRecyclerAda
         }
 
         FileUtils.writeParcelableList(App.getInstance(), ConstantsValue.HISTORY_VIDEO, mList);
+        EventBus.getDefault().post(new RefreshHistoryEvent(mList));
+
+        finish();
     }
 
     @Override
@@ -133,6 +172,20 @@ public class FootMarkActivity extends BaseActivity implements CygBaseRecyclerAda
         if (mList.get(position).getSeleted() == 1) {
             mList.remove(position);
             mAdapter.setDataList(mList);
+        } else {
+            Intent intent = new Intent(this, HistoryDetailActivity.class);
+            intent.putExtra("VideoListItem", mList.get(position));
+            startActivity(intent);
+
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (commonDialog != null && commonDialog.isShowing()) {
+            commonDialog.dismiss();
         }
 
     }

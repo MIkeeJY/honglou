@@ -1,5 +1,7 @@
 package com.hlsp.video.ui.main.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ import com.hlsp.video.bean.VideoListItem;
 import com.hlsp.video.bean.data.VideoUrlData;
 import com.hlsp.video.model.ConstantsValue;
 import com.hlsp.video.model.main.MainModel;
+import com.hlsp.video.ui.main.OtherProfileActivity;
 import com.hlsp.video.utils.CommonUtils;
 import com.hlsp.video.utils.FileUtils;
 import com.hlsp.video.utils.GlideUtils;
@@ -40,14 +43,17 @@ public class RecommondViewHolder extends CygBaseRecyclerViewHolder<VideoListItem
     @BindView(R.id.tv_play_count) TextView mTvPlayCount;
 
     @BindView(R.id.ijk_videoview) IjkVideoView ijkVideoView;
+    @BindView(R.id.rl_bottom) View mBottomView;
 
     private StandardVideoController controller;
     private PlayerConfig mPlayerConfig;
+    Context mContext;
 
 
     public RecommondViewHolder(View view) {
         super(view);
         ButterKnife.bind(this, view);
+        mContext = view.getContext();
 
         controller = new StandardVideoController(view.getContext());
         ijkVideoView.setVideoController(controller);
@@ -125,6 +131,20 @@ public class RecommondViewHolder extends CygBaseRecyclerViewHolder<VideoListItem
 
             mTvUsername.setText(data.getVideo_author_name());
             mTvPlayCount.setText(Utils.formatNumber(data.getVideo_count_play()) + "次观看");
+
+
+            mBottomView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if ("dingyue".equals(data.getVideo_source())) {
+                        Intent intent = new Intent(mContext, OtherProfileActivity.class);
+                        intent.putExtra("authorId", data.getVideo_author_id());
+                        mContext.startActivity(intent);
+                    }
+
+
+                }
+            });
 
 
         }

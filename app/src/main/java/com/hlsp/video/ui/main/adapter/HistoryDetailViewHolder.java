@@ -1,5 +1,6 @@
 package com.hlsp.video.ui.main.adapter;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,11 +30,13 @@ public class HistoryDetailViewHolder extends CygBaseRecyclerViewHolder<VideoList
     @BindView(R.id.tv_detail_time) TextView mTvDetailTime;
     @BindView(R.id.ijk_controls_size) TextView mTvControlSize;
 
+    Context mContext;
+
 
     public HistoryDetailViewHolder(View view) {
         super(view);
         ButterKnife.bind(this, view);
-
+        mContext = view.getContext();
     }
 
     @Override

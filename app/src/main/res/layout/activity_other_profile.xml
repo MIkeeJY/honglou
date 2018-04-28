@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/common_bg_color"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/layout_titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp">
+
+            <com.hlsp.video.view.CircleImageView
+                android:id="@+id/iv_user_avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/tv_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="19dp"
+                android:layout_toRightOf="@id/iv_user_avatar"
+                android:gravity="center"
+                android:singleLine="true"
+                tools:text="宇宙世界科普知识大全"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="视频"
+                android:textSize="12sp"/>
+
+        </RelativeLayout>
+
+
+        <include
+            android:id="@+id/am_ptr_framelayout"
+            layout="@layout/ptr_recyclerview_uicomponent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen10"/>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

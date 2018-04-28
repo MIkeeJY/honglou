@@ -37,6 +37,8 @@
     <color name="common_blue2">#00a0e9</color>
     <color name="common_press_bg">#e9e7e9</color>
     <color name="common_bg_color">#F4F5F7</color>
+    <color name="color_333">#333333</color>
+    <color name="color_666">#666666</color>
 
     <color name="home_tab_normal_color">#5D646E</color>
     <color name="home_tab_selected_color">#212832</color>

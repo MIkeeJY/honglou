@@ -1,5 +1,7 @@
 package com.hlsp.video.model;
 
+import com.hlsp.video.bean.AuthorInfoResponse;
+import com.hlsp.video.bean.AuthorVideoResponse;
 import com.hlsp.video.bean.LoginResult;
 import com.hlsp.video.bean.data.ChannelListData;
 import com.hlsp.video.bean.data.VideoListData;
@@ -47,6 +49,18 @@ public interface CygApi {
      */
     @POST("v1/search/videoUrlOf360")
     Observable<BaseResponse<VideoUrlData>> getVideoUrl(@Body RequestBody body);
+
+    /**
+     * 获取作者信息
+     */
+    @POST("v1/search/getLocalAuthor")
+    Observable<BaseResponse<AuthorInfoResponse>> getAuthorInfo(@Body RequestBody body);
+
+    /**
+     * 获取作者作品
+     */
+    @POST("v1/search/getLocalVideo")
+    Observable<BaseResponse<AuthorVideoResponse>> getAuthorVideo(@Body RequestBody body);
 
     /**
      * 邮箱登录

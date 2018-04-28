@@ -229,4 +229,97 @@ public class VideoListItem implements Parcelable {
     public void setSeleted(int seleted) {
         this.seleted = seleted;
     }
+
+
+    public void setVideo_name(String video_name) {
+        this.video_name = video_name;
+    }
+
+    public void setVideo_duration(int video_duration) {
+        this.video_duration = video_duration;
+    }
+
+    public void setVideo_coverURL(String video_coverURL) {
+        this.video_coverURL = video_coverURL;
+    }
+
+    public void setVideo_definition(String video_definition) {
+        this.video_definition = video_definition;
+    }
+
+    public void setVideo_author_name(String video_author_name) {
+        this.video_author_name = video_author_name;
+    }
+
+    public void setVideo_label_level1(String video_label_level1) {
+        this.video_label_level1 = video_label_level1;
+    }
+
+    public void setVideo_extData(String video_extData) {
+        this.video_extData = video_extData;
+    }
+
+    public void setVideo_pubtime(String video_pubtime) {
+        this.video_pubtime = video_pubtime;
+    }
+
+    public void setVideo_author_avatarURL(String video_author_avatarURL) {
+        this.video_author_avatarURL = video_author_avatarURL;
+    }
+
+    public void setVideo_size(String video_size) {
+        this.video_size = video_size;
+    }
+
+    public void setVideo_show_mode(String video_show_mode) {
+        this.video_show_mode = video_show_mode;
+    }
+
+    public void setVideo_author_id(String video_author_id) {
+        this.video_author_id = video_author_id;
+    }
+
+    public void setVideo_count_play(long video_count_play) {
+        this.video_count_play = video_count_play;
+    }
+
+    public void setVideo_source(String video_source) {
+        this.video_source = video_source;
+    }
+
+    public void setVideo_id(String video_id) {
+        this.video_id = video_id;
+    }
+
+    public void setVideo_count_digg(long video_count_digg) {
+        this.video_count_digg = video_count_digg;
+    }
+
+    public void setVideo_count_collect(long video_count_collect) {
+        this.video_count_collect = video_count_collect;
+    }
+
+    public void setVideo_count_share(long video_count_share) {
+        this.video_count_share = video_count_share;
+    }
+
+    public void setVideo_playURL(String video_playURL) {
+        this.video_playURL = video_playURL;
+    }
+
+    public void setVideo_statue(String video_statue) {
+        this.video_statue = video_statue;
+    }
+
+    public void setVideo_label_challenge1(String video_label_challenge1) {
+        this.video_label_challenge1 = video_label_challenge1;
+    }
+
+    public void setVideo_count_comment(long video_count_comment) {
+        this.video_count_comment = video_count_comment;
+    }
+
+    public void setVideo_desc(String video_desc) {
+        this.video_desc = video_desc;
+    }
 }
