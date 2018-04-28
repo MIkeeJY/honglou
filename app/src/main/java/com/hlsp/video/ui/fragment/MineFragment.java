@@ -64,6 +64,8 @@ public class MineFragment extends BaseFragment implements CygBaseRecyclerAdapter
 
     HistoryVideoAdapter mAdapter;
 
+    LinearLayoutManager mLayoutManager;
+
     @Override
     protected int layoutRes() {
         return R.layout.fragment_mine;
@@ -101,7 +103,10 @@ public class MineFragment extends BaseFragment implements CygBaseRecyclerAdapter
 
         mAdapter = new HistoryVideoAdapter(getActivity(), this);
 
-        mRvHistory.setLayoutManager(new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false));
+        mLayoutManager = new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false);
+        mLayoutManager.setStackFromEnd(true);//列表再底部开始展示，反转后由上面开始展示
+        mLayoutManager.setReverseLayout(true);//列表翻转
+        mRvHistory.setLayoutManager(mLayoutManager);
         // Horizontal
         OverScrollDecoratorHelper.setUpOverScroll(mRvHistory, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
         mRvHistory.setflingScale(0.75);
@@ -126,9 +131,7 @@ public class MineFragment extends BaseFragment implements CygBaseRecyclerAdapter
 
     @OnClick(R.id.ll_footmark)
     void footMarkClick() {
-        if (mList != null && mList.size() > 0) {
-            startActivity(new Intent(getActivity(), FootMarkActivity.class));
-        }
+        startActivity(new Intent(getActivity(), FootMarkActivity.class));
     }
 
 
@@ -153,9 +156,9 @@ public class MineFragment extends BaseFragment implements CygBaseRecyclerAdapter
 
             mAdapter.setDataList(mList);
 
-//            if (mList != null && mList.size() > 0) {
-//                mRvHistory.scrollToPosition(mAdapter.getItemCount() - 1);
-//            }
+            if (mList != null && mList.size() > 0) {
+                mRvHistory.scrollToPosition(mAdapter.getItemCount() - 1);
+            }
         }
     }
 

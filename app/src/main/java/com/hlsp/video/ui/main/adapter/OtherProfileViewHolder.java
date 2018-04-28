@@ -42,7 +42,7 @@ public class OtherProfileViewHolder extends CygBaseRecyclerViewHolder<AuthorVide
         if (data != null) {
             ViewGroup.LayoutParams params = video_img.getLayoutParams();
             params.width = (WindowUtil.getScreenWidth(App.getInstance()) - DensityUtil.dip2px(App.getInstance(), 2)) / 2;
-            params.height = (params.width) * 8 / 5;
+            params.height = (params.width) * 6 / 5;
             video_img.setLayoutParams(params);
 
             final Uri uri = Uri.parse(data.getVideo_coverURL());

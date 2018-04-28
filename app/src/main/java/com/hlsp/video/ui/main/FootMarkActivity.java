@@ -105,6 +105,9 @@ public class FootMarkActivity extends BaseActivity implements CygBaseRecyclerAda
 
         mAdapter = new EditHistoryVideoAdapter(this, this);
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mLayoutManager.setStackFromEnd(true);//列表再底部开始展示，反转后由上面开始展示
+        mLayoutManager.setReverseLayout(true);//列表翻转
+
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mRecyclerView.setAdapter(mAdapter);
@@ -164,7 +167,6 @@ public class FootMarkActivity extends BaseActivity implements CygBaseRecyclerAda
         FileUtils.writeParcelableList(App.getInstance(), ConstantsValue.HISTORY_VIDEO, mList);
         EventBus.getDefault().post(new RefreshHistoryEvent(mList));
 
-        finish();
     }
 
     @Override

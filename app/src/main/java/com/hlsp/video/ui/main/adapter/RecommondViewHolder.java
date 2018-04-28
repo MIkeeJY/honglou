@@ -98,7 +98,7 @@ public class RecommondViewHolder extends CygBaseRecyclerViewHolder<VideoListItem
 
                     List<VideoListItem> videoListItems = FileUtils.readParcelableList(App.getInstance(), ConstantsValue.HISTORY_VIDEO, VideoListItem.class);
                     if (videoListItems != null && videoListItems.size() > 0) {
-                        if (videoListItems.size() < 10) {
+                        if (videoListItems.size() < 20) {
                             for (VideoListItem item : videoListItems) {
                                 if (item.getVideo_name().equals(data.getVideo_name())) {
                                     return;

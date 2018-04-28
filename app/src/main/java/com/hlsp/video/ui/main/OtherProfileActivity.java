@@ -170,10 +170,10 @@ public class OtherProfileActivity extends BaseActivity implements CygBaseRecycle
                 }
 
                 if ("false".equals(data.getHasMore())) {
-                    ptrRecyclerViewUIComponent.setNoMoreData();
-                    ptrRecyclerViewUIComponent.setLoadMoreEnable(false);
+                    ptrRecyclerViewUIComponent.loadMoreComplete(false);
+
                 } else {
-                    ptrRecyclerViewUIComponent.setLoadMoreEnable(true);
+                    ptrRecyclerViewUIComponent.loadMoreComplete(true);
                 }
 
             }

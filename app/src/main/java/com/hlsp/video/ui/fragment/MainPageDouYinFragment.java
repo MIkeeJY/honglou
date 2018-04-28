@@ -68,6 +68,8 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
 
     boolean douYinDisable = false;
 
+    MyCustomHeader header;
+
     @Override
     protected int layoutRes() {
         return R.layout.fragment_main_page_douyin;
@@ -147,7 +149,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
     }
 
     private void initHeader() {
-        MyCustomHeader header = new MyCustomHeader(getActivity());
+        header = new MyCustomHeader(getActivity());
         header.setLayoutParams(new PtrFrameLayout.LayoutParams(PtrFrameLayout.LayoutParams.MATCH_PARENT, PtrFrameLayout.LayoutParams.WRAP_CONTENT));
         header.setPadding(0, DensityUtil.dip2px(App.getInstance(), 15), 0, DensityUtil.dip2px(App.getInstance(), 10));
 
@@ -176,6 +178,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
             @Override
             public void onResponse(String response) {
                 LogUtils.json(response);
+
                 try {
                     DouyinVideoListData listData = DouyinVideoListData.fromJSONData(response);
                     max_cursor = listData.getMaxCursor();
@@ -191,6 +194,10 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
                     }
 
                     LogUtils.e(listData.getVideoDataList().size());
+
+                    header.getTvtitle().setText("发现" + listData.getVideoDataList().size() + "条精彩视频");
+                    ptrRecyclerViewUIComponent.removeView(header);
+                    ptrRecyclerViewUIComponent.setHeaderView(header);
 
                     if (isLoadMore) {
                         mList.addAll(listData.getVideoDataList());
@@ -222,9 +229,12 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
 
             @Override
             public void onFailure(Request request, IOException e) {
-                ptrRecyclerViewUIComponent.loadMoreComplete(true);
+                ptrRecyclerViewUIComponent.loadMoreComplete(false);
                 ptrRecyclerViewUIComponent.refreshComplete();
                 ToastUtil.showToast("网络连接失败");
+                header.getTvtitle().setText("网络连接失败，请重试");
+                ptrRecyclerViewUIComponent.removeView(header);
+                ptrRecyclerViewUIComponent.setHeaderView(header);
 
             }
         });
