@@ -8,10 +8,13 @@ import android.widget.TextView;
 import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.bean.VideoListItem;
+import com.hlsp.video.model.event.DelListEvent;
 import com.hlsp.video.utils.CommonUtils;
 import com.hlsp.video.utils.DateUtil;
 import com.hlsp.video.utils.GlideUtils;
 import com.hlsp.video.utils.Utils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,7 +61,15 @@ public class EditHistoryViewHolder extends CygBaseRecyclerViewHolder<VideoListIt
                 mIvDel.setVisibility(View.GONE);
             } else {
                 mIvDel.setVisibility(View.VISIBLE);
+                mIvDel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EventBus.getDefault().post(new DelListEvent(getAdapterPosition()));
+                    }
+                });
             }
+
+
 
         }
     }

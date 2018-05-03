@@ -68,7 +68,6 @@ public class FollowingVideoFragment extends BaseFragment implements CategoryQuer
         mTabLoader = new VideoTypesLoader();
         mTabLoader.Init(this);
         InitSdk();
-
     }
 
     @Override

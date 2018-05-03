@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.dueeeke.videoplayer.player.IjkVideoView;
 import com.hlsp.video.App;
@@ -16,6 +17,8 @@ import com.hlsp.video.model.main.MainModel;
 import com.hlsp.video.ui.main.adapter.RecommondAdapter;
 import com.hlsp.video.ui.main.adapter.RecommondViewHolder;
 import com.hlsp.video.utils.DensityUtil;
+import com.hlsp.video.utils.NoDoubleClickUtils;
+import com.hlsp.video.view.LoadFrameLayout;
 import com.hlsp.video.widget.MyCustomHeader;
 import com.jack.mc.cyg.cygptr.PtrFrameLayout;
 import com.jack.mc.cyg.cygptr.recyclerview.RecyclerAdapterWithHF;
@@ -40,6 +43,9 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
 
     @BindView(R.id.am_ptr_framelayout) PtrRecyclerViewUIComponent ptrRecyclerViewUIComponent;
     @BindView(R.id.ar_empty_view) View emptyView;
+    @BindView(R.id.load_frameLayout) LoadFrameLayout loadFrameLayout;
+
+    TextView mRetry;
 
     private List<VideoListItem> mRecommondList = new ArrayList<>();
     private List<VideoListItem> mFunnyList = new ArrayList<>();
@@ -75,6 +81,46 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
     @Override
     protected void onViewReallyCreated(View view) {
         mUnbinder = ButterKnife.bind(this, view);
+
+        mRetry = loadFrameLayout.findViewById(R.id.tv_retry);
+
+        mRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!NoDoubleClickUtils.isDoubleClick()) {
+                    switch (position) {
+                        case 0:
+                            if (mRecommondList != null && mRecommondList.size() > 0) {
+                                mRecommondList.clear();
+                            }
+                            RecommondLoadMore = "down";
+                            getVideoList(id, backdata_Recommond, RecommondLoadMore);
+
+                            break;
+                        case 1:
+                            if (mFunnyList != null && mFunnyList.size() > 0) {
+                                mFunnyList.clear();
+                            }
+                            FunnyLoadMore = "down";
+                            getVideoList(id, backdata_Funny, FunnyLoadMore);
+
+                            break;
+                        case 2:
+                            if (mEntertainmentList != null && mEntertainmentList.size() > 0) {
+                                mEntertainmentList.clear();
+                            }
+                            EntertainmentLoadMore = "down";
+                            getVideoList(id, backdata_Entertainment, EntertainmentLoadMore);
+
+                            break;
+
+
+                    }
+                }
+
+            }
+        });
+
         Bundle mBundle = getArguments();
         position = mBundle.getInt("position");
         id = mBundle.getInt("id");
@@ -198,7 +244,7 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
         MainModel.getInstance().executeVideoList(id + "", backdata, loadMore, new CygBaseObserver<VideoListData>() {
             @Override
             protected void onBaseNext(VideoListData data) {
-
+                loadFrameLayout.showContentView();
 
                 switch (position) {
                     case 0:
@@ -273,6 +319,7 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
                     public void run() {
                         ptrRecyclerViewUIComponent.loadMoreComplete(true);
                         ptrRecyclerViewUIComponent.refreshComplete();
+                        loadFrameLayout.showErrorView();
                     }
                 });
 
@@ -286,8 +333,6 @@ public class RecommondChildFragment extends BaseLoadFragment implements CygBaseR
     public void onItemClick(int position) {
 
     }
-
-
 
 
 }

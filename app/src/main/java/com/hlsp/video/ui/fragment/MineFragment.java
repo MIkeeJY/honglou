@@ -165,6 +165,8 @@ public class MineFragment extends BaseFragment implements CygBaseRecyclerAdapter
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getHistory(RefreshHistoryEvent event) {
+        mList = event.getList();
+
         mAdapter.setDataList(event.getList());
 
         if (mList != null && mList.size() > 0) {

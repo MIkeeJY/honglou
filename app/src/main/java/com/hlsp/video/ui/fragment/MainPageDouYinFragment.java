@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
+import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
 import com.hlsp.video.App;
@@ -21,10 +22,12 @@ import com.hlsp.video.ui.main.adapter.MainViewHolder;
 import com.hlsp.video.utils.DensityUtil;
 import com.hlsp.video.utils.DouyinUtils;
 import com.hlsp.video.utils.HotsoonUtils;
+import com.hlsp.video.utils.NoDoubleClickUtils;
 import com.hlsp.video.utils.StatusBarCompat;
 import com.hlsp.video.utils.ToastUtil;
 import com.hlsp.video.utils.WeakDataHolder;
 import com.hlsp.video.utils.statusbar.StatusBarFontHelper;
+import com.hlsp.video.view.LoadFrameLayout;
 import com.hlsp.video.widget.MyCustomHeader;
 import com.jack.mc.cyg.cygptr.PtrFrameLayout;
 import com.jack.mc.cyg.cygptr.recyclerview.RecyclerAdapterWithHF;
@@ -54,6 +57,9 @@ import okhttp3.Request;
 public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyclerAdapter.OnItemClickListener<MainViewHolder> {
     @BindView(R.id.am_ptr_framelayout) PtrRecyclerViewUIComponent ptrRecyclerViewUIComponent;
     @BindView(R.id.ar_empty_view) View emptyView;
+    @BindView(R.id.load_frameLayout) LoadFrameLayout loadFrameLayout;
+
+    TextView mRetry;
 
     private MainAdapter adapter;
 
@@ -92,6 +98,24 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
     @Override
     protected void onViewReallyCreated(View view) {
         mUnbinder = ButterKnife.bind(this, view);
+        mRetry = loadFrameLayout.findViewById(R.id.tv_retry);
+
+        mRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!NoDoubleClickUtils.isDoubleClick()) {
+                    if (douYinDisable) {
+                        HuoshanListData();
+                    } else {
+                        getDouyinListData();
+                    }
+                }
+
+
+            }
+        });
+
+
         adapter = new MainAdapter(getActivity(), this);
         mAdapter = new RecyclerAdapterWithHF(adapter);
 
@@ -178,7 +202,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
             @Override
             public void onResponse(String response) {
                 LogUtils.json(response);
-
+                loadFrameLayout.showContentView();
                 try {
                     DouyinVideoListData listData = DouyinVideoListData.fromJSONData(response);
                     max_cursor = listData.getMaxCursor();
@@ -235,6 +259,8 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
                 header.getTvtitle().setText("网络连接失败，请重试");
                 ptrRecyclerViewUIComponent.removeView(header);
                 ptrRecyclerViewUIComponent.setHeaderView(header);
+
+                loadFrameLayout.showErrorView();
 
             }
         });

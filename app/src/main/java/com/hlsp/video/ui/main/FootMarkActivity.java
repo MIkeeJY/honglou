@@ -13,6 +13,7 @@ import com.hlsp.video.base.BaseActivity;
 import com.hlsp.video.bean.VideoListItem;
 import com.hlsp.video.model.ConstantsValue;
 import com.hlsp.video.model.event.ClearListEvent;
+import com.hlsp.video.model.event.DelListEvent;
 import com.hlsp.video.model.event.RefreshHistoryEvent;
 import com.hlsp.video.ui.main.adapter.EditHistoryVideoAdapter;
 import com.hlsp.video.ui.main.adapter.EditHistoryViewHolder;
@@ -22,6 +23,8 @@ import com.hlsp.video.utils.statusbar.StatusBarFontHelper;
 import com.hlsp.video.widget.CommonDialog;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +63,7 @@ public class FootMarkActivity extends BaseActivity implements CygBaseRecyclerAda
 
     @Override
     protected void initView() {
+        EventBus.getDefault().register(this);
         StatusBarCompat.setStatusBarColor(this, 0xfffffff);
         StatusBarFontHelper.setStatusBarMode(this, true);
 
@@ -172,8 +176,8 @@ public class FootMarkActivity extends BaseActivity implements CygBaseRecyclerAda
     @Override
     public void onItemClick(int position) {
         if (mList.get(position).getSeleted() == 1) {
-            mList.remove(position);
-            mAdapter.setDataList(mList);
+//            mList.remove(position);
+//            mAdapter.setDataList(mList);
         } else {
             Intent intent = new Intent(this, HistoryDetailActivity.class);
             intent.putExtra("VideoListItem", mList.get(position));
@@ -189,6 +193,14 @@ public class FootMarkActivity extends BaseActivity implements CygBaseRecyclerAda
         if (commonDialog != null && commonDialog.isShowing()) {
             commonDialog.dismiss();
         }
-
+        EventBus.getDefault().unregister(this);
     }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getHistory(DelListEvent event) {
+        mList.remove(event.getPosition());
+        mAdapter.setDataList(mList);
+    }
+
 }
