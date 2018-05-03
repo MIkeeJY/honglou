@@ -1,6 +1,7 @@
 package com.hlsp.video.ui.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.mobstat.StatService;
@@ -19,6 +21,8 @@ import com.hlsp.video.base.BaseLoadFragment;
 import com.hlsp.video.bean.ChannelListItem;
 import com.hlsp.video.bean.data.ChannelListData;
 import com.hlsp.video.model.main.MainModel;
+import com.hlsp.video.utils.NoDoubleClickUtils;
+import com.hlsp.video.view.LoadFrameLayout;
 import com.hlsp.video.widget.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
@@ -43,11 +47,17 @@ public class RecommondVideoFragment extends BaseFragment {
     @BindView(R.id.tab_search) ImageView mTabSearch;
     @BindView(R.id.vp_home) ViewPager mViewPager;
 
+    @BindView(R.id.load_frameLayout) LoadFrameLayout loadFrameLayout;
+
     private String[] titles = {"推荐", "搞笑", "娱乐"};
 
     private List<ChannelListItem> channelList = new ArrayList<>();
 
     private Map<String, Integer> mTabs = new HashMap<>();
+
+    Handler mHandler = new Handler();
+
+    TextView mRetry;
 
 
     @Override
@@ -65,7 +75,17 @@ public class RecommondVideoFragment extends BaseFragment {
     @Override
     protected void onViewReallyCreated(View view) {
         mUnbinder = ButterKnife.bind(this, view);
-        mViewPager.setFocusable(false);
+
+        mRetry = loadFrameLayout.findViewById(R.id.tv_retry);
+
+        mRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!NoDoubleClickUtils.isDoubleClick()) {
+                    getChannelData();
+                }
+            }
+        });
 
         getChannelData();
 
@@ -83,11 +103,18 @@ public class RecommondVideoFragment extends BaseFragment {
             @Override
             protected void onBaseError(Throwable t) {
                 super.onBaseError(t);
-
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadFrameLayout.showErrorView();
+                    }
+                });
             }
 
             @Override
             protected void onBaseNext(ChannelListData data) {
+                loadFrameLayout.showContentView();
+
                 channelList = data.getChannelList();
 
                 for (ChannelListItem item : channelList) {

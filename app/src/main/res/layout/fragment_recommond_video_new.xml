@@ -5,6 +5,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="44dp">
@@ -36,9 +37,15 @@
 
     </RelativeLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_home"
+    <com.hlsp.video.view.LoadFrameLayout
+        android:id="@+id/load_frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:errorView="@layout/layout_error">
 
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.hlsp.video.view.LoadFrameLayout>
 </LinearLayout>

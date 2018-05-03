@@ -6,16 +6,9 @@
                 android:orientation="vertical">
 
 
-    <com.hlsp.video.view.LoadFrameLayout
-        android:id="@+id/load_frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:errorView="@layout/layout_error">
-
-        <include
-            android:id="@+id/am_ptr_framelayout"
-            layout="@layout/ptr_recyclerview_uicomponent"/>
-    </com.hlsp.video.view.LoadFrameLayout>
+    <include
+        android:id="@+id/am_ptr_framelayout"
+        layout="@layout/ptr_recyclerview_uicomponent"/>
 
     <include
         android:id="@+id/ar_empty_view"
