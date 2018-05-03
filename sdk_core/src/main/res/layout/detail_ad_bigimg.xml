@@ -11,6 +11,7 @@
         android:layout_height="80dp"
         app:placeholderImageScaleType="fitXY"/>
     <TextView
+        android:id="@+id/staticadtip"
         android:layout_width="22dp"
         android:layout_height="wrap_content"
         android:text="广告"

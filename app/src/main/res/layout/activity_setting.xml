@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context="com.lightsky.video.sdkapp.SettingActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SDK SETTING"
+        android:id="@+id/tip_setting"
+        android:layout_centerHorizontal="true"
+        />
+    <View
+        android:id="@+id/split_setting"
+        android:layout_marginTop="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tip_setting"
+        android:background="#555555"/>
+    <GridLayout
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/split_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appsetting"
+        android:rowCount="2"
+        android:columnCount="3"
+        android:layout_centerHorizontal="true"
+        >
+        <CheckBox
+            android:id="@+id/debug_model"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Debug Model" />
+        <CheckBox
+            android:layout_marginLeft="5dp"
+            android:id="@+id/useshare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use Share" />
+        <CheckBox
+            android:layout_marginLeft="5dp"
+            android:id="@+id/uselog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use Log" />
+        <CheckBox
+            android:id="@+id/usenbplayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use Sdk Player"
+            />
+        <CheckBox
+            android:id="@+id/enablead"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enable Ad"
+            />
+
+    </GridLayout>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SDK OPTION"
+        android:id="@+id/tip_option"
+        android:layout_below="@id/appsetting"
+        android:layout_centerHorizontal="true"
+        />
+    <View
+        android:id="@+id/split_option"
+        android:layout_marginTop="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tip_option"
+        android:background="#555555"/>
+
+    <GridLayout
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/split_option"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appoptions"
+        android:rowCount="2"
+        android:columnCount="3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        >
+        <CheckBox
+            android:id="@+id/playctrl"
+            android:layout_below="@+id/usenbplayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="play ctrl" />
+        <CheckBox
+            android:layout_marginLeft="5dp"
+            android:id="@+id/useadview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="my img Ad" />
+        <CheckBox
+            android:layout_marginLeft="5dp"
+            android:id="@+id/Fragment_circly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="detail cycle" />
+    </GridLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appoptions">
+            <Button
+                android:id="@+id/bnt_init"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="save"
+                android:textAllCaps="false"
+                />
+            <Button
+                android:id="@+id/bnt_default_init"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="load default"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                />
+        </LinearLayout>
+
+
+</RelativeLayout>

@@ -57,6 +57,7 @@
             </LinearLayout>
         </com.uibase.ui.ripple.RippleView>
 
+
        <!-- <LinearLayout
             android:id="@+id/collection_root"
             android:layout_width="wrap_content"
@@ -73,7 +74,7 @@
 
         </LinearLayout>-->
 
-        <!--<com.uibase.ui.ripple.RippleView
+       <!-- <com.uibase.ui.ripple.RippleView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:mrl_rippleColor="@color/common_list_clip_color"
@@ -132,8 +133,31 @@
                     android:src="@drawable/bofangjieshu_pengyouquan"/>
             </LinearLayout>
         </LinearLayout>
+        <com.uibase.ui.ripple.RippleView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:mrl_rippleColor="@color/common_list_clip_color"
+            app:mrl_rippleDuration="200"
+            app:mrl_rippleFromCenter="true"
+            app:mrl_rippleHover="false">
 
+            <LinearLayout
+                android:id="@+id/more_root"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <ImageView
+                    android:id="@+id/more_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_gengduo"/>
+            </LinearLayout>
+        </com.uibase.ui.ripple.RippleView>
     </LinearLayout>
+
 
     <com.uibase.ui.ripple.RippleView
         android:layout_width="match_parent"
@@ -150,5 +174,4 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.uibase.ui.ripple.RippleView>
-
 </RelativeLayout>

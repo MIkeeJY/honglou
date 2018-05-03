@@ -1,56 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                tools:context=".kuaishipin.TestFragmentActivity">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lightsky.video.sdkapp.TestFragmentActivity">
     <RelativeLayout
         android:id="@+id/test_fragment_dynamic"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-
+        android:layout_height="match_parent">
         <HorizontalScrollView
             android:id="@+id/video_type_tab"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            android:layout_height="wrap_content">
         </HorizontalScrollView>
-
-        <com.hlsp.video.kuaishipin.NoScrollViewPager
+        <com.lightsky.video.sdkapp.NoScrollViewPager
+            android:layout_below="@id/video_type_tab"
             android:id="@+id/video_pager_fragments"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/video_type_tab">
-        </com.hlsp.video.kuaishipin.NoScrollViewPager>
+            android:layout_height="match_parent">
+        </com.lightsky.video.sdkapp.NoScrollViewPager>
     </RelativeLayout>
-
     <RelativeLayout
-        android:id="@+id/test_fragment_static"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/test_fragment_static"
         android:visibility="gone">
-
         <TextView
             android:id="@+id/toptip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="this is a static video fragement style"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp"
-            android:visibility="gone"/>
+            android:text="static Fragement test,buttons are player controler"/>
+        <LinearLayout
+            android:id="@+id/playerctrler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/toptip"
+            >
+            <Button
+                android:id="@+id/ctrl_stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="stop"/>
+            <Button
+                android:id="@+id/ctrl_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="pause"/>
+            <Button
+                android:id="@+id/ctrl_resume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="resume"
+                />
 
+        </LinearLayout>
         <fragment
             android:id="@+id/homefragment"
+            android:layout_below="@id/playerctrler"
             android:name="com.lightsky.video.sdk.VideoTabFragement"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/toptip">
+            android:layout_height="match_parent">
         </fragment>
     </RelativeLayout>
+
 
 
 </RelativeLayout>

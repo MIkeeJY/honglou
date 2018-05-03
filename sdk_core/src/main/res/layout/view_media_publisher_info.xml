@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:fresco="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white">
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+
+
 
 
     <RelativeLayout
@@ -22,7 +25,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/common_toobar_icon_avatar_big"/>
+                android:background="@drawable/common_toobar_icon_avatar_big" />
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/avater_view"
@@ -30,7 +33,7 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 fresco:roundAsCircle="true"
-                fresco:roundingBorderColor="@color/white"/>
+                fresco:roundingBorderColor="@color/white" />
 
             <ImageView
                 android:id="@+id/imageV"
@@ -39,7 +42,7 @@
                 android:layout_marginLeft="47dp"
                 android:layout_marginTop="47dp"
                 android:src="@drawable/user_v"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </FrameLayout>
 
         <TextView
@@ -52,7 +55,7 @@
             android:maxLines="2"
             android:textColor="@color/common_list_title_color"
             android:textSize="18dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/personal_info_num_layout"
@@ -69,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/common_list_desc_color"
-                android:textSize="12dp"/>
+                android:textSize="12dp" />
 
             <View
                 android:id="@+id/divider"
@@ -77,7 +80,7 @@
                 android:layout_height="2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/common_list_desc_color"/>
+                android:background="@color/common_list_desc_color" />
 
             <TextView
                 android:id="@+id/personal_info_video_num"
@@ -85,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:textColor="@color/common_list_desc_color"
-                android:textSize="12dp"/>
+                android:textSize="12dp" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -100,7 +103,7 @@
         android:paddingRight="13dp"
         android:singleLine="false"
         android:textColor="@color/common_list_title_color"
-        android:textSize="14dp"/>
+        android:textSize="14dp" />
 
     <View
         android:layout_width="match_parent"
@@ -110,6 +113,6 @@
         android:layout_marginLeft="13dp"
         android:layout_marginRight="13dp"
         android:layout_marginTop="13dp"
-        android:background="@color/common_divide_color"/>
+        android:background="@color/common_divide_color" />
 
 </RelativeLayout>

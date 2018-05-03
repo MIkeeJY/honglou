@@ -2,82 +2,35 @@ package com.hlsp.video.kuaishipin;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 import com.hlsp.video.R;
-import com.lightsky.utils.ToastUtil;
 import com.lightsky.video.VideoHelper;
 import com.lightsky.video.datamanager.category.CategoryQueryNotify;
 import com.lightsky.video.sdk.CategoryInfoBase;
-import com.lightsky.video.sdk.VideoOption;
-import com.lightsky.video.sdk.VideoSwitcher;
 import com.lightsky.video.sdk.VideoTypesLoader;
-import com.lightsky.video.sdk.listener.AdViewListener;
-import com.lightsky.video.sdk.listener.VideoPlayListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static android.view.View.inflate;
-
 
 public class DemoLuncherActivity extends Activity implements View.OnClickListener, CategoryQueryNotify {
 
-    private Button bntmuti, bntsingle, bntsearch, bntinit, bntAll, bntdefinit;
-    private CheckBox cbDebug, cbNbPlayer, cbUselog, cbUseShare, cbUseAdview, cbPlayCtrl, cbEnable;
+    private Button bntmuti, bntsingle, bntAll;
+    private ImageView settingimg, tabsearch;
     private VideoTypesLoader mTabLoader;
-    private Map<String, Integer> mTabs = new HashMap<String, Integer>();
-    private List<CategoryInfoBase> mTabinfos = new ArrayList<CategoryInfoBase>();
+    private Map<String, Integer> mTabs = new HashMap<>();
+    private List<CategoryInfoBase> mTabinfos = new ArrayList<>();
     private List<Integer> mTabFilter = new ArrayList<>();
-    private VideoPlayListener ctrllistener = new VideoPlayListener() {
-        @Override
-        public void OnStart(Context cxt, String videoid) {
-            String msg = "start play :" + videoid;
-            ToastUtil.showLong(cxt, msg);
-        }
-
-        @Override
-        public void OnPause(Context cxt, String videoid) {
-            String msg = "pause :" + videoid;
-            ToastUtil.showLong(cxt, msg);
-        }
-
-        @Override
-        public void OnResume(Context cxt, String videoid) {
-            String msg = "resume :" + videoid;
-            ToastUtil.showLong(cxt, msg);
-        }
-
-        @Override
-        public void OnPlayFinish(Context cxt, String videoid) {
-            String msg = "play finished :" + videoid;
-            ToastUtil.showLong(cxt, msg);
-        }
-
-        @Override
-        public void OnPlayExit(Context cxt, String videoid) {
-            String msg = "play exit :" + videoid;
-            ToastUtil.showLong(cxt, msg);
-        }
-
-        @Override
-        public void OnFullScreen(Context cxt, String videoid, boolean isfull) {
-            String msg = (isfull ? "enter" : "exit") + " fullscreen : " + videoid;
-            ToastUtil.showLong(cxt, msg);
-        }
-
-    };
 
     @Override
     public void onBackPressed() {
@@ -95,10 +48,15 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
         setContentView(R.layout.activity_demo_luncher);
         bntmuti = (Button) findViewById(R.id.mutitab);
         bntsingle = (Button) findViewById(R.id.singletab);
-        bntsearch = (Button) findViewById(R.id.search);
-        bntinit = (Button) findViewById(R.id.bnt_init);
+        tabsearch = (ImageView) findViewById(R.id.tab_search);
+        settingimg = (ImageView) findViewById(R.id.settingicon);
+        if (settingimg != null) {
+            settingimg.setOnClickListener(this);
+        }
+        if (tabsearch != null) {
+            tabsearch.setOnClickListener(this);
+        }
         bntAll = (Button) findViewById(R.id.alltabs);
-        bntdefinit = (Button) findViewById(R.id.bnt_default_init);
 
 
         if (bntsingle != null) {
@@ -107,27 +65,11 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
         if (bntmuti != null) {
             bntmuti.setOnClickListener(this);
         }
-        if (bntsearch != null) {
-            bntsearch.setOnClickListener(this);
-        }
-        if (bntinit != null) {
-            bntinit.setOnClickListener(this);
-        }
+
         if (bntAll != null) {
             bntAll.setOnClickListener(this);
         }
-        if (bntdefinit != null) {
-            bntdefinit.setOnClickListener(this);
-        }
-
-        cbDebug = (CheckBox) findViewById(R.id.debug_model);
-        cbNbPlayer = (CheckBox) findViewById(R.id.usenbplayer);
-        cbUselog = (CheckBox) findViewById(R.id.uselog);
-        cbUseShare = (CheckBox) findViewById(R.id.useshare);
-        cbUseAdview = (CheckBox) findViewById(R.id.useadview);
-        cbPlayCtrl = (CheckBox) findViewById(R.id.playctrl);
-        cbEnable = (CheckBox) findViewById(R.id.enablead);
-        EnableFunctions(false);
+        mTabLoader.loadData();
 
     }
 
@@ -162,28 +104,6 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
         }
     }
 
-
-    private void EnableFunctions(boolean enable) {
-        int visible = enable ? View.VISIBLE : View.GONE;
-        View mfun1 = findViewById(R.id.functions1);
-        if (mfun1 != null) {
-            mfun1.setVisibility(visible);
-        }
-        RadioGroup view = (RadioGroup) findViewById(R.id.actorfrag);
-        if (view != null) {
-            view.setVisibility(visible);
-        }
-        cbDebug.setEnabled(!enable);
-        cbNbPlayer.setEnabled(!enable);
-        cbUselog.setEnabled(!enable);
-        cbUseShare.setEnabled(!enable);
-        bntinit.setEnabled(!enable);
-        bntdefinit.setEnabled(!enable);
-        cbUseAdview.setEnabled(!enable);
-        cbPlayCtrl.setEnabled(!enable);
-        cbEnable.setEnabled(!enable);
-    }
-
     @Override
     public void onClick(View view) {
         if (view == null) {
@@ -194,85 +114,19 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
             showMultiChoiceDialog(view);
         } else if (id == bntsingle.getId()) {
             showSingleChoiceDialog(view);
-        } else if (id == bntsearch.getId()) {
+        } else if (id == tabsearch.getId()) {
             VideoHelper.get().showVideoSearchActivity(this, getIntent());
-        } else if (id == bntinit.getId()) {
-            InitSdk();
         } else if (id == bntAll.getId()) {
             showVideoWrapper(null, this, getIntent());
-        } else if (id == bntdefinit.getId()) {
-            _InitSdk(null, null);
+        } else if (id == settingimg.getId()) {
+//            Intent intent = new Intent();
+//            intent.setClass(this, SettingActivity.class);
+//            startActivity(intent);
         }
 
 
     }
 
-    private View.OnClickListener myprivatelistener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            int nid = v.getId();
-            String strtitle = "";
-            if (nid == R.id.ad_image) {
-                strtitle = "image 1";
-            } else if (nid == R.id.ad_image1) {
-                strtitle = "image 2";
-
-            } else if (nid == R.id.adbutton) {
-                strtitle = "button 1";
-            }
-            new AlertDialog.Builder(v.getContext())
-                    .setTitle("广告View 测试")
-                    .setMessage("文告" + strtitle + "被点击")
-                    .setPositiveButton("确定", null)
-                    .show();
-        }
-    };
-    private AdViewListener mDetailAdBigimg = new AdViewListener() {
-        @Override
-        public View GetView(Context cxt, String vtitle, String vtag[]) {
-
-            LinearLayout contianview = (LinearLayout) inflate(cxt, R.layout.banner_ad_image, null);
-            contianview.findViewById(R.id.ad_image).setOnClickListener(myprivatelistener);
-            contianview.findViewById(R.id.ad_image1).setOnClickListener(myprivatelistener);
-            contianview.findViewById(R.id.adbutton).setOnClickListener(myprivatelistener);
-            return contianview;
-        }
-    };
-
-    private void InitSdk() {
-        VideoSwitcher setting = new VideoSwitcher();
-        if (cbDebug != null) {
-            setting.Debugmodel = cbDebug.isChecked();
-
-        } else {
-            setting.Debugmodel = false;
-        }
-        if (cbNbPlayer != null) {
-            setting.UseNbPlayer = cbNbPlayer.isChecked();
-        } else {
-            setting.UseNbPlayer = true;
-        }
-        setting.UseFileLog = false;
-        setting.UseLogCatLog = cbUselog.isChecked();
-        setting.UseShareLayout = cbUseShare.isChecked();
-        setting.incomeEable = cbEnable.isChecked();
-        VideoOption option = new VideoOption();
-        boolean ischeck = cbUseAdview.isChecked();
-        if (ischeck) {
-            option.bigImgListener = mDetailAdBigimg;
-        }
-        if (cbPlayCtrl.isChecked()) {
-            option.playCtrlListener = ctrllistener;
-        }
-        _InitSdk(setting, option);
-
-    }
-
-    private void _InitSdk(VideoSwitcher setting, VideoOption opt) {
-        VideoHelper.get().Init(this, setting, opt);
-        mTabLoader.loadData();
-        EnableFunctions(true);
-    }
 
     private void showSingleChoiceDialog(View view) {
         if (!mTabLoader.HasData()) {
@@ -280,7 +134,7 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
         }
         mTabFilter.clear();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.mipmap.hongyan_icon);
+        builder.setIcon(R.mipmap.honglou_icon);
         builder.setTitle("请选择一个要展示的频道");
         builder.setPositiveButton("确定", new OnClickListener() {
 
@@ -327,7 +181,7 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
         }
         mTabFilter.clear();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.mipmap.hongyan_icon);
+        builder.setIcon(R.mipmap.honglou_icon);
         builder.setTitle("请选择要展示的频道");
         builder.setPositiveButton("确定", new OnClickListener() {
 
@@ -388,6 +242,5 @@ public class DemoLuncherActivity extends Activity implements View.OnClickListene
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        VideoHelper.get().unInit();
     }
 }

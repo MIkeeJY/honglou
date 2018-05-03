@@ -93,11 +93,6 @@
             android:exported="false"
             android:grantUriPermissions="true"/>
 
-        <provider
-            android:name="com.lightsky.storager.MultiprocessSharedPreferences"
-            android:authorities="com.hlsp.video.MultiprocessSharedPreferences"
-            android:exported="false"/>
-
 
         <!-- 您从百度网站获取的 APP KEY -->
         <meta-data
