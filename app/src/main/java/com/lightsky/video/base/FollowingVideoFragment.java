@@ -16,6 +16,7 @@ import com.baidu.mobstat.StatService;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseFragment;
 import com.hlsp.video.bean.EventEntity;
+import com.hlsp.video.utils.NetworkUtil;
 import com.lightsky.video.VideoHelper;
 import com.lightsky.video.datamanager.category.CategoryQueryNotify;
 import com.lightsky.video.sdk.CategoryInfoBase;
@@ -65,6 +66,9 @@ public class FollowingVideoFragment extends BaseFragment implements CategoryQuer
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!NetworkUtil.isNetworkActive(getActivity())) {
+            return;
+        }
         mTabLoader = new VideoTypesLoader();
         mTabLoader.Init(this);
         InitSdk();
@@ -183,6 +187,10 @@ public class FollowingVideoFragment extends BaseFragment implements CategoryQuer
 
         mVideoFragment = new VideoTabFragement();
         if (isAdded()) {
+            if (!NetworkUtil.isNetworkActive(getActivity())) {
+                return;
+            }
+
             showVideoFragment(mVideoFragment);
             generateEvent();
 
