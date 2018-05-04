@@ -104,6 +104,7 @@ public class FootMarkActivity extends BaseActivity implements CygBaseRecyclerAda
 
 
         if (mList != null && mList.size() > 0) {
+            titlebar.getTvRight().setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
             for (VideoListItem item : mList) {
@@ -112,6 +113,7 @@ public class FootMarkActivity extends BaseActivity implements CygBaseRecyclerAda
         } else {
             mRecyclerView.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
+            titlebar.getTvRight().setVisibility(View.GONE);
         }
 
         mAdapter = new EditHistoryVideoAdapter(this, this);
@@ -169,6 +171,7 @@ public class FootMarkActivity extends BaseActivity implements CygBaseRecyclerAda
         mShadow.setVisibility(View.GONE);
 
         if (mList != null && mList.size() > 0) {
+            titlebar.getTvRight().setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
             for (VideoListItem item : mList) {
@@ -178,6 +181,7 @@ public class FootMarkActivity extends BaseActivity implements CygBaseRecyclerAda
         } else {
             mRecyclerView.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
+            titlebar.getTvRight().setVisibility(View.GONE);
         }
 
         FileUtils.writeParcelableList(App.getInstance(), ConstantsValue.HISTORY_VIDEO, mList);

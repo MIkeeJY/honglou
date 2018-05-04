@@ -70,7 +70,7 @@
 
     <include
         android:id="@+id/ar_empty_view"
-        layout="@layout/view_empty"
+        layout="@layout/view_empty_no_record"
         android:visibility="gone"/>
 
 </RelativeLayout>
