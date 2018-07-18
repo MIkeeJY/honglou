@@ -8,7 +8,8 @@
 
     <include
         android:id="@+id/am_ptr_framelayout"
-        layout="@layout/ptr_recyclerview_uicomponent"/>
+        layout="@layout/ptr_recyclerview_uicomponent"
+        android:visibility="gone"/>
 
     <include
         android:id="@+id/ar_empty_view"
