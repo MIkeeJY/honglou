@@ -9,6 +9,9 @@
 * 可自行编译B站官方版本
 * 本项目封装参考 https://github.com/dueeeke/dkplayer
 
+### 效果如图 gif录制较卡实际很流畅
+![](https://github.com/MIkeeJY/honglou/blob/master/img/screenshot.gif)  
+
 # License
 ```
 Copyright 2015-2018 hackest
