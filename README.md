@@ -11,7 +11,9 @@
 
 ### 效果如图
 * gif录制较卡实际很流畅
+
 ![](https://github.com/MIkeeJY/honglou/blob/master/img/screenshot.gif)  
+
 ![](https://github.com/MIkeeJY/honglou/blob/master/img/screenshot2.gif)  
 
 # License
