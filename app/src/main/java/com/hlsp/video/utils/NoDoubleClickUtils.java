@@ -1,7 +1,5 @@
 package com.hlsp.video.utils;
 
-import android.view.View;
-
 /**
  * 防止多次点击的工具类
  */
@@ -27,13 +25,4 @@ public class NoDoubleClickUtils {
     }
 
 
-    public static void setEnable(final View view) {
-        view.post(new Runnable() {
-            @Override
-            public void run() {
-
-                view.setEnabled(true);
-            }
-        });
-    }
 }
