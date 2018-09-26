@@ -4,6 +4,7 @@
 
 * 参考尼古拉斯 赵四大神的博客 https://blog.csdn.net/jiangwei0910410003/article/details/78819781
 * 万能的Hook大法
+* PS：抖音接口有时间校验，如果本机时间不准的话，接口会报错，无法请求到数据
 
 ## ijkplayer编译：
 * 可自行编译B站官方版本
