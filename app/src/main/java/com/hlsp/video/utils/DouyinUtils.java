@@ -102,7 +102,7 @@ public class DouyinUtils {
         params.put("resolution", Utils.getDeviceWidth(act) + "*" + Utils.getDeviceHeight(act));
         params.put("dpi", Utils.getDeviceDpi(act) + "");
 //        params.put("device_id", "34971691517");
-//        params.put("device_id", "40545321430");
+        params.put("device_id", "40545321430");
         LogUtils.e(Utils.getDeviceIMEI(act));
 //		params.put("ac", NetworkUtil.getNetworkType(GlobalContext.getContext()).toLowerCase());
         params.put("ac", "wifi");
