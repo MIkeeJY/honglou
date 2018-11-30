@@ -70,8 +70,10 @@ public class GsonUtil {
         }
         List<T> list = new ArrayList<T>();
         JsonArray array = new JsonParser().parse(json).getAsJsonArray();
-        for (final JsonElement elem : array) {
-            list.add(gson.fromJson(elem, cls));
+        if (gson != null) {
+            for (final JsonElement elem : array) {
+                list.add(gson.fromJson(elem, cls));
+            }
         }
         return list;
     }
