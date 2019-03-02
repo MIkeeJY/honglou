@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.util.Log;
 
-import com.apkfuns.logutils.LogUtils;
+import com.hlsp.video.model.ConstantsValue;
 import com.ss.android.common.applog.UserInfo;
 
 import java.util.HashMap;
@@ -84,32 +84,30 @@ public class DouyinUtils {
      */
     @SuppressLint("DefaultLocale")
     public static HashMap<String, String> getCommonParams(Activity act) {
-        HashMap<String, String> params = new HashMap<String, String>();
-        params.put("iid", "16715863991");
-        params.put("channel", "360");
-        params.put("aid", "1128");
-        params.put("uuid", Utils.getDeviceUUID(act));
-        params.put("openudid", "b39d9675ee6af5b2");
-        params.put("app_name", "aweme");
-        params.put("version_code", appVersionCode);
-        params.put("version_name", appVersionName);
-        params.put("ssmix", "a");
-        params.put("manifest_version_code", appVersionCode);
-        params.put("device_type", Utils.getDeviceName());
-        params.put("device_brand", Utils.getDeviceFactory());
-        params.put("os_api", Utils.getOSSDK());
-        params.put("os_version", Utils.getOSRelease());
-        params.put("resolution", Utils.getDeviceWidth(act) + "*" + Utils.getDeviceHeight(act));
-        params.put("dpi", Utils.getDeviceDpi(act) + "");
-        params.put("device_id", "34971691517");
-//        params.put("device_id", "40545321430");
-        LogUtils.e(Utils.getDeviceIMEI(act));
+        HashMap<String, String> paramsMap = new HashMap<String, String>();
+        paramsMap.put("iid", ConstantsValue.IID);
+        paramsMap.put("channel", ConstantsValue.CHANNEL);//下载渠道
+        paramsMap.put("aid", ConstantsValue.AID);
+        paramsMap.put("uuid", ConstantsValue.UUID); //设备唯一号 需要运行时权限
+        paramsMap.put("openudid", ConstantsValue.OPEN_UDID); //更账户绑定
+        paramsMap.put("app_name", ConstantsValue.APP_NAME); //应用名称
+        paramsMap.put("version_code", ConstantsValue.V_CODE);//版本号
+        paramsMap.put("version_name", ConstantsValue.V_NAME);//版本名称
+        paramsMap.put("ssmix", "a");
+        paramsMap.put("manifest_version_code", ConstantsValue.V_CODE);//版本号
+        paramsMap.put("device_type", Utils.getDeviceName());//设备类型
+        paramsMap.put("device_brand", Utils.getDeviceFactory());//手机品牌
+        paramsMap.put("os_api", Utils.getOSSDK());//SDK 版本号
+        paramsMap.put("os_version", Utils.getOSRelease());//手机系统版本号
+        paramsMap.put("resolution", Utils.getDeviceWidth(act) + "*" + Utils.getDeviceHeight(act));//分辨率
+        paramsMap.put("dpi", Utils.getDeviceDpi(act) + "");//屏幕密度
+        paramsMap.put("device_id", ConstantsValue.DEVICE_ID);//设备ID
 //		params.put("ac", NetworkUtil.getNetworkType(GlobalContext.getContext()).toLowerCase());
-        params.put("ac", "wifi");
-        params.put("device_platform", "android");
-        params.put("update_version_code", "1592");
-        params.put("app_type", "normal");
-        return params;
+        paramsMap.put("ac", "wifi");//网络类型
+        paramsMap.put("device_platform", "android");//平台
+        paramsMap.put("update_version_code", "1592");//更新版本号
+        paramsMap.put("app_type", "normal");//应用类型
+        return paramsMap;
     }
 
 }

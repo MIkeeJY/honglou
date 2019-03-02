@@ -22,4 +22,24 @@ public class ConstantsValue {
 
     public static final String HISTORY_VIDEO = "history_video";
 
+
+    public static final String BASE_URL = "https://api.amemv.com/";
+
+    /**
+     * TODO　根据自己的账号去修改（只需要修改这几个即可）
+     */
+    public static final String IID = "26636470443"; //安装ID
+    public static final String UUID = "864394010744615";
+    public static final String OPEN_UDID = "7446a0820f251016";
+    public static final String DEVICE_ID = "43826946118";
+
+    /**
+     * 固定不变
+     */
+    public static final String APP_NAME = "aweme";
+    public static final String CHANNEL = "xiaomi";
+    public static final String V_CODE = "159";
+    public static final String V_NAME = "1.5.9";
+    public static final String AID = "1128";
+
 }
