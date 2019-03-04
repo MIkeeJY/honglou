@@ -22,9 +22,6 @@ public class ConstantsValue {
 
     public static final String HISTORY_VIDEO = "history_video";
 
-
-    public static final String BASE_URL = "https://api.amemv.com/";
-
     /**
      * TODO　根据自己的账号去修改（只需要修改这几个即可）
      */

@@ -67,7 +67,7 @@ public class DouyinVideoData extends LevideoData {
             data.title = json.optString("desc");
             data.createTime = json.optLong("create_time") * 1000;
 
-            data.playCount = json.getJSONObject("statistics").optInt("play_count");
+            data.playCount = json.getJSONObject("statistics").optInt("share_count");
             data.likeCount = json.getJSONObject("statistics").optInt("digg_count");
 
             //视频作者信息

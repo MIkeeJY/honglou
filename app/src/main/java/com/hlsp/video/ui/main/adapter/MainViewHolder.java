@@ -74,7 +74,7 @@ public class MainViewHolder extends CygBaseRecyclerViewHolder<LevideoData> {
 //            mNearbyImg.setImageURI(Uri.parse(data.getCoverImgUrl()));
 
             mTvTitle.setText(data.getTitle());
-            mTvPlayCount.setText(Utils.formatNumber(data.getPlayCount()) + "播放");
+            mTvPlayCount.setText(Utils.formatNumber(data.getPlayCount()) + "分享");
             mTvLikeCount.setText(Utils.formatNumber(data.getLikeCount()) + "赞");
 
 

@@ -33,7 +33,6 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:drawableLeft="@drawable/video_icon_list_play"
             android:drawablePadding="5dp"
             android:textColor="@color/white_text"
             android:textSize="11sp"/>
