@@ -141,6 +141,8 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         ptrRecyclerViewUIComponent.setOnPullToRefreshListener(new OnPullToRefreshListener() {
             @Override
             public void onPullToRefresh() {
+                ptrRecyclerViewUIComponent.getRecyclerView().setEnabled(false);
+                ptrRecyclerViewUIComponent.setLoadMoreEnable(false);
                 max_cursor = 0;
                 isLoadMore = false;
                 if (mList != null && mList.size() > 0) {
