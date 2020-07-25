@@ -7,5 +7,4 @@ gradle.ext.supportLibraryVersion = '26.1.0'  //以后会更新到新版
 gradle.ext.ijkPlayerVersion = '0.8.8'
 
 
-
-include ':app', ':CygWidget', ':CygPtr', ':CygHttp', ':GreenDao', ':sdk_core', ':library'
+include ':app', ':CygWidget', ':CygPtr', ':CygHttp', ':GreenDao', ':library'

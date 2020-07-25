@@ -381,7 +381,7 @@ public class SoftCheckUpdateUtil {
                     updatMessage.setText(requestCheckSoftUpdate.getUpdate_content());
                     softUpdateProcessBar.setVisibility(View.INVISIBLE);
                     confirmBtn.setText(R.string.activity_soft_update_dialog_confirm_tip);
-                    cancelBtn.setText(R.string.cancel);
+                    cancelBtn.setText(R.string.activity_soft_update_install_cancel);
                     cancelBtn.setVisibility(View.VISIBLE);
                     alertAppUpdateDialog.setCanceledOnTouchOutside(false);
                     alertAppUpdateDialog.setCancelable(false);

@@ -43,7 +43,6 @@ import com.hlsp.video.utils.StatusBarCompat;
 import com.hlsp.video.utils.WindowUtil;
 import com.hlsp.video.utils.statusbar.StatusBarFontHelper;
 import com.hlsp.video.utils.update.SoftCheckUpdateUtil;
-import com.lightsky.video.VideoHelper;
 import com.lightsky.video.base.FollowingVideoFragment;
 
 import java.util.HashMap;
@@ -237,11 +236,6 @@ public class MainTabActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        boolean iscanback = VideoHelper.get().isCanBack(this);
-        if (!iscanback) {
-            return;
-        }
-
         if (!VideoViewManager.instance().onBackPressed()) {
             if ((System.currentTimeMillis() - mExitTime) > 2000) {
                 Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();

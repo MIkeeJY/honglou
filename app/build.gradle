@@ -47,7 +47,6 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':sdk_core')
     compile project(':library')
     compile project(':CygWidget')
 
@@ -69,5 +68,11 @@ dependencies {
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+
+    compile 'com.facebook.fresco:fresco:1.7.1'
+    compile 'com.facebook.fresco:animated-webp:1.7.1'
+    compile 'com.facebook.fresco:webpsupport:1.7.1'
+
+    compile 'com.facebook.soloader:soloader:0.3.0' //webp需要引用这个库
 
 }
