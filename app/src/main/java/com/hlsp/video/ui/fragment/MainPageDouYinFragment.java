@@ -141,7 +141,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         ptrRecyclerViewUIComponent.setOnPullToRefreshListener(new OnPullToRefreshListener() {
             @Override
             public void onPullToRefresh() {
-                ptrRecyclerViewUIComponent.getRecyclerView().setEnabled(false);
+                ptrRecyclerViewUIComponent.getRecyclerView().setLayoutFrozen(true);
                 ptrRecyclerViewUIComponent.setLoadMoreEnable(false);
                 max_cursor = 0;
                 isLoadMore = false;
@@ -203,6 +203,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         OkHttpClientManager.getAsyn(url, new OkHttpClientManager.StringCallback() {
             @Override
             public void onResponse(String response) {
+                ptrRecyclerViewUIComponent.getRecyclerView().setLayoutFrozen(false);
                 LogUtils.json(response);
                 loadFrameLayout.showContentView();
                 try {
@@ -255,6 +256,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
 
             @Override
             public void onFailure(Request request, IOException e) {
+                ptrRecyclerViewUIComponent.getRecyclerView().setLayoutFrozen(false);
                 ptrRecyclerViewUIComponent.loadMoreComplete(false);
                 ptrRecyclerViewUIComponent.refreshComplete();
                 ToastUtil.showToast("网络连接失败");
@@ -276,6 +278,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
         OkHttpClientManager.getAsyn(url, new OkHttpClientManager.StringCallback() {
             @Override
             public void onResponse(String response) {
+                ptrRecyclerViewUIComponent.getRecyclerView().setLayoutFrozen(false);
                 LogUtils.json(response);
                 try {
                     HotsoonVideoListData listData = HotsoonVideoListData.fromJSONData(response);
@@ -314,6 +317,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
 
             @Override
             public void onFailure(Request request, IOException e) {
+                ptrRecyclerViewUIComponent.getRecyclerView().setLayoutFrozen(false);
                 ptrRecyclerViewUIComponent.loadMoreComplete(true);
                 ptrRecyclerViewUIComponent.refreshComplete();
                 ToastUtil.showToast("网络连接失败");
