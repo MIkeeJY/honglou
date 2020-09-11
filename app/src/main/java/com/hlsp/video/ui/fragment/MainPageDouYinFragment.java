@@ -12,7 +12,6 @@ import com.hlsp.video.App;
 import com.hlsp.video.R;
 import com.hlsp.video.base.BaseFragment;
 import com.hlsp.video.bean.data.DouyinVideoListData;
-import com.hlsp.video.bean.data.HotsoonVideoListData;
 import com.hlsp.video.bean.data.LevideoData;
 import com.hlsp.video.model.event.RefreshEvent;
 import com.hlsp.video.okhttp.http.OkHttpClientManager;
@@ -21,7 +20,6 @@ import com.hlsp.video.ui.main.adapter.MainAdapter;
 import com.hlsp.video.ui.main.adapter.MainViewHolder;
 import com.hlsp.video.utils.DensityUtil;
 import com.hlsp.video.utils.DouyinUtils;
-import com.hlsp.video.utils.HotsoonUtils;
 import com.hlsp.video.utils.NoDoubleClickUtils;
 import com.hlsp.video.utils.StatusBarCompat;
 import com.hlsp.video.utils.ToastUtil;
@@ -72,8 +70,6 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
 
     boolean isLoadMore = false;
 
-    boolean douYinDisable = false;
-
     MyCustomHeader header;
 
     @Override
@@ -104,11 +100,7 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
             @Override
             public void onClick(View v) {
                 if (!NoDoubleClickUtils.isDoubleClick()) {
-                    if (douYinDisable) {
-                        HuoshanListData();
-                    } else {
-                        getDouyinListData();
-                    }
+                    getDouyinListData();
                 }
 
 
@@ -149,11 +141,8 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
                     mList.clear();
                 }
 
-                if (douYinDisable) {
-                    HuoshanListData();
-                } else {
-                    getDouyinListData();
-                }
+
+                getDouyinListData();
 
 
             }
@@ -163,11 +152,9 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
             @Override
             public void onScrollToBottomLoadMore() {
                 isLoadMore = true;
-                if (douYinDisable) {
-                    HuoshanListData();
-                } else {
-                    getDouyinListData();
-                }
+
+                getDouyinListData();
+
             }
         });
 
@@ -209,16 +196,6 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
                 try {
                     DouyinVideoListData listData = DouyinVideoListData.fromJSONData(response);
                     max_cursor = listData.getMaxCursor();
-
-                    if (listData.getVideoDataList() == null || listData.getVideoDataList().size() == 0) {
-                        douYinDisable = true;
-                        max_cursor = 0;
-                        isLoadMore = false;
-                        HuoshanListData();
-                        return;
-                    } else {
-                        douYinDisable = false;
-                    }
 
                     LogUtils.e(listData.getVideoDataList().size());
 
@@ -265,62 +242,6 @@ public class MainPageDouYinFragment extends BaseFragment implements CygBaseRecyc
                 ptrRecyclerViewUIComponent.setHeaderView(header);
 
                 loadFrameLayout.showErrorView();
-
-            }
-        });
-
-
-    }
-
-
-    public void HuoshanListData() {
-        String url = HotsoonUtils.getEncryptUrl(getActivity(), 0, max_cursor);
-        OkHttpClientManager.getAsyn(url, new OkHttpClientManager.StringCallback() {
-            @Override
-            public void onResponse(String response) {
-                ptrRecyclerViewUIComponent.getRecyclerView().setLayoutFrozen(false);
-                LogUtils.json(response);
-                try {
-                    HotsoonVideoListData listData = HotsoonVideoListData.fromJSONData(response);
-                    max_cursor = listData.getMaxTime();
-
-                    LogUtils.e(listData.getVideoDataList().size());
-
-                    if (isLoadMore) {
-                        mList.addAll(listData.getVideoDataList());
-                        adapter.setDataList(mList, false);
-                        mAdapter.notifyDataSetChanged();
-                        ptrRecyclerViewUIComponent.loadMoreComplete(true);
-
-                    } else {
-                        mList = listData.getVideoDataList();
-                        if (mList.size() == 0) {
-                            emptyView.setVisibility(View.VISIBLE);
-                            ptrRecyclerViewUIComponent.setLoadMoreEnable(false);
-                        } else {
-                            emptyView.setVisibility(View.GONE);
-                            ptrRecyclerViewUIComponent.setLoadMoreEnable(true);
-                        }
-
-                        adapter.setDataList(mList);
-                        mAdapter.notifyDataSetChanged();
-                        ptrRecyclerViewUIComponent.refreshComplete();
-                    }
-
-                } catch (Exception e) {
-                    ptrRecyclerViewUIComponent.refreshComplete();
-                    e.printStackTrace();
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Request request, IOException e) {
-                ptrRecyclerViewUIComponent.getRecyclerView().setLayoutFrozen(false);
-                ptrRecyclerViewUIComponent.loadMoreComplete(true);
-                ptrRecyclerViewUIComponent.refreshComplete();
-                ToastUtil.showToast("网络连接失败");
 
             }
         });
