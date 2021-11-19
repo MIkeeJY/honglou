@@ -1,9 +1,9 @@
-gradle.ext.compileSdkVersion = 26
-gradle.ext.buildToolsVersion = "25.0.1"
+gradle.ext.compileSdkVersion = 28
+gradle.ext.buildToolsVersion = "28.0.3"
 gradle.ext.minSdkVersion = 16
 gradle.ext.targetSdkVersion = 22
 
-gradle.ext.supportLibraryVersion = '26.1.0'  //以后会更新到新版
+gradle.ext.supportLibraryVersion = '28.0.0'  //以后会更新到新版
 gradle.ext.ijkPlayerVersion = '0.8.8'
 
 

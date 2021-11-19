@@ -2,14 +2,17 @@
 
 buildscript {
     repositories {
-        jcenter()
+        maven {
+            name 'Sonatype SNAPSHOTs'
+            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
         google()
-
+        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
-        classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-rc2'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -17,11 +20,9 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
-        maven {
-            url 'https://maven.google.com'
-        }
+        maven { url 'https://jitpack.io' }
         google()
+        jcenter()
     }
 }
 

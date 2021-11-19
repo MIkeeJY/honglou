@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.jakewharton.butterknife'
+//apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion gradle.ext.compileSdkVersion
@@ -42,6 +42,10 @@ android {
     lintOptions {
         abortOnError false
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
 }
 
@@ -53,7 +57,7 @@ dependencies {
     compile "com.android.support:design:$gradle.ext.supportLibraryVersion"
 
     //ButterKnife
-    compile('com.jakewharton:butterknife:10.1.0') {
+    compile('com.jakewharton:butterknife:9.0.0-rc2') {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-compat'
     }
@@ -61,8 +65,8 @@ dependencies {
     compile 'me.everything:overscroll-decor-android:1.0.4'
 
     compile 'org.greenrobot:eventbus:3.1.1'
-    compile 'com.android.support:multidex:1.0.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    compile 'com.android.support:multidex:1.0.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
     debugCompile 'com.apkfuns.logutils:library:1.5.1.1'
     releaseCompile 'com.apkfuns.logutils:logutils-no-op:1.5.1.1'
 
