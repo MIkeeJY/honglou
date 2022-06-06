@@ -57,7 +57,7 @@ dependencies {
     compile "com.android.support:design:$gradle.ext.supportLibraryVersion"
 
     //ButterKnife
-    compile('com.jakewharton:butterknife:9.0.0-rc2') {
+    compile('com.jakewharton:butterknife:8.8.1') {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-compat'
     }
@@ -66,7 +66,7 @@ dependencies {
 
     compile 'org.greenrobot:eventbus:3.1.1'
     compile 'com.android.support:multidex:1.0.3'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     debugCompile 'com.apkfuns.logutils:library:1.5.1.1'
     releaseCompile 'com.apkfuns.logutils:logutils-no-op:1.5.1.1'
 
